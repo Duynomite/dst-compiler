@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DST Compiler Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes copiedPop { 0% { opacity: 0; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0; transform: scale(1); } }
+    @keyframes urgentPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .fade-in { animation: fadeIn 0.3s ease-in; }
+    .copied-anim { animation: copiedPop 1.2s ease-out forwards; }
+    .pulse-urgent { animation: urgentPulse 2s ease-in-out infinite; }
+    /* Autocomplete dropdown */
+    .autocomplete-list { max-height: 200px; overflow-y: auto; }
+    .autocomplete-item:hover { background-color: #e5e7eb; }
+    /* Card hover lift */
+    .dst-card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+    .dst-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    // =========================================================================
+    // DST Compiler Tool — Phase 1 + Phase 2
+    // =========================================================================
+
+    const { useState, useEffect, useMemo, useCallback, useRef } = React;
+
+    // =========================================================================
+    // Constants
+    // =========================================================================
+
+    const FEMA_API_BASE = 'https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries';
+    const FEMA_PAGE_SIZE = 1000;
+
+    // Source badge colors
+    const SOURCE_COLORS = {
+      FEMA:  { bg: '#3B82F6', text: '#FFFFFF', label: 'FEMA' },
+      HHS:   { bg: '#EF4444', text: '#FFFFFF', label: 'HHS' },
+      SBA:   { bg: '#F97316', text: '#FFFFFF', label: 'SBA' },
+      USDA:  { bg: '#92400E', text: '#FFFFFF', label: 'USDA' },
+      FMCSA: { bg: '#A855F7', text: '#FFFFFF', label: 'FMCSA' },
+      STATE: { bg: '#22C55E', text: '#FFFFFF', label: 'STATE' },
+    };
+
+    // US State names for display
+    const STATE_NAMES = {
+      AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',
+      CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',
+      FL:'Florida',GA:'Georgia',GU:'Guam',HI:'Hawaii',ID:'Idaho',IL:'Illinois',
+      IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',
+      ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',
+      MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',
+      NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',
+      NC:'North Carolina',ND:'North Dakota',MP:'Northern Mariana Islands',
+      OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',PR:'Puerto Rico',
+      RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',
+      TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',VI:'Virgin Islands',
+      WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming',
+      AS:'American Samoa'
+    };
+
+    // =========================================================================
+    // SEP Window Calculation — 42 CFR § 422.62(a)(6)
+    // CRITICAL: "2 full calendar months" is NOT "60 days"
+    // DO NOT use Date.setMonth() — it overflows on end-of-month dates
+    // =========================================================================
+
+    function calculateSEPWindowEnd(incidentEnd) {
+      if (!incidentEnd) return null;
+      const d = new Date(incidentEnd + 'T00:00:00');
+      const month = d.getMonth(); // 0-indexed
+      const year = d.getFullYear();
+      let targetMonth = month + 2;
+      let targetYear = year;
+      if (targetMonth > 11) {
+        targetMonth -= 12;
+        targetYear += 1;
+      }
+      // Day 0 of next month = last day of target month
+      return new Date(targetYear, targetMonth + 1, 0);
+    }
+
+    function calculateOngoingMaxEnd(sepStart, renewalDates) {
+      // For ongoing disasters: 14 calendar months from the latest of
+      // sepStart or any renewal date
+      let maxDate = new Date(sepStart + 'T00:00:00');
+      if (renewalDates && renewalDates.length > 0) {
+        for (const rd of renewalDates) {
+          const rDate = new Date(rd + 'T00:00:00');
+          if (rDate > maxDate) maxDate = rDate;
+        }
+      }
+      const month = maxDate.getMonth();
+      const year = maxDate.getFullYear();
+      let targetMonth = month + 14;
+      let targetYear = year;
+      while (targetMonth > 11) {
+        targetMonth -= 12;
+        targetYear += 1;
+      }
+      return new Date(targetYear, targetMonth + 1, 0);
+    }
+
+    function calculateSEPStart(declarationDate, incidentStart) {
+      const decl = new Date(declarationDate + 'T00:00:00');
+      const inc = new Date(incidentStart + 'T00:00:00');
+      return decl < inc ? decl : inc;
+    }
+
+    function calculateStatus(sepEnd, isOngoing) {
+      if (!sepEnd) return 'ongoing'; // Shouldn't happen since we calculate for ongoing too
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const diffMs = sepEnd.getTime() - today.getTime();
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) return 'expired';
+      if (diffDays <= 30) return 'expiring_soon';
+      if (isOngoing) return 'ongoing';
+      return 'active';
+    }
+
+    function getDaysRemaining(sepEnd) {
+      if (!sepEnd) return null;
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const diffMs = sepEnd.getTime() - today.getTime();
+      return Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    }
+
+    // =========================================================================
+    // Date formatting
+    // =========================================================================
+
+    function formatDateHuman(dateStr) {
+      if (!dateStr) return 'Ongoing';
+      const d = new Date(dateStr + 'T00:00:00');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    }
+
+    function formatDateFromObj(dateObj) {
+      if (!dateObj) return 'Ongoing';
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+    }
+
+    function toISODate(dateObj) {
+      if (!dateObj) return null;
+      const y = dateObj.getFullYear();
+      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const d = String(dateObj.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    // =========================================================================
+    // FEMA API Fetching with Pagination
+    // =========================================================================
+
+    async function fetchAllFEMA() {
+      const cutoffDate = new Date();
+      cutoffDate.setMonth(cutoffDate.getMonth() - 24);
+      const cutoffStr = cutoffDate.toISOString().split('T')[0];
+
+      let allRecords = [];
+      let skip = 0;
+      let hasMore = true;
+
+      while (hasMore) {
+        const filterParam = `declarationDate ge '${cutoffStr}'`;
+        const url = `${FEMA_API_BASE}?$filter=${encodeURIComponent(filterParam)}&$orderby=${encodeURIComponent('declarationDate desc')}&$top=${FEMA_PAGE_SIZE}&$skip=${skip}`;
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`FEMA API returned ${response.status}`);
+
+        const data = await response.json();
+        const records = data.DisasterDeclarationsSummaries || [];
+        allRecords = allRecords.concat(records);
+
+        if (records.length < FEMA_PAGE_SIZE) {
+          hasMore = false;
+        } else {
+          skip += FEMA_PAGE_SIZE;
+        }
+      }
+
+      return allRecords;
+    }
+
+    // =========================================================================
+    // FEMA Record Consolidation
+    // Group county-level records into disaster-level records
+    // =========================================================================
+
+    function consolidateFEMA(records) {
+      // Filter out Fire Management (FM) — not valid DST triggers
+      const validRecords = records.filter(r => r.declarationType !== 'FM');
+
+      const groups = {};
+      for (const rec of validRecords) {
+        const key = rec.femaDeclarationString; // e.g. "DR-4834-FL"
+        if (!groups[key]) {
+          groups[key] = {
+            femaDeclarationString: key,
+            declarationType: rec.declarationType,
+            declarationDate: rec.declarationDate ? rec.declarationDate.split('T')[0] : null,
+            incidentBeginDate: rec.incidentBeginDate ? rec.incidentBeginDate.split('T')[0] : null,
+            incidentEndDate: rec.incidentEndDate ? rec.incidentEndDate.split('T')[0] : null,
+            state: rec.state,
+            declarationTitle: rec.declarationTitle,
+            incidentType: rec.incidentType,
+            disasterNumber: rec.disasterNumber,
+            counties: [],
+          };
+        }
+        // Collect unique county names
+        const county = rec.designatedArea
+          ? rec.designatedArea
+              .replace(/\s*\(City and Borough\)\s*/gi, '')
+              .replace(/\s*\(County\)\s*/gi, '')
+              .replace(/\s*\(Parish\)\s*/gi, '')
+              .replace(/\s*\(Borough\)\s*/gi, '')
+              .replace(/\s*\(Census Area\)\s*/gi, '')
+              .replace(/\s*\(city\)\s*/gi, '')
+              .replace(/\s*\(Municipio\)\s*/gi, '')
+              .replace(/\s*\(ANV\/ANVSA\)\s*/gi, '')
+              .trim()
+          : null;
+        if (county && !groups[key].counties.includes(county)) {
+          groups[key].counties.push(county);
+        }
+      }
+
+      // Convert to our standard schema
+      const disasters = [];
+      for (const key of Object.keys(groups)) {
+        const g = groups[key];
+        if (!g.declarationDate || !g.incidentBeginDate) continue;
+
+        const sepStartDate = calculateSEPStart(g.declarationDate, g.incidentBeginDate);
+        const sepStartStr = toISODate(sepStartDate);
+        const isOngoing = !g.incidentEndDate;
+
+        let sepEndDate;
+        if (isOngoing) {
+          sepEndDate = calculateOngoingMaxEnd(sepStartStr, null);
+        } else {
+          sepEndDate = calculateSEPWindowEnd(g.incidentEndDate);
+        }
+
+        const status = calculateStatus(sepEndDate, isOngoing);
+        if (status === 'expired') continue; // Hide expired
+
+        // Check for future declaration dates (data error)
+        const declDate = new Date(g.declarationDate + 'T00:00:00');
+        if (declDate > new Date()) continue;
+
+        // Validate incidentStart <= incidentEnd
+        if (g.incidentEndDate) {
+          const incStart = new Date(g.incidentBeginDate + 'T00:00:00');
+          const incEnd = new Date(g.incidentEndDate + 'T00:00:00');
+          if (incStart > incEnd) continue;
+        }
+
+        const daysRem = getDaysRemaining(sepEndDate);
+
+        // Check statewide: if the county list includes "Statewide" or the count is very high
+        const isStatewide = g.counties.some(c => c.toLowerCase() === 'statewide');
+
+        disasters.push({
+          id: `FEMA-${g.femaDeclarationString}`,
+          source: 'FEMA',
+          state: g.state,
+          title: g.declarationTitle,
+          incidentType: g.incidentType,
+          declarationDate: g.declarationDate,
+          incidentStart: g.incidentBeginDate,
+          incidentEnd: g.incidentEndDate,
+          renewalDates: null,
+          counties: g.counties.sort(),
+          statewide: isStatewide,
+          officialUrl: `https://www.fema.gov/disaster/${g.disasterNumber}`,
+          status: status,
+          sepWindowStart: sepStartStr,
+          sepWindowEnd: toISODate(sepEndDate),
+          daysRemaining: daysRem,
+          confidenceLevel: 'verified',
+          lastUpdated: new Date().toISOString(),
+          declarationId: g.femaDeclarationString,
+        });
+      }
+
+      return disasters;
+    }
+
+    // =========================================================================
+    // County name normalization for search matching
+    // =========================================================================
+
+    function normalizeCountyName(name) {
+      return name
+        .toLowerCase()
+        .replace(/\s*\(county\)\s*/g, '')
+        .replace(/\s*\(parish\)\s*/g, '')
+        .replace(/\s*\(borough\)\s*/g, '')
+        .replace(/\s*\(census area\)\s*/g, '')
+        .replace(/\s*\(city\)\s*/g, '')
+        .replace(/\s*\(municipio\)\s*/g, '')
+        .replace(/saint\b/g, 'st')
+        .replace(/st\.\s*/g, 'st ')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim();
+    }
+
+    function countyMatches(disasterCounties, searchCounty, isStatewide) {
+      if (isStatewide) return true;
+      const normalizedSearch = normalizeCountyName(searchCounty);
+      return disasterCounties.some(c => {
+        const normalizedC = normalizeCountyName(c);
+        return normalizedC === normalizedSearch
+          || normalizedC.includes(normalizedSearch)
+          || normalizedSearch.includes(normalizedC);
+      });
+    }
+
+    // =========================================================================
+    // Copy to clipboard — SunFire format
+    // =========================================================================
+
+    function buildCopyText(disaster) {
+      const title = disaster.title;
+      const sourceId = disaster.source === 'FEMA'
+        ? `FEMA ${disaster.declarationId || disaster.id.replace('FEMA-', '')}`
+        : disaster.id;
+
+      const startStr = formatDateHuman(disaster.sepWindowStart);
+      const endStr = disaster.status === 'ongoing' ? 'Ongoing' : (disaster.sepWindowEnd ? formatDateHuman(disaster.sepWindowEnd) : 'Ongoing');
+
+      return [
+        `DST \u2014 ${title} (${sourceId})`,
+        `SEP Window: ${startStr} \u2014 ${endStr}`,
+        `Official Declaration: ${disaster.officialUrl}`,
+      ].join('\n');
+    }
+
+    // =========================================================================
+    // React Components
+    // =========================================================================
+
+    // --- CopyButton ---
+    function CopyButton({ disaster }) {
+      const [copied, setCopied] = useState(false);
+
+      const handleCopy = useCallback(async () => {
+        const text = buildCopyText(disaster);
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1200);
+        } catch {
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1200);
+        }
+      }, [disaster]);
+
+      return (
+        <div className="relative inline-block">
+          <button
+            onClick={handleCopy}
+            className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors border border-gray-300"
+            title="Copy DST details for SunFire"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            Copy
+          </button>
+          {copied && (
+            <span className="copied-anim absolute -top-8 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap shadow-lg">
+              Copied!
+            </span>
+          )}
+        </div>
+      );
+    }
+
+    // --- StatusBadge ---
+    function StatusBadge({ status, daysRemaining }) {
+      const config = {
+        ongoing:       { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-300', label: 'ONGOING', extra: '' },
+        active:        { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-300', label: 'ACTIVE', extra: '' },
+        expiring_soon: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-300', label: 'EXPIRING SOON', extra: 'pulse-urgent' },
+      };
+      const c = config[status] || config.active;
+      return (
+        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${c.bg} ${c.text} ${c.border} ${c.extra}`}>
+          {c.label}
+          {status === 'expiring_soon' && daysRemaining != null && (
+            <span className="text-xs font-bold">({daysRemaining}d)</span>
+          )}
+        </span>
+      );
+    }
+
+    // --- SourceBadge ---
+    function SourceBadge({ source }) {
+      const sc = SOURCE_COLORS[source] || SOURCE_COLORS.FEMA;
+      return (
+        <span
+          className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide"
+          style={{ backgroundColor: sc.bg, color: sc.text }}
+        >
+          {sc.label}
+        </span>
+      );
+    }
+
+    // --- DSTCard ---
+    function DSTCard({ disaster }) {
+      const [showCounties, setShowCounties] = useState(false);
+      const countyCount = disaster.counties.length;
+      const displayCounties = disaster.statewide
+        ? 'Statewide'
+        : countyCount <= 5
+          ? disaster.counties.join(', ')
+          : null;
+
+      return (
+        <div className={`dst-card fade-in bg-white rounded-lg p-4 shadow-sm border-l-4 ${
+          disaster.status === 'expiring_soon' ? 'border-l-red-400 border border-red-100' :
+          disaster.status === 'ongoing' ? 'border-l-blue-400 border border-gray-200' :
+          'border-l-green-400 border border-gray-200'
+        }`}>
+          {/* Header row */}
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              <SourceBadge source={disaster.source} />
+              {disaster.statewide && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                  Statewide
+                </span>
+              )}
+              <StatusBadge status={disaster.status} daysRemaining={disaster.daysRemaining} />
+            </div>
+            <CopyButton disaster={disaster} />
+          </div>
+
+          {/* Title */}
+          <h3 className="text-base font-semibold text-gray-900 mb-2 leading-tight">
+            {disaster.title}
+          </h3>
+
+          {/* Metadata */}
+          <div className="text-sm text-gray-600 space-y-1 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">Type</span>
+              <span>{disaster.incidentType}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">Declaration</span>
+              <span className="text-gray-700 font-mono text-xs">{disaster.declarationId || disaster.id}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">SEP Window</span>
+              <span className="font-semibold text-gray-800">
+                {formatDateHuman(disaster.sepWindowStart)} &mdash; {disaster.status === 'ongoing' ? 'Ongoing' : (disaster.sepWindowEnd ? formatDateHuman(disaster.sepWindowEnd) : 'Ongoing')}
+              </span>
+            </div>
+            {disaster.daysRemaining != null && disaster.status !== 'ongoing' && (
+              <div className="flex items-center gap-2">
+                <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">Remaining</span>
+                <span className={`font-semibold ${disaster.daysRemaining <= 30 ? 'text-red-600' : disaster.daysRemaining <= 60 ? 'text-orange-600' : 'text-gray-700'}`}>
+                  {disaster.daysRemaining} days
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Counties */}
+          <div className="text-sm text-gray-600 mb-3">
+            <span className="font-medium text-gray-400 text-xs uppercase tracking-wide">Counties: </span>
+            {displayCounties ? (
+              <span className="text-gray-700">{displayCounties}</span>
+            ) : (
+              <>
+                <button
+                  onClick={() => setShowCounties(!showCounties)}
+                  className="text-blue-600 hover:text-blue-800 underline text-sm"
+                >
+                  {showCounties ? 'Hide' : `Show ${countyCount} counties`}
+                </button>
+                {showCounties && (
+                  <div className="mt-1 text-xs text-gray-500 leading-relaxed bg-gray-50 rounded p-2">
+                    {disaster.counties.join(', ')}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Official Link */}
+          <a
+            href={disaster.officialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 font-medium hover:underline"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Official Declaration
+          </a>
+        </div>
+      );
+    }
+
+    // --- StateSection ---
+    function StateSection({ stateCode, disasters }) {
+      const [collapsed, setCollapsed] = useState(false);
+      const stateName = STATE_NAMES[stateCode] || stateCode;
+      const sourceBreakdown = useMemo(() => {
+        const counts = {};
+        for (const d of disasters) { counts[d.source] = (counts[d.source] || 0) + 1; }
+        return counts;
+      }, [disasters]);
+
+      return (
+        <div className="mb-6">
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="flex items-center gap-3 w-full text-left py-2.5 px-4 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200"
+          >
+            <svg className={`w-4 h-4 text-slate-400 transition-transform ${collapsed ? '' : 'rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            <h2 className="text-base font-bold text-slate-800">{stateName}</h2>
+            <span className="text-xs font-medium text-slate-500 bg-white px-2 py-0.5 rounded-full border border-slate-200">
+              {disasters.length} {disasters.length === 1 ? 'DST' : 'DSTs'}
+            </span>
+            <div className="flex items-center gap-1 ml-auto">
+              {Object.entries(sourceBreakdown).map(([src, count]) => {
+                const sc = SOURCE_COLORS[src] || SOURCE_COLORS.FEMA;
+                return (
+                  <span key={src} className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-semibold" style={{ backgroundColor: sc.bg + '22', color: sc.bg }}>
+                    {count} {src}
+                  </span>
+                );
+              })}
+            </div>
+          </button>
+          {!collapsed && (
+            <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-3">
+              {disasters.map(d => <DSTCard key={d.id} disaster={d} />)}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // --- CountyAutocomplete ---
+    function CountyAutocomplete({ countyMap, selectedState, value, onChange }) {
+      const [isFocused, setIsFocused] = useState(false);
+      const [highlightIndex, setHighlightIndex] = useState(-1);
+      const inputRef = useRef(null);
+      const listRef = useRef(null);
+
+      const suggestions = useMemo(() => {
+        if (!selectedState || !value || value.length < 1) return [];
+        const counties = countyMap[selectedState] || [];
+        const normalizedInput = normalizeCountyName(value);
+        return counties
+          .filter(c => normalizeCountyName(c).includes(normalizedInput))
+          .slice(0, 20);
+      }, [countyMap, selectedState, value]);
+
+      const showSuggestions = isFocused && suggestions.length > 0 && value.length >= 1;
+
+      const handleSelect = useCallback((county) => {
+        onChange(county);
+        setIsFocused(false);
+        setHighlightIndex(-1);
+      }, [onChange]);
+
+      const handleKeyDown = useCallback((e) => {
+        if (!showSuggestions) return;
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setHighlightIndex(prev => Math.min(prev + 1, suggestions.length - 1));
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setHighlightIndex(prev => Math.max(prev - 1, 0));
+        } else if (e.key === 'Enter' && highlightIndex >= 0) {
+          e.preventDefault();
+          handleSelect(suggestions[highlightIndex]);
+        } else if (e.key === 'Escape') {
+          setIsFocused(false);
+        }
+      }, [showSuggestions, suggestions, highlightIndex, handleSelect]);
+
+      return (
+        <div className="relative">
+          <input
+            ref={inputRef}
+            type="text"
+            value={value}
+            onChange={(e) => { onChange(e.target.value); setHighlightIndex(-1); }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+            onKeyDown={handleKeyDown}
+            placeholder={selectedState ? "Type county name..." : "Select a state first"}
+            disabled={!selectedState}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm disabled:bg-gray-100 disabled:text-gray-400"
+          />
+          {showSuggestions && (
+            <ul ref={listRef} className="autocomplete-list absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+              {suggestions.map((county, idx) => (
+                <li
+                  key={county}
+                  onMouseDown={() => handleSelect(county)}
+                  className={`autocomplete-item px-3 py-2 text-sm cursor-pointer ${idx === highlightIndex ? 'bg-blue-50 text-blue-700' : 'text-gray-700'}`}
+                >
+                  {county}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    }
+
+    // --- SortSelector ---
+    function SortSelector({ value, onChange }) {
+      return (
+        <div className="flex items-center gap-2 text-sm">
+          <label className="font-medium text-gray-600">Sort:</label>
+          <select
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            className="border border-gray-300 rounded-lg px-2 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+          >
+            <option value="state">By State (A-Z)</option>
+            <option value="recent">Most Recent First</option>
+            <option value="ending">Ending Soonest</option>
+          </select>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // Main App
+    // =========================================================================
+
+    // --- DebugPanel ---
+    function DebugPanel({ debugInfo, onClose }) {
+      if (!debugInfo) return null;
+      const { fema, curated, filtered, lastLoad } = debugInfo;
+      const statusIcon = (ok) => ok ? '\u2713' : '\u2717';
+      return (
+        <div style={{
+          position: 'fixed', bottom: 12, right: 12, zIndex: 10000,
+          background: 'rgba(0,0,0,0.92)', color: '#22c55e',
+          fontFamily: 'ui-monospace, monospace', fontSize: 12,
+          padding: '14px 16px', borderRadius: 8, maxWidth: 360,
+          maxHeight: '50vh', overflowY: 'auto', lineHeight: 1.6,
+          boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+            <strong style={{ color: '#86efac' }}>DEBUG PANEL</strong>
+            <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#86efac', cursor: 'pointer', fontSize: 14 }}>{'\u2715'}</button>
+          </div>
+          <div style={{ marginBottom: 8 }}>
+            <div style={{ color: '#9ca3af' }}>FEMA Fetch</div>
+            <div>Status: {statusIcon(fema.status === 'success')} {fema.status}</div>
+            <div>Raw API records: {fema.rawCount}</div>
+            <div>After consolidation: {fema.consolidatedCount}</div>
+            <div>Fetch time: {fema.timeMs}ms</div>
+          </div>
+          <div style={{ marginBottom: 8 }}>
+            <div style={{ color: '#9ca3af' }}>Curated JSON</div>
+            <div>Status: {statusIcon(curated.status === 'success')} {curated.status}</div>
+            <div>Records loaded: {curated.count}</div>
+            <div>Sources: {curated.sources || 'none'}</div>
+          </div>
+          <div style={{ marginBottom: 8 }}>
+            <div style={{ color: '#9ca3af' }}>Filtering</div>
+            <div>Expired removed: {filtered.expired}</div>
+            <div>Invalid removed: {filtered.invalid}</div>
+            <div>Duplicates removed: {filtered.duplicates}</div>
+            <div>Final display: {filtered.finalCount}</div>
+          </div>
+          <div style={{ color: '#6b7280', fontSize: 10, marginTop: 8 }}>
+            Last load: {lastLoad || 'N/A'}
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      // Data state
+      const [femaDisasters, setFemaDisasters] = useState([]);
+      const [curatedDisasters, setCuratedDisasters] = useState([]);
+      const [countyMap, setCountyMap] = useState({});
+      const [loading, setLoading] = useState(true);
+      const [femaError, setFemaError] = useState(null);
+      const [lastFemaFetch, setLastFemaFetch] = useState(null);
+      const [curatedLastUpdated, setCuratedLastUpdated] = useState(null);
+
+      // Search state
+      const [selectedState, setSelectedState] = useState('');
+      const [countyInput, setCountyInput] = useState('');
+      const [sortMode, setSortMode] = useState('state');
+
+      // Debug state
+      const [showDebug, setShowDebug] = useState(false);
+      const [debugInfo, setDebugInfo] = useState(null);
+
+      // Keyboard shortcut: Ctrl+Shift+D toggles debug panel
+      useEffect(() => {
+        const handler = (e) => {
+          if (e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+            e.preventDefault();
+            setShowDebug(prev => !prev);
+          }
+        };
+        window.addEventListener('keydown', handler);
+        return () => window.removeEventListener('keydown', handler);
+      }, []);
+
+      // Load data on mount
+      useEffect(() => {
+        loadData();
+      }, []);
+
+      async function loadData() {
+        setLoading(true);
+        const debug = {
+          fema: { status: 'pending', rawCount: 0, consolidatedCount: 0, timeMs: 0 },
+          curated: { status: 'pending', count: 0, sources: '' },
+          filtered: { expired: 0, invalid: 0, duplicates: 0, finalCount: 0 },
+          lastLoad: null,
+        };
+
+        // Load county map and curated data in parallel with FEMA
+        const countyPromise = fetch('county_state_map.json')
+          .then(r => r.ok ? r.json() : {})
+          .catch(() => ({}));
+
+        const curatedPromise = fetch('curated_disasters.json')
+          .then(r => {
+            if (!r.ok) { debug.curated.status = 'error (' + r.status + ')'; return []; }
+            return r.json();
+          })
+          .then(data => {
+            // Support new wrapped format {metadata, disasters} and legacy flat array
+            if (data && !Array.isArray(data) && data.disasters) {
+              if (data.metadata && data.metadata.lastUpdated) {
+                setCuratedLastUpdated(new Date(data.metadata.lastUpdated));
+              }
+              return data.disasters;
+            }
+            return Array.isArray(data) ? data : [];
+          })
+          .catch((err) => { debug.curated.status = 'error'; return []; });
+
+        let femaData = [];
+        let femaErr = null;
+        const femaStart = performance.now();
+        try {
+          const rawFema = await fetchAllFEMA();
+          debug.fema.rawCount = rawFema.length;
+          femaData = consolidateFEMA(rawFema);
+          debug.fema.consolidatedCount = femaData.length;
+          debug.fema.status = 'success';
+          debug.fema.timeMs = Math.round(performance.now() - femaStart);
+          setLastFemaFetch(new Date());
+        } catch (err) {
+          femaErr = err.message;
+          debug.fema.status = 'error: ' + err.message;
+          debug.fema.timeMs = Math.round(performance.now() - femaStart);
+          console.error('FEMA API error:', err);
+        }
+
+        const [countyData, curatedData] = await Promise.all([countyPromise, curatedPromise]);
+
+        // Track curated debug info
+        if (debug.curated.status === 'pending') {
+          debug.curated.status = curatedData.length > 0 ? 'success' : 'empty';
+        }
+        debug.curated.count = curatedData.length;
+        if (curatedData.length > 0) {
+          const srcSet = new Set(curatedData.map(d => d.source).filter(Boolean));
+          debug.curated.sources = [...srcSet].join(', ') || 'none';
+        }
+
+        debug.lastLoad = new Date().toLocaleString();
+        setDebugInfo(debug);
+
+        setFemaDisasters(femaData);
+        setFemaError(femaErr);
+        setCuratedDisasters(curatedData);
+        setCountyMap(countyData);
+        setLoading(false);
+      }
+
+      // Merge and deduplicate disasters
+      const allDisastersData = useMemo(() => {
+        const byId = {};
+        let dbgExpired = 0, dbgInvalid = 0, dbgDuplicates = 0;
+
+        // FEMA live data takes precedence
+        for (const d of femaDisasters) {
+          byId[d.id] = d;
+        }
+
+        // Add curated (non-FEMA) data — skip any FEMA records and duplicates
+        for (const d of curatedDisasters) {
+          if (d.source === 'FEMA') { dbgInvalid++; continue; }
+
+          // Recalculate SEP windows for curated data
+          if (!d.declarationDate || !d.incidentStart) { dbgInvalid++; continue; }
+
+          const sepStartDate = calculateSEPStart(d.declarationDate, d.incidentStart);
+          const sepStartStr = toISODate(sepStartDate);
+          const isOngoing = !d.incidentEnd;
+
+          let sepEndDate;
+          if (isOngoing) {
+            sepEndDate = calculateOngoingMaxEnd(sepStartStr, d.renewalDates || null);
+          } else {
+            sepEndDate = calculateSEPWindowEnd(d.incidentEnd);
+          }
+
+          const status = calculateStatus(sepEndDate, isOngoing);
+          if (status === 'expired') { dbgExpired++; continue; }
+
+          const daysRem = getDaysRemaining(sepEndDate);
+
+          // Validate
+          const declDate = new Date(d.declarationDate + 'T00:00:00');
+          if (declDate > new Date()) { dbgInvalid++; continue; }
+          if (d.incidentEnd) {
+            const incStart = new Date(d.incidentStart + 'T00:00:00');
+            const incEnd = new Date(d.incidentEnd + 'T00:00:00');
+            if (incStart > incEnd) { dbgInvalid++; continue; }
+          }
+          if (!d.officialUrl) { dbgInvalid++; continue; }
+          if (!d.counties || d.counties.length === 0) { dbgInvalid++; continue; }
+
+          if (!byId[d.id]) {
+            byId[d.id] = {
+              ...d,
+              status,
+              sepWindowStart: sepStartStr,
+              sepWindowEnd: toISODate(sepEndDate),
+              daysRemaining: daysRem,
+            };
+          } else {
+            dbgDuplicates++;
+          }
+        }
+
+        const result = Object.values(byId);
+
+        return { disasters: result, dbgExpired, dbgInvalid, dbgDuplicates };
+      }, [femaDisasters, curatedDisasters]);
+
+      const allDisasters = allDisastersData.disasters;
+
+      // Update debug filter counts via useEffect (not inside useMemo)
+      useEffect(() => {
+        if (debugInfo) {
+          const { dbgExpired, dbgInvalid, dbgDuplicates, disasters } = allDisastersData;
+          setDebugInfo(prev => prev ? {
+            ...prev,
+            filtered: { expired: dbgExpired, invalid: dbgInvalid, duplicates: dbgDuplicates, finalCount: disasters.length }
+          } : prev);
+        }
+      }, [allDisastersData]);
+
+      // Filter by search
+      const filteredDisasters = useMemo(() => {
+        let results = allDisasters;
+
+        if (selectedState) {
+          results = results.filter(d => d.state === selectedState);
+        }
+
+        if (countyInput && countyInput.length >= 2) {
+          results = results.filter(d =>
+            countyMatches(d.counties, countyInput, d.statewide)
+          );
+        }
+
+        return results;
+      }, [allDisasters, selectedState, countyInput]);
+
+      // Sort
+      const sortedDisasters = useMemo(() => {
+        const sorted = [...filteredDisasters];
+        if (sortMode === 'state') {
+          sorted.sort((a, b) => {
+            const stateComp = a.state.localeCompare(b.state);
+            if (stateComp !== 0) return stateComp;
+            return (b.declarationDate || '').localeCompare(a.declarationDate || '');
+          });
+        } else if (sortMode === 'recent') {
+          sorted.sort((a, b) => (b.declarationDate || '').localeCompare(a.declarationDate || ''));
+        } else if (sortMode === 'ending') {
+          sorted.sort((a, b) => {
+            // Ongoing go last
+            if (!a.sepWindowEnd && b.sepWindowEnd) return 1;
+            if (a.sepWindowEnd && !b.sepWindowEnd) return -1;
+            if (!a.sepWindowEnd && !b.sepWindowEnd) return 0;
+            return (a.sepWindowEnd || '').localeCompare(b.sepWindowEnd || '');
+          });
+        }
+        return sorted;
+      }, [filteredDisasters, sortMode]);
+
+      // Group by state for state-sorted view
+      const groupedByState = useMemo(() => {
+        if (sortMode !== 'state') return null;
+        const groups = {};
+        for (const d of sortedDisasters) {
+          if (!groups[d.state]) groups[d.state] = [];
+          groups[d.state].push(d);
+        }
+        return groups;
+      }, [sortedDisasters, sortMode]);
+
+      // State dropdown options
+      const stateOptions = useMemo(() => {
+        const states = Object.keys(countyMap).sort();
+        return states;
+      }, [countyMap]);
+
+      // Handle state change
+      const handleStateChange = useCallback((e) => {
+        setSelectedState(e.target.value);
+        setCountyInput('');
+      }, []);
+
+      const handleClearSearch = useCallback(() => {
+        setSelectedState('');
+        setCountyInput('');
+      }, []);
+
+      // Total count of all active disasters
+      const totalCount = allDisasters.length;
+      const displayCount = sortedDisasters.length;
+      const sourceCounts = useMemo(() => {
+        const counts = {};
+        for (const d of sortedDisasters) { counts[d.source] = (counts[d.source] || 0) + 1; }
+        return counts;
+      }, [sortedDisasters]);
+
+      return (
+        <div className="min-h-screen bg-gray-50">
+          {/* Header */}
+          <header className="bg-gradient-to-r from-slate-800 to-slate-700 sticky top-0 z-40 shadow-md">
+            <div className="max-w-7xl mx-auto px-4 py-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-lg font-bold text-white tracking-tight">DST Compiler Tool</h1>
+                  <p className="text-xs text-slate-300">Disaster Special Enrollment Period Lookup</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="text-right text-xs text-slate-400">
+                    {lastFemaFetch && (
+                      <div>FEMA data: {lastFemaFetch.toLocaleTimeString()}</div>
+                    )}
+                    {curatedLastUpdated && (
+                      <div>Curated data: {curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                    )}
+                  </div>
+                  <div className="bg-slate-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+                    {totalCount} DSTs
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* FEMA Error Banner */}
+          {femaError && (
+            <div className="bg-amber-50 border-b border-amber-200 px-4 py-2">
+              <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm text-amber-800">
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <span>
+                  FEMA data unavailable &mdash; showing non-FEMA sources only. <button onClick={loadData} className="underline font-medium hover:text-amber-900">Refresh to retry.</button>
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Search Bar */}
+          <div className="bg-white border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <div className="flex flex-col sm:flex-row gap-3 items-end">
+                {/* State Select */}
+                <div className="w-full sm:w-56">
+                  <label className="block text-xs font-medium text-gray-600 mb-1">State</label>
+                  <select
+                    value={selectedState}
+                    onChange={handleStateChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white"
+                  >
+                    <option value="">All States</option>
+                    {stateOptions.map(code => (
+                      <option key={code} value={code}>
+                        {STATE_NAMES[code] || code} ({code})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* County Autocomplete */}
+                <div className="w-full sm:w-64">
+                  <label className="block text-xs font-medium text-gray-600 mb-1">County</label>
+                  <CountyAutocomplete
+                    countyMap={countyMap}
+                    selectedState={selectedState}
+                    value={countyInput}
+                    onChange={setCountyInput}
+                  />
+                </div>
+
+                {/* Sort */}
+                <div className="w-full sm:w-auto">
+                  <SortSelector value={sortMode} onChange={setSortMode} />
+                </div>
+
+                {/* Clear */}
+                {(selectedState || countyInput) && (
+                  <button
+                    onClick={handleClearSearch}
+                    className="text-sm text-gray-500 hover:text-gray-700 underline whitespace-nowrap pb-2"
+                  >
+                    Clear filters
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <main className="max-w-7xl mx-auto px-4 py-6">
+            {loading ? (
+              /* Loading Skeleton */
+              <div className="flex flex-col items-center justify-center py-20 gap-4">
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-slate-200 border-t-slate-600"></div>
+                <p className="text-sm text-gray-500">Loading disaster data...</p>
+              </div>
+            ) : sortedDisasters.length === 0 ? (
+              /* No Results */
+              <div className="text-center py-16">
+                <svg className="mx-auto w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-lg font-semibold text-gray-600 mb-1">No active DSTs found</h3>
+                {selectedState && countyInput ? (
+                  <p className="text-sm text-gray-500">
+                    No active DSTs found for {countyInput}, {STATE_NAMES[selectedState] || selectedState}
+                  </p>
+                ) : selectedState ? (
+                  <p className="text-sm text-gray-500">
+                    No active DSTs found for {STATE_NAMES[selectedState] || selectedState}
+                  </p>
+                ) : (
+                  <p className="text-sm text-gray-500">Try adjusting your search filters.</p>
+                )}
+              </div>
+            ) : (
+              <>
+                {/* Results count */}
+                <div className="flex items-center justify-between mb-4 bg-white rounded-lg border border-gray-200 px-4 py-2.5">
+                  <p className="text-sm text-gray-600">
+                    Showing <span className="font-semibold text-gray-900">{displayCount}</span> active {displayCount === 1 ? 'DST' : 'DSTs'}
+                    {selectedState && ` in ${STATE_NAMES[selectedState] || selectedState}`}
+                    {countyInput && ` matching "${countyInput}"`}
+                  </p>
+                  <div className="flex items-center gap-2">
+                    {Object.entries(sourceCounts).sort((a,b) => b[1] - a[1]).map(([src, count]) => {
+                      const sc = SOURCE_COLORS[src] || SOURCE_COLORS.FEMA;
+                      return (
+                        <span key={src} className="inline-flex items-center gap-1 text-xs font-medium" style={{ color: sc.bg }}>
+                          <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sc.bg }}></span>
+                          {count} {src}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* State-grouped view */}
+                {sortMode === 'state' && groupedByState ? (
+                  Object.keys(groupedByState).sort().map(stateCode => (
+                    <StateSection
+                      key={stateCode}
+                      stateCode={stateCode}
+                      disasters={groupedByState[stateCode]}
+                    />
+                  ))
+                ) : (
+                  /* Flat list for other sort modes */
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                    {sortedDisasters.map(d => (
+                      <DSTCard key={d.id} disaster={d} />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </main>
+
+          {/* Compliance Footer */}
+          <footer className="bg-slate-50 border-t border-slate-200 mt-8">
+            <div className="max-w-7xl mx-auto px-4 py-5">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                  <div>
+                    <h4 className="text-sm font-semibold text-amber-800 mb-1">DST Three-Part Validation</h4>
+                    <p className="text-xs text-amber-700 leading-relaxed">
+                      Before using a DST, verify all three criteria via verbal attestation:
+                      <strong> (1)</strong> Client resides (or resided) in the declared disaster area.
+                      <strong> (2)</strong> Client was eligible for another enrollment period during the disaster.
+                      <strong> (3)</strong> Client missed enrollment due to the disaster.
+                      <span className="block mt-1.5 text-amber-600 font-medium">No signature required &mdash; document verbal attestation in enrollment notes.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-xs text-slate-400 mt-4">
+                DST Compiler Tool &mdash; 42 CFR &sect; 422.62(a)(6) &mdash; For internal agent use only
+              </p>
+            </div>
+          </footer>
+
+          {/* Debug Panel — hidden by default, toggle with Ctrl+Shift+D */}
+          {showDebug && debugInfo && (
+            <DebugPanel debugInfo={debugInfo} onClose={() => setShowDebug(false)} />
+          )}
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // Mount
+    // =========================================================================
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
