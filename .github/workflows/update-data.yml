@@ -2,8 +2,9 @@ name: Update DST Data
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # 6:00 AM EST (11:00 UTC) daily
-  workflow_dispatch:        # Manual trigger from Actions tab
+    - cron: '0 11 * * *'    # 6:00 AM EST (11:00 UTC) daily
+    - cron: '0 15 * * 1'    # Monday 10:00 AM EST (15:00 UTC) — weekly URL check
+  workflow_dispatch:          # Manual trigger from Actions tab
 
 jobs:
   update-data:
@@ -28,19 +29,78 @@ jobs:
         run: python dst_data_fetcher.py
         timeout-minutes: 10
 
-      - name: Validate record count (prevent data loss)
+      - name: Validate record counts (total + per-source)
+        id: validate
         run: |
-          NEW_COUNT=$(python -c "import json; d=json.load(open('curated_disasters.json')); print(len(d.get('disasters', d) if isinstance(d, dict) else d))")
-          OLD_COUNT=$(git show HEAD:curated_disasters.json 2>/dev/null | python -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('disasters', d) if isinstance(d, dict) else d))" 2>/dev/null || echo "0")
-          echo "Previous: $OLD_COUNT records, New: $NEW_COUNT records"
-          if [ "$NEW_COUNT" -lt "$OLD_COUNT" ]; then
-            DROP=$((OLD_COUNT - NEW_COUNT))
-            echo "::error::Record count DROPPED by $DROP (from $OLD_COUNT to $NEW_COUNT). Aborting to prevent data loss."
-            echo "This likely means the Federal Register API returned fewer results than expected."
-            echo "Run the fetcher locally and push manually to restore full data."
-            exit 1
-          fi
-          echo "Record count OK: $OLD_COUNT -> $NEW_COUNT"
+          python3 << 'PYEOF'
+          import json, subprocess, sys
+
+          # Load new data
+          new = json.load(open('curated_disasters.json'))
+          new_records = new.get('disasters', []) if isinstance(new, dict) else new
+          new_total = len(new_records)
+          new_by_source = {}
+          for r in new_records:
+              src = r.get('source', 'UNKNOWN')
+              new_by_source[src] = new_by_source.get(src, 0) + 1
+          print(f'New data: {new_total} total, by source: {new_by_source}')
+
+          # Load old data from git
+          try:
+              old_json = subprocess.check_output(
+                  ['git', 'show', 'HEAD:curated_disasters.json'],
+                  stderr=subprocess.DEVNULL
+              ).decode()
+              old = json.loads(old_json)
+              old_records = old.get('disasters', []) if isinstance(old, dict) else old
+              old_total = len(old_records)
+              old_by_source = {}
+              for r in old_records:
+                  src = r.get('source', 'UNKNOWN')
+                  old_by_source[src] = old_by_source.get(src, 0) + 1
+          except Exception:
+              old_by_source = {}
+              old_total = 0
+          print(f'Old data: {old_total} total, by source: {old_by_source}')
+
+          errors = []
+
+          # Check 1: Total count must not drop
+          if new_total < old_total:
+              errors.append(f'Total count DROPPED from {old_total} to {new_total} (-{old_total - new_total})')
+
+          # Check 2: Per-source integrity
+          for src, old_count in old_by_source.items():
+              new_count = new_by_source.get(src, 0)
+              # Any source dropping to 0 from non-zero = blocked
+              if old_count > 0 and new_count == 0:
+                  errors.append(f'{src}: dropped from {old_count} to 0 (total loss)')
+              # Source with 5+ records losing >20% = blocked
+              elif old_count >= 5 and new_count < old_count * 0.8:
+                  pct = (1 - new_count / old_count) * 100
+                  errors.append(f'{src}: dropped from {old_count} to {new_count} ({pct:.0f}% loss)')
+
+          if errors:
+              for e in errors:
+                  print(f'::error::{e}')
+              print('\nThis likely means the Federal Register API returned fewer results in CI.')
+              print('Run the fetcher locally and push manually to restore full data.')
+              sys.exit(1)
+
+          print('Record count checks PASSED')
+          PYEOF
+
+      - name: Run data integrity audit (22 checks per record)
+        id: audit
+        run: python audit_curated_data.py --ci
+        timeout-minutes: 2
+
+      - name: Verify URLs (weekly only)
+        id: url-check
+        if: github.event.schedule == '0 15 * * 1' || github.event_name == 'workflow_dispatch'
+        run: python audit_curated_data.py --verify-urls --update-metadata
+        timeout-minutes: 5
+        continue-on-error: true
 
       - name: Commit and push if data changed
         run: |
@@ -52,15 +112,41 @@ jobs:
             git push
           )
 
-      - name: Create issue on failure
-        if: failure()
+      - name: Create issue on data loss
+        if: failure() && steps.validate.outcome == 'failure'
         uses: actions/github-script@v7
         with:
           script: |
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'DST Data Fetcher Failed',
-              body: `The daily data update workflow failed.\n\nSee the failed run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-              labels: ['bug']
+              title: 'DST Data Loss Detected — Per-Source Record Drop',
+              body: `The daily data update detected a significant record count drop by source.\n\nThis likely means the Federal Register API returned fewer results than expected, or curated data was corrupted.\n\n**Action required:** Run the fetcher locally and push manually.\n\nSee the failed run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              labels: ['data-integrity', 'urgent']
+            });
+
+      - name: Create issue on audit failure
+        if: failure() && steps.audit.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'DST Audit Failed — Data Integrity Check',
+              body: `The 22-check data integrity audit found failures in curated_disasters.json.\n\nRecords may have invalid dates, missing fields, or incorrect SEP calculations.\n\n**Action required:** Run \`python3 audit_curated_data.py\` locally to see details.\n\nSee the failed run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              labels: ['data-integrity', 'audit']
+            });
+
+      - name: Create issue on URL verification failure
+        if: steps.url-check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'DST URL Verification — Dead Links Detected',
+              body: `The weekly URL verification found officialUrl entries that are unreachable or point to incorrect pages.\n\n**Action required:** Run \`python3 audit_curated_data.py --verify-urls\` locally to see which URLs failed.\n\nSee the run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              labels: ['data-integrity', 'urls']
             });

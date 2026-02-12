@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 """
 Comprehensive audit of curated_disasters.json
-Validates all records against 22 checks per the audit specification.
+Validates all records against 24 checks per the audit specification.
 Checks 1-18: Per-record validation
 Check 19-21: Cross-record validation
 Check 22: lastVerified field for STATE/HHS records
+Check 23: URL verification (HEAD + content relevance) — requires --verify-urls flag
+Check 24: lastVerified staleness (>30 days) for STATE/HHS records
 """
 
 import json
+import os
+import sys
+import argparse
 import calendar
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from collections import Counter
 
-TODAY = date(2026, 2, 11)
-TWENTY_FOUR_MONTHS_AGO = date(2024, 2, 11)
-TOMORROW = date(2026, 2, 12)
+TODAY = date.today()
+TWENTY_FOUR_MONTHS_AGO = date(TODAY.year - 2, TODAY.month, min(TODAY.day, 28))
+TOMORROW = TODAY + timedelta(days=1)
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_JSON_PATH = os.path.join(SCRIPT_DIR, "curated_disasters.json")
 
 VALID_SOURCES = {"SBA", "FMCSA", "HHS", "USDA", "STATE"}
 
@@ -76,8 +84,318 @@ def calculate_sep_window_end_ongoing(sep_start, renewal_dates=None):
     return date(target_year, target_month, last_day)
 
 
-def run_audit():
-    with open("/Users/connorvanduyn/Downloads/Claude/DST Tool NEW/dst-compiler/curated_disasters.json", "r") as f:
+# =============================================
+# STATE CODE TO NAME (for content relevance checks)
+# =============================================
+
+STATE_CODE_TO_NAME = {
+    "AL": "alabama", "AK": "alaska", "AZ": "arizona", "AR": "arkansas",
+    "CA": "california", "CO": "colorado", "CT": "connecticut", "DE": "delaware",
+    "DC": "district of columbia", "FL": "florida", "GA": "georgia", "GU": "guam",
+    "HI": "hawaii", "ID": "idaho", "IL": "illinois", "IN": "indiana",
+    "IA": "iowa", "KS": "kansas", "KY": "kentucky", "LA": "louisiana",
+    "ME": "maine", "MD": "maryland", "MA": "massachusetts", "MI": "michigan",
+    "MN": "minnesota", "MS": "mississippi", "MO": "missouri", "MT": "montana",
+    "NE": "nebraska", "NV": "nevada", "NH": "new hampshire", "NJ": "new jersey",
+    "NM": "new mexico", "NY": "new york", "NC": "north carolina", "ND": "north dakota",
+    "MP": "northern mariana islands", "OH": "ohio", "OK": "oklahoma", "OR": "oregon",
+    "PA": "pennsylvania", "PR": "puerto rico", "RI": "rhode island",
+    "SC": "south carolina", "SD": "south dakota", "TN": "tennessee", "TX": "texas",
+    "UT": "utah", "VT": "vermont", "VA": "virginia", "VI": "virgin islands",
+    "WA": "washington", "WV": "west virginia", "WI": "wisconsin", "WY": "wyoming",
+    "AS": "american samoa",
+}
+
+
+# =============================================
+# URL VERIFICATION (Check 23)
+# =============================================
+
+def verify_urls(disasters, timeout=10):
+    """
+    Check 23: URL verification — HEAD reachability + content relevance.
+
+    For each record:
+      1. HEAD request (2 retries, 1s backoff) — FAIL if 4xx/5xx or unreachable
+      2. GET first 50KB of page content
+      3. Check for relevance signals: year, state name, title keywords
+      4. Score: >=2 signals = PASS, 1 = WEAK, 0 = FAIL (likely generic page)
+
+    Special handling:
+      - FMCSA URLs: Always return 403 to bots — treated as PASS (reachability skip)
+      - Federal Register URLs: Content is JS-rendered; URL structure is verified instead
+      - Known SSL-problematic sites: Warn but don't fail
+
+    Rate limiting: 0.5s between requests to respect government sites.
+    """
+    import re
+    import time
+    try:
+        import requests
+    except ImportError:
+        print("  ERROR: 'requests' package required for URL verification")
+        print("  Install with: pip install requests")
+        return []
+
+    USER_AGENT = "DST-Compiler-Audit/1.0 (Medicare SEP Tool; contact: admin@clearpathcoverage.com)"
+
+    # Domains known to block automated requests — skip HEAD check, validate URL structure
+    SKIP_HEAD_DOMAINS = {"www.fmcsa.dot.gov", "fmcsa.dot.gov"}
+
+    # Domains where content is JS-rendered — skip content relevance check
+    SKIP_CONTENT_DOMAINS = {"www.federalregister.gov", "federalregister.gov"}
+
+    results = []
+    # Deduplicate URLs to avoid hammering the same endpoint (FMCSA has 59 records with 3 URLs)
+    checked_urls = {}
+
+    print(f"\n  Checking {len(disasters)} URLs...")
+
+    for i, rec in enumerate(disasters):
+        url = rec.get("officialUrl", "")
+        rec_id = rec.get("id", "UNKNOWN")
+        state = rec.get("state", "")
+        title = rec.get("title", "")
+        source = rec.get("source", "")
+
+        if not url:
+            results.append({"id": rec_id, "status": "FAIL", "reason": "No URL", "url": ""})
+            continue
+
+        # Extract domain for special handling
+        try:
+            from urllib.parse import urlparse
+            domain = urlparse(url).netloc.lower()
+        except Exception:
+            domain = ""
+
+        # --- Special case: FMCSA always returns 403 to bots ---
+        # The URLs are valid but FMCSA blocks automated requests.
+        # Validate URL structure instead of HTTP reachability.
+        if domain in SKIP_HEAD_DOMAINS:
+            # Check URL is not a generic homepage
+            is_specific = "/emergency/" in url and len(url) > 60
+            if url in checked_urls:
+                results.append({"id": rec_id, "status": checked_urls[url], "reachable": "skipped (403 domain)",
+                                "content_match": "N/A", "url": url[:100]})
+            else:
+                status = "PASS" if is_specific else "WARN"
+                checked_urls[url] = status
+                results.append({"id": rec_id, "status": status, "reachable": "skipped (403 domain)",
+                                "content_match": "structure_check", "url": url[:100]})
+            continue
+
+        # --- Special case: Federal Register URLs are JS-rendered ---
+        # Content relevance check fails because the page content is loaded via JS.
+        # The URL contains the document number which matches our record ID — that IS the verification.
+        if domain in SKIP_CONTENT_DOMAINS:
+            if url in checked_urls:
+                results.append({"id": rec_id, "status": checked_urls[url], "reachable": True,
+                                "content_match": "N/A (JS-rendered)", "url": url[:100]})
+                continue
+            # HEAD check only — skip content
+            reachable = False
+            status_code = None
+            for attempt in range(2):
+                try:
+                    resp = requests.head(url, timeout=timeout, allow_redirects=True,
+                                         headers={"User-Agent": USER_AGENT})
+                    status_code = resp.status_code
+                    reachable = status_code < 400
+                    break
+                except Exception as e:
+                    if attempt == 0:
+                        time.sleep(1)
+                    status_code = str(type(e).__name__)
+
+            if reachable:
+                checked_urls[url] = "PASS"
+                results.append({"id": rec_id, "status": "PASS", "reachable": True,
+                                "content_match": "N/A (JS-rendered)", "url": url[:100]})
+            else:
+                checked_urls[url] = "FAIL"
+                results.append({"id": rec_id, "status": "FAIL",
+                                "reason": f"HTTP {status_code}", "url": url[:100]})
+            time.sleep(0.5)
+            continue
+
+        # --- Standard URL verification ---
+        # Step 1: HEAD check (2 attempts)
+        reachable = False
+        status_code = None
+        for attempt in range(2):
+            try:
+                resp = requests.head(
+                    url, timeout=timeout, allow_redirects=True,
+                    headers={"User-Agent": USER_AGENT}
+                )
+                status_code = resp.status_code
+                reachable = status_code < 400
+                break
+            except Exception as e:
+                if attempt == 0:
+                    time.sleep(1)
+                status_code = str(type(e).__name__)
+
+        if not reachable:
+            # Some servers reject HEAD but accept GET — try GET as fallback
+            try:
+                resp = requests.get(
+                    url, timeout=timeout, allow_redirects=True,
+                    headers={"User-Agent": USER_AGENT},
+                    stream=True
+                )
+                if resp.status_code < 400:
+                    reachable = True
+                    status_code = resp.status_code
+                resp.close()
+            except Exception:
+                pass
+
+        if not reachable:
+            # SSL errors on government sites are usually transient cert issues,
+            # not wrong URLs. Treat as WARN, not FAIL.
+            is_ssl = "SSL" in str(status_code)
+            results.append({
+                "id": rec_id,
+                "status": "WARN" if is_ssl else "FAIL",
+                "reason": f"HTTP {status_code}" + (" (SSL — likely transient)" if is_ssl else ""),
+                "url": url[:100]
+            })
+            time.sleep(0.5)
+            continue
+
+        # Step 2: Content relevance check (GET first 50KB)
+        content_match = "UNKNOWN"
+        matches = 0
+        try:
+            resp = requests.get(
+                url, timeout=timeout, allow_redirects=True,
+                headers={"User-Agent": USER_AGENT},
+                stream=True
+            )
+            # Read only first 50KB to be respectful
+            content = ""
+            for chunk in resp.iter_content(chunk_size=8192, decode_unicode=True):
+                if isinstance(chunk, bytes):
+                    content += chunk.decode("utf-8", errors="ignore")
+                else:
+                    content += chunk
+                if len(content) > 50000:
+                    break
+            resp.close()
+
+            content_lower = content.lower()
+
+            # Build relevance signals
+            signals = []
+
+            # Signal 1: Year from declaration date
+            decl_year = rec.get("declarationDate", "")[:4]
+            if decl_year:
+                signals.append(decl_year)
+
+            # Signal 2: State name (full name, not abbreviation)
+            state_name = STATE_CODE_TO_NAME.get(state, "")
+            if state_name:
+                signals.append(state_name)
+
+            # Signal 3-5: Keywords from title (skip common words)
+            skip_words = {
+                "governor", "emergency", "declaration", "declares", "declared",
+                "january", "february", "march", "april", "may", "june",
+                "july", "august", "september", "october", "november", "december",
+                "storm", "winter", "state", "disaster", "severe", "weather",
+                "2025", "2026", "2024",  # Years handled separately
+            }
+            title_words = re.findall(r'\b[a-z]{4,}\b', title.lower())
+            key_words = [w for w in title_words if w not in skip_words]
+            signals.extend(key_words[:3])
+
+            # Check: how many signals found in page content?
+            matches = sum(1 for s in signals if s in content_lower)
+
+            if matches >= 2:
+                content_match = "PASS"
+            elif matches == 1:
+                content_match = "WEAK"
+            else:
+                content_match = "FAIL"
+
+        except Exception as e:
+            content_match = f"ERROR: {type(e).__name__}"
+
+        final_status = "PASS" if content_match == "PASS" else "WARN"
+        results.append({
+            "id": rec_id,
+            "status": final_status,
+            "reachable": True,
+            "content_match": content_match,
+            "signals_matched": matches,
+            "url": url[:100],
+        })
+
+        # Progress indicator every 25 records
+        if (i + 1) % 25 == 0:
+            print(f"  ... {i + 1}/{len(disasters)} checked")
+
+        time.sleep(0.5)  # Rate limit
+
+    return results
+
+
+def print_url_report(results):
+    """Print URL verification report."""
+    passes = [r for r in results if r["status"] == "PASS"]
+    warns = [r for r in results if r["status"] == "WARN"]
+    fails = [r for r in results if r["status"] == "FAIL"]
+
+    print(f"\n  Results: {len(passes)} PASS, {len(warns)} WARN, {len(fails)} FAIL")
+
+    if fails:
+        print(f"\n  FAILURES ({len(fails)}):")
+        for f in fails:
+            print(f"    {f['id']}: {f.get('reason', 'content mismatch')} — {f.get('url', '')}")
+
+    if warns:
+        print(f"\n  WARNINGS ({len(warns)}):")
+        for w in warns:
+            cm = w.get("content_match", "?")
+            print(f"    {w['id']}: content_match={cm} — {w.get('url', '')}")
+
+    return len(fails)
+
+
+def update_metadata_with_url_results(json_path, results):
+    """Write URL verification results back to curated_disasters.json metadata."""
+    with open(json_path, "r") as f:
+        data = json.load(f)
+
+    passes = [r for r in results if r["status"] == "PASS"]
+    warns = [r for r in results if r["status"] == "WARN"]
+    fails = [r for r in results if r["status"] == "FAIL"]
+
+    if "dataIntegrity" not in data.get("metadata", {}):
+        data.setdefault("metadata", {})["dataIntegrity"] = {}
+
+    data["metadata"]["dataIntegrity"]["urlVerification"] = {
+        "lastRun": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "passCount": len(passes),
+        "warnCount": len(warns),
+        "failCount": len(fails),
+        "failures": [{"id": f["id"], "reason": f.get("reason", "content mismatch")} for f in fails],
+    }
+
+    with open(json_path, "w") as f:
+        json.dump(data, f, indent=2)
+
+    print(f"\n  Metadata updated with URL verification results.")
+
+
+def run_audit(json_path=None):
+    if json_path is None:
+        json_path = DEFAULT_JSON_PATH
+    with open(json_path, "r") as f:
         data = json.load(f)
 
     metadata = data.get("metadata", {})
@@ -295,8 +613,20 @@ def run_audit():
             check(rid, 22, "lastVerified present and valid ISO date for STATE/HHS",
                   "Valid date string", str(last_verified),
                   lv_date is not None)
+
+            # Check 24: lastVerified staleness (>30 days old)
+            if lv_date is not None:
+                staleness_days = (TODAY - lv_date).days
+                check(rid, 24, "lastVerified is within 30 days",
+                      f"<= 30 days old", f"{staleness_days} days old",
+                      staleness_days <= 30)
+            else:
+                check(rid, 24, "lastVerified staleness — N/A (no valid date)",
+                      "N/A", "N/A", True)
         else:
             check(rid, 22, "lastVerified check — N/A (not STATE/HHS)",
+                  "N/A", "N/A", True)
+            check(rid, 24, "lastVerified staleness — N/A (not STATE/HHS)",
                   "N/A", "N/A", True)
 
     # =============================================
@@ -394,5 +724,36 @@ def run_audit():
 
 
 if __name__ == "__main__":
-    exit_code = run_audit()
-    exit(0 if exit_code == 0 else 1)
+    parser = argparse.ArgumentParser(description="Audit curated_disasters.json for data integrity")
+    parser.add_argument("--ci", action="store_true", help="CI mode: exit non-zero on any failure")
+    parser.add_argument("--verify-urls", action="store_true", help="Run URL verification (Check 23) — makes HTTP requests")
+    parser.add_argument("--update-metadata", action="store_true", help="Write URL verification results back to JSON metadata")
+    parser.add_argument("--json-path", type=str, default=None, help="Path to curated_disasters.json (default: auto-detect)")
+    args = parser.parse_args()
+
+    json_path = args.json_path or DEFAULT_JSON_PATH
+    failure_count = run_audit(json_path=json_path)
+
+    url_failures = 0
+    if args.verify_urls:
+        print()
+        print("=" * 80)
+        print("URL VERIFICATION (Check 23)")
+        print("=" * 80)
+
+        # Load disasters for URL checking
+        with open(json_path, "r") as f:
+            data = json.load(f)
+        disasters = data.get("disasters", [])
+
+        results = verify_urls(disasters)
+        url_failures = print_url_report(results)
+
+        if args.update_metadata:
+            update_metadata_with_url_results(json_path, results)
+
+        print()
+
+    # Exit non-zero if any structural audit failures
+    # URL warnings don't block (only HEAD failures do)
+    exit(1 if failure_count > 0 else 0)

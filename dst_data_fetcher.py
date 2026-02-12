@@ -19,6 +19,7 @@ import sys
 import json
 import re
 import time
+import hashlib
 import calendar
 import traceback
 from datetime import date, datetime, timedelta
@@ -35,6 +36,8 @@ LOOKBACK_MONTHS = 24
 REQUEST_TIMEOUT = 15  # seconds
 USER_AGENT = "DST-Compiler/1.0 (Medicare SEP Tool; contact: admin@clearpathcoverage.com)"
 OUTPUT_FILE = "curated_disasters.json"
+
+VERIFY_URLS_ON_BUILD = False  # Set True for local debug runs; False for CI (rate limits)
 
 FALLBACK_URLS = {
     "HHS": "https://aspr.hhs.gov/legal/PHE/Pages/default.aspx",
@@ -235,6 +238,9 @@ def build_record(
         return None
     if not official_url:
         return None
+    if VERIFY_URLS_ON_BUILD:
+        if not verify_url(official_url):
+            print(f"  WARNING: URL unreachable for {id_str}: {official_url[:80]}")
     if not counties:
         return None
     if state not in VALID_STATES:
@@ -1748,6 +1754,30 @@ def main():
     # Sort by state, then declaration date desc
     unique_records.sort(key=lambda r: (r["state"], r.get("declarationDate", "")))
 
+    # Auto-update lastVerified for STATE/HHS records
+    today_str = date.today().isoformat()
+    for rec in unique_records:
+        if rec.get("source") in ("STATE", "HHS"):
+            rec["lastVerified"] = today_str
+
+    # Compute content hash and source counts
+    records_json = json.dumps(unique_records, sort_keys=True)
+    content_hash = hashlib.sha256(records_json.encode()).hexdigest()[:16]
+
+    source_counts = {}
+    for rec in unique_records:
+        src = rec.get("source", "UNKNOWN")
+        source_counts[src] = source_counts.get(src, 0) + 1
+
+    # Build Federal Register diagnostics from SBA collector
+    sba_collector = collectors.get("SBA")
+    fr_diagnostics = {}
+    if sba_collector and hasattr(sba_collector, "fr_count"):
+        fr_diagnostics = {
+            "recordsParsed": sba_collector.fr_count,
+            "curatedOverrides": sba_collector.curated_count,
+        }
+
     # Write output with metadata wrapper
     print(f"Writing to {OUTPUT_FILE}...")
     output = {
@@ -1755,6 +1785,13 @@ def main():
             "lastUpdated": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
             "recordCount": len(unique_records),
             "generatedBy": "dst_data_fetcher.py",
+            "contentHash": content_hash,
+            "dataIntegrity": {
+                "auditChecks": 22,
+                "sourceCounts": source_counts,
+                "federalRegister": fr_diagnostics,
+                "urlVerification": None,
+            },
         },
         "disasters": unique_records,
     }

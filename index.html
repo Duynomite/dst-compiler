@@ -798,23 +798,41 @@
     }
 
     // --- Staleness Banner ---
-    function StalenessBanner({ curatedLastUpdated }) {
+    function StalenessBanner({ curatedLastUpdated, curatedIntegrity }) {
       if (!curatedLastUpdated) return null;
       const now = new Date();
       const diffDays = Math.floor((now - curatedLastUpdated) / (1000 * 60 * 60 * 24));
-      if (diffDays <= STALENESS_DAYS) return null;
+      const urlFailCount = curatedIntegrity?.urlVerification?.failCount || 0;
+
+      // Show banner if stale OR if URL issues exist
+      if (diffDays <= STALENESS_DAYS && urlFailCount === 0) return null;
 
       return (
         <div className="bg-amber-50 border-b border-amber-200 px-4 py-2.5">
-          <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm text-amber-800">
-            <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="font-body">
-              <strong>Data may be outdated.</strong> Curated disaster data was last updated <strong>{diffDays} days ago</strong>
-              {' '}({curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}).
-              Verify current declarations before enrollment.
-            </span>
+          <div className="max-w-7xl mx-auto flex flex-col gap-1 text-sm text-amber-800">
+            {diffDays > STALENESS_DAYS && (
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="font-body">
+                  <strong>Data may be outdated.</strong> Curated disaster data was last updated <strong>{diffDays} days ago</strong>
+                  {' '}({curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}).
+                  Verify current declarations before enrollment.
+                </span>
+              </div>
+            )}
+            {urlFailCount > 0 && (
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+                <span className="font-body">
+                  <strong>{urlFailCount} declaration link{urlFailCount > 1 ? 's' : ''}</strong> may need verification.
+                  Some official URLs may have changed.
+                </span>
+              </div>
+            )}
           </div>
         </div>
       );
@@ -830,6 +848,7 @@
       const [curatedError, setCuratedError] = useState(null);
       const [lastFemaFetch, setLastFemaFetch] = useState(null);
       const [curatedLastUpdated, setCuratedLastUpdated] = useState(null);
+      const [curatedIntegrity, setCuratedIntegrity] = useState(null);
 
       // Search state
       const [selectedState, setSelectedState] = useState('');
@@ -880,8 +899,13 @@
           })
           .then(data => {
             if (data && !Array.isArray(data) && data.disasters) {
-              if (data.metadata && data.metadata.lastUpdated) {
-                setCuratedLastUpdated(new Date(data.metadata.lastUpdated));
+              if (data.metadata) {
+                if (data.metadata.lastUpdated) {
+                  setCuratedLastUpdated(new Date(data.metadata.lastUpdated));
+                }
+                if (data.metadata.dataIntegrity) {
+                  setCuratedIntegrity(data.metadata.dataIntegrity);
+                }
               }
               setCuratedError(null);
               return data.disasters;
@@ -1121,7 +1145,14 @@
                       <div className="text-light-cyan/70">FEMA data: {lastFemaFetch.toLocaleTimeString()}</div>
                     )}
                     {curatedLastUpdated && (
-                      <div className="text-light-cyan/70">Curated data: {curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                      <div className="text-light-cyan/70">
+                        Curated data: {curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        {curatedIntegrity?.urlVerification?.lastRun && (
+                          curatedIntegrity.urlVerification.failCount === 0
+                            ? <span className="ml-1.5 text-green-300" title={`URLs verified ${new Date(curatedIntegrity.urlVerification.lastRun).toLocaleDateString()}`}>✓ Links verified</span>
+                            : <span className="ml-1.5 text-amber-300" title={`${curatedIntegrity.urlVerification.failCount} URL(s) may need attention`}>⚠ {curatedIntegrity.urlVerification.failCount} link issue{curatedIntegrity.urlVerification.failCount > 1 ? 's' : ''}</span>
+                        )}
+                      </div>
                     )}
                   </div>
                   <div className="bg-accent text-white text-sm font-heading font-bold px-4 py-1.5 rounded-full">
@@ -1133,7 +1164,7 @@
           </header>
 
           {/* Staleness Banner */}
-          <StalenessBanner curatedLastUpdated={curatedLastUpdated} />
+          <StalenessBanner curatedLastUpdated={curatedLastUpdated} curatedIntegrity={curatedIntegrity} />
 
           {/* FEMA Error Banner */}
           {femaError && (

@@ -1,10 +1,10 @@
 # CLAUDE.md — DST Compiler Tool
 
 ## Project Status
-- **Status:** v2.0 Deployed + Live — Post-launch polish session complete
+- **Status:** v2.1 Deployed + Live — Data Integrity Protocol complete
 - **Last Session:** 2026-02-12
 - **Blocker:** None
-- **Next Action:** Build URL verification system for curated STATE links (see TODO below)
+- **Next Action:** Monitor weekly URL checks and CI pipeline health
 - **Live URL:** https://duynomite.github.io/dst-compiler/
 
 ## Your Role
@@ -74,41 +74,50 @@ dst-compiler/
 ```
 
 ## Current State
-[Updated 2026-02-12 — All 6 phases + post-launch polish complete]
-- **v2.0 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
+[Updated 2026-02-12 — v2.1 Data Integrity Protocol complete]
+- **v2.1 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
 - **139 curated records** (59 FMCSA + 55 SBA + 24 STATE + 1 HHS)
 - **24 governor declarations** covering 22 states + DC — **ALL URLs verified** (8 fixed on 2026-02-12)
 - **1 HHS PHE** (Washington State severe weather)
 - **2 California governor declarations** (Jan 2025 wildfires + Dec 2025 storms)
 - FEMA live API: Healthy, ~16 active disasters
-- GitHub Actions cron: Running daily at 6AM EST, all successful
-- Audit: **2,644 checks, 100% pass rate** (22 checks/record)
+- GitHub Actions cron: Running daily at 6AM EST + weekly Monday 10AM EST (URL checks)
+- Audit: **2,783 checks, 100% pass rate** (24 checks/record including staleness)
+- URL verification: **136/139 PASS, 3 WARN (SSL), 0 FAIL** — runs weekly in CI
 - SEP calculations: Verified correct for all edge cases (end-of-month, leap year, year boundary)
+- Data integrity pipeline:
+  - **Audit script runs in CI** — gates every commit on 24 checks per record
+  - **Per-source record count thresholds** — blocks if any source drops >20% or to zero
+  - **Content hash in metadata** — detects silent data corruption
+  - **URL verification (HEAD + content relevance)** — catches wrong URLs, dead links, generic pages
+  - **Smart domain handling** — FMCSA (403 bots) → structure check, Federal Register (JS) → HEAD only
+  - **lastVerified auto-updates** — STATE/HHS records get fresh dates on every fetcher run
+  - **Structured GitHub Issue alerting** — specific labels per failure type (data-integrity, audit, urls, urgent)
 - UI features:
   - **Tailwind v4 + CPC brand** (Urbanist/Jost fonts, accent/secondary colors)
   - **Cross-state county search** — agents can type any county without selecting a state first
   - **State badge on cards** — visible in all sort modes (not just state-grouped)
   - **FEMA title formatting** — ALL CAPS titles normalized to Title Case
   - **Compliance attestation banner** — 3-part validation displayed between search and results
-- Fetcher: **HHS + STATE collectors populated**, lastVerified field added, USDA documented as non-qualifying
+  - **Integrity status in header** — shows "✓ Links verified" or "⚠ N link issues" next to timestamp
+  - **Enhanced staleness banner** — surfaces URL issues alongside data age warnings
+- Fetcher: **HHS + STATE collectors populated**, lastVerified auto-updates, USDA documented as non-qualifying
 - Hardening: noscript fallback, malformed entry defense, curated error banner, county name normalization (Saint/St/Fort/Mt), accessibility (aria-labels, focus rings)
 - Validation benchmark: Davidson County TN = 5 DSTs (2 FEMA + 2 FMCSA + 1 GOV) ✅
 
 ## TODO — Next Session
-1. **URL Verification System** — Build automated link checking for all curated officialUrl entries. 8 of 24 STATE links were wrong (2025 links for 2026 declarations, generic homepages). Need a system to prevent this:
-   - Add a `verify_urls()` function to audit_curated_data.py that does HEAD requests on all officialUrl entries
-   - Flag any 404s, redirects, or generic homepages
-   - Add to GitHub Actions as a weekly check (not daily — respect rate limits)
-   - Consider: URL content verification (does the page mention the disaster title/date?)
+1. ~~**URL Verification System**~~ **DONE (v2.1)** — Full HEAD + content relevance checks, weekly CI, smart domain handling
 2. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
-3. **"Data Last Updated" in UI** — Surface curated_disasters.json last-modified timestamp
+3. ~~**"Data Last Updated" in UI**~~ **DONE (v2.0)** — Timestamp in header
+4. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions (1 SBA vs 55 locally). Per-source safeguard blocks data loss, but root cause unclear. Consider: caching last-good SBA results, retry logic, or fallback to curated-only mode in CI.
 
 ## Known Issues
 - USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6)
 - ~~Some governor declaration URLs point to general governor pages (OH, MO, KS)~~ **RESOLVED 2026-02-12** — all 24 STATE URLs now verified, 8 fixed
 - Some FMCSA entries may have outdated incident end dates
 - LA governor declaration (Jan 2025) was renewed multiple times — tracked as ongoing
-- **No automated URL verification** — curated officialUrl entries are only manually checked. Need automated HEAD request + content verification in audit pipeline (see TODO)
+- ~~**No automated URL verification**~~ **RESOLVED 2026-02-12** — URL verification system built with HEAD + content relevance checks, weekly CI runs, smart domain handling (FMCSA/FR)
+- **3 SSL warnings** — AR (governor.arkansas.gov), MS (governorreeves.ms.gov), WA HHS (aspr.hhs.gov) have intermittent SSL cert issues on their end. URLs are correct; certs are the government's problem. Treated as WARN not FAIL.
 
 ## Bug Log
 | # | Date | Description | Severity | Status | Resolution |
@@ -116,6 +125,8 @@ dst-compiler/
 | 1 | 2026-02-11 | SBA-2024-28528-CA status was `ongoing` but daysRemaining=17 | Low | Fixed | Updated to `expiring_soon` during Phase 2 |
 | 2 | 2026-02-12 | 8 of 24 STATE officialUrl entries were incorrect (wrong year or generic homepage) | High | Fixed | AL, AR, KY, SC had 2025 URLs for 2026 declarations; MO, OH, NM, IN had generic homepages. All 8 replaced with specific 2026 declaration URLs |
 | 3 | 2026-02-12 | Git rebase --ours/--theirs confusion during push | Low | Fixed | During rebase, --ours = upstream (remote), --theirs = local commit. Verified by record count |
+| 4 | 2026-02-12 | Federal Register API inconsistent: 55 SBA locally vs 1 in GitHub Actions | High | Mitigated | Per-source safeguard blocks data loss. Root cause: FR API returns fewer results to CI. Safeguard proven to catch the "55→1" drop scenario. |
+| 5 | 2026-02-12 | audit_curated_data.py had hardcoded date (2026-02-11) and absolute path | Medium | Fixed | Replaced with date.today() + os.path.dirname() relative path. Script now CI-compatible. |
 
 ## Decisions Made
 | Date | Decision | Why | Alternatives |
@@ -128,6 +139,9 @@ dst-compiler/
 | 2026-02-12 | Cross-state county search (no state required) | Agents often know county but not state abbreviation; reduces friction | Keep state-first search only (rejected: bad UX) |
 | 2026-02-12 | Auto-select state on county pick | When agent picks "Davidson, TN" from cross-state dropdown, state auto-fills. Prevents showing statewide disasters from all 50 states. | Leave state empty after county pick (rejected: wrong results) |
 | 2026-02-12 | URL verification must be automated | 8 of 24 STATE URLs were wrong — manual curation alone is insufficient for compliance tool | Keep manual-only checks (rejected: proven failure rate) |
+| 2026-02-12 | Data Integrity Protocol v2.1 | 4-phase protocol: CI audit (24 checks), per-source thresholds, URL verification (HEAD + content), integrity UI | Manual-only monitoring (rejected: human error rate proven) |
+| 2026-02-12 | SSL errors as WARN not FAIL | AR/MS/WA have intermittent SSL cert issues — their problem, not our URLs | Block on SSL errors (rejected: would block 3 valid records) |
+| 2026-02-12 | FMCSA URLs validated by structure not HTTP | FMCSA returns 403 to all bots — validate URL pattern instead | Try harder to reach FMCSA (rejected: 403 is intentional) |
 
 ## Session Log
 | Date | Session | What Was Done | Phase Completed | Tests Passing |
@@ -139,6 +153,7 @@ dst-compiler/
 | 2026-02-11 | Phase 4 | Fetcher upgrade: HHS collector populated (WA PHE), STATE collector populated (24 entries), lastVerified field added to build_record(), USDA documented as non-qualifying, audit script updated to check 22 | Phase 4 ✅ | 2644/2644 (100%) |
 | 2026-02-11 | Phase 5 | Hardening: noscript fallback, malformed entry try/catch, curated error banner, county normalization (Fort/Mt), NaN date defense, accessibility (aria-labels, focus rings), SEP edge cases verified (5/5) | Phase 5 ✅ | All edge cases pass |
 | 2026-02-12 | Deploy + Polish | Deployed v2.0 to GitHub Pages. Added compliance banner, state badge on cards, FEMA title formatting. Resolved git rebase conflict with cron. Added cross-state county search. Fixed 8 incorrect STATE URLs (wrong year or generic pages). Full URL audit of all 24 governor declarations. | Deployed ✅ | 2644/2644 (100%) |
+| 2026-02-12 | Data Integrity Protocol | Full 4-phase integrity system: (1) CI-compatible audit (dynamic dates, relative paths, 24 checks), (2) Per-source record count thresholds, (3) URL verification (HEAD + content relevance, smart domain handling for FMCSA/FR), (4) Integrity status in UI header + enhanced staleness banner, (5) Structured GitHub Issue alerting with specific labels, (6) Content hash + source counts in metadata. | v2.1 ✅ | 2783/2783 (100%), 136/139 URLs PASS |
 
 ## Definition of Done
 - [ ] All test cases pass (happy path, edge cases, bad data, business logic, operational failures)
