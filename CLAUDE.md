@@ -1,34 +1,139 @@
 # CLAUDE.md — DST Compiler Tool
 
+## Project Status
+- **Status:** v2.0 Complete — Ready for deployment
+- **Last Session:** 2026-02-11
+- **Blocker:** None
+- **Next Action:** Push to GitHub → Deploy to GitHub Pages → Verify live
+- **Live URL:** https://duynomite.github.io/dst-compiler/
+
+## Your Role
+You are acting as CTO for this project. This is a compliance-critical tool — wrong disaster dates or missing declarations directly affect Medicare enrollment compliance. Accuracy > features, always. Read this file and `planning-v2/` folder before taking any action.
+
+## Working Rules
+- Read before acting — check Current State and Known Issues first
+- Check before major changes — review Architecture and Build Plan
+- Accuracy above all else — invalid DSTs, wrong dates, or dead links are compliance violations
+- When in doubt, exclude the data — better to miss a marginal disaster than display a wrong one
+- Update this file at the END of every session (Current State, Bug Log, Decisions, Session Log)
+- Agents ONLY use DSTs posted by government entities — they do NOT discover, report, or add DSTs
+
+## Quick Reference
+- **v2 PRD:** `planning-v2/01_PRD.md`
+- **v2 Architecture:** `planning-v2/02_ARCHITECTURE.md`
+- **v2 Risk Register:** `planning-v2/03_RISK_REGISTER.md`
+- **v2 Build Plan:** `planning-v2/04_BUILD_PLAN.md`
+- **v2 Test Cases:** `planning-v2/05_TEST_CASES.md`
+- **v2 Maintenance Guide:** `planning-v2/06_MAINTENANCE_GUIDE.md`
+- **v2 Handoff Summary:** `planning-v2/07_HANDOFF_SUMMARY.md`
+- **v1 Planning (archived):** `planning/`
+
 ## Project Overview
 
 This is a Disaster Special Enrollment Period (DST) compiler tool for Medicare Advantage telesales agents. It finds every valid government-declared disaster that triggers a Medicare Advantage DST, compiles them into one searchable interface, and lets agents copy declaration details into the SunFire enrollment platform.
 
 **This tool must be accurate above all else.** Invalid DSTs, wrong dates, or dead links are compliance violations. When in doubt, exclude the data — it's better to miss a marginal disaster than to display a wrong one.
 
+## v2.0 Upgrade Scope
+
+The v1 tool captures FEMA disasters well via live API but misses governor-declared state emergencies, HHS, and USDA declarations. v2 fixes this:
+
+1. **Backfill governor declarations** — 18+ states for Jan 2026 winter storm alone
+2. **Add HHS/USDA coverage** — Complete federal source types
+3. **Upgrade UI to CPC brand** — Tailwind v4 @theme, Urbanist/Jost fonts, brand colors
+4. **Verify pipeline** — Confirm GitHub Actions cron runs, fix if broken
+5. **Add freshness indicators** — Last updated timestamp, staleness warnings
+
 ## Tech Stack
 
-- **Frontend:** Single HTML file, React 18, Tailwind CSS, Babel Standalone (all via CDN)
+- **Frontend:** Single HTML file, React 18, Tailwind CSS v4 (CDN), Babel Standalone
+- **Styling:** Tailwind v4 `@theme` with CPC brand tokens (accent, secondary, deep-navy, etc.)
+- **Fonts:** Urbanist (headings) + Jost (body) via Google Fonts
 - **Data Fetcher:** Python 3.11+, requests, beautifulsoup4
 - **Hosting:** GitHub Pages (static site from the repo)
-- **Automation:** GitHub Actions (daily cron job)
+- **Automation:** GitHub Actions (daily cron job at 6AM EST)
 - **No backend server, no database, no npm, no build process.**
 
 ## Project Structure
 
 ```
 dst-compiler/
-├── index.html                 # The tool — agents open this
-├── curated_disasters.json     # Non-FEMA disaster data (updated by fetcher)
-├── dst_data_fetcher.py        # Python script for non-FEMA sources
-├── requirements.txt           # Python dependencies
-├── county_state_map.json      # County-to-state lookup for search autocomplete
+├── index.html                 # The tool — agents open this (React 18 + Tailwind v4 + CPC brand)
+├── curated_disasters.json     # Non-FEMA disaster data (139 records, updated by fetcher)
+├── dst_data_fetcher.py        # Python pipeline: SBA/HHS/FMCSA/STATE collectors
+├── audit_curated_data.py      # Validation script (22 checks per record)
+├── build_governor_entries.py   # Phase 2 utility: builds governor entries (run once)
+├── requirements.txt           # Python dependencies (requests, beautifulsoup4)
+├── county_state_map.json      # County-to-state lookup (~3,200 entries)
 ├── .github/
 │   └── workflows/
-│       └── update-data.yml    # GitHub Actions daily schedule
-├── planning/                  # Planning documents (PRD, Architecture, etc.)
+│       └── update-data.yml    # GitHub Actions daily schedule (6AM EST)
+├── planning-v2/               # v2.0 planning documents (current)
+├── planning/                  # v1.0 planning documents (archived)
 └── CLAUDE.md                  # This file
 ```
+
+## Current State
+[Updated 2026-02-11 — All 6 phases complete]
+- v2.0 ready for deployment
+- **139 curated records** (59 FMCSA + 55 SBA + 24 STATE + 1 HHS)
+- **24 governor declarations** covering 22 states + DC
+- **1 HHS PHE** (Washington State severe weather)
+- **2 California governor declarations** (Jan 2025 wildfires + Dec 2025 storms)
+- FEMA live API: Healthy, ~16 active disasters
+- GitHub Actions cron: Running daily, all successful
+- Audit: **2,644 checks, 100% pass rate** (22 checks/record)
+- SEP calculations: Verified correct for all edge cases (end-of-month, leap year, year boundary)
+- UI: **Upgraded to Tailwind v4 + CPC brand** (Urbanist/Jost fonts, accent/secondary colors, CPC card pattern)
+- Fetcher: **HHS + STATE collectors populated**, lastVerified field added, USDA documented as non-qualifying
+- Hardening: noscript fallback, malformed entry defense, curated error banner, county name normalization (Saint/St/Fort/Mt), accessibility (aria-labels, focus rings)
+- Validation benchmark: Davidson County TN = 5 DSTs (2 FEMA + 2 FMCSA + 1 GOV) ✅
+
+## Known Issues
+- USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6)
+- Some governor declaration URLs point to general governor pages (OH, MO, KS) — specific EO URLs preferred when available
+- Some FMCSA entries may have outdated incident end dates
+- LA governor declaration (Jan 2025) was renewed multiple times — tracked as ongoing
+
+## Bug Log
+| # | Date | Description | Severity | Status | Resolution |
+|---|------|-------------|----------|--------|------------|
+| 1 | 2026-02-11 | SBA-2024-28528-CA status was `ongoing` but daysRemaining=17 | Low | Fixed | Updated to `expiring_soon` during Phase 2 |
+
+## Decisions Made
+| Date | Decision | Why | Alternatives |
+|------|----------|-----|-------------|
+| 2026-02-11 | Upgrade dst-compiler (not rebuild, not SEPAnalyzer) | Working FEMA API + pipeline + deployment; problem is data coverage, not architecture | Rebuild from scratch, upgrade SEPAnalyzer |
+| 2026-02-11 | No agent-facing "report DST" feature | Agents only use DSTs posted by gov entities; agent input creates compliance risk | Add report/feedback mechanism |
+| 2026-02-11 | Governor declarations = manual curation | No centralized API across 50 states; automation impossible | Scrape 50 state sites (too fragile) |
+| 2026-02-11 | USDA drought NOT a valid DST trigger | USDA designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6) | Include USDA as data source (rejected: compliance risk) |
+| 2026-02-11 | HHS PHE for WA is severe weather, NOT bird flu | Research confirmed the Dec 2025 PHE was for atmospheric rivers/flooding | Mislabel as HPAI (rejected: inaccurate) |
+
+## Session Log
+| Date | Session | What Was Done | Phase Completed | Tests Passing |
+|------|---------|---------------|-----------------|---------------|
+| 2026-02-11 | Planning | Full v2.0 audit and planning (7 documents) | Pre-Phase 1 | N/A |
+| 2026-02-11 | Phase 1 | Validated: audit script (100%), GitHub Actions (running), FEMA API (healthy), SEP calcs (3/3 edge cases pass) | Phase 1 ✅ | 2019/2019 (1 minor status fix) |
+| 2026-02-11 | Phase 2 | Backfilled 25 new entries: 24 STATE + 1 HHS. Fixed SBA status bug. 2469/2469 audit checks pass. | Phase 2 ✅ | 2469/2469 (100%) |
+| 2026-02-11 | Phase 3 | Complete UI rewrite: Tailwind v4 + CPC brand, source filter, staleness banner, lastVerified display, state-grouped view | Phase 3 ✅ | Visual verification |
+| 2026-02-11 | Phase 4 | Fetcher upgrade: HHS collector populated (WA PHE), STATE collector populated (24 entries), lastVerified field added to build_record(), USDA documented as non-qualifying, audit script updated to check 22 | Phase 4 ✅ | 2644/2644 (100%) |
+| 2026-02-11 | Phase 5 | Hardening: noscript fallback, malformed entry try/catch, curated error banner, county normalization (Fort/Mt), NaN date defense, accessibility (aria-labels, focus rings), SEP edge cases verified (5/5) | Phase 5 ✅ | All edge cases pass |
+
+## Definition of Done
+- [ ] All test cases pass (happy path, edge cases, bad data, business logic, operational failures)
+- [ ] Validation benchmark passes (Davidson County TN = 5 DSTs from 3 sources)
+- [ ] All active governor declarations backfilled
+- [ ] Error messages are plain language
+- [ ] Freshness indicators working (timestamp + staleness banner)
+- [ ] All external dependencies documented in Maintenance Guide
+- [ ] Governor data curation workflow documented
+- [ ] Hardening phase completed (input validation, error handling, compliance review)
+- [ ] Git history clean with meaningful commits
+- [ ] Deployed to GitHub Pages and verified live
+- [ ] Bug Log current (even if empty)
+- [ ] Architecture Decision Log reflects all v2 decisions
+- [ ] This file fully updated with final state
+- [ ] CPC MEMORY.md tool inventory updated
 
 ## Critical Business Rules
 
@@ -336,7 +441,8 @@ Every disaster record (from any source) must conform to this schema:
   "sepWindowEnd": "string|null — calculated ISO date or null",
   "daysRemaining": "number|null — days until SEP closes or null",
   "confidenceLevel": "string — verified, scraped, curated",
-  "lastUpdated": "string — ISO timestamp"
+  "lastUpdated": "string — ISO timestamp",
+  "lastVerified": "string|undefined — ISO date (YYYY-MM-DD) when entry was last verified, required for STATE/HHS"
 }
 ```
 

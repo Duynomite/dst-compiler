@@ -1,4 +1,3 @@
 __pycache__/
 *.pyc
 .DS_Store
-audit_curated_data.py

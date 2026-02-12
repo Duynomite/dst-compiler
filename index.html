@@ -3,32 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DST Compiler Tool</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>DST Compiler Tool — Clear Path Coverage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-accent: #3DCEB2;
+      --color-accent-dark: #2BA891;
+      --color-secondary: #2D5A7A;
+      --color-secondary-light: #3B6F94;
+      --color-text: #34252F;
+      --color-deep-navy: #10202C;
+      --color-light-cyan: #D8E6E3;
+      --color-mid-blue: #4B7797;
+      --color-soft-blue: #A7B8C5;
+      --font-heading: "Urbanist", sans-serif;
+      --font-body: "Jost", sans-serif;
+    }
+  </style>
   <style>
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes copiedPop { 0% { opacity: 0; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0; transform: scale(1); } }
     @keyframes urgentPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-    .fade-in { animation: fadeIn 0.3s ease-in; }
+    .fade-in { animation: fadeIn 0.3s ease-out; }
     .copied-anim { animation: copiedPop 1.2s ease-out forwards; }
     .pulse-urgent { animation: urgentPulse 2s ease-in-out infinite; }
-    /* Autocomplete dropdown */
     .autocomplete-list { max-height: 200px; overflow-y: auto; }
-    .autocomplete-item:hover { background-color: #e5e7eb; }
-    /* Card hover lift */
+    .autocomplete-item:hover { background-color: #D8E6E3; }
     .dst-card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
-    .dst-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    .dst-card:hover { box-shadow: 0 4px 16px rgba(45, 90, 122, 0.10); transform: translateY(-1px); }
   </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen font-body text-text">
   <div id="root"></div>
+  <noscript>
+    <div style="max-width:600px;margin:60px auto;padding:32px;text-align:center;font-family:sans-serif;">
+      <h1 style="font-size:24px;margin-bottom:12px;">DST Compiler Tool</h1>
+      <p style="font-size:16px;color:#666;margin-bottom:20px;">
+        This tool requires JavaScript to run. Please enable JavaScript in your browser, or try a different browser.
+      </p>
+      <p style="font-size:14px;color:#999;">
+        If the tool still doesn't load, CDN dependencies (React, Tailwind) may be temporarily unavailable. Try refreshing in a few minutes.
+      </p>
+    </div>
+  </noscript>
 
   <script type="text/babel" data-type="module">
     // =========================================================================
-    // DST Compiler Tool — Phase 1 + Phase 2
+    // DST Compiler Tool v2.0 — CPC Brand
     // =========================================================================
 
     const { useState, useEffect, useMemo, useCallback, useRef } = React;
@@ -39,6 +64,7 @@
 
     const FEMA_API_BASE = 'https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries';
     const FEMA_PAGE_SIZE = 1000;
+    const STALENESS_DAYS = 7; // Show warning if curated data is older than this
 
     // Source badge colors
     const SOURCE_COLORS = {
@@ -47,7 +73,7 @@
       SBA:   { bg: '#F97316', text: '#FFFFFF', label: 'SBA' },
       USDA:  { bg: '#92400E', text: '#FFFFFF', label: 'USDA' },
       FMCSA: { bg: '#A855F7', text: '#FFFFFF', label: 'FMCSA' },
-      STATE: { bg: '#22C55E', text: '#FFFFFF', label: 'STATE' },
+      STATE: { bg: '#22C55E', text: '#FFFFFF', label: 'GOV' },
     };
 
     // US State names for display
@@ -76,7 +102,7 @@
     function calculateSEPWindowEnd(incidentEnd) {
       if (!incidentEnd) return null;
       const d = new Date(incidentEnd + 'T00:00:00');
-      const month = d.getMonth(); // 0-indexed
+      const month = d.getMonth();
       const year = d.getFullYear();
       let targetMonth = month + 2;
       let targetYear = year;
@@ -84,13 +110,10 @@
         targetMonth -= 12;
         targetYear += 1;
       }
-      // Day 0 of next month = last day of target month
       return new Date(targetYear, targetMonth + 1, 0);
     }
 
     function calculateOngoingMaxEnd(sepStart, renewalDates) {
-      // For ongoing disasters: 14 calendar months from the latest of
-      // sepStart or any renewal date
       let maxDate = new Date(sepStart + 'T00:00:00');
       if (renewalDates && renewalDates.length > 0) {
         for (const rd of renewalDates) {
@@ -116,7 +139,7 @@
     }
 
     function calculateStatus(sepEnd, isOngoing) {
-      if (!sepEnd) return 'ongoing'; // Shouldn't happen since we calculate for ongoing too
+      if (!sepEnd) return 'ongoing';
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       const diffMs = sepEnd.getTime() - today.getTime();
@@ -196,16 +219,14 @@
 
     // =========================================================================
     // FEMA Record Consolidation
-    // Group county-level records into disaster-level records
     // =========================================================================
 
     function consolidateFEMA(records) {
-      // Filter out Fire Management (FM) — not valid DST triggers
       const validRecords = records.filter(r => r.declarationType !== 'FM');
 
       const groups = {};
       for (const rec of validRecords) {
-        const key = rec.femaDeclarationString; // e.g. "DR-4834-FL"
+        const key = rec.femaDeclarationString;
         if (!groups[key]) {
           groups[key] = {
             femaDeclarationString: key,
@@ -220,7 +241,6 @@
             counties: [],
           };
         }
-        // Collect unique county names
         const county = rec.designatedArea
           ? rec.designatedArea
               .replace(/\s*\(City and Borough\)\s*/gi, '')
@@ -238,7 +258,6 @@
         }
       }
 
-      // Convert to our standard schema
       const disasters = [];
       for (const key of Object.keys(groups)) {
         const g = groups[key];
@@ -256,13 +275,11 @@
         }
 
         const status = calculateStatus(sepEndDate, isOngoing);
-        if (status === 'expired') continue; // Hide expired
+        if (status === 'expired') continue;
 
-        // Check for future declaration dates (data error)
         const declDate = new Date(g.declarationDate + 'T00:00:00');
         if (declDate > new Date()) continue;
 
-        // Validate incidentStart <= incidentEnd
         if (g.incidentEndDate) {
           const incStart = new Date(g.incidentBeginDate + 'T00:00:00');
           const incEnd = new Date(g.incidentEndDate + 'T00:00:00');
@@ -270,8 +287,6 @@
         }
 
         const daysRem = getDaysRemaining(sepEndDate);
-
-        // Check statewide: if the county list includes "Statewide" or the count is very high
         const isStatewide = g.counties.some(c => c.toLowerCase() === 'statewide');
 
         disasters.push({
@@ -311,10 +326,16 @@
         .replace(/\s*\(parish\)\s*/g, '')
         .replace(/\s*\(borough\)\s*/g, '')
         .replace(/\s*\(census area\)\s*/g, '')
+        .replace(/\s*\(city and borough\)\s*/g, '')
         .replace(/\s*\(city\)\s*/g, '')
         .replace(/\s*\(municipio\)\s*/g, '')
-        .replace(/saint\b/g, 'st')
-        .replace(/st\.\s*/g, 'st ')
+        .replace(/\bsaint\b/g, 'st')
+        .replace(/\bst\.\s*/g, 'st ')
+        .replace(/\bfort\b/g, 'ft')
+        .replace(/\bft\.\s*/g, 'ft ')
+        .replace(/\bmount\b/g, 'mt')
+        .replace(/\bmt\.\s*/g, 'mt ')
+        .replace(/[''`\u2018\u2019]/g, '')  // Remove apostrophes/quotes
         .replace(/[^a-z0-9\s-]/g, '')
         .trim();
     }
@@ -365,7 +386,6 @@
           setCopied(true);
           setTimeout(() => setCopied(false), 1200);
         } catch {
-          // Fallback
           const ta = document.createElement('textarea');
           ta.value = text;
           ta.style.position = 'fixed';
@@ -383,16 +403,17 @@
         <div className="relative inline-block">
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors border border-gray-300"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold bg-accent hover:bg-accent-dark text-white rounded-full transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             title="Copy DST details for SunFire"
+            aria-label={`Copy details for ${disaster.title} to clipboard`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
-            Copy
+            Copy for SunFire
           </button>
           {copied && (
-            <span className="copied-anim absolute -top-8 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap shadow-lg">
+            <span className="copied-anim absolute -top-8 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-lg">
               Copied!
             </span>
           )}
@@ -403,13 +424,13 @@
     // --- StatusBadge ---
     function StatusBadge({ status, daysRemaining }) {
       const config = {
-        ongoing:       { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-300', label: 'ONGOING', extra: '' },
-        active:        { bg: 'bg-green-100', text: 'text-green-800', border: 'border-green-300', label: 'ACTIVE', extra: '' },
-        expiring_soon: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-300', label: 'EXPIRING SOON', extra: 'pulse-urgent' },
+        ongoing:       { classes: 'bg-secondary/10 text-secondary border-secondary/30', label: 'ONGOING' },
+        active:        { classes: 'bg-accent/10 text-accent-dark border-accent/30', label: 'ACTIVE' },
+        expiring_soon: { classes: 'bg-red-50 text-red-700 border-red-300 pulse-urgent', label: 'EXPIRING SOON' },
       };
       const c = config[status] || config.active;
       return (
-        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${c.bg} ${c.text} ${c.border} ${c.extra}`}>
+        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold border ${c.classes}`}>
           {c.label}
           {status === 'expiring_soon' && daysRemaining != null && (
             <span className="text-xs font-bold">({daysRemaining}d)</span>
@@ -423,7 +444,7 @@
       const sc = SOURCE_COLORS[source] || SOURCE_COLORS.FEMA;
       return (
         <span
-          className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide"
+          className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide"
           style={{ backgroundColor: sc.bg, color: sc.text }}
         >
           {sc.label}
@@ -441,18 +462,20 @@
           ? disaster.counties.join(', ')
           : null;
 
+      const borderColor = disaster.status === 'expiring_soon'
+        ? 'border-t-red-400 border-red-100'
+        : disaster.status === 'ongoing'
+          ? 'border-t-secondary border-light-cyan'
+          : 'border-t-accent border-light-cyan';
+
       return (
-        <div className={`dst-card fade-in bg-white rounded-lg p-4 shadow-sm border-l-4 ${
-          disaster.status === 'expiring_soon' ? 'border-l-red-400 border border-red-100' :
-          disaster.status === 'ongoing' ? 'border-l-blue-400 border border-gray-200' :
-          'border-l-green-400 border border-gray-200'
-        }`}>
+        <div className={`dst-card fade-in bg-white rounded-lg p-5 border border-light-cyan border-t-4 ${borderColor}`}>
           {/* Header row */}
-          <div className="flex items-start justify-between gap-3 mb-2">
+          <div className="flex items-start justify-between gap-3 mb-3">
             <div className="flex items-center gap-2 flex-wrap">
               <SourceBadge source={disaster.source} />
               {disaster.statewide && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
                   Statewide
                 </span>
               )}
@@ -462,51 +485,57 @@
           </div>
 
           {/* Title */}
-          <h3 className="text-base font-semibold text-gray-900 mb-2 leading-tight">
+          <h3 className="text-base font-heading font-semibold text-text mb-3 leading-tight">
             {disaster.title}
           </h3>
 
           {/* Metadata */}
-          <div className="text-sm text-gray-600 space-y-1 mb-3">
+          <div className="text-sm space-y-1.5 mb-3">
             <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">Type</span>
-              <span>{disaster.incidentType}</span>
+              <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide">Type</span>
+              <span className="text-text">{disaster.incidentType}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">Declaration</span>
-              <span className="text-gray-700 font-mono text-xs">{disaster.declarationId || disaster.id}</span>
+              <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide">Declaration</span>
+              <span className="text-text font-mono text-xs">{disaster.declarationId || disaster.id}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">SEP Window</span>
-              <span className="font-semibold text-gray-800">
+              <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide">SEP Window</span>
+              <span className="font-semibold text-text">
                 {formatDateHuman(disaster.sepWindowStart)} &mdash; {disaster.status === 'ongoing' ? 'Ongoing' : (disaster.sepWindowEnd ? formatDateHuman(disaster.sepWindowEnd) : 'Ongoing')}
               </span>
             </div>
             {disaster.daysRemaining != null && disaster.status !== 'ongoing' && (
               <div className="flex items-center gap-2">
-                <span className="font-medium text-gray-400 w-24 text-xs uppercase tracking-wide">Remaining</span>
-                <span className={`font-semibold ${disaster.daysRemaining <= 30 ? 'text-red-600' : disaster.daysRemaining <= 60 ? 'text-orange-600' : 'text-gray-700'}`}>
+                <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide">Remaining</span>
+                <span className={`font-semibold ${disaster.daysRemaining <= 30 ? 'text-red-600' : disaster.daysRemaining <= 60 ? 'text-orange-600' : 'text-text'}`}>
                   {disaster.daysRemaining} days
                 </span>
+              </div>
+            )}
+            {disaster.lastVerified && (
+              <div className="flex items-center gap-2">
+                <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide">Verified</span>
+                <span className="text-xs text-soft-blue">{formatDateHuman(disaster.lastVerified)}</span>
               </div>
             )}
           </div>
 
           {/* Counties */}
-          <div className="text-sm text-gray-600 mb-3">
-            <span className="font-medium text-gray-400 text-xs uppercase tracking-wide">Counties: </span>
+          <div className="text-sm mb-3">
+            <span className="font-medium text-soft-blue text-xs uppercase tracking-wide">Counties: </span>
             {displayCounties ? (
-              <span className="text-gray-700">{displayCounties}</span>
+              <span className="text-text">{displayCounties}</span>
             ) : (
               <>
                 <button
                   onClick={() => setShowCounties(!showCounties)}
-                  className="text-blue-600 hover:text-blue-800 underline text-sm"
+                  className="text-accent hover:text-accent-dark underline text-sm cursor-pointer"
                 >
                   {showCounties ? 'Hide' : `Show ${countyCount} counties`}
                 </button>
                 {showCounties && (
-                  <div className="mt-1 text-xs text-gray-500 leading-relaxed bg-gray-50 rounded p-2">
+                  <div className="mt-1 text-xs text-mid-blue leading-relaxed bg-light-cyan/50 rounded-lg p-2">
                     {disaster.counties.join(', ')}
                   </div>
                 )}
@@ -519,7 +548,8 @@
             href={disaster.officialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 font-medium hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm text-accent hover:text-accent-dark font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded"
+            aria-label={`View official declaration for ${disaster.title}`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -544,21 +574,21 @@
         <div className="mb-6">
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="flex items-center gap-3 w-full text-left py-2.5 px-4 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200"
+            className="flex items-center gap-3 w-full text-left py-3 px-4 bg-white hover:bg-light-cyan/30 rounded-lg transition-colors border border-light-cyan cursor-pointer"
           >
-            <svg className={`w-4 h-4 text-slate-400 transition-transform ${collapsed ? '' : 'rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-4 h-4 text-secondary transition-transform ${collapsed ? '' : 'rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <h2 className="text-base font-bold text-slate-800">{stateName}</h2>
-            <span className="text-xs font-medium text-slate-500 bg-white px-2 py-0.5 rounded-full border border-slate-200">
+            <h2 className="text-base font-heading font-bold text-text">{stateName}</h2>
+            <span className="text-xs font-semibold text-mid-blue bg-light-cyan px-2.5 py-0.5 rounded-full">
               {disasters.length} {disasters.length === 1 ? 'DST' : 'DSTs'}
             </span>
             <div className="flex items-center gap-1 ml-auto">
               {Object.entries(sourceBreakdown).map(([src, count]) => {
                 const sc = SOURCE_COLORS[src] || SOURCE_COLORS.FEMA;
                 return (
-                  <span key={src} className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-semibold" style={{ backgroundColor: sc.bg + '22', color: sc.bg }}>
-                    {count} {src}
+                  <span key={src} className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold" style={{ backgroundColor: sc.bg + '18', color: sc.bg }}>
+                    {count} {sc.label}
                   </span>
                 );
               })}
@@ -625,15 +655,15 @@
             onKeyDown={handleKeyDown}
             placeholder={selectedState ? "Type county name..." : "Select a state first"}
             disabled={!selectedState}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm disabled:bg-gray-100 disabled:text-gray-400"
+            className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm disabled:bg-gray-100 disabled:text-gray-400 font-body"
           />
           {showSuggestions && (
-            <ul ref={listRef} className="autocomplete-list absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+            <ul ref={listRef} className="autocomplete-list absolute z-50 w-full mt-1 bg-white border border-light-cyan rounded-lg shadow-lg">
               {suggestions.map((county, idx) => (
                 <li
                   key={county}
                   onMouseDown={() => handleSelect(county)}
-                  className={`autocomplete-item px-3 py-2 text-sm cursor-pointer ${idx === highlightIndex ? 'bg-blue-50 text-blue-700' : 'text-gray-700'}`}
+                  className={`autocomplete-item px-3 py-2 text-sm cursor-pointer ${idx === highlightIndex ? 'bg-accent/10 text-accent-dark font-medium' : 'text-text'}`}
                 >
                   {county}
                 </li>
@@ -648,11 +678,11 @@
     function SortSelector({ value, onChange }) {
       return (
         <div className="flex items-center gap-2 text-sm">
-          <label className="font-medium text-gray-600">Sort:</label>
+          <label className="font-medium text-mid-blue">Sort:</label>
           <select
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="border border-gray-300 rounded-lg px-2 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+            className="border border-light-cyan rounded-lg px-2 py-1.5 text-sm focus:ring-2 focus:ring-accent focus:border-accent bg-white font-body"
           >
             <option value="state">By State (A-Z)</option>
             <option value="recent">Most Recent First</option>
@@ -674,38 +704,61 @@
       return (
         <div style={{
           position: 'fixed', bottom: 12, right: 12, zIndex: 10000,
-          background: 'rgba(0,0,0,0.92)', color: '#22c55e',
+          background: 'rgba(16,32,44,0.95)', color: '#3DCEB2',
           fontFamily: 'ui-monospace, monospace', fontSize: 12,
           padding: '14px 16px', borderRadius: 8, maxWidth: 360,
           maxHeight: '50vh', overflowY: 'auto', lineHeight: 1.6,
           boxShadow: '0 4px 24px rgba(0,0,0,0.5)',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-            <strong style={{ color: '#86efac' }}>DEBUG PANEL</strong>
-            <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#86efac', cursor: 'pointer', fontSize: 14 }}>{'\u2715'}</button>
+            <strong style={{ color: '#3DCEB2' }}>DEBUG PANEL</strong>
+            <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#3DCEB2', cursor: 'pointer', fontSize: 14 }}>{'\u2715'}</button>
           </div>
           <div style={{ marginBottom: 8 }}>
-            <div style={{ color: '#9ca3af' }}>FEMA Fetch</div>
+            <div style={{ color: '#A7B8C5' }}>FEMA Fetch</div>
             <div>Status: {statusIcon(fema.status === 'success')} {fema.status}</div>
             <div>Raw API records: {fema.rawCount}</div>
             <div>After consolidation: {fema.consolidatedCount}</div>
             <div>Fetch time: {fema.timeMs}ms</div>
           </div>
           <div style={{ marginBottom: 8 }}>
-            <div style={{ color: '#9ca3af' }}>Curated JSON</div>
+            <div style={{ color: '#A7B8C5' }}>Curated JSON</div>
             <div>Status: {statusIcon(curated.status === 'success')} {curated.status}</div>
             <div>Records loaded: {curated.count}</div>
             <div>Sources: {curated.sources || 'none'}</div>
           </div>
           <div style={{ marginBottom: 8 }}>
-            <div style={{ color: '#9ca3af' }}>Filtering</div>
+            <div style={{ color: '#A7B8C5' }}>Filtering</div>
             <div>Expired removed: {filtered.expired}</div>
             <div>Invalid removed: {filtered.invalid}</div>
             <div>Duplicates removed: {filtered.duplicates}</div>
             <div>Final display: {filtered.finalCount}</div>
           </div>
-          <div style={{ color: '#6b7280', fontSize: 10, marginTop: 8 }}>
+          <div style={{ color: '#4B7797', fontSize: 10, marginTop: 8 }}>
             Last load: {lastLoad || 'N/A'}
+          </div>
+        </div>
+      );
+    }
+
+    // --- Staleness Banner ---
+    function StalenessBanner({ curatedLastUpdated }) {
+      if (!curatedLastUpdated) return null;
+      const now = new Date();
+      const diffDays = Math.floor((now - curatedLastUpdated) / (1000 * 60 * 60 * 24));
+      if (diffDays <= STALENESS_DAYS) return null;
+
+      return (
+        <div className="bg-amber-50 border-b border-amber-200 px-4 py-2.5">
+          <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm text-amber-800">
+            <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="font-body">
+              <strong>Data may be outdated.</strong> Curated disaster data was last updated <strong>{diffDays} days ago</strong>
+              {' '}({curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}).
+              Verify current declarations before enrollment.
+            </span>
           </div>
         </div>
       );
@@ -718,6 +771,7 @@
       const [countyMap, setCountyMap] = useState({});
       const [loading, setLoading] = useState(true);
       const [femaError, setFemaError] = useState(null);
+      const [curatedError, setCuratedError] = useState(null);
       const [lastFemaFetch, setLastFemaFetch] = useState(null);
       const [curatedLastUpdated, setCuratedLastUpdated] = useState(null);
 
@@ -725,6 +779,9 @@
       const [selectedState, setSelectedState] = useState('');
       const [countyInput, setCountyInput] = useState('');
       const [sortMode, setSortMode] = useState('state');
+
+      // Source filter state
+      const [sourceFilter, setSourceFilter] = useState('all');
 
       // Debug state
       const [showDebug, setShowDebug] = useState(false);
@@ -756,27 +813,27 @@
           lastLoad: null,
         };
 
-        // Load county map and curated data in parallel with FEMA
         const countyPromise = fetch('county_state_map.json')
           .then(r => r.ok ? r.json() : {})
           .catch(() => ({}));
 
         const curatedPromise = fetch('curated_disasters.json')
           .then(r => {
-            if (!r.ok) { debug.curated.status = 'error (' + r.status + ')'; return []; }
+            if (!r.ok) { debug.curated.status = 'error (' + r.status + ')'; setCuratedError('Failed to load curated disaster data (HTTP ' + r.status + ')'); return []; }
             return r.json();
           })
           .then(data => {
-            // Support new wrapped format {metadata, disasters} and legacy flat array
             if (data && !Array.isArray(data) && data.disasters) {
               if (data.metadata && data.metadata.lastUpdated) {
                 setCuratedLastUpdated(new Date(data.metadata.lastUpdated));
               }
+              setCuratedError(null);
               return data.disasters;
             }
+            setCuratedError(null);
             return Array.isArray(data) ? data : [];
           })
-          .catch((err) => { debug.curated.status = 'error'; return []; });
+          .catch((err) => { debug.curated.status = 'error'; setCuratedError('Failed to load curated disaster data'); return []; });
 
         let femaData = [];
         let femaErr = null;
@@ -798,7 +855,6 @@
 
         const [countyData, curatedData] = await Promise.all([countyPromise, curatedPromise]);
 
-        // Track curated debug info
         if (debug.curated.status === 'pending') {
           debug.curated.status = curatedData.length > 0 ? 'success' : 'empty';
         }
@@ -823,55 +879,57 @@
         const byId = {};
         let dbgExpired = 0, dbgInvalid = 0, dbgDuplicates = 0;
 
-        // FEMA live data takes precedence
         for (const d of femaDisasters) {
           byId[d.id] = d;
         }
 
-        // Add curated (non-FEMA) data — skip any FEMA records and duplicates
         for (const d of curatedDisasters) {
-          if (d.source === 'FEMA') { dbgInvalid++; continue; }
+          try {
+            if (d.source === 'FEMA') { dbgInvalid++; continue; }
+            if (!d.id || !d.declarationDate || !d.incidentStart) { dbgInvalid++; continue; }
 
-          // Recalculate SEP windows for curated data
-          if (!d.declarationDate || !d.incidentStart) { dbgInvalid++; continue; }
+            const sepStartDate = calculateSEPStart(d.declarationDate, d.incidentStart);
+            const sepStartStr = toISODate(sepStartDate);
+            const isOngoing = !d.incidentEnd;
 
-          const sepStartDate = calculateSEPStart(d.declarationDate, d.incidentStart);
-          const sepStartStr = toISODate(sepStartDate);
-          const isOngoing = !d.incidentEnd;
+            let sepEndDate;
+            if (isOngoing) {
+              sepEndDate = calculateOngoingMaxEnd(sepStartStr, d.renewalDates || null);
+            } else {
+              sepEndDate = calculateSEPWindowEnd(d.incidentEnd);
+            }
 
-          let sepEndDate;
-          if (isOngoing) {
-            sepEndDate = calculateOngoingMaxEnd(sepStartStr, d.renewalDates || null);
-          } else {
-            sepEndDate = calculateSEPWindowEnd(d.incidentEnd);
-          }
+            if (!sepEndDate || isNaN(sepEndDate.getTime())) { dbgInvalid++; continue; }
 
-          const status = calculateStatus(sepEndDate, isOngoing);
-          if (status === 'expired') { dbgExpired++; continue; }
+            const status = calculateStatus(sepEndDate, isOngoing);
+            if (status === 'expired') { dbgExpired++; continue; }
 
-          const daysRem = getDaysRemaining(sepEndDate);
+            const daysRem = getDaysRemaining(sepEndDate);
 
-          // Validate
-          const declDate = new Date(d.declarationDate + 'T00:00:00');
-          if (declDate > new Date()) { dbgInvalid++; continue; }
-          if (d.incidentEnd) {
-            const incStart = new Date(d.incidentStart + 'T00:00:00');
-            const incEnd = new Date(d.incidentEnd + 'T00:00:00');
-            if (incStart > incEnd) { dbgInvalid++; continue; }
-          }
-          if (!d.officialUrl) { dbgInvalid++; continue; }
-          if (!d.counties || d.counties.length === 0) { dbgInvalid++; continue; }
+            const declDate = new Date(d.declarationDate + 'T00:00:00');
+            if (isNaN(declDate.getTime()) || declDate > new Date()) { dbgInvalid++; continue; }
+            if (d.incidentEnd) {
+              const incStart = new Date(d.incidentStart + 'T00:00:00');
+              const incEnd = new Date(d.incidentEnd + 'T00:00:00');
+              if (isNaN(incStart.getTime()) || isNaN(incEnd.getTime()) || incStart > incEnd) { dbgInvalid++; continue; }
+            }
+            if (!d.officialUrl) { dbgInvalid++; continue; }
+            if (!d.counties || !Array.isArray(d.counties) || d.counties.length === 0) { dbgInvalid++; continue; }
 
-          if (!byId[d.id]) {
-            byId[d.id] = {
-              ...d,
-              status,
-              sepWindowStart: sepStartStr,
-              sepWindowEnd: toISODate(sepEndDate),
-              daysRemaining: daysRem,
-            };
-          } else {
-            dbgDuplicates++;
+            if (!byId[d.id]) {
+              byId[d.id] = {
+                ...d,
+                status,
+                sepWindowStart: sepStartStr,
+                sepWindowEnd: toISODate(sepEndDate),
+                daysRemaining: daysRem,
+              };
+            } else {
+              dbgDuplicates++;
+            }
+          } catch (err) {
+            console.warn('Skipping malformed curated entry:', d?.id || 'UNKNOWN', err);
+            dbgInvalid++;
           }
         }
 
@@ -882,7 +940,6 @@
 
       const allDisasters = allDisastersData.disasters;
 
-      // Update debug filter counts via useEffect (not inside useMemo)
       useEffect(() => {
         if (debugInfo) {
           const { dbgExpired, dbgInvalid, dbgDuplicates, disasters } = allDisastersData;
@@ -893,7 +950,13 @@
         }
       }, [allDisastersData]);
 
-      // Filter by search
+      // Get unique sources for filter
+      const availableSources = useMemo(() => {
+        const srcSet = new Set(allDisasters.map(d => d.source));
+        return [...srcSet].sort();
+      }, [allDisasters]);
+
+      // Filter by search + source
       const filteredDisasters = useMemo(() => {
         let results = allDisasters;
 
@@ -907,8 +970,12 @@
           );
         }
 
+        if (sourceFilter !== 'all') {
+          results = results.filter(d => d.source === sourceFilter);
+        }
+
         return results;
-      }, [allDisasters, selectedState, countyInput]);
+      }, [allDisasters, selectedState, countyInput, sourceFilter]);
 
       // Sort
       const sortedDisasters = useMemo(() => {
@@ -923,7 +990,6 @@
           sorted.sort((a, b) => (b.declarationDate || '').localeCompare(a.declarationDate || ''));
         } else if (sortMode === 'ending') {
           sorted.sort((a, b) => {
-            // Ongoing go last
             if (!a.sepWindowEnd && b.sepWindowEnd) return 1;
             if (a.sepWindowEnd && !b.sepWindowEnd) return -1;
             if (!a.sepWindowEnd && !b.sepWindowEnd) return 0;
@@ -950,7 +1016,6 @@
         return states;
       }, [countyMap]);
 
-      // Handle state change
       const handleStateChange = useCallback((e) => {
         setSelectedState(e.target.value);
         setCountyInput('');
@@ -959,9 +1024,9 @@
       const handleClearSearch = useCallback(() => {
         setSelectedState('');
         setCountyInput('');
+        setSourceFilter('all');
       }, []);
 
-      // Total count of all active disasters
       const totalCount = allDisasters.length;
       const displayCount = sortedDisasters.length;
       const sourceCounts = useMemo(() => {
@@ -973,23 +1038,23 @@
       return (
         <div className="min-h-screen bg-gray-50">
           {/* Header */}
-          <header className="bg-gradient-to-r from-slate-800 to-slate-700 sticky top-0 z-40 shadow-md">
-            <div className="max-w-7xl mx-auto px-4 py-3">
+          <header className="bg-secondary sticky top-0 z-40 shadow-md">
+            <div className="max-w-7xl mx-auto px-4 py-3.5">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-lg font-bold text-white tracking-tight">DST Compiler Tool</h1>
-                  <p className="text-xs text-slate-300">Disaster Special Enrollment Period Lookup</p>
+                  <h1 className="text-lg font-heading font-bold text-white tracking-tight">DST Compiler Tool</h1>
+                  <p className="text-xs text-light-cyan/80 font-body">Disaster Special Enrollment Period Lookup</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="text-right text-xs text-slate-400">
+                  <div className="text-right text-xs font-body">
                     {lastFemaFetch && (
-                      <div>FEMA data: {lastFemaFetch.toLocaleTimeString()}</div>
+                      <div className="text-light-cyan/70">FEMA data: {lastFemaFetch.toLocaleTimeString()}</div>
                     )}
                     {curatedLastUpdated && (
-                      <div>Curated data: {curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                      <div className="text-light-cyan/70">Curated data: {curatedLastUpdated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
                     )}
                   </div>
-                  <div className="bg-slate-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+                  <div className="bg-accent text-white text-sm font-heading font-bold px-4 py-1.5 rounded-full">
                     {totalCount} DSTs
                   </div>
                 </div>
@@ -997,31 +1062,49 @@
             </div>
           </header>
 
+          {/* Staleness Banner */}
+          <StalenessBanner curatedLastUpdated={curatedLastUpdated} />
+
           {/* FEMA Error Banner */}
           {femaError && (
-            <div className="bg-amber-50 border-b border-amber-200 px-4 py-2">
-              <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm text-amber-800">
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-amber-50 border-b border-amber-200 px-4 py-2.5">
+              <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm text-amber-800 font-body">
+                <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
                 <span>
-                  FEMA data unavailable &mdash; showing non-FEMA sources only. <button onClick={loadData} className="underline font-medium hover:text-amber-900">Refresh to retry.</button>
+                  FEMA data unavailable &mdash; showing non-FEMA sources only. <button onClick={loadData} className="underline font-semibold hover:text-amber-900 cursor-pointer">Refresh to retry.</button>
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Curated Data Error Banner */}
+          {curatedError && (
+            <div className="bg-red-50 border-b border-red-200 px-4 py-2.5">
+              <div className="max-w-7xl mx-auto flex items-center gap-2 text-sm text-red-800 font-body">
+                <svg className="w-5 h-5 flex-shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <span>
+                  Some disaster data temporarily unavailable &mdash; showing FEMA data only. SBA, FMCSA, and governor declarations may be missing.
+                  <button onClick={loadData} className="underline font-semibold hover:text-red-900 ml-1 cursor-pointer">Refresh to retry.</button>
                 </span>
               </div>
             </div>
           )}
 
           {/* Search Bar */}
-          <div className="bg-white border-b border-gray-200">
+          <div className="bg-white border-b border-light-cyan">
             <div className="max-w-7xl mx-auto px-4 py-4">
               <div className="flex flex-col sm:flex-row gap-3 items-end">
                 {/* State Select */}
                 <div className="w-full sm:w-56">
-                  <label className="block text-xs font-medium text-gray-600 mb-1">State</label>
+                  <label className="block text-xs font-semibold text-mid-blue mb-1 font-heading">State</label>
                   <select
                     value={selectedState}
                     onChange={handleStateChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white"
+                    className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm bg-white font-body"
                   >
                     <option value="">All States</option>
                     {stateOptions.map(code => (
@@ -1034,7 +1117,7 @@
 
                 {/* County Autocomplete */}
                 <div className="w-full sm:w-64">
-                  <label className="block text-xs font-medium text-gray-600 mb-1">County</label>
+                  <label className="block text-xs font-semibold text-mid-blue mb-1 font-heading">County</label>
                   <CountyAutocomplete
                     countyMap={countyMap}
                     selectedState={selectedState}
@@ -1043,16 +1126,31 @@
                   />
                 </div>
 
+                {/* Source Filter */}
+                <div className="w-full sm:w-40">
+                  <label className="block text-xs font-semibold text-mid-blue mb-1 font-heading">Source</label>
+                  <select
+                    value={sourceFilter}
+                    onChange={(e) => setSourceFilter(e.target.value)}
+                    className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm bg-white font-body"
+                  >
+                    <option value="all">All Sources</option>
+                    {availableSources.map(src => (
+                      <option key={src} value={src}>{SOURCE_COLORS[src]?.label || src}</option>
+                    ))}
+                  </select>
+                </div>
+
                 {/* Sort */}
                 <div className="w-full sm:w-auto">
                   <SortSelector value={sortMode} onChange={setSortMode} />
                 </div>
 
                 {/* Clear */}
-                {(selectedState || countyInput) && (
+                {(selectedState || countyInput || sourceFilter !== 'all') && (
                   <button
                     onClick={handleClearSearch}
-                    className="text-sm text-gray-500 hover:text-gray-700 underline whitespace-nowrap pb-2"
+                    className="text-sm text-mid-blue hover:text-secondary underline whitespace-nowrap pb-2 cursor-pointer font-body"
                   >
                     Clear filters
                   </button>
@@ -1061,41 +1159,65 @@
             </div>
           </div>
 
+          {/* Compliance Attestation Banner */}
+          <div className="bg-deep-navy/95 border-b border-secondary/40">
+            <div className="max-w-7xl mx-auto px-4 py-3.5">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <h4 className="text-sm font-heading font-bold text-white">DST Three-Part Validation Required</h4>
+                    <span className="text-xs text-accent/70 font-body">&mdash; 42 CFR &sect; 422.62(a)(6)</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-x-6 gap-y-1 text-sm text-light-cyan/80 font-body">
+                    <span><strong className="text-white">1.</strong> Client resides in declared disaster area</span>
+                    <span><strong className="text-white">2.</strong> Client was eligible for another enrollment period</span>
+                    <span><strong className="text-white">3.</strong> Client missed enrollment due to disaster</span>
+                  </div>
+                  <p className="mt-1.5 text-xs text-accent/80 font-semibold font-body">
+                    No signature required &mdash; document verbal attestation in enrollment notes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Main Content */}
           <main className="max-w-7xl mx-auto px-4 py-6">
             {loading ? (
-              /* Loading Skeleton */
               <div className="flex flex-col items-center justify-center py-20 gap-4">
-                <div className="animate-spin rounded-full h-10 w-10 border-4 border-slate-200 border-t-slate-600"></div>
-                <p className="text-sm text-gray-500">Loading disaster data...</p>
+                <div className="animate-spin rounded-full h-10 w-10 border-4 border-light-cyan border-t-accent"></div>
+                <p className="text-sm text-mid-blue font-body">Loading disaster data...</p>
               </div>
             ) : sortedDisasters.length === 0 ? (
-              /* No Results */
               <div className="text-center py-16">
-                <svg className="mx-auto w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="mx-auto w-16 h-16 text-light-cyan mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h3 className="text-lg font-semibold text-gray-600 mb-1">No active DSTs found</h3>
+                <h3 className="text-lg font-heading font-semibold text-text mb-1">No active DSTs found</h3>
                 {selectedState && countyInput ? (
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-mid-blue font-body">
                     No active DSTs found for {countyInput}, {STATE_NAMES[selectedState] || selectedState}
                   </p>
                 ) : selectedState ? (
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-mid-blue font-body">
                     No active DSTs found for {STATE_NAMES[selectedState] || selectedState}
                   </p>
                 ) : (
-                  <p className="text-sm text-gray-500">Try adjusting your search filters.</p>
+                  <p className="text-sm text-mid-blue font-body">Try adjusting your search filters.</p>
                 )}
               </div>
             ) : (
               <>
                 {/* Results count */}
-                <div className="flex items-center justify-between mb-4 bg-white rounded-lg border border-gray-200 px-4 py-2.5">
-                  <p className="text-sm text-gray-600">
-                    Showing <span className="font-semibold text-gray-900">{displayCount}</span> active {displayCount === 1 ? 'DST' : 'DSTs'}
+                <div className="flex items-center justify-between mb-4 bg-white rounded-lg border border-light-cyan px-4 py-2.5">
+                  <p className="text-sm text-mid-blue font-body">
+                    Showing <span className="font-semibold text-text">{displayCount}</span> active {displayCount === 1 ? 'DST' : 'DSTs'}
                     {selectedState && ` in ${STATE_NAMES[selectedState] || selectedState}`}
                     {countyInput && ` matching "${countyInput}"`}
+                    {sourceFilter !== 'all' && ` from ${SOURCE_COLORS[sourceFilter]?.label || sourceFilter}`}
                   </p>
                   <div className="flex items-center gap-2">
                     {Object.entries(sourceCounts).sort((a,b) => b[1] - a[1]).map(([src, count]) => {
@@ -1103,7 +1225,7 @@
                       return (
                         <span key={src} className="inline-flex items-center gap-1 text-xs font-medium" style={{ color: sc.bg }}>
                           <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sc.bg }}></span>
-                          {count} {src}
+                          {count} {sc.label}
                         </span>
                       );
                     })}
@@ -1120,7 +1242,6 @@
                     />
                   ))
                 ) : (
-                  /* Flat list for other sort modes */
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                     {sortedDisasters.map(d => (
                       <DSTCard key={d.id} disaster={d} />
@@ -1131,33 +1252,16 @@
             )}
           </main>
 
-          {/* Compliance Footer */}
-          <footer className="bg-slate-50 border-t border-slate-200 mt-8">
+          {/* Footer */}
+          <footer className="bg-deep-navy mt-8">
             <div className="max-w-7xl mx-auto px-4 py-5">
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <div className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                  <div>
-                    <h4 className="text-sm font-semibold text-amber-800 mb-1">DST Three-Part Validation</h4>
-                    <p className="text-xs text-amber-700 leading-relaxed">
-                      Before using a DST, verify all three criteria via verbal attestation:
-                      <strong> (1)</strong> Client resides (or resided) in the declared disaster area.
-                      <strong> (2)</strong> Client was eligible for another enrollment period during the disaster.
-                      <strong> (3)</strong> Client missed enrollment due to the disaster.
-                      <span className="block mt-1.5 text-amber-600 font-medium">No signature required &mdash; document verbal attestation in enrollment notes.</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <p className="text-center text-xs text-slate-400 mt-4">
-                DST Compiler Tool &mdash; 42 CFR &sect; 422.62(a)(6) &mdash; For internal agent use only
+              <p className="text-center text-xs text-soft-blue/60 font-body">
+                DST Compiler Tool &mdash; 42 CFR &sect; 422.62(a)(6) &mdash; For internal agent use only &mdash; Clear Path Coverage
               </p>
             </div>
           </footer>
 
-          {/* Debug Panel — hidden by default, toggle with Ctrl+Shift+D */}
+          {/* Debug Panel */}
           {showDebug && debugInfo && (
             <DebugPanel debugInfo={debugInfo} onClose={() => setShowDebug(false)} />
           )}
