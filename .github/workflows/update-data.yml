@@ -26,6 +26,21 @@ jobs:
 
       - name: Run data fetcher
         run: python dst_data_fetcher.py
+        timeout-minutes: 10
+
+      - name: Validate record count (prevent data loss)
+        run: |
+          NEW_COUNT=$(python -c "import json; d=json.load(open('curated_disasters.json')); print(len(d.get('disasters', d) if isinstance(d, dict) else d))")
+          OLD_COUNT=$(git show HEAD:curated_disasters.json 2>/dev/null | python -c "import json,sys; d=json.load(sys.stdin); print(len(d.get('disasters', d) if isinstance(d, dict) else d))" 2>/dev/null || echo "0")
+          echo "Previous: $OLD_COUNT records, New: $NEW_COUNT records"
+          if [ "$NEW_COUNT" -lt "$OLD_COUNT" ]; then
+            DROP=$((OLD_COUNT - NEW_COUNT))
+            echo "::error::Record count DROPPED by $DROP (from $OLD_COUNT to $NEW_COUNT). Aborting to prevent data loss."
+            echo "This likely means the Federal Register API returned fewer results than expected."
+            echo "Run the fetcher locally and push manually to restore full data."
+            exit 1
+          fi
+          echo "Record count OK: $OLD_COUNT -> $NEW_COUNT"
 
       - name: Commit and push if data changed
         run: |
