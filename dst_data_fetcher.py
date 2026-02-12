@@ -1237,7 +1237,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.governor.state.nm.us/about-the-governor/executive-orders/",
+            official_url="https://www.dhsem.nm.gov/governor-activates-emergency-resources-as-winter-weather-moves-into-new-mexico/",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1257,7 +1257,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.ky.gov/attachments/20250104_Executive-Order_2025-007_State-of-Emergency-Related-to-Winter-Weather-Event.pdf",
+            official_url="https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2675",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1297,7 +1297,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.arkansas.gov/news_post/sanders-declares-state-of-emergency-ahead-of-anticipated-severe-winter-weather/",
+            official_url="https://governor.arkansas.gov/executive_orders/sanders-declares-emergency-for-severe-winter-weather-expected-on-or-about-january-23-2026/",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1337,7 +1337,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.in.gov/gov/newsroom/executive-orders/",
+            official_url="https://events.in.gov/event/gov-mike-braun-commends-first-responders-state-agencies-following-coordinated-response-to-extreme-winter-weather",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1397,7 +1397,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.sc.gov/news/2025-01/governor-henry-mcmaster-declares-state-emergency-winter-weather",
+            official_url="https://governor.sc.gov/news/2026-01/gov-mcmaster-declares-state-emergency-ahead-winter-storm",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1457,7 +1457,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.ohio.gov/",
+            official_url="https://content.govdelivery.com/accounts/OHIOGOVERNOR/bulletins/405eda8",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1497,7 +1497,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.mo.gov/",
+            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-26-05-declaring-state-emergency",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1517,7 +1517,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.alabama.gov/newsroom/2025/01/state-of-emergency-winter-weather-5/",
+            official_url="https://governor.alabama.gov/newsroom/2026/01/governor-ivey-issues-state-of-emergency-for-19-northern-counties-ahead-of-wintery-icy-forecast/",
             confidence="curated",
             last_verified="2026-02-11",
         )
