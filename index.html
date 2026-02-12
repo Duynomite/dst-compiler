@@ -625,28 +625,58 @@
     }
 
     // --- CountyAutocomplete ---
-    function CountyAutocomplete({ countyMap, selectedState, value, onChange }) {
+    // Supports both state-scoped and cross-state county search
+    function CountyAutocomplete({ countyMap, selectedState, value, onChange, onStateSelect }) {
       const [isFocused, setIsFocused] = useState(false);
       const [highlightIndex, setHighlightIndex] = useState(-1);
       const inputRef = useRef(null);
       const listRef = useRef(null);
 
       const suggestions = useMemo(() => {
-        if (!selectedState || !value || value.length < 1) return [];
-        const counties = countyMap[selectedState] || [];
+        if (!value || value.length < 2) return [];
         const normalizedInput = normalizeCountyName(value);
-        return counties
-          .filter(c => normalizeCountyName(c).includes(normalizedInput))
-          .slice(0, 20);
+
+        if (selectedState) {
+          // State selected — only show counties in that state
+          const counties = countyMap[selectedState] || [];
+          return counties
+            .filter(c => normalizeCountyName(c).includes(normalizedInput))
+            .map(c => ({ county: c, state: selectedState }))
+            .slice(0, 20);
+        } else {
+          // No state selected — search across ALL states (~3,200 counties, fast)
+          const results = [];
+          for (const [stateCode, counties] of Object.entries(countyMap)) {
+            for (const c of counties) {
+              if (normalizeCountyName(c).includes(normalizedInput)) {
+                results.push({ county: c, state: stateCode });
+              }
+            }
+          }
+          // Sort: exact matches first, then alphabetical by county then state
+          results.sort((a, b) => {
+            const aExact = normalizeCountyName(a.county) === normalizedInput ? 0 : 1;
+            const bExact = normalizeCountyName(b.county) === normalizedInput ? 0 : 1;
+            if (aExact !== bExact) return aExact - bExact;
+            const countyComp = a.county.localeCompare(b.county);
+            if (countyComp !== 0) return countyComp;
+            return a.state.localeCompare(b.state);
+          });
+          return results.slice(0, 20);
+        }
       }, [countyMap, selectedState, value]);
 
-      const showSuggestions = isFocused && suggestions.length > 0 && value.length >= 1;
+      const showSuggestions = isFocused && suggestions.length > 0 && value.length >= 2;
 
-      const handleSelect = useCallback((county) => {
-        onChange(county);
+      const handleSelect = useCallback((item) => {
+        onChange(item.county);
+        // If no state was selected, auto-select the state for this county
+        if (!selectedState && onStateSelect) {
+          onStateSelect(item.state);
+        }
         setIsFocused(false);
         setHighlightIndex(-1);
-      }, [onChange]);
+      }, [onChange, onStateSelect, selectedState]);
 
       const handleKeyDown = useCallback((e) => {
         if (!showSuggestions) return;
@@ -674,19 +704,24 @@
             onFocus={() => setIsFocused(true)}
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             onKeyDown={handleKeyDown}
-            placeholder={selectedState ? "Type county name..." : "Select a state first"}
-            disabled={!selectedState}
-            className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm disabled:bg-gray-100 disabled:text-gray-400 font-body"
+            placeholder={selectedState ? "Type county name..." : "Search any county..."}
+            className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm font-body"
+            aria-label="County search"
           />
           {showSuggestions && (
             <ul ref={listRef} className="autocomplete-list absolute z-50 w-full mt-1 bg-white border border-light-cyan rounded-lg shadow-lg">
-              {suggestions.map((county, idx) => (
+              {suggestions.map((item, idx) => (
                 <li
-                  key={county}
-                  onMouseDown={() => handleSelect(county)}
-                  className={`autocomplete-item px-3 py-2 text-sm cursor-pointer ${idx === highlightIndex ? 'bg-accent/10 text-accent-dark font-medium' : 'text-text'}`}
+                  key={`${item.state}-${item.county}`}
+                  onMouseDown={() => handleSelect(item)}
+                  className={`autocomplete-item px-3 py-2 text-sm cursor-pointer flex items-center justify-between ${idx === highlightIndex ? 'bg-accent/10 text-accent-dark font-medium' : 'text-text'}`}
                 >
-                  {county}
+                  <span>{item.county}</span>
+                  {!selectedState && (
+                    <span className="text-xs text-mid-blue bg-light-cyan px-1.5 py-0.5 rounded ml-2 flex-shrink-0">
+                      {item.state}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -986,9 +1021,23 @@
         }
 
         if (countyInput && countyInput.length >= 2) {
-          results = results.filter(d =>
-            countyMatches(d.counties, countyInput, d.statewide)
-          );
+          if (selectedState) {
+            // State is selected — use normal county matching (statewide = match)
+            results = results.filter(d =>
+              countyMatches(d.counties, countyInput, d.statewide)
+            );
+          } else {
+            // No state selected — cross-state county search
+            // For statewide disasters, only include if the county exists in that state
+            results = results.filter(d => {
+              if (d.statewide) {
+                // Check if the typed county exists in this disaster's state
+                const stateCounties = countyMap[d.state] || [];
+                return stateCounties.some(c => normalizeCountyName(c).includes(normalizeCountyName(countyInput)));
+              }
+              return countyMatches(d.counties, countyInput, false);
+            });
+          }
         }
 
         if (sourceFilter !== 'all') {
@@ -996,7 +1045,7 @@
         }
 
         return results;
-      }, [allDisasters, selectedState, countyInput, sourceFilter]);
+      }, [allDisasters, selectedState, countyInput, sourceFilter, countyMap]);
 
       // Sort
       const sortedDisasters = useMemo(() => {
@@ -1144,6 +1193,7 @@
                     selectedState={selectedState}
                     value={countyInput}
                     onChange={setCountyInput}
+                    onStateSelect={setSelectedState}
                   />
                 </div>
 
