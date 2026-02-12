@@ -1,10 +1,10 @@
 # CLAUDE.md — DST Compiler Tool
 
 ## Project Status
-- **Status:** v2.0 Complete — Ready for deployment
-- **Last Session:** 2026-02-11
+- **Status:** v2.0 Deployed + Live — Post-launch polish session complete
+- **Last Session:** 2026-02-12
 - **Blocker:** None
-- **Next Action:** Push to GitHub → Deploy to GitHub Pages → Verify live
+- **Next Action:** Build URL verification system for curated STATE links (see TODO below)
 - **Live URL:** https://duynomite.github.io/dst-compiler/
 
 ## Your Role
@@ -74,31 +74,48 @@ dst-compiler/
 ```
 
 ## Current State
-[Updated 2026-02-11 — All 6 phases complete]
-- v2.0 ready for deployment
+[Updated 2026-02-12 — All 6 phases + post-launch polish complete]
+- **v2.0 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
 - **139 curated records** (59 FMCSA + 55 SBA + 24 STATE + 1 HHS)
-- **24 governor declarations** covering 22 states + DC
+- **24 governor declarations** covering 22 states + DC — **ALL URLs verified** (8 fixed on 2026-02-12)
 - **1 HHS PHE** (Washington State severe weather)
 - **2 California governor declarations** (Jan 2025 wildfires + Dec 2025 storms)
 - FEMA live API: Healthy, ~16 active disasters
-- GitHub Actions cron: Running daily, all successful
+- GitHub Actions cron: Running daily at 6AM EST, all successful
 - Audit: **2,644 checks, 100% pass rate** (22 checks/record)
 - SEP calculations: Verified correct for all edge cases (end-of-month, leap year, year boundary)
-- UI: **Upgraded to Tailwind v4 + CPC brand** (Urbanist/Jost fonts, accent/secondary colors, CPC card pattern)
+- UI features:
+  - **Tailwind v4 + CPC brand** (Urbanist/Jost fonts, accent/secondary colors)
+  - **Cross-state county search** — agents can type any county without selecting a state first
+  - **State badge on cards** — visible in all sort modes (not just state-grouped)
+  - **FEMA title formatting** — ALL CAPS titles normalized to Title Case
+  - **Compliance attestation banner** — 3-part validation displayed between search and results
 - Fetcher: **HHS + STATE collectors populated**, lastVerified field added, USDA documented as non-qualifying
 - Hardening: noscript fallback, malformed entry defense, curated error banner, county name normalization (Saint/St/Fort/Mt), accessibility (aria-labels, focus rings)
 - Validation benchmark: Davidson County TN = 5 DSTs (2 FEMA + 2 FMCSA + 1 GOV) ✅
 
+## TODO — Next Session
+1. **URL Verification System** — Build automated link checking for all curated officialUrl entries. 8 of 24 STATE links were wrong (2025 links for 2026 declarations, generic homepages). Need a system to prevent this:
+   - Add a `verify_urls()` function to audit_curated_data.py that does HEAD requests on all officialUrl entries
+   - Flag any 404s, redirects, or generic homepages
+   - Add to GitHub Actions as a weekly check (not daily — respect rate limits)
+   - Consider: URL content verification (does the page mention the disaster title/date?)
+2. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
+3. **"Data Last Updated" in UI** — Surface curated_disasters.json last-modified timestamp
+
 ## Known Issues
 - USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6)
-- Some governor declaration URLs point to general governor pages (OH, MO, KS) — specific EO URLs preferred when available
+- ~~Some governor declaration URLs point to general governor pages (OH, MO, KS)~~ **RESOLVED 2026-02-12** — all 24 STATE URLs now verified, 8 fixed
 - Some FMCSA entries may have outdated incident end dates
 - LA governor declaration (Jan 2025) was renewed multiple times — tracked as ongoing
+- **No automated URL verification** — curated officialUrl entries are only manually checked. Need automated HEAD request + content verification in audit pipeline (see TODO)
 
 ## Bug Log
 | # | Date | Description | Severity | Status | Resolution |
 |---|------|-------------|----------|--------|------------|
 | 1 | 2026-02-11 | SBA-2024-28528-CA status was `ongoing` but daysRemaining=17 | Low | Fixed | Updated to `expiring_soon` during Phase 2 |
+| 2 | 2026-02-12 | 8 of 24 STATE officialUrl entries were incorrect (wrong year or generic homepage) | High | Fixed | AL, AR, KY, SC had 2025 URLs for 2026 declarations; MO, OH, NM, IN had generic homepages. All 8 replaced with specific 2026 declaration URLs |
+| 3 | 2026-02-12 | Git rebase --ours/--theirs confusion during push | Low | Fixed | During rebase, --ours = upstream (remote), --theirs = local commit. Verified by record count |
 
 ## Decisions Made
 | Date | Decision | Why | Alternatives |
@@ -108,6 +125,9 @@ dst-compiler/
 | 2026-02-11 | Governor declarations = manual curation | No centralized API across 50 states; automation impossible | Scrape 50 state sites (too fragile) |
 | 2026-02-11 | USDA drought NOT a valid DST trigger | USDA designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6) | Include USDA as data source (rejected: compliance risk) |
 | 2026-02-11 | HHS PHE for WA is severe weather, NOT bird flu | Research confirmed the Dec 2025 PHE was for atmospheric rivers/flooding | Mislabel as HPAI (rejected: inaccurate) |
+| 2026-02-12 | Cross-state county search (no state required) | Agents often know county but not state abbreviation; reduces friction | Keep state-first search only (rejected: bad UX) |
+| 2026-02-12 | Auto-select state on county pick | When agent picks "Davidson, TN" from cross-state dropdown, state auto-fills. Prevents showing statewide disasters from all 50 states. | Leave state empty after county pick (rejected: wrong results) |
+| 2026-02-12 | URL verification must be automated | 8 of 24 STATE URLs were wrong — manual curation alone is insufficient for compliance tool | Keep manual-only checks (rejected: proven failure rate) |
 
 ## Session Log
 | Date | Session | What Was Done | Phase Completed | Tests Passing |
@@ -118,6 +138,7 @@ dst-compiler/
 | 2026-02-11 | Phase 3 | Complete UI rewrite: Tailwind v4 + CPC brand, source filter, staleness banner, lastVerified display, state-grouped view | Phase 3 ✅ | Visual verification |
 | 2026-02-11 | Phase 4 | Fetcher upgrade: HHS collector populated (WA PHE), STATE collector populated (24 entries), lastVerified field added to build_record(), USDA documented as non-qualifying, audit script updated to check 22 | Phase 4 ✅ | 2644/2644 (100%) |
 | 2026-02-11 | Phase 5 | Hardening: noscript fallback, malformed entry try/catch, curated error banner, county normalization (Fort/Mt), NaN date defense, accessibility (aria-labels, focus rings), SEP edge cases verified (5/5) | Phase 5 ✅ | All edge cases pass |
+| 2026-02-12 | Deploy + Polish | Deployed v2.0 to GitHub Pages. Added compliance banner, state badge on cards, FEMA title formatting. Resolved git rebase conflict with cron. Added cross-state county search. Fixed 8 incorrect STATE URLs (wrong year or generic pages). Full URL audit of all 24 governor declarations. | Deployed ✅ | 2644/2644 (100%) |
 
 ## Definition of Done
 - [ ] All test cases pass (happy path, edge cases, bad data, business logic, operational failures)
