@@ -94,7 +94,7 @@
     };
 
     // =========================================================================
-    // SEP Window Calculation — 42 CFR § 422.62(a)(6)
+    // SEP Window Calculation — 42 CFR § 422.62(b)(18)
     // CRITICAL: "2 full calendar months" is NOT "60 days"
     // DO NOT use Date.setMonth() — it overflows on end-of-month dates
     // =========================================================================
@@ -803,15 +803,27 @@
       const now = new Date();
       const diffDays = Math.floor((now - curatedLastUpdated) / (1000 * 60 * 60 * 24));
       const urlFailCount = curatedIntegrity?.urlVerification?.failCount || 0;
+      const regChanged = curatedIntegrity?.regulatoryMonitoring?.regulationChanged === true;
 
-      // Show banner if stale OR if URL issues exist
-      if (diffDays <= STALENESS_DAYS && urlFailCount === 0) return null;
+      // Show banner if stale OR if URL issues exist OR if regulation changed
+      if (diffDays <= STALENESS_DAYS && urlFailCount === 0 && !regChanged) return null;
 
       return (
-        <div className="bg-amber-50 border-b border-amber-200 px-4 py-2.5">
-          <div className="max-w-7xl mx-auto flex flex-col gap-1 text-sm text-amber-800">
+        <div className={`${regChanged ? 'bg-red-50 border-red-200' : 'bg-amber-50 border-amber-200'} border-b px-4 py-2.5`}>
+          <div className="max-w-7xl mx-auto flex flex-col gap-1 text-sm">
+            {regChanged && (
+              <div className="flex items-center gap-2 text-red-800">
+                <svg className="w-5 h-5 flex-shrink-0 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <span className="font-body">
+                  <strong>⚠ Regulatory change detected.</strong> 42 CFR § 422.62 has been amended.
+                  SEP window calculations may need updating. Contact compliance before relying on dates shown.
+                </span>
+              </div>
+            )}
             {diffDays > STALENESS_DAYS && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-amber-800">
                 <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -823,7 +835,7 @@
               </div>
             )}
             {urlFailCount > 0 && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-amber-800">
                 <svg className="w-5 h-5 flex-shrink-0 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                 </svg>
@@ -1152,6 +1164,13 @@
                             ? <span className="ml-1.5 text-green-300" title={`URLs verified ${new Date(curatedIntegrity.urlVerification.lastRun).toLocaleDateString()}`}>✓ Links verified</span>
                             : <span className="ml-1.5 text-amber-300" title={`${curatedIntegrity.urlVerification.failCount} URL(s) may need attention`}>⚠ {curatedIntegrity.urlVerification.failCount} link issue{curatedIntegrity.urlVerification.failCount > 1 ? 's' : ''}</span>
                         )}
+                        {curatedIntegrity?.regulatoryMonitoring?.status && (
+                          curatedIntegrity.regulatoryMonitoring.status === "PASS"
+                            ? <span className="ml-1.5 text-green-300" title={`42 CFR § 422.62 unchanged (checked ${new Date(curatedIntegrity.regulatoryMonitoring.lastChecked).toLocaleDateString()})`}>✓ Reg current</span>
+                            : curatedIntegrity.regulatoryMonitoring.status === "FAIL"
+                              ? <span className="ml-1.5 text-red-300 font-bold" title="42 CFR § 422.62 has been amended — SEP calculations may need updating">⚠ REG CHANGED</span>
+                              : <span className="ml-1.5 text-amber-300" title="Could not verify regulatory status">? Reg unknown</span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -1271,7 +1290,7 @@
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1.5">
                     <h4 className="text-sm font-heading font-bold text-white">DST Three-Part Validation Required</h4>
-                    <span className="text-xs text-accent/70 font-body">&mdash; 42 CFR &sect; 422.62(a)(6)</span>
+                    <span className="text-xs text-accent/70 font-body">&mdash; 42 CFR &sect; 422.62(b)(18)</span>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-start gap-x-6 gap-y-1 text-sm text-light-cyan/80 font-body">
                     <span><strong className="text-white">1.</strong> Client resides in declared disaster area</span>
@@ -1358,7 +1377,7 @@
           <footer className="bg-deep-navy mt-8">
             <div className="max-w-7xl mx-auto px-4 py-5">
               <p className="text-center text-xs text-soft-blue/60 font-body">
-                DST Compiler Tool &mdash; 42 CFR &sect; 422.62(a)(6) &mdash; For internal agent use only &mdash; Clear Path Coverage
+                DST Compiler Tool &mdash; 42 CFR &sect; 422.62(b)(18) &mdash; For internal agent use only &mdash; Clear Path Coverage
               </p>
             </div>
           </footer>

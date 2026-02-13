@@ -1018,7 +1018,7 @@ class USDACollector:
         Curated USDA secretarial disaster designations.
 
         NOTE (2026-02-11): USDA drought designations do NOT trigger Medicare DST
-        SEPs under 42 CFR 422.62(a)(6). They are agricultural loan programs
+        SEPs under 42 CFR 422.62(b)(18). They are agricultural loan programs
         (FSA Emergency Loans), not disaster declarations in the Medicare sense.
         This collector is kept as a placeholder in case future USDA designations
         do qualify, but currently returns no records.
@@ -1787,10 +1787,11 @@ def main():
             "generatedBy": "dst_data_fetcher.py",
             "contentHash": content_hash,
             "dataIntegrity": {
-                "auditChecks": 22,
+                "auditChecks": 25,
                 "sourceCounts": source_counts,
                 "federalRegister": fr_diagnostics,
                 "urlVerification": None,
+                "regulatoryMonitoring": None,
             },
         },
         "disasters": unique_records,

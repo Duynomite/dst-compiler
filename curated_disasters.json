@@ -16,7 +16,22 @@
         "recordsParsed": 59,
         "curatedOverrides": 1
       },
-      "urlVerification": null
+      "urlVerification": {
+        "lastRun": "2026-02-12T14:09:23Z",
+        "passCount": 136,
+        "warnCount": 3,
+        "failCount": 0,
+        "failures": []
+      },
+      "regulatoryMonitoring": {
+        "lastChecked": "2026-02-12T14:55:27Z",
+        "status": "PASS",
+        "knownVersionDate": "2024-06-03",
+        "currentVersionDate": "2024-06-03",
+        "regulationChanged": false,
+        "sepWindowTextConfirmed": false,
+        "maxOngoingTextConfirmed": false
+      }
     }
   },
   "disasters": [

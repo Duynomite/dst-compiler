@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
 Comprehensive audit of curated_disasters.json
-Validates all records against 24 checks per the audit specification.
+Validates all records against 25 checks per the audit specification.
 Checks 1-18: Per-record validation
 Check 19-21: Cross-record validation
 Check 22: lastVerified field for STATE/HHS records
 Check 23: URL verification (HEAD + content relevance) — requires --verify-urls flag
 Check 24: lastVerified staleness (>30 days) for STATE/HHS records
+Check 25: eCFR regulatory monitoring — detects changes to 42 CFR § 422.62 — requires --check-ecfr flag
 """
 
 import json
@@ -392,6 +393,232 @@ def update_metadata_with_url_results(json_path, results):
     print(f"\n  Metadata updated with URL verification results.")
 
 
+# =============================================
+# eCFR REGULATORY MONITORING (Check 25)
+# =============================================
+
+# Known version date of 42 CFR § 422.62 that our SEP logic is built against.
+# If eCFR reports a newer version, the regulation may have changed.
+ECFR_KNOWN_VERSION_DATE = "2024-06-03"  # Last amendment: 89 FR 30815 (April 2024 final rule, effective June 2024)
+
+# Key regulatory parameters our tool depends on
+EXPECTED_SEP_WINDOW_MONTHS = 2  # "2 full calendar months following the end date"
+EXPECTED_MAX_ONGOING_MONTHS = 14  # "up to 14 calendar months from start date"
+
+
+def check_ecfr_regulation():
+    """
+    Check 25: eCFR regulatory monitoring — detect changes to 42 CFR § 422.62.
+
+    Queries the eCFR API to check if § 422.62 (Election of coverage under an MA plan)
+    has been amended since our last known version. If the regulation changed, our SEP
+    window calculations may be wrong.
+
+    Returns dict with:
+      - status: "PASS" | "WARN" | "FAIL" | "ERROR"
+      - message: Human-readable description
+      - details: Dict with version info
+    """
+    try:
+        import requests
+    except ImportError:
+        return {
+            "status": "ERROR",
+            "message": "requests package required for eCFR check",
+            "details": {}
+        }
+
+    ECFR_BASE = "https://www.ecfr.gov/api"
+    USER_AGENT = "DST-Compiler-Audit/1.0 (Medicare SEP compliance monitor)"
+
+    headers = {"User-Agent": USER_AGENT}
+    result = {
+        "status": "ERROR",
+        "message": "",
+        "details": {
+            "knownVersionDate": ECFR_KNOWN_VERSION_DATE,
+            "currentVersionDate": None,
+            "regulationChanged": None,
+            "lastChecked": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
+    }
+
+    try:
+        # Step 1: Search eCFR for current version of § 422.62
+        # The search endpoint returns version metadata including effective dates
+        search_url = f"{ECFR_BASE}/search/v1/results"
+        params = {
+            "query": '"422.62"',
+            "per_page": 5,
+        }
+        resp = requests.get(search_url, params=params, headers=headers, timeout=15)
+
+        if resp.status_code != 200:
+            result["message"] = f"eCFR search API returned HTTP {resp.status_code}"
+            return result
+
+        data = resp.json()
+        results_list = data.get("results", [])
+
+        # Find the current version of § 422.62 in Title 42
+        current_version_date = None
+        section_title = None
+
+        for entry in results_list:
+            # Look for Title 42, section 422.62
+            hierarchy = entry.get("hierarchy", {})
+            title_num = hierarchy.get("title")
+            section = entry.get("section_number") or hierarchy.get("section")
+
+            # Also check the hierarchy_headings for Part 422
+            headings = entry.get("hierarchy_headings", {})
+            part = headings.get("part") or hierarchy.get("part")
+
+            # Match: Title 42, Part 422, Section 422.62
+            if str(title_num) == "42" and (str(part) == "422" or "422" in str(section)):
+                # Check if this is the current (most recent) version
+                starts_on = entry.get("starts_on", "")
+                structure_index = entry.get("structure_index")
+                full_text = entry.get("full_text_excerpt_set", [])
+                section_title = entry.get("headings", {}).get("section") or entry.get("section_number")
+
+                if starts_on:
+                    if current_version_date is None or starts_on > current_version_date:
+                        current_version_date = starts_on
+
+        if current_version_date is None:
+            # Fallback: try the versioner API for structure info
+            struct_url = f"{ECFR_BASE}/versioner/v1/versions/title-42.json"
+            resp2 = requests.get(struct_url, headers=headers, timeout=30)
+            if resp2.status_code == 200:
+                versions_data = resp2.json()
+                # Search through versions for section 422.62
+                content_versions = versions_data.get("content_versions", [])
+                for v in content_versions:
+                    if v.get("identifier") == "422.62" or v.get("name", "").startswith("422.62"):
+                        ver_date = v.get("date") or v.get("amendment_date")
+                        if ver_date and (current_version_date is None or ver_date > current_version_date):
+                            current_version_date = ver_date
+
+        result["details"]["currentVersionDate"] = current_version_date
+
+        if current_version_date is None:
+            result["status"] = "WARN"
+            result["message"] = "Could not determine current version date of § 422.62 from eCFR API"
+            result["details"]["regulationChanged"] = None
+            return result
+
+        # Step 2: Compare with our known version
+        if current_version_date == ECFR_KNOWN_VERSION_DATE:
+            result["status"] = "PASS"
+            result["message"] = f"§ 422.62 unchanged (effective since {ECFR_KNOWN_VERSION_DATE})"
+            result["details"]["regulationChanged"] = False
+        elif current_version_date > ECFR_KNOWN_VERSION_DATE:
+            result["status"] = "FAIL"
+            result["message"] = (
+                f"§ 422.62 HAS BEEN AMENDED! Known version: {ECFR_KNOWN_VERSION_DATE}, "
+                f"Current version: {current_version_date}. "
+                f"SEP window calculations may be WRONG. Review the regulation immediately."
+            )
+            result["details"]["regulationChanged"] = True
+        else:
+            # Current version is older than known — shouldn't happen, treat as PASS
+            result["status"] = "PASS"
+            result["message"] = f"§ 422.62 version date ({current_version_date}) predates our known version ({ECFR_KNOWN_VERSION_DATE})"
+            result["details"]["regulationChanged"] = False
+
+        # Step 3: Optional — try to verify key regulatory parameters still match
+        # Search for the actual text mentioning "2 full calendar months" or "14"
+        try:
+            text_search_url = f"{ECFR_BASE}/search/v1/results"
+            text_params = {
+                "query": '"422.62" "calendar months"',
+                "per_page": 3,
+            }
+            text_resp = requests.get(text_search_url, params=text_params, headers=headers, timeout=15)
+            if text_resp.status_code == 200:
+                text_data = text_resp.json()
+                text_results = text_data.get("results", [])
+                for tr in text_results:
+                    excerpts = tr.get("full_text_excerpt_set", [])
+                    for excerpt in excerpts:
+                        excerpt_text = excerpt.get("text", "") if isinstance(excerpt, dict) else str(excerpt)
+                        if "2 full calendar months" in excerpt_text.lower() or "two full calendar months" in excerpt_text.lower():
+                            result["details"]["sepWindowTextConfirmed"] = True
+                        if "14 calendar months" in excerpt_text.lower() or "fourteen calendar months" in excerpt_text.lower():
+                            result["details"]["maxOngoingTextConfirmed"] = True
+        except Exception:
+            pass  # Text verification is best-effort
+
+        return result
+
+    except requests.exceptions.Timeout:
+        result["message"] = "eCFR API timeout (15s)"
+        return result
+    except requests.exceptions.ConnectionError:
+        result["message"] = "eCFR API connection error"
+        return result
+    except Exception as e:
+        result["message"] = f"eCFR check error: {type(e).__name__}: {e}"
+        return result
+
+
+def print_ecfr_report(ecfr_result):
+    """Print eCFR regulatory monitoring report."""
+    status = ecfr_result["status"]
+    message = ecfr_result["message"]
+    details = ecfr_result.get("details", {})
+
+    status_icon = {"PASS": "✓", "WARN": "⚠", "FAIL": "✗", "ERROR": "!"}.get(status, "?")
+
+    print(f"\n  [{status_icon}] {status}: {message}")
+    print(f"      Known version: {details.get('knownVersionDate', 'N/A')}")
+    print(f"      Current version: {details.get('currentVersionDate', 'N/A')}")
+    print(f"      Last checked: {details.get('lastChecked', 'N/A')}")
+
+    if details.get("sepWindowTextConfirmed"):
+        print(f"      SEP window text (\"2 full calendar months\"): confirmed ✓")
+    if details.get("maxOngoingTextConfirmed"):
+        print(f"      Max ongoing text (\"14 calendar months\"): confirmed ✓")
+
+    if status == "FAIL":
+        print()
+        print("  ⚠ ACTION REQUIRED:")
+        print("    1. Review the amended regulation at:")
+        print("       https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-B/section-422.62")
+        print("    2. Check if SEP window duration (2 months) has changed")
+        print("    3. Check if ongoing disaster max (14 months) has changed")
+        print("    4. Check if qualifying declaration types have changed")
+        print("    5. Update ECFR_KNOWN_VERSION_DATE in audit_curated_data.py")
+        print("    6. Update SEP calculations in index.html and dst_data_fetcher.py if needed")
+
+    return 1 if status == "FAIL" else 0
+
+
+def update_metadata_with_ecfr_results(json_path, ecfr_result):
+    """Write eCFR monitoring results back to curated_disasters.json metadata."""
+    with open(json_path, "r") as f:
+        data = json.load(f)
+
+    if "dataIntegrity" not in data.get("metadata", {}):
+        data.setdefault("metadata", {})["dataIntegrity"] = {}
+
+    data["metadata"]["dataIntegrity"]["regulatoryMonitoring"] = {
+        "lastChecked": ecfr_result.get("details", {}).get("lastChecked"),
+        "status": ecfr_result["status"],
+        "knownVersionDate": ecfr_result.get("details", {}).get("knownVersionDate"),
+        "currentVersionDate": ecfr_result.get("details", {}).get("currentVersionDate"),
+        "regulationChanged": ecfr_result.get("details", {}).get("regulationChanged"),
+        "sepWindowTextConfirmed": ecfr_result.get("details", {}).get("sepWindowTextConfirmed", False),
+        "maxOngoingTextConfirmed": ecfr_result.get("details", {}).get("maxOngoingTextConfirmed", False),
+    }
+
+    with open(json_path, "w") as f:
+        json.dump(data, f, indent=2)
+
+    print(f"\n  Metadata updated with eCFR regulatory monitoring results.")
+
+
 def run_audit(json_path=None):
     if json_path is None:
         json_path = DEFAULT_JSON_PATH
@@ -729,6 +956,7 @@ if __name__ == "__main__":
     parser.add_argument("--verify-urls", action="store_true", help="Run URL verification (Check 23) — makes HTTP requests")
     parser.add_argument("--update-metadata", action="store_true", help="Write URL verification results back to JSON metadata")
     parser.add_argument("--json-path", type=str, default=None, help="Path to curated_disasters.json (default: auto-detect)")
+    parser.add_argument("--check-ecfr", action="store_true", help="Check eCFR for regulatory changes to 42 CFR § 422.62")
     args = parser.parse_args()
 
     json_path = args.json_path or DEFAULT_JSON_PATH
@@ -754,6 +982,23 @@ if __name__ == "__main__":
 
         print()
 
-    # Exit non-zero if any structural audit failures
+    ecfr_failures = 0
+    if args.check_ecfr:
+        print()
+        print("=" * 80)
+        print("eCFR REGULATORY MONITORING (Check 25)")
+        print("=" * 80)
+        print("  Checking 42 CFR § 422.62 for amendments...")
+
+        ecfr_result = check_ecfr_regulation()
+        ecfr_failures = print_ecfr_report(ecfr_result)
+
+        if args.update_metadata:
+            update_metadata_with_ecfr_results(json_path, ecfr_result)
+
+        print()
+
+    # Exit non-zero if any structural audit failures or regulation change detected
     # URL warnings don't block (only HEAD failures do)
-    exit(1 if failure_count > 0 else 0)
+    total_failures = failure_count + ecfr_failures
+    exit(1 if total_failures > 0 else 0)

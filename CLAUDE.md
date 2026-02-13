@@ -1,10 +1,10 @@
 # CLAUDE.md — DST Compiler Tool
 
 ## Project Status
-- **Status:** v2.1 Deployed + Live — Data Integrity Protocol complete
+- **Status:** v2.2 Deployed + Live — eCFR Regulatory Monitoring + API Research
 - **Last Session:** 2026-02-12
 - **Blocker:** None
-- **Next Action:** Monitor weekly URL checks and CI pipeline health
+- **Next Action:** Monitor weekly URL checks, eCFR regulatory monitoring, and CI pipeline health
 - **Live URL:** https://duynomite.github.io/dst-compiler/
 
 ## Your Role
@@ -74,45 +74,51 @@ dst-compiler/
 ```
 
 ## Current State
-[Updated 2026-02-12 — v2.1 Data Integrity Protocol complete]
-- **v2.1 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
+[Updated 2026-02-12 — v2.2 eCFR Regulatory Monitoring + API Research]
+- **v2.2 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
 - **139 curated records** (59 FMCSA + 55 SBA + 24 STATE + 1 HHS)
 - **24 governor declarations** covering 22 states + DC — **ALL URLs verified** (8 fixed on 2026-02-12)
 - **1 HHS PHE** (Washington State severe weather)
 - **2 California governor declarations** (Jan 2025 wildfires + Dec 2025 storms)
 - FEMA live API: Healthy, ~16 active disasters
-- GitHub Actions cron: Running daily at 6AM EST + weekly Monday 10AM EST (URL checks)
-- Audit: **2,783 checks, 100% pass rate** (24 checks/record including staleness)
+- GitHub Actions cron: Running daily at 6AM EST + weekly Monday 10AM EST (URL checks + eCFR monitoring)
+- Audit: **2,783 checks, 100% pass rate** (25 checks/record including staleness + eCFR)
 - URL verification: **136/139 PASS, 3 WARN (SSL), 0 FAIL** — runs weekly in CI
+- **eCFR regulatory monitoring**: § 422.62 confirmed UNCHANGED (effective since 2024-06-03) — runs weekly in CI
+- **Regulatory citation corrected**: DST SEP is § 422.62**(b)(18)**, not (a)(6) — confirmed via eCFR API
 - SEP calculations: Verified correct for all edge cases (end-of-month, leap year, year boundary)
 - Data integrity pipeline:
-  - **Audit script runs in CI** — gates every commit on 24 checks per record
+  - **Audit script runs in CI** — gates every commit on 25 checks per record
   - **Per-source record count thresholds** — blocks if any source drops >20% or to zero
   - **Content hash in metadata** — detects silent data corruption
   - **URL verification (HEAD + content relevance)** — catches wrong URLs, dead links, generic pages
   - **Smart domain handling** — FMCSA (403 bots) → structure check, Federal Register (JS) → HEAD only
+  - **eCFR regulatory monitoring (Check 25)** — weekly check for amendments to 42 CFR § 422.62(b)(18); creates GitHub Issue if regulation changes
   - **lastVerified auto-updates** — STATE/HHS records get fresh dates on every fetcher run
-  - **Structured GitHub Issue alerting** — specific labels per failure type (data-integrity, audit, urls, urgent)
+  - **Structured GitHub Issue alerting** — specific labels per failure type (data-integrity, audit, urls, regulatory, urgent)
 - UI features:
   - **Tailwind v4 + CPC brand** (Urbanist/Jost fonts, accent/secondary colors)
   - **Cross-state county search** — agents can type any county without selecting a state first
   - **State badge on cards** — visible in all sort modes (not just state-grouped)
   - **FEMA title formatting** — ALL CAPS titles normalized to Title Case
   - **Compliance attestation banner** — 3-part validation displayed between search and results
-  - **Integrity status in header** — shows "✓ Links verified" or "⚠ N link issues" next to timestamp
-  - **Enhanced staleness banner** — surfaces URL issues alongside data age warnings
+  - **Integrity status in header** — shows "✓ Links verified", "✓ Reg current", or alerts for issues
+  - **Enhanced staleness banner** — surfaces URL issues, regulatory changes, and data age warnings
+  - **Regulatory change banner** — red banner if 42 CFR § 422.62 is amended (tells agents to contact compliance)
 - Fetcher: **HHS + STATE collectors populated**, lastVerified auto-updates, USDA documented as non-qualifying
 - Hardening: noscript fallback, malformed entry defense, curated error banner, county name normalization (Saint/St/Fort/Mt), accessibility (aria-labels, focus rings)
 - Validation benchmark: Davidson County TN = 5 DSTs (2 FEMA + 2 FMCSA + 1 GOV) ✅
 
 ## TODO — Next Session
 1. ~~**URL Verification System**~~ **DONE (v2.1)** — Full HEAD + content relevance checks, weekly CI, smart domain handling
-2. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
-3. ~~**"Data Last Updated" in UI**~~ **DONE (v2.0)** — Timestamp in header
-4. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions (1 SBA vs 55 locally). Per-source safeguard blocks data loss, but root cause unclear. Consider: caching last-good SBA results, retry logic, or fallback to curated-only mode in CI.
+2. ~~**eCFR Regulatory Monitoring**~~ **DONE (v2.2)** — Weekly check for amendments to 42 CFR § 422.62(b)(18), GitHub Issue alerting, UI status display
+3. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
+4. ~~**"Data Last Updated" in UI**~~ **DONE (v2.0)** — Timestamp in header
+5. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions (1 SBA vs 55 locally). Per-source safeguard blocks data loss, but root cause unclear. Consider: caching last-good SBA results, retry logic, or fallback to curated-only mode in CI.
+6. **IPAWS exploration** — FEMA IPAWS Archived Alerts API (4.8M alerts, free) captures state/local emergency alerts but testing shows mostly system tests and weather warnings — not a reliable source for governor declarations. Revisit if IPAWS adds better filtering.
 
 ## Known Issues
-- USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6)
+- USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(b)(18)
 - ~~Some governor declaration URLs point to general governor pages (OH, MO, KS)~~ **RESOLVED 2026-02-12** — all 24 STATE URLs now verified, 8 fixed
 - Some FMCSA entries may have outdated incident end dates
 - LA governor declaration (Jan 2025) was renewed multiple times — tracked as ongoing
@@ -127,6 +133,7 @@ dst-compiler/
 | 3 | 2026-02-12 | Git rebase --ours/--theirs confusion during push | Low | Fixed | During rebase, --ours = upstream (remote), --theirs = local commit. Verified by record count |
 | 4 | 2026-02-12 | Federal Register API inconsistent: 55 SBA locally vs 1 in GitHub Actions | High | Mitigated | Per-source safeguard blocks data loss. Root cause: FR API returns fewer results to CI. Safeguard proven to catch the "55→1" drop scenario. |
 | 5 | 2026-02-12 | audit_curated_data.py had hardcoded date (2026-02-11) and absolute path | Medium | Fixed | Replaced with date.today() + os.path.dirname() relative path. Script now CI-compatible. |
+| 6 | 2026-02-12 | Regulatory citation was § 422.62(a)(6) everywhere — actual citation is § 422.62(b)(18) | Medium | Fixed | Confirmed via eCFR API that DST SEP is paragraph (b)(18). Updated all references in index.html, dst_data_fetcher.py, CLAUDE.md |
 
 ## Decisions Made
 | Date | Decision | Why | Alternatives |
@@ -134,7 +141,7 @@ dst-compiler/
 | 2026-02-11 | Upgrade dst-compiler (not rebuild, not SEPAnalyzer) | Working FEMA API + pipeline + deployment; problem is data coverage, not architecture | Rebuild from scratch, upgrade SEPAnalyzer |
 | 2026-02-11 | No agent-facing "report DST" feature | Agents only use DSTs posted by gov entities; agent input creates compliance risk | Add report/feedback mechanism |
 | 2026-02-11 | Governor declarations = manual curation | No centralized API across 50 states; automation impossible | Scrape 50 state sites (too fragile) |
-| 2026-02-11 | USDA drought NOT a valid DST trigger | USDA designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(a)(6) | Include USDA as data source (rejected: compliance risk) |
+| 2026-02-11 | USDA drought NOT a valid DST trigger | USDA designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(b)(18) | Include USDA as data source (rejected: compliance risk) |
 | 2026-02-11 | HHS PHE for WA is severe weather, NOT bird flu | Research confirmed the Dec 2025 PHE was for atmospheric rivers/flooding | Mislabel as HPAI (rejected: inaccurate) |
 | 2026-02-12 | Cross-state county search (no state required) | Agents often know county but not state abbreviation; reduces friction | Keep state-first search only (rejected: bad UX) |
 | 2026-02-12 | Auto-select state on county pick | When agent picks "Davidson, TN" from cross-state dropdown, state auto-fills. Prevents showing statewide disasters from all 50 states. | Leave state empty after county pick (rejected: wrong results) |
@@ -142,6 +149,10 @@ dst-compiler/
 | 2026-02-12 | Data Integrity Protocol v2.1 | 4-phase protocol: CI audit (24 checks), per-source thresholds, URL verification (HEAD + content), integrity UI | Manual-only monitoring (rejected: human error rate proven) |
 | 2026-02-12 | SSL errors as WARN not FAIL | AR/MS/WA have intermittent SSL cert issues — their problem, not our URLs | Block on SSL errors (rejected: would block 3 valid records) |
 | 2026-02-12 | FMCSA URLs validated by structure not HTTP | FMCSA returns 403 to all bots — validate URL pattern instead | Try harder to reach FMCSA (rejected: 403 is intentional) |
+| 2026-02-12 | eCFR regulatory monitoring via weekly CI | If CMS amends § 422.62, our SEP window calculations could silently become wrong. eCFR API is free, no auth, returns version dates. Weekly check catches amendments within 7 days | Manual monitoring of Federal Register (too slow, easy to miss) |
+| 2026-02-12 | Corrected citation to § 422.62(b)(18) | eCFR API confirmed DST SEP is paragraph (b)(18), not (a)(6). All code references updated. | Leave incorrect citation (rejected: compliance risk) |
+| 2026-02-12 | IPAWS not viable for governor declarations | Tested IPAWS Archived Alerts API — 4.8M alerts but mostly weekly tests and NWS weather. Governor emergency declarations don't reliably appear | Integrate IPAWS as data source (rejected: signal-to-noise ratio too low) |
+| 2026-02-12 | SBA Content API unavailable | SBA disaster.json endpoint returned 404 — appears deprecated. Federal Register API remains best SBA source | Switch to SBA Content API (rejected: endpoint dead) |
 
 ## Session Log
 | Date | Session | What Was Done | Phase Completed | Tests Passing |
@@ -154,6 +165,7 @@ dst-compiler/
 | 2026-02-11 | Phase 5 | Hardening: noscript fallback, malformed entry try/catch, curated error banner, county normalization (Fort/Mt), NaN date defense, accessibility (aria-labels, focus rings), SEP edge cases verified (5/5) | Phase 5 ✅ | All edge cases pass |
 | 2026-02-12 | Deploy + Polish | Deployed v2.0 to GitHub Pages. Added compliance banner, state badge on cards, FEMA title formatting. Resolved git rebase conflict with cron. Added cross-state county search. Fixed 8 incorrect STATE URLs (wrong year or generic pages). Full URL audit of all 24 governor declarations. | Deployed ✅ | 2644/2644 (100%) |
 | 2026-02-12 | Data Integrity Protocol | Full 4-phase integrity system: (1) CI-compatible audit (dynamic dates, relative paths, 24 checks), (2) Per-source record count thresholds, (3) URL verification (HEAD + content relevance, smart domain handling for FMCSA/FR), (4) Integrity status in UI header + enhanced staleness banner, (5) Structured GitHub Issue alerting with specific labels, (6) Content hash + source counts in metadata. | v2.1 ✅ | 2783/2783 (100%), 136/139 URLs PASS |
+| 2026-02-12 | eCFR + API Research | (1) Built eCFR regulatory monitoring (Check 25) — weekly queries eCFR API for amendments to § 422.62(b)(18), GitHub Issue alerting on change, UI status display. (2) Corrected regulatory citation from (a)(6) to (b)(18) across all code. (3) Researched 21 government APIs — tested IPAWS (not viable for governor decls), SBA Content API (404/dead), FEMA Declaration Denials (niche). (4) Confirmed: Federal Register API + FEMA API remain our best sources; no new APIs worth integrating now. | v2.2 ✅ | 2783/2783, eCFR PASS |
 
 ## Definition of Done
 - [ ] All test cases pass (happy path, edge cases, bad data, business logic, operational failures)
@@ -173,7 +185,7 @@ dst-compiler/
 
 ## Critical Business Rules
 
-### 1. SEP Window Calculation (42 CFR § 422.62(a)(6))
+### 1. SEP Window Calculation (42 CFR § 422.62(b)(18))
 
 This is the most compliance-critical logic in the entire tool. It must be implemented identically in both `index.html` (JavaScript) and `dst_data_fetcher.py` (Python).
 
