@@ -945,10 +945,11 @@ class FMCSACollector:
         # --- FMCSA 2025-012: Heating Fuels Emergency (Dec 2025) ---
         # Original: Dec 12, 2025 for DE/NJ/NY/PA.
         # Extended Dec 23, 2025 to add CT/MD/MA/NH/WV.
-        # Extended again Jan 15, 2026 to Feb 15, 2026.
+        # Extended Jan 15, 2026 to Feb 15, 2026.
+        # Extended Feb 13, 2026 to Feb 28, 2026 — added ME and VT.
         # Pipeline break at Marcus Hook refinery disrupted propane supply.
         fmcsa_2025_012_states = [
-            "CT", "DE", "MD", "MA", "NH", "NJ", "NY", "PA", "WV",
+            "CT", "DE", "MD", "MA", "ME", "NH", "NJ", "NY", "PA", "VT", "WV",
         ]
         for st in fmcsa_2025_012_states:
             rec = build_record(
@@ -959,7 +960,7 @@ class FMCSACollector:
                 incident_type="Fuel Supply Emergency",
                 declaration_date=date(2025, 12, 12),
                 incident_start=date(2025, 12, 10),
-                incident_end=date(2026, 2, 15),  # Extended Jan 15 to Feb 15
+                incident_end=date(2026, 2, 28),  # Extended Feb 13 to Feb 28
                 renewal_dates_list=None,
                 counties=["Statewide"],
                 statewide=True,
@@ -993,6 +994,28 @@ class FMCSACollector:
             )
             if rec:
                 curated.append(rec)
+
+        # --- FMCSA 2025-014: Washington State Flooding (Nov-Dec 2025) ---
+        # Original: Nov 2025 for WA. Extended Dec 23, 2025 to Feb 20, 2026.
+        # Atmospheric rivers / severe flooding affecting transportation.
+        # Same event as HHS-2025-001-WA but separate declaring authority (FMCSA).
+        rec = build_record(
+            id_str="FMCSA-2025-014-WA",
+            source="FMCSA",
+            state="WA",
+            title="FMCSA Emergency Declaration 2025-014 — Washington State Flooding",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 11, 20),
+            incident_start=date(2025, 11, 19),
+            incident_end=date(2026, 2, 20),  # Extended expiration
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.fmcsa.dot.gov/emergency/wsc-wa-extension-emergency-declaration-no-2025-014-12-23-2025",
+            confidence="curated",
+        )
+        if rec:
+            curated.append(rec)
 
         return curated
 
@@ -1530,6 +1553,93 @@ class StateCollector:
         if rec:
             curated.append(rec)
 
+        # --- NEW JERSEY ---
+        # Gov Sherrill, Jan 24 2026, Executive Order 8, all 21 counties
+        # Emergency ended Jan 26 at noon
+        rec = build_record(
+            id_str="STATE-2026-001-NJ",
+            source="STATE", state="NJ",
+            title="Governor Sherrill Emergency Declaration (EO 8) — January 2026 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 1, 24),
+            incident_start=date(2026, 1, 23),
+            incident_end=date(2026, 1, 26),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.nj.gov/governor/news/2026/20260123b.shtml",
+            confidence="curated",
+            last_verified="2026-02-16",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- MARYLAND (Jan 2026 Winter Storm — separate from Jan 2025) ---
+        # Gov Moore, Jan 23 2026, statewide
+        rec = build_record(
+            id_str="STATE-2026-001-MD",
+            source="STATE", state="MD",
+            title="Governor Moore Emergency Declaration — January 2026 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 1, 23),
+            incident_start=date(2026, 1, 23),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
+            confidence="curated",
+            last_verified="2026-02-16",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- WASHINGTON, D.C. ---
+        # Mayor Bowser, Jan 23 2026, district-wide
+        # Snow emergency period Jan 24 - Jan 27
+        rec = build_record(
+            id_str="STATE-2026-001-DC",
+            source="STATE", state="DC",
+            title="Mayor Bowser Emergency Declaration — January 2026 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 1, 23),
+            incident_start=date(2026, 1, 23),
+            incident_end=date(2026, 1, 27),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://mayor.dc.gov/release/mayor-bowser-declares-state-emergency-washington-dc-ahead-major-winter-storm-and-extreme",
+            confidence="curated",
+            last_verified="2026-02-16",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- MAINE ---
+        # Gov Mills, Jan 5 2026, Energy Emergency Proclamation
+        # Also declared Civil Emergency for coastal flooding Jan 10
+        # Energy emergency expired Jan 15; coastal counties affected
+        rec = build_record(
+            id_str="STATE-2026-001-ME",
+            source="STATE", state="ME",
+            title="Governor Mills Emergency Declaration — January 2026 Energy Emergency & Coastal Flooding",
+            incident_type="Energy Emergency",
+            declaration_date=date(2026, 1, 5),
+            incident_start=date(2026, 1, 5),
+            incident_end=date(2026, 1, 15),
+            renewal_dates_list=None,
+            counties=[
+                "Cumberland", "Hancock", "Knox", "Lincoln",
+                "Sagadahoc", "Waldo", "Washington", "York",
+            ],
+            statewide=False,
+            official_url="https://www.maine.gov/governor/mills/official_documents/proclamations/2026-01-proclamation-energy-emergency",
+            confidence="curated",
+            last_verified="2026-02-16",
+        )
+        if rec:
+            curated.append(rec)
+
         # =============================================================
         # CALIFORNIA GOVERNOR DECLARATIONS
         # =============================================================
@@ -1631,6 +1741,121 @@ class DroughtMonitor:
 
 
 # =========================================================================
+# Coverage Gap Analyzer — Cross-Reference FEMA ↔ STATE
+# =========================================================================
+
+class CoverageGapAnalyzer:
+    """
+    Detects missing governor declarations by cross-referencing sources.
+
+    Strategy:
+    1. Fetch recent FEMA declarations via the same live API the frontend uses
+    2. Extract unique states with active FEMA disasters
+    3. Compare against curated STATE records
+    4. Flag states with FEMA/FMCSA coverage but no governor declaration
+
+    This catches the most common gap: a major disaster hits a state, FEMA
+    responds, but we haven't yet curated the governor's declaration.
+    """
+
+    FEMA_API_BASE = "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries"
+
+    def __init__(self):
+        self.gaps: List[str] = []
+        self.warnings: List[str] = []
+        self.fema_states: Dict[str, List[str]] = {}  # state -> [disaster titles]
+
+    def analyze(self, all_records: List[Dict]):
+        """Run gap analysis after all collectors finish."""
+        # Collect curated STATE records by state
+        state_covered = set()
+        for rec in all_records:
+            if rec.get("source") == "STATE":
+                state_covered.add(rec.get("state"))
+
+        # Collect FMCSA-covered states
+        fmcsa_states: Dict[str, List[str]] = {}
+        for rec in all_records:
+            if rec.get("source") == "FMCSA":
+                st = rec.get("state")
+                if st not in fmcsa_states:
+                    fmcsa_states[st] = []
+                fmcsa_states[st].append(rec.get("title", ""))
+
+        # Fetch FEMA live data for cross-reference
+        self._fetch_fema_states()
+
+        # Gap detection 1: FEMA state has no governor declaration
+        for state, disasters in self.fema_states.items():
+            if state not in state_covered:
+                disaster_summary = disasters[0][:60] if disasters else "Unknown"
+                self.gaps.append(
+                    f"FEMA→STATE gap: {state} has {len(disasters)} FEMA disaster(s) "
+                    f"but no governor declaration curated. Latest: {disaster_summary}"
+                )
+
+        # Gap detection 2: FMCSA state has no governor declaration
+        # (FMCSA emergency declarations almost always follow a governor declaration)
+        for state, declarations in fmcsa_states.items():
+            if state not in state_covered and state not in self.fema_states:
+                self.gaps.append(
+                    f"FMCSA→STATE gap: {state} has {len(declarations)} FMCSA declaration(s) "
+                    f"but no governor declaration curated"
+                )
+
+        # Summary
+        if self.gaps:
+            self.warnings.append(
+                f"{len(self.gaps)} coverage gap(s) detected — "
+                "governor declarations may be missing"
+            )
+
+    def _fetch_fema_states(self):
+        """Fetch recent FEMA declarations and extract states with active disasters."""
+        try:
+            cutoff = date.today() - timedelta(days=90)  # Recent 90 days
+            cutoff_str = cutoff.isoformat()
+            params = {
+                "$filter": f"declarationDate ge '{cutoff_str}'",
+                "$orderby": "declarationDate desc",
+                "$top": "1000",
+                "$select": "state,declarationTitle,declarationType,femaDeclarationString,declarationDate",
+            }
+            resp = requests.get(
+                self.FEMA_API_BASE, params=params, timeout=REQUEST_TIMEOUT,
+                headers={"User-Agent": USER_AGENT}
+            )
+            if resp.status_code != 200:
+                self.warnings.append(f"FEMA API returned {resp.status_code} — gap analysis skipped")
+                return
+
+            data = resp.json()
+            records = data.get("DisasterDeclarationsSummaries", [])
+
+            # Consolidate by femaDeclarationString to avoid counting each county separately
+            seen_declarations = set()
+            for rec in records:
+                decl_str = rec.get("femaDeclarationString", "")
+                if decl_str in seen_declarations:
+                    continue
+                seen_declarations.add(decl_str)
+
+                state = rec.get("state", "")
+                decl_type = rec.get("declarationType", "")
+                # Skip Fire Management (FM) — same filter as frontend
+                if decl_type == "FM":
+                    continue
+                title = rec.get("declarationTitle", "")
+                if state and state in VALID_STATES:
+                    if state not in self.fema_states:
+                        self.fema_states[state] = []
+                    self.fema_states[state].append(title)
+
+        except Exception as e:
+            self.warnings.append(f"FEMA cross-reference failed: {e}")
+
+
+# =========================================================================
 # Validation and Deduplication
 # =========================================================================
 
@@ -1649,7 +1874,11 @@ def deduplicate(records: List[Dict]) -> List[Dict]:
 # Summary Report
 # =========================================================================
 
-def print_report(collectors: Dict, drought: DroughtMonitor, final_count: int, elapsed: float):
+def print_report(
+    collectors: Dict, drought: DroughtMonitor,
+    gap_analyzer: CoverageGapAnalyzer,
+    final_count: int, elapsed: float,
+):
     """Print summary report to stdout."""
     print()
     print("=" * 60)
@@ -1700,6 +1929,19 @@ def print_report(collectors: Dict, drought: DroughtMonitor, final_count: int, el
             print(f"  {w}")
         print()
 
+    # Coverage Gap Analysis
+    if gap_analyzer.gaps:
+        print("COVERAGE GAPS (governor declarations may be missing):")
+        for gap in gap_analyzer.gaps:
+            print(f"  ⚠ {gap}")
+        print()
+        print("  ACTION: Research governor emergency declarations for flagged states.")
+        print("  Add to StateCollector._get_curated_state() in dst_data_fetcher.py")
+        print()
+    elif gap_analyzer.fema_states:
+        print("COVERAGE GAPS: None — all FEMA/FMCSA states have governor declarations")
+        print()
+
     print("=" * 60)
 
 
@@ -1740,6 +1982,18 @@ def main():
         print(f"  -> {len(drought.warnings)} warnings")
     else:
         print("  -> No significant D3/D4 drought signals")
+    print()
+
+    # Coverage Gap Analysis — cross-reference FEMA/FMCSA → STATE
+    print("Running coverage gap analysis (FEMA ↔ STATE cross-reference)...")
+    gap_analyzer = CoverageGapAnalyzer()
+    gap_analyzer.analyze(all_records)
+    if gap_analyzer.gaps:
+        print(f"  -> {len(gap_analyzer.gaps)} gap(s) found:")
+        for gap in gap_analyzer.gaps:
+            print(f"     {gap}")
+    else:
+        print("  -> No coverage gaps detected")
     print()
 
     # Deduplicate
@@ -1802,7 +2056,7 @@ def main():
 
     # Report
     elapsed = time.time() - start_time
-    print_report(collectors, drought, len(unique_records), elapsed)
+    print_report(collectors, drought, gap_analyzer, len(unique_records), elapsed)
 
     print("\nDone.")
     return 0

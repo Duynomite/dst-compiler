@@ -1,10 +1,10 @@
 # CLAUDE.md — DST Compiler Tool
 
 ## Project Status
-- **Status:** v2.2 Deployed + Live — eCFR Regulatory Monitoring + API Research
-- **Last Session:** 2026-02-12
+- **Status:** v2.3 Deployed + Live — Coverage Gap Analyzer + Data Backfill
+- **Last Session:** 2026-02-16
 - **Blocker:** None
-- **Next Action:** Monitor weekly URL checks, eCFR regulatory monitoring, and CI pipeline health
+- **Next Action:** Review 18 FMCSA→STATE coverage gaps flagged by analyzer; research governor declarations for MA, VT, NH, RI, WI, IA, IL, MN, CO, WA
 - **Live URL:** https://duynomite.github.io/dst-compiler/
 
 ## Your Role
@@ -59,7 +59,7 @@ The v1 tool captures FEMA disasters well via live API but misses governor-declar
 ```
 dst-compiler/
 ├── index.html                 # The tool — agents open this (React 18 + Tailwind v4 + CPC brand)
-├── curated_disasters.json     # Non-FEMA disaster data (139 records, updated by fetcher)
+├── curated_disasters.json     # Non-FEMA disaster data (146 records, updated by fetcher)
 ├── dst_data_fetcher.py        # Python pipeline: SBA/HHS/FMCSA/STATE collectors
 ├── audit_curated_data.py      # Validation script (22 checks per record)
 ├── build_governor_entries.py   # Phase 2 utility: builds governor entries (run once)
@@ -74,18 +74,20 @@ dst-compiler/
 ```
 
 ## Current State
-[Updated 2026-02-12 — v2.2 eCFR Regulatory Monitoring + API Research]
-- **v2.2 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
-- **139 curated records** (59 FMCSA + 55 SBA + 24 STATE + 1 HHS)
-- **24 governor declarations** covering 22 states + DC — **ALL URLs verified** (8 fixed on 2026-02-12)
+[Updated 2026-02-16 — v2.3 Coverage Gap Analyzer + Data Backfill]
+- **v2.3 DEPLOYED AND LIVE** at `duynomite.github.io/dst-compiler/`
+- **146 curated records** (62 FMCSA + 55 SBA + 28 STATE + 1 HHS)
+- **28 governor declarations** covering 24 states + DC — **ALL URLs verified**
+  - 4 new (2026-02-16): NJ (Sherrill), MD (Moore), DC (Bowser), ME (Mills)
 - **1 HHS PHE** (Washington State severe weather)
 - **2 California governor declarations** (Jan 2025 wildfires + Dec 2025 storms)
+- **FMCSA updates (2026-02-16)**: Added 2025-014 WA flooding; updated 2025-012 extension (Feb 28, +ME/VT)
 - FEMA live API: Healthy, ~16 active disasters
-- GitHub Actions cron: Running daily at 6AM EST + weekly Monday 10AM EST (URL checks + eCFR monitoring)
-- Audit: **2,783 checks, 100% pass rate** (25 checks/record including staleness + eCFR)
-- URL verification: **136/139 PASS, 3 WARN (SSL), 0 FAIL** — runs weekly in CI
+- GitHub Actions cron: Running daily at 6AM EST + weekly Monday 10AM EST (URL checks + eCFR monitoring + coverage gaps)
+- Audit: **2,923 checks, 100% pass rate** (25 checks/record including staleness + eCFR)
+- URL verification: Runs weekly in CI; 4 new STATE URLs verified via HTTP 200 + content match
 - **eCFR regulatory monitoring**: § 422.62 confirmed UNCHANGED (effective since 2024-06-03) — runs weekly in CI
-- **Regulatory citation corrected**: DST SEP is § 422.62**(b)(18)**, not (a)(6) — confirmed via eCFR API
+- **Coverage Gap Analyzer (NEW v2.3)**: Cross-references FEMA/FMCSA declarations against curated STATE records, flags states with federal disaster coverage but no governor declaration. Runs every fetcher execution. Weekly CI creates GitHub Issue for gaps.
 - SEP calculations: Verified correct for all edge cases (end-of-month, leap year, year boundary)
 - Data integrity pipeline:
   - **Audit script runs in CI** — gates every commit on 25 checks per record
@@ -94,8 +96,9 @@ dst-compiler/
   - **URL verification (HEAD + content relevance)** — catches wrong URLs, dead links, generic pages
   - **Smart domain handling** — FMCSA (403 bots) → structure check, Federal Register (JS) → HEAD only
   - **eCFR regulatory monitoring (Check 25)** — weekly check for amendments to 42 CFR § 422.62(b)(18); creates GitHub Issue if regulation changes
+  - **Coverage gap analysis** — FEMA↔STATE cross-reference flags missing governor declarations; weekly CI issue
   - **lastVerified auto-updates** — STATE/HHS records get fresh dates on every fetcher run
-  - **Structured GitHub Issue alerting** — specific labels per failure type (data-integrity, audit, urls, regulatory, urgent)
+  - **Structured GitHub Issue alerting** — specific labels per failure type (data-integrity, audit, urls, regulatory, urgent, coverage-gap)
 - UI features:
   - **Tailwind v4 + CPC brand** (Urbanist/Jost fonts, accent/secondary colors)
   - **Cross-state county search** — agents can type any county without selecting a state first
@@ -112,15 +115,17 @@ dst-compiler/
 ## TODO — Next Session
 1. ~~**URL Verification System**~~ **DONE (v2.1)** — Full HEAD + content relevance checks, weekly CI, smart domain handling
 2. ~~**eCFR Regulatory Monitoring**~~ **DONE (v2.2)** — Weekly check for amendments to 42 CFR § 422.62(b)(18), GitHub Issue alerting, UI status display
-3. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
-4. ~~**"Data Last Updated" in UI**~~ **DONE (v2.0)** — Timestamp in header
-5. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions (1 SBA vs 55 locally). Per-source safeguard blocks data loss, but root cause unclear. Consider: caching last-good SBA results, retry logic, or fallback to curated-only mode in CI.
-6. **IPAWS exploration** — FEMA IPAWS Archived Alerts API (4.8M alerts, free) captures state/local emergency alerts but testing shows mostly system tests and weather warnings — not a reliable source for governor declarations. Revisit if IPAWS adds better filtering.
+3. ~~**Coverage Gap Analyzer**~~ **DONE (v2.3)** — FEMA/FMCSA→STATE cross-reference, weekly CI issue creation
+4. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
+5. ~~**"Data Last Updated" in UI**~~ **DONE (v2.0)** — Timestamp in header
+6. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions (1 SBA vs 55 locally). Per-source safeguard blocks data loss, but root cause unclear. Consider: caching last-good SBA results, retry logic, or fallback to curated-only mode in CI.
+7. **Research remaining coverage gaps** — 18 states flagged by analyzer (most advisory). Priority: MA, NH, VT, RI (heating fuel impact), WA (flooding), WI/IA/IL/MN (winter storm impact).
 
 ## Known Issues
 - USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(b)(18)
 - ~~Some governor declaration URLs point to general governor pages (OH, MO, KS)~~ **RESOLVED 2026-02-12** — all 24 STATE URLs now verified, 8 fixed
-- Some FMCSA entries may have outdated incident end dates
+- ~~Some FMCSA entries may have outdated incident end dates~~ **RESOLVED 2026-02-16** — Updated 2025-012 (Feb 28 extension, +ME/VT), 2026-001 (Feb 20 extension), added 2025-014 WA
+- **18 FMCSA→STATE coverage gaps** flagged by analyzer — most are advisory (FMCSA covers 30-40 states broadly); research needed for MA, VT, NH, RI, WI, IA, IL, MN, CO, WA
 - LA governor declaration (Jan 2025) was renewed multiple times — tracked as ongoing
 - ~~**No automated URL verification**~~ **RESOLVED 2026-02-12** — URL verification system built with HEAD + content relevance checks, weekly CI runs, smart domain handling (FMCSA/FR)
 - **3 SSL warnings** — AR (governor.arkansas.gov), MS (governorreeves.ms.gov), WA HHS (aspr.hhs.gov) have intermittent SSL cert issues on their end. URLs are correct; certs are the government's problem. Treated as WARN not FAIL.
@@ -153,6 +158,8 @@ dst-compiler/
 | 2026-02-12 | Corrected citation to § 422.62(b)(18) | eCFR API confirmed DST SEP is paragraph (b)(18), not (a)(6). All code references updated. | Leave incorrect citation (rejected: compliance risk) |
 | 2026-02-12 | IPAWS not viable for governor declarations | Tested IPAWS Archived Alerts API — 4.8M alerts but mostly weekly tests and NWS weather. Governor emergency declarations don't reliably appear | Integrate IPAWS as data source (rejected: signal-to-noise ratio too low) |
 | 2026-02-12 | SBA Content API unavailable | SBA disaster.json endpoint returned 404 — appears deprecated. Federal Register API remains best SBA source | Switch to SBA Content API (rejected: endpoint dead) |
+| 2026-02-16 | Coverage Gap Analyzer as automated process | No centralized governor declaration database exists. Cross-referencing FEMA/FMCSA against STATE records catches the most common gap: federal disaster response without corresponding governor declaration curated | Manual-only monitoring (rejected: proven to miss 7 records), Scrape 50 state sites (rejected: too fragile, maintenance nightmare) |
+| 2026-02-16 | FMCSA→STATE gaps are advisory, not blocking | FMCSA covers 30-40 states broadly for transportation; many won't have governor declarations because impact wasn't locally severe enough. Gaps are flagged for review, not auto-resolved | Block pipeline on any gap (rejected: too many false positives) |
 
 ## Session Log
 | Date | Session | What Was Done | Phase Completed | Tests Passing |
@@ -166,6 +173,7 @@ dst-compiler/
 | 2026-02-12 | Deploy + Polish | Deployed v2.0 to GitHub Pages. Added compliance banner, state badge on cards, FEMA title formatting. Resolved git rebase conflict with cron. Added cross-state county search. Fixed 8 incorrect STATE URLs (wrong year or generic pages). Full URL audit of all 24 governor declarations. | Deployed ✅ | 2644/2644 (100%) |
 | 2026-02-12 | Data Integrity Protocol | Full 4-phase integrity system: (1) CI-compatible audit (dynamic dates, relative paths, 24 checks), (2) Per-source record count thresholds, (3) URL verification (HEAD + content relevance, smart domain handling for FMCSA/FR), (4) Integrity status in UI header + enhanced staleness banner, (5) Structured GitHub Issue alerting with specific labels, (6) Content hash + source counts in metadata. | v2.1 ✅ | 2783/2783 (100%), 136/139 URLs PASS |
 | 2026-02-12 | eCFR + API Research | (1) Built eCFR regulatory monitoring (Check 25) — weekly queries eCFR API for amendments to § 422.62(b)(18), GitHub Issue alerting on change, UI status display. (2) Corrected regulatory citation from (a)(6) to (b)(18) across all code. (3) Researched 21 government APIs — tested IPAWS (not viable for governor decls), SBA Content API (404/dead), FEMA Declaration Denials (niche). (4) Confirmed: Federal Register API + FEMA API remain our best sources; no new APIs worth integrating now. | v2.2 ✅ | 2783/2783, eCFR PASS |
+| 2026-02-16 | Data Backfill + Gap Analyzer | (1) Identified 7 missing records via comprehensive web research. (2) Added 4 governor declarations: NJ (Sherrill), MD (Moore), DC (Bowser), ME (Mills). (3) Added FMCSA 2025-014 WA flooding. (4) Updated FMCSA 2025-012 extension: end date Feb 28, added ME+VT (9→11 states). (5) Built CoverageGapAnalyzer: cross-references FEMA/FMCSA against STATE records, flags states with federal disasters but no governor declaration. (6) Added weekly CI step to create GitHub Issues for coverage gaps. (7) All 146 records pass audit (2,923 checks, 100%). (8) All 4 new STATE URLs verified (200 OK, content match). | v2.3 ✅ | 2923/2923 (100%) |
 
 ## Definition of Done
 - [ ] All test cases pass (happy path, edge cases, bad data, business logic, operational failures)
