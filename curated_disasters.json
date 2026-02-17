@@ -1,20 +1,20 @@
 {
   "metadata": {
-    "lastUpdated": "2026-02-17T11:34:05Z",
-    "recordCount": 146,
+    "lastUpdated": "2026-02-17T01:54:15Z",
+    "recordCount": 104,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "461857c84af127ba",
+    "contentHash": "1f70701661344ed9",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
-        "SBA": 55,
+        "SBA": 13,
         "STATE": 28,
         "FMCSA": 62,
         "HHS": 1
       },
       "federalRegister": {
-        "recordsParsed": 59,
-        "curatedOverrides": 1
+        "recordsParsed": 11,
+        "curatedOverrides": 6
       },
       "urlVerification": null,
       "regulatoryMonitoring": null
@@ -34,7 +34,6 @@
       "counties": [
         "Denali",
         "Matanuska-Susitna",
-        "Southeast Fairbanks",
         "Yukon-Koyukuk"
       ],
       "statewide": false,
@@ -42,9 +41,9 @@
       "status": "ongoing",
       "sepWindowStart": "2025-06-19",
       "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 195,
+      "daysRemaining": 196,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -64,10 +63,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-AL",
@@ -87,9 +86,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -109,10 +108,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-AR",
@@ -132,31 +131,33 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
-      "id": "SBA-2025-16329-AZ",
+      "id": "SBA-2026-02294-AR",
       "source": "SBA",
-      "state": "AZ",
-      "title": "Dragon Bravo and White Sage Fires",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-08-26",
-      "incidentStart": "2025-08-26",
-      "incidentEnd": null,
+      "state": "AR",
+      "title": "2026 Severe Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-02-05",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-25",
       "renewalDates": null,
       "counties": [
-        "Coconino"
+        "Chicot",
+        "Lafayette",
+        "Miller"
       ],
       "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/08/26/2025-16329/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-arizona",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-26",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 256,
+      "officialUrl": "https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+      "status": "active",
+      "sepWindowStart": "2026-01-23",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 43,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:41Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "SBA-2026-02443-AZ",
@@ -177,31 +178,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:34Z"
-    },
-    {
-      "id": "SBA-2024-28528-CA",
-      "source": "SBA",
-      "state": "CA",
-      "title": "Mountain Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2024-12-06",
-      "incidentStart": "2024-12-06",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Ventura"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2024/12/06/2024-28528/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2024-12-06",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:49Z"
+      "lastUpdated": "2026-02-17T01:51:32Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -222,10 +201,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-01-07",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "SBA-2025-22647-CA",
@@ -245,9 +224,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-11-13",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:35Z"
+      "lastUpdated": "2026-02-17T01:51:33Z"
     },
     {
       "id": "STATE-2025-002-CA",
@@ -272,10 +251,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-21",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 376,
+      "daysRemaining": 377,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "SBA-2026-02443-CA",
@@ -296,9 +275,37 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:34Z"
+      "lastUpdated": "2026-02-17T01:51:32Z"
+    },
+    {
+      "id": "SBA-2026-02924-CA",
+      "source": "SBA",
+      "state": "CA",
+      "title": "Oakland Apartment Fire",
+      "incidentType": "Fire",
+      "declarationDate": "2026-02-10",
+      "incidentStart": "2026-01-19",
+      "incidentEnd": "2026-01-19",
+      "renewalDates": null,
+      "counties": [
+        "Alameda",
+        "Contra Costa",
+        "San Francisco",
+        "San Joaquin",
+        "San Mateo",
+        "Santa Clara",
+        "Stanislaus"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.federalregister.gov/documents/2026/02/13/2026-02924/administrative-declaration-of-a-disaster-for-the-state-of-california",
+      "status": "active",
+      "sepWindowStart": "2026-01-19",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 43,
+      "confidenceLevel": "verified",
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "SBA-2026-02717-CA",
@@ -319,9 +326,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:34Z"
+      "lastUpdated": "2026-02-17T01:51:31Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -341,9 +348,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -363,9 +370,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -385,9 +392,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -407,10 +414,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-25",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-DC",
@@ -430,9 +437,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -452,10 +459,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -475,9 +482,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -497,9 +504,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -519,54 +526,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
-    },
-    {
-      "id": "SBA-2025-12913-FL",
-      "source": "SBA",
-      "state": "FL",
-      "title": "Severe Storms and Tornado",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-07-11",
-      "incidentStart": "2025-07-11",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Pinellas"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/07/11/2025-12913/administrative-declaration-of-a-disaster-for-the-state-of-florida",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-11",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 225,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:58Z"
-    },
-    {
-      "id": "SBA-2025-19935-FL",
-      "source": "SBA",
-      "state": "FL",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-11-17",
-      "incidentStart": "2025-11-17",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Brevard"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/11/17/2025-19935/administrative-declaration-of-a-disaster-for-the-state-of-florida",
-      "status": "ongoing",
-      "sepWindowStart": "2025-11-17",
-      "sepWindowEnd": "2027-01-31",
-      "daysRemaining": 348,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:37Z"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-FL",
@@ -586,56 +549,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-16676-GA",
-      "source": "SBA",
-      "state": "GA",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-08-29",
-      "incidentStart": "2025-08-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Catoosa"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/08/29/2025-16676/administrative-declaration-of-a-disaster-for-the-state-of-georgia",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-29",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 256,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:41Z"
-    },
-    {
-      "id": "SBA-2025-17088-GA",
-      "source": "SBA",
-      "state": "GA",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-09-05",
-      "incidentStart": "2025-09-05",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Catoosa",
-        "Dade",
-        "Walker",
-        "Whitfield"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/09/05/2025-17088/administrative-declaration-of-a-disaster-for-the-state-of-tennessee",
-      "status": "ongoing",
-      "sepWindowStart": "2025-09-05",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 286,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:40Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-GA",
@@ -655,10 +571,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-GA",
@@ -678,9 +594,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -700,10 +616,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-30",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2025-013-IA",
@@ -723,9 +639,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -745,123 +661,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-07262-ID",
-      "source": "SBA",
-      "state": "ID",
-      "title": "Highway 95 Landslide and Closure",
-      "incidentType": "Disaster",
-      "declarationDate": "2025-04-28",
-      "incidentStart": "2025-04-28",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Adams",
-        "Gem",
-        "Valley"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/28/2025-07262/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-idaho",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-28",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:22Z"
-    },
-    {
-      "id": "SBA-2025-04573-IL",
-      "source": "SBA",
-      "state": "IL",
-      "title": "Tatra Multi-Family Apartment Complex Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-03-19",
-      "incidentStart": "2025-03-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Cook"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/03/19/2025-04573/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-19",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 103,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:31Z"
-    },
-    {
-      "id": "SBA-2025-05997-IL",
-      "source": "SBA",
-      "state": "IL",
-      "title": "Apartment Complex Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-04-08",
-      "incidentStart": "2025-04-08",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Cook"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/08/2025-05997/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-08",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:26Z"
-    },
-    {
-      "id": "SBA-2025-07251-IL",
-      "source": "SBA",
-      "state": "IL",
-      "title": "Severe Storms and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-04-28",
-      "incidentStart": "2025-04-28",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Cook",
-        "Kankakee",
-        "Will"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/28/2025-07251/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-28",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:25Z"
-    },
-    {
-      "id": "SBA-2025-12037-IL",
-      "source": "SBA",
-      "state": "IL",
-      "title": "Severe Storms and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-06-30",
-      "incidentStart": "2025-06-30",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Williamson"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/06/30/2025-12037/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-30",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 195,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:07Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -881,9 +683,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -903,145 +705,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-04573-IN",
-      "source": "SBA",
-      "state": "IN",
-      "title": "Tatra Multi-Family Apartment Complex Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-03-19",
-      "incidentStart": "2025-03-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Lake"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/03/19/2025-04573/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-19",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 103,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:31Z"
-    },
-    {
-      "id": "SBA-2025-05997-IN",
-      "source": "SBA",
-      "state": "IN",
-      "title": "Apartment Complex Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-04-08",
-      "incidentStart": "2025-04-08",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Lake"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/08/2025-05997/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-08",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:26Z"
-    },
-    {
-      "id": "SBA-2025-07251-IN",
-      "source": "SBA",
-      "state": "IN",
-      "title": "Severe Storms and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-04-28",
-      "incidentStart": "2025-04-28",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Bartholomew",
-        "Lake"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/28/2025-07251/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-28",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:25Z"
-    },
-    {
-      "id": "SBA-2025-07450-IN",
-      "source": "SBA",
-      "state": "IN",
-      "title": "Severe Storms and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-04-30",
-      "incidentStart": "2025-04-30",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Harrison",
-        "Orange"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/30/2025-07450/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-30",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:22Z"
-    },
-    {
-      "id": "SBA-2025-10183-IN",
-      "source": "SBA",
-      "state": "IN",
-      "title": "Severe Storms and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-06-05",
-      "incidentStart": "2025-06-05",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Monroe"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/06/05/2025-10183/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-05",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 195,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:13Z"
-    },
-    {
-      "id": "SBA-2025-20283-IN",
-      "source": "SBA",
-      "state": "IN",
-      "title": "Louisville Airplane Crash",
-      "incidentType": "Disaster",
-      "declarationDate": "2025-11-19",
-      "incidentStart": "2025-11-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Clark",
-        "Floyd",
-        "Harrison"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/11/19/2025-20283/administrative-declaration-of-an-economic-injury-disaster-for-the-commonwealth-of-kentucky",
-      "status": "ongoing",
-      "sepWindowStart": "2025-11-19",
-      "sepWindowEnd": "2027-01-31",
-      "daysRemaining": 348,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:36Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -1061,9 +727,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -1083,32 +749,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
-    },
-    {
-      "id": "SBA-2025-12387-KS",
-      "source": "SBA",
-      "state": "KS",
-      "title": "Severe Storms, Torrential Rain and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-07-02",
-      "incidentStart": "2025-07-02",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Butler"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/07/02/2025-12387/administrative-declaration-of-a-disaster-for-the-state-of-kansas",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-02",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 225,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:01Z"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2025-013-KS",
@@ -1128,9 +772,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -1150,10 +794,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-KS",
@@ -1173,55 +817,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-07450-KY",
-      "source": "SBA",
-      "state": "KY",
-      "title": "Severe Storms and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-04-30",
-      "incidentStart": "2025-04-30",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Hardin",
-        "Jefferson",
-        "Meade"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/30/2025-07450/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-30",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:22Z"
-    },
-    {
-      "id": "SBA-2025-20283-KY",
-      "source": "SBA",
-      "state": "KY",
-      "title": "Louisville Airplane Crash",
-      "incidentType": "Disaster",
-      "declarationDate": "2025-11-19",
-      "incidentStart": "2025-11-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Jefferson"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/11/19/2025-20283/administrative-declaration-of-an-economic-injury-disaster-for-the-commonwealth-of-kentucky",
-      "status": "ongoing",
-      "sepWindowStart": "2025-11-19",
-      "sepWindowEnd": "2027-01-31",
-      "daysRemaining": 348,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:36Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -1241,9 +839,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -1263,10 +861,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-KY",
@@ -1286,9 +884,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2025-001-LA",
@@ -1308,39 +906,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-01-18",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
-    },
-    {
-      "id": "SBA-2025-02447-LA",
-      "source": "SBA",
-      "state": "LA",
-      "title": "January 2025 Winter Storm",
-      "incidentType": "Severe Winter Storm",
-      "declarationDate": "2025-02-11",
-      "incidentStart": "2025-02-11",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Ascension",
-        "Calcasieu",
-        "East Baton Rouge",
-        "Lafayette",
-        "Plaquemines",
-        "St. Charles",
-        "Tangipahoa",
-        "Terrebonne"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/02/11/2025-02447/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-louisiana",
-      "status": "ongoing",
-      "sepWindowStart": "2025-02-11",
-      "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:37Z"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-LA",
@@ -1360,9 +929,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -1376,19 +945,35 @@
       "renewalDates": null,
       "counties": [
         "Bossier",
+        "Caddo",
+        "Caldwell",
+        "Catahoula",
+        "Concordia",
+        "DeSoto",
         "East Carroll",
+        "Franklin",
+        "Jackson",
+        "Lincoln",
+        "Madison",
+        "Morehouse",
+        "Natchitoches",
         "Ouachita",
+        "Red River",
         "Richland",
-        "Tensas"
+        "Sabine",
+        "Tensas",
+        "Union",
+        "Webster",
+        "West Carroll"
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/05/2026-02294/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-louisiana",
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:34Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -1408,9 +993,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -1430,32 +1015,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-09654-MD",
-      "source": "SBA",
-      "state": "MD",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-05-29",
-      "incidentStart": "2025-05-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Allegany",
-        "Garrett"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/05/29/2025-09654/administrative-declaration-of-a-disaster-for-the-commonwealth-of-pennsylvania",
-      "status": "ongoing",
-      "sepWindowStart": "2025-05-29",
-      "sepWindowEnd": "2026-07-31",
-      "daysRemaining": 164,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:13Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-MD",
@@ -1475,9 +1037,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -1497,9 +1059,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -1519,10 +1081,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -1542,9 +1104,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -1571,10 +1133,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-05",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-MI",
@@ -1594,31 +1156,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-19481-MN",
-      "source": "SBA",
-      "state": "MN",
-      "title": "Severe Storms and High Winds",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2025-10-07",
-      "incidentStart": "2025-10-07",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Beltrami"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/10/07/2025-19481/administrative-declaration-of-a-disaster-for-the-state-of-minnesota",
-      "status": "ongoing",
-      "sepWindowStart": "2025-10-07",
-      "sepWindowEnd": "2026-12-31",
-      "daysRemaining": 317,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:38Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-013-MN",
@@ -1638,31 +1178,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-23887-MN",
-      "source": "SBA",
-      "state": "MN",
-      "title": "Skyline Tower Apartment Complex Fire and Severe Water Damage",
-      "incidentType": "Fire",
-      "declarationDate": "2025-12-29",
-      "incidentStart": "2025-12-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Ramsey"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/12/29/2025-23887/administrative-declaration-of-a-disaster-for-the-state-of-minnesota",
-      "status": "ongoing",
-      "sepWindowStart": "2025-12-29",
-      "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 376,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:35Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -1682,55 +1200,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-11978-MO",
-      "source": "SBA",
-      "state": "MO",
-      "title": "Severe Storms, Tornadoes, Straight-line Winds, Heavy Rains, Large Hail, Flooding, and Flash Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-06-27",
-      "incidentStart": "2025-06-27",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Greene",
-        "Lawrence",
-        "Newton"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/06/27/2025-11978/administrative-declaration-of-a-disaster-for-the-state-of-missouri",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-27",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 195,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:07Z"
-    },
-    {
-      "id": "SBA-2025-14515-MO",
-      "source": "SBA",
-      "state": "MO",
-      "title": "Severe Storms, Straight-line Winds, Heavy Rains, Large Hail, and Flash Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-08-01",
-      "incidentStart": "2025-08-01",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Greene"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/08/01/2025-14515/administrative-declaration-of-a-disaster-for-the-state-of-missouri",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-01",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 256,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:46Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -1750,9 +1222,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -1772,10 +1244,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-MO",
@@ -1795,9 +1267,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-MS",
@@ -1817,10 +1289,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-MS",
@@ -1840,9 +1312,35 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
+    },
+    {
+      "id": "SBA-2026-02294-MS",
+      "source": "SBA",
+      "state": "MS",
+      "title": "2026 Severe Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-02-05",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-25",
+      "renewalDates": null,
+      "counties": [
+        "Adams",
+        "Claiborne",
+        "Issaquena",
+        "Jefferson",
+        "Warren"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+      "status": "active",
+      "sepWindowStart": "2026-01-23",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 43,
+      "confidenceLevel": "verified",
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -1862,9 +1360,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -1884,10 +1382,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-NC",
@@ -1907,9 +1405,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -1929,9 +1427,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -1951,9 +1449,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -1973,9 +1471,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-NH",
@@ -1995,9 +1493,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -2017,75 +1515,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-04581-NJ",
-      "source": "SBA",
-      "state": "NJ",
-      "title": "Five Alarm Apartment Building Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-03-19",
-      "incidentStart": "2025-03-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Bergen"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/03/19/2025-04581/administrative-declaration-of-a-disaster-for-the-state-of-new-york",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-19",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 103,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:31Z"
-    },
-    {
-      "id": "SBA-2025-06009-NJ",
-      "source": "SBA",
-      "state": "NJ",
-      "title": "Multiple Sudden Sinkholes on Interstate 80 in Morris County, NJ",
-      "incidentType": "Disaster",
-      "declarationDate": "2025-04-08",
-      "incidentStart": "2025-04-08",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Morris"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/08/2025-06009/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-new-jersey",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-08",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:25Z"
-    },
-    {
-      "id": "SBA-2025-20277-NJ",
-      "source": "SBA",
-      "state": "NJ",
-      "title": "Red Hook Five-Alarm Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-11-19",
-      "incidentStart": "2025-11-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Hudson"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/11/19/2025-20277/administrative-declaration-of-a-disaster-for-the-state-of-new-york",
-      "status": "ongoing",
-      "sepWindowStart": "2025-11-19",
-      "sepWindowEnd": "2027-01-31",
-      "daysRemaining": 348,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:36Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -2105,9 +1537,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -2127,9 +1559,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -2149,10 +1581,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "STATE-2026-001-NM",
@@ -2172,10 +1604,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "SBA-2025-22647-NV",
@@ -2198,9 +1630,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-11-13",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:35Z"
+      "lastUpdated": "2026-02-17T01:51:33Z"
     },
     {
       "id": "SBA-2026-02443-NV",
@@ -2220,9 +1652,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:34Z"
+      "lastUpdated": "2026-02-17T01:51:32Z"
     },
     {
       "id": "SBA-2026-02717-NV",
@@ -2245,53 +1677,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 11,
+      "daysRemaining": 12,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:34Z"
-    },
-    {
-      "id": "SBA-2025-04581-NY",
-      "source": "SBA",
-      "state": "NY",
-      "title": "Five Alarm Apartment Building Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-03-19",
-      "incidentStart": "2025-03-19",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Bronx"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/03/19/2025-04581/administrative-declaration-of-a-disaster-for-the-state-of-new-york",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-19",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 103,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:31Z"
-    },
-    {
-      "id": "SBA-2025-16241-NY",
-      "source": "SBA",
-      "state": "NY",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-08-25",
-      "incidentStart": "2025-08-25",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Madison"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/08/25/2025-16241/administrative-declaration-of-a-disaster-for-the-state-of-new-york",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-25",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 256,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:42Z"
+      "lastUpdated": "2026-02-17T01:51:31Z"
     },
     {
       "id": "FMCSA-2025-012-NY",
@@ -2311,9 +1699,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -2333,9 +1721,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -2355,10 +1743,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -2378,9 +1766,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -2400,9 +1788,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -2422,76 +1810,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
-    },
-    {
-      "id": "SBA-2025-05556-OK",
-      "source": "SBA",
-      "state": "OK",
-      "title": "Severe Storms, Tornadoes and Straight-line Winds",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-04-01",
-      "incidentStart": "2025-04-01",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Pontotoc"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/01/2025-05556/administrative-declaration-of-a-disaster-for-the-state-of-oklahoma",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-01",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:26Z"
-    },
-    {
-      "id": "SBA-2025-08739-OK",
-      "source": "SBA",
-      "state": "OK",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-05-16",
-      "incidentStart": "2025-05-16",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Comanche"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/05/16/2025-08739/administrative-declaration-of-a-disaster-for-the-state-of-oklahoma",
-      "status": "ongoing",
-      "sepWindowStart": "2025-05-16",
-      "sepWindowEnd": "2026-07-31",
-      "daysRemaining": 164,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:22Z"
-    },
-    {
-      "id": "SBA-2025-10681-OK",
-      "source": "SBA",
-      "state": "OK",
-      "title": "Severe Storms, Tornadoes, Straight-line Winds and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-06-12",
-      "incidentStart": "2025-06-12",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Pittsburg"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/06/12/2025-10681/administrative-declaration-of-a-disaster-for-the-state-of-oklahoma",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-12",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 195,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:10Z"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-OK",
@@ -2511,53 +1833,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-11917-OR",
-      "source": "SBA",
-      "state": "OR",
-      "title": "Severe Storms, Flooding, Landslides and Mudslides",
-      "incidentType": "Flood",
-      "declarationDate": "2025-06-27",
-      "incidentStart": "2025-06-27",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Douglas"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/06/27/2025-11917/administrative-declaration-of-a-disaster-for-the-state-of-oregon",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-27",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 195,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:07Z"
-    },
-    {
-      "id": "SBA-2025-18596-PA",
-      "source": "SBA",
-      "state": "PA",
-      "title": "Jefferson Apartment Complex Building Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-09-25",
-      "incidentStart": "2025-09-25",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Allegheny"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/09/25/2025-18596/administrative-declaration-of-a-disaster-for-the-commonwealth-of-pennsylvania",
-      "status": "ongoing",
-      "sepWindowStart": "2025-09-25",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 286,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:38Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-PA",
@@ -2577,9 +1855,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -2599,9 +1877,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -2621,10 +1899,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -2644,31 +1922,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-01872-SC",
-      "source": "SBA",
-      "state": "SC",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-01-29",
-      "incidentStart": "2025-01-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Orangeburg"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/01/29/2025-01872/administrative-declaration-of-a-disaster-for-the-state-of-south-carolina",
-      "status": "ongoing",
-      "sepWindowStart": "2025-01-29",
-      "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:40Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -2688,10 +1944,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -2711,9 +1967,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -2733,53 +1989,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-16676-TN",
-      "source": "SBA",
-      "state": "TN",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-08-29",
-      "incidentStart": "2025-08-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Hamilton"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/08/29/2025-16676/administrative-declaration-of-a-disaster-for-the-state-of-georgia",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-29",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 256,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:41Z"
-    },
-    {
-      "id": "SBA-2025-17088-TN",
-      "source": "SBA",
-      "state": "TN",
-      "title": "Severe Storms and Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-09-05",
-      "incidentStart": "2025-09-05",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Hamilton"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/09/05/2025-17088/administrative-declaration-of-a-disaster-for-the-state-of-tennessee",
-      "status": "ongoing",
-      "sepWindowStart": "2025-09-05",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 286,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:40Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -2799,9 +2011,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -2821,10 +2033,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-TN",
@@ -2844,121 +2056,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-01588-TX",
-      "source": "SBA",
-      "state": "TX",
-      "title": "Severe Storm, Tornadoes, and Straight-line Winds",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-01-23",
-      "incidentStart": "2025-01-23",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Brazoria",
-        "Montgomery"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/01/23/2025-01588/administrative-declaration-of-a-disaster-for-the-state-of-texas",
-      "status": "ongoing",
-      "sepWindowStart": "2025-01-23",
-      "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:43Z"
-    },
-    {
-      "id": "SBA-2025-01871-TX",
-      "source": "SBA",
-      "state": "TX",
-      "title": "Severe Storm, Tornadoes, and Straight-line Winds",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-01-29",
-      "incidentStart": "2025-01-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Brazoria",
-        "Montgomery"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/01/29/2025-01871/administrative-declaration-of-a-disaster-for-the-state-of-texas",
-      "status": "ongoing",
-      "sepWindowStart": "2025-01-29",
-      "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 42,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:43Z"
-    },
-    {
-      "id": "SBA-2025-04989-TX",
-      "source": "SBA",
-      "state": "TX",
-      "title": "Thunderstorms, Straight-line Winds and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-03-25",
-      "incidentStart": "2025-03-25",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Dallas"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/03/25/2025-04989/administrative-declaration-of-a-disaster-for-the-state-of-texas",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-25",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 103,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:28Z"
-    },
-    {
-      "id": "SBA-2025-07253-TX",
-      "source": "SBA",
-      "state": "TX",
-      "title": "Thunderstorms, Straight-line Winds, and Tornadoes",
-      "incidentType": "Tornado",
-      "declarationDate": "2025-04-28",
-      "incidentStart": "2025-04-28",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Morris"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/04/28/2025-07253/administrative-declaration-of-a-disaster-for-the-state-of-texas",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-28",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 133,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:32:23Z"
-    },
-    {
-      "id": "SBA-2025-13685-TX",
-      "source": "SBA",
-      "state": "TX",
-      "title": "Cooper Apartment Complex Fire",
-      "incidentType": "Fire",
-      "declarationDate": "2025-07-21",
-      "incidentStart": "2025-07-21",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Tarrant"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/07/21/2025-13685/administrative-declaration-of-a-disaster-for-the-state-of-texas",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-21",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 225,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:55Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -2978,10 +2078,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-TX",
@@ -3001,32 +2101,32 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
-      "id": "SBA-2025-16329-UT",
+      "id": "SBA-2026-02294-TX",
       "source": "SBA",
-      "state": "UT",
-      "title": "Dragon Bravo and White Sage Fires",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-08-26",
-      "incidentStart": "2025-08-26",
-      "incidentEnd": null,
+      "state": "TX",
+      "title": "2026 Severe Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-02-05",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-25",
       "renewalDates": null,
       "counties": [
-        "Kane",
-        "San Juan"
+        "Panola",
+        "Shelby"
       ],
       "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/08/26/2025-16329/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-arizona",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-26",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 256,
+      "officialUrl": "https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+      "status": "active",
+      "sepWindowStart": "2026-01-23",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 43,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:41Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -3046,10 +2146,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -3069,9 +2169,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -3091,9 +2191,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -3113,32 +2213,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
-    },
-    {
-      "id": "SBA-2025-18444-WA",
-      "source": "SBA",
-      "state": "WA",
-      "title": "White River Bridge Closure",
-      "incidentType": "Disaster",
-      "declarationDate": "2025-09-23",
-      "incidentStart": "2025-09-23",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "King",
-        "Pierce"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/09/23/2025-18444/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-washington",
-      "status": "ongoing",
-      "sepWindowStart": "2025-09-23",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 286,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T11:31:39Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -3148,7 +2225,7 @@
       "incidentType": "Severe Storm",
       "declarationDate": "2025-11-20",
       "incidentStart": "2025-11-19",
-      "incidentEnd": "2026-02-20",
+      "incidentEnd": "2026-01-23",
       "renewalDates": null,
       "counties": [
         "Statewide"
@@ -3157,10 +2234,10 @@
       "officialUrl": "https://www.fmcsa.dot.gov/emergency/wsc-wa-extension-emergency-declaration-no-2025-014-12-23-2025",
       "status": "active",
       "sepWindowStart": "2025-11-19",
-      "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 43,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -3195,10 +2272,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-09",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 376,
+      "daysRemaining": 377,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:14Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2025-013-WI",
@@ -3218,9 +2295,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -3240,9 +2317,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -3262,9 +2339,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -3284,9 +2361,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -3306,10 +2383,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-21",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 407,
+      "daysRemaining": 408,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z",
-      "lastVerified": "2026-02-17"
+      "lastUpdated": "2026-02-17T01:54:15Z",
+      "lastVerified": "2026-02-16"
     },
     {
       "id": "FMCSA-2026-001-WY",
@@ -3329,9 +2406,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 72,
+      "daysRemaining": 73,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T11:34:04Z"
+      "lastUpdated": "2026-02-17T01:54:14Z"
     }
   ]
 }

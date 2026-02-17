@@ -503,7 +503,7 @@ class SBACollector:
 
     def _extract_incident_dates(self, text: str) -> Tuple[Optional[date], Optional[date]]:
         """Extract incident start/end from the full text DATES section."""
-        # Pattern: "Incident Period: January 23, 2026 through January 25, 2026"
+        # Pattern 1: "Incident Period: January 23, 2026 through January 25, 2026"
         match = re.search(
             r"Incident\s+Period:\s*(.+?)(?:through|to)\s+(.+?)(?:\.|$)",
             text, re.IGNORECASE
@@ -514,7 +514,7 @@ class SBACollector:
             if start:
                 return start, end
 
-        # Pattern: "beginning December 16, 2025 and ending December 26, 2025"
+        # Pattern 2: "beginning December 16, 2025 and ending December 26, 2025"
         match = re.search(
             r"beginning\s+(.+?)\s+and\s+ending\s+(.+?)(?:\.|,|$)",
             text, re.IGNORECASE
@@ -525,15 +525,28 @@ class SBACollector:
             if start:
                 return start, end
 
-        # Pattern: "beginning on December 16, 2025, and continuing"
+        # Pattern 3: "beginning on December 16, 2025, and continuing"
         match = re.search(
-            r"beginning\s+(?:on\s+)?(.+?)(?:,?\s+and\s+continuing|$)",
+            r"beginning\s+(?:on\s+)?(.+?)(?:,?\s+and\s+continuing)",
             text, re.IGNORECASE
         )
         if match:
             start = parse_date_fuzzy(match.group(1).strip())
             if start:
                 return start, None  # Ongoing
+
+        # Pattern 4: "Incident Period: January 25, 2025." (single date = single-day event)
+        # This must come AFTER patterns 1-3 to avoid false matches on multi-date patterns.
+        # When FR specifies a single date with no "through"/"and continuing", the incident
+        # was a one-day event (fire, storm, crash). End date = start date.
+        match = re.search(
+            r"Incident\s+Period:\s*(\w+\s+\d{1,2},?\s+\d{4})\s*\.?",
+            text, re.IGNORECASE
+        )
+        if match:
+            start = parse_date_fuzzy(match.group(1).strip())
+            if start:
+                return start, start  # Single-day event: end = start
 
         return None, None
 
@@ -652,6 +665,25 @@ class SBACollector:
             "SBA-2025-23433-CT",  # Wrong incidentStart/End
             "SBA-2025-23433-NJ",  # Contiguous record, same date issues
             "SBA-2025-04575-OR",  # Expired + corrupted counties
+            # Single-day events: parser missed end date (Pattern 4 fix in _extract_incident_dates)
+            # These overrides ensure correct data even if the parser fix doesn't retroactively
+            # apply to cached FR text.
+            "SBA-2025-01588-TX",  # Single-day storm Dec 28, 2024 — EXPIRED
+            "SBA-2025-01871-TX",  # Same event area expansion — EXPIRED
+            "SBA-2025-04573-IL",  # Single-day fire Jan 25, 2025 — EXPIRED
+            "SBA-2025-04573-IN",  # Contiguous for above — EXPIRED
+            "SBA-2025-04581-NJ",  # Single-day fire Jan 10, 2025 (primary=NY) — EXPIRED
+            "SBA-2025-04581-NY",  # Primary record for above — EXPIRED
+            "SBA-2025-07251-IL",  # Single-day storm Mar 19, 2025 (primary=IN) — EXPIRED
+            "SBA-2025-07251-IN",  # Primary record for above — EXPIRED
+            "SBA-2025-20283-IN",  # Single-day crash Nov 4, 2025 (primary=KY) — EXPIRED
+            "SBA-2025-20283-KY",  # Primary record for above — EXPIRED
+            # Wrong incidentStart (used FR pub date) + missing incidentEnd (single-day events)
+            "SBA-2025-05997-IL",  # Single-day apartment fire Feb 22, 2025 — EXPIRED
+            "SBA-2025-05997-IN",  # Contiguous for above — EXPIRED
+            "SBA-2025-23887-MN",  # Single-day fire Oct 26, 2025 — EXPIRED
+            # Amendment expanded county list — curated override has full list
+            "SBA-2026-02294-LA",  # Original had 5 parishes; amendment adds 16 more
         }
 
     def _get_curated_sba(self) -> List[Optional[Dict]]:
@@ -691,6 +723,8 @@ class SBACollector:
 
         # SBA-2025-16217-AK: Bear Creek Fire / Nenana Ridge Complex Fire
         # Actual incident start: June 19, 2025 (parser fell back to pub date Aug 25)
+        # Counties verified against FR doc 2025-16217: Denali Borough + Yukon-Koyukuk (primary),
+        # Matanuska-Susitna (contiguous). Southeast Fairbanks NOT in FR doc — removed.
         rec = build_record(
             id_str="SBA-2025-16217-AK",
             source="SBA", state="AK",
@@ -700,7 +734,7 @@ class SBACollector:
             incident_start=date(2025, 6, 19),
             incident_end=None,
             renewal_dates_list=None,
-            counties=["Denali", "Matanuska-Susitna", "Southeast Fairbanks", "Yukon-Koyukuk"],
+            counties=["Denali", "Matanuska-Susitna", "Yukon-Koyukuk"],
             statewide=False,
             official_url="https://www.federalregister.gov/documents/2025/08/25/2025-16217/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-alaska",
             confidence="verified",
@@ -762,6 +796,336 @@ class SBACollector:
             counties=["Wheeler"],
             statewide=False,
             official_url="https://www.federalregister.gov/documents/2025/03/19/2025-04575/administrative-disaster-declaration-of-a-rural-area-for-the-state-of-oregon",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # -----------------------------------------------------------------
+        # Single-day events that the FR parser missed incidentEnd for.
+        # These are all EXPIRED — build_record returns None for expired records,
+        # which prevents the incorrect "ongoing" FR-parsed version from surviving.
+        # -----------------------------------------------------------------
+
+        # SBA-2025-01588-TX: Severe Storm, single-day Dec 28, 2024
+        # SEP end = Feb 28, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-01588-TX", source="SBA", state="TX",
+            title="Severe Storm, Tornadoes, and Straight-line Winds",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 1, 16),
+            incident_start=date(2024, 12, 28), incident_end=date(2024, 12, 28),
+            renewal_dates_list=None,
+            counties=["Brazoria", "Montgomery"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/01/16/2025-01588/administrative-declaration-of-a-disaster-for-the-state-of-texas",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-01871-TX: Same event, area expansion, same single-day
+        # SEP end = Feb 28, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-01871-TX", source="SBA", state="TX",
+            title="Severe Storm, Tornadoes, and Straight-line Winds",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 1, 24),
+            incident_start=date(2024, 12, 28), incident_end=date(2024, 12, 28),
+            renewal_dates_list=None,
+            counties=["Brazoria", "Fort Bend", "Galveston", "Harris", "Montgomery"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/01/29/2025-01871/administrative-declaration-amendment-of-a-disaster-for-the-state-of-texas",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-04573-IL: Tatra Apartment Fire, single-day Jan 25, 2025
+        # SEP end = Mar 31, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-04573-IL", source="SBA", state="IL",
+            title="Tatra Multi-Family Apartment Complex Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 3, 14),
+            incident_start=date(2025, 1, 25), incident_end=date(2025, 1, 25),
+            renewal_dates_list=None,
+            counties=["Cook"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/03/19/2025-04573/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-04573-IN: Contiguous for IL fire above
+        # SEP end = Mar 31, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-04573-IN", source="SBA", state="IN",
+            title="Tatra Multi-Family Apartment Complex Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 3, 14),
+            incident_start=date(2025, 1, 25), incident_end=date(2025, 1, 25),
+            renewal_dates_list=None,
+            counties=["Lake"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/03/19/2025-04573/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-04581-NY: Five Alarm Fire in Bronx County, single-day Jan 10, 2025
+        # Primary state is NY (Bronx County), NJ is contiguous
+        # SEP end = Mar 31, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-04581-NY", source="SBA", state="NY",
+            title="Five Alarm Apartment Building Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 3, 14),
+            incident_start=date(2025, 1, 10), incident_end=date(2025, 1, 10),
+            renewal_dates_list=None,
+            counties=["Bronx"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/03/19/2025-04581/administrative-declaration-of-a-disaster-for-the-state-of-new-york",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-04581-NJ: Contiguous for NY fire above
+        # SEP end = Mar 31, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-04581-NJ", source="SBA", state="NJ",
+            title="Five Alarm Apartment Building Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 3, 14),
+            incident_start=date(2025, 1, 10), incident_end=date(2025, 1, 10),
+            renewal_dates_list=None,
+            counties=["Bergen", "Hudson", "Passaic"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/03/19/2025-04581/administrative-declaration-of-a-disaster-for-the-state-of-new-york",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-07251-IN: Severe Storms, single-day Mar 19, 2025
+        # Primary state is IN (Bartholomew/Lake Counties), IL is contiguous
+        # SEP end = May 31, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-07251-IN", source="SBA", state="IN",
+            title="Severe Storms and Tornadoes",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 4, 24),
+            incident_start=date(2025, 3, 19), incident_end=date(2025, 3, 19),
+            renewal_dates_list=None,
+            counties=["Bartholomew", "Lake"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/04/28/2025-07251/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-07251-IL: Contiguous for IN storms above
+        # SEP end = May 31, 2025 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-07251-IL", source="SBA", state="IL",
+            title="Severe Storms and Tornadoes",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 4, 24),
+            incident_start=date(2025, 3, 19), incident_end=date(2025, 3, 19),
+            renewal_dates_list=None,
+            counties=["Clark", "Cook", "Lake", "Vermilion"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/04/28/2025-07251/administrative-declaration-of-a-disaster-for-the-state-of-indiana",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-20283-KY: Louisville Airplane Crash, single-day Nov 4, 2025
+        # Primary state is KY (Jefferson County), IN is contiguous
+        # SEP end = Jan 31, 2026 — EXPIRED (16 days ago as of Feb 16)
+        rec = build_record(
+            id_str="SBA-2025-20283-KY", source="SBA", state="KY",
+            title="Louisville Airplane Crash",
+            incident_type="Disaster",
+            declaration_date=date(2025, 11, 19),
+            incident_start=date(2025, 11, 4), incident_end=date(2025, 11, 4),
+            renewal_dates_list=None,
+            counties=["Jefferson"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/11/25/2025-20283/administrative-declaration-of-an-economic-injury-disaster-for-the-commonwealth-of-kentucky",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-20283-IN: Contiguous for KY crash above
+        # SEP end = Jan 31, 2026 — EXPIRED
+        rec = build_record(
+            id_str="SBA-2025-20283-IN", source="SBA", state="IN",
+            title="Louisville Airplane Crash",
+            incident_type="Disaster",
+            declaration_date=date(2025, 11, 19),
+            incident_start=date(2025, 11, 4), incident_end=date(2025, 11, 4),
+            renewal_dates_list=None,
+            counties=["Clark", "Floyd", "Harrison"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/11/25/2025-20283/administrative-declaration-of-an-economic-injury-disaster-for-the-commonwealth-of-kentucky",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # -----------------------------------------------------------------
+        # SBA-2025-05997-IL/IN: Apartment fire, single-day Feb 22, 2025
+        # Parser used FR pub date (2025-04-08) as incidentStart and null end.
+        # Correct: incidentStart=incidentEnd=2025-02-22. SEP end = Apr 30, 2025 — EXPIRED.
+        # -----------------------------------------------------------------
+
+        # SBA-2025-05997-IL: Primary — Cook County apartment fire
+        rec = build_record(
+            id_str="SBA-2025-05997-IL", source="SBA", state="IL",
+            title="Apartment Complex Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 4, 8),
+            incident_start=date(2025, 2, 22), incident_end=date(2025, 2, 22),
+            renewal_dates_list=None,
+            counties=["Cook"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/04/08/2025-05997/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-05997-IN: Contiguous for IL fire above
+        rec = build_record(
+            id_str="SBA-2025-05997-IN", source="SBA", state="IN",
+            title="Apartment Complex Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 4, 8),
+            incident_start=date(2025, 2, 22), incident_end=date(2025, 2, 22),
+            renewal_dates_list=None,
+            counties=["Lake"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/04/08/2025-05997/administrative-declaration-of-a-disaster-for-the-state-of-illinois",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2025-23887-MN: Skyline Tower Apartment Complex Fire, single-day Oct 26, 2025
+        # Parser used FR pub date (2025-12-29) as incidentStart and null end.
+        # Correct: incidentStart=incidentEnd=2025-10-26. SEP end = Dec 31, 2025 — EXPIRED.
+        rec = build_record(
+            id_str="SBA-2025-23887-MN", source="SBA", state="MN",
+            title="Skyline Tower Apartment Complex Fire",
+            incident_type="Fire",
+            declaration_date=date(2025, 12, 29),
+            incident_start=date(2025, 10, 26), incident_end=date(2025, 10, 26),
+            renewal_dates_list=None,
+            counties=["Hennepin"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2025/12/29/2025-23887/administrative-declaration-of-a-disaster-for-the-state-of-minnesota",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # -----------------------------------------------------------------
+        # SBA-2026-02924-CA: Oakland Apartment Fire, single-day Jan 19, 2026
+        # FR published Feb 13, 2026. SEP end = Mar 31, 2026.
+        # MISSING from FR API results — add as curated.
+        # -----------------------------------------------------------------
+        # Counties verified against FR doc 2026-02924: Alameda (primary) +
+        # Contra Costa, San Francisco, San Joaquin, San Mateo, Santa Clara, Stanislaus (contiguous).
+        rec = build_record(
+            id_str="SBA-2026-02924-CA", source="SBA", state="CA",
+            title="Oakland Apartment Fire",
+            incident_type="Fire",
+            declaration_date=date(2026, 2, 10),
+            incident_start=date(2026, 1, 19), incident_end=date(2026, 1, 19),
+            renewal_dates_list=None,
+            counties=["Alameda", "Contra Costa", "San Francisco", "San Joaquin",
+                       "San Mateo", "Santa Clara", "Stanislaus"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/02/13/2026-02924/administrative-declaration-of-a-disaster-for-the-state-of-california",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # -----------------------------------------------------------------
+        # SBA-2026-02294-LA: 2026 Severe Winter Storm (amended)
+        # Original FR doc (2026-02294) had 5 parishes. Amendment FR doc
+        # (2026-03026, pub Feb 17) expanded to 21 parishes + contiguous
+        # counties in TX, AR, MS.
+        # -----------------------------------------------------------------
+        rec = build_record(
+            id_str="SBA-2026-02294-LA", source="SBA", state="LA",
+            title="2026 Severe Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 5),
+            incident_start=date(2026, 1, 23), incident_end=date(2026, 1, 25),
+            renewal_dates_list=None,
+            counties=["Bossier", "Caddo", "Caldwell", "Catahoula", "Concordia",
+                       "DeSoto", "East Carroll", "Franklin", "Jackson", "Lincoln",
+                       "Madison", "Morehouse", "Natchitoches", "Ouachita", "Red River",
+                       "Richland", "Sabine", "Tensas", "Union", "Webster", "West Carroll"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/02/05/2026-02294/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2026-02294-TX: Contiguous counties for LA winter storm (amendment)
+        rec = build_record(
+            id_str="SBA-2026-02294-TX", source="SBA", state="TX",
+            title="2026 Severe Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 5),
+            incident_start=date(2026, 1, 23), incident_end=date(2026, 1, 25),
+            renewal_dates_list=None,
+            counties=["Panola", "Shelby"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2026-02294-AR: Contiguous counties for LA winter storm (amendment)
+        rec = build_record(
+            id_str="SBA-2026-02294-AR", source="SBA", state="AR",
+            title="2026 Severe Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 5),
+            incident_start=date(2026, 1, 23), incident_end=date(2026, 1, 25),
+            renewal_dates_list=None,
+            counties=["Chicot", "Lafayette", "Miller"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # SBA-2026-02294-MS: Contiguous counties for LA winter storm (amendment)
+        rec = build_record(
+            id_str="SBA-2026-02294-MS", source="SBA", state="MS",
+            title="2026 Severe Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 5),
+            incident_start=date(2026, 1, 23), incident_end=date(2026, 1, 25),
+            renewal_dates_list=None,
+            counties=["Adams", "Claiborne", "Issaquena", "Jefferson", "Warren"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
             confidence="verified",
         )
         if rec:
@@ -948,6 +1312,7 @@ class FMCSACollector:
         # Extended Jan 15, 2026 to Feb 15, 2026.
         # Extended Feb 13, 2026 to Feb 28, 2026 — added ME and VT.
         # Pipeline break at Marcus Hook refinery disrupted propane supply.
+        # Note: VA is NOT included per verified Feb 13 extension document.
         fmcsa_2025_012_states = [
             "CT", "DE", "MD", "MA", "ME", "NH", "NJ", "NY", "PA", "VT", "WV",
         ]
@@ -972,7 +1337,9 @@ class FMCSACollector:
 
         # --- FMCSA 2025-013: Heating Fuels — Midwest/South (Dec 2025) ---
         # Issued Dec 23, 2025. Extended Jan 15, 2026 to Feb 15, 2026.
+        # No evidence of further extension to Feb 28 (that was 2025-012 only).
         # Pipeline break + winter storms affecting heating fuel delivery.
+        # Note: MI was never part of this declaration (MN is correct per FMCSA source).
         fmcsa_2025_013_states = [
             "IL", "IA", "KS", "KY", "MN", "MO", "NE", "OH", "TN", "WI",
         ]
@@ -996,7 +1363,8 @@ class FMCSACollector:
                 curated.append(rec)
 
         # --- FMCSA 2025-014: Washington State Flooding (Nov-Dec 2025) ---
-        # Original: Nov 2025 for WA. Extended Dec 23, 2025 to Feb 20, 2026.
+        # Original: Nov 2025 for WA. Extended Dec 23, 2025 to Jan 23, 2026.
+        # No evidence of further extension beyond Jan 23 (per FMCSA PDF).
         # Atmospheric rivers / severe flooding affecting transportation.
         # Same event as HHS-2025-001-WA but separate declaring authority (FMCSA).
         rec = build_record(
@@ -1007,7 +1375,7 @@ class FMCSACollector:
             incident_type="Severe Storm",
             declaration_date=date(2025, 11, 20),
             incident_start=date(2025, 11, 19),
-            incident_end=date(2026, 2, 20),  # Extended expiration
+            incident_end=date(2026, 1, 23),  # Extended expiration (Jan 23, verified via PDF)
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,

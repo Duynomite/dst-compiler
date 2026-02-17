@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '0 11 * * *'    # 6:00 AM EST (11:00 UTC) daily
     - cron: '0 15 * * 1'    # Monday 10:00 AM EST (15:00 UTC) — weekly URL check
+    - cron: '0 12 1 * *'    # 1st of each month 7:00 AM EST (12:00 UTC) — monthly enrollment refresh
   workflow_dispatch:          # Manual trigger from Actions tab
 
 jobs:
@@ -29,6 +30,13 @@ jobs:
         id: fetcher
         run: python dst_data_fetcher.py 2>&1 | tee fetcher_output.txt
         timeout-minutes: 10
+
+      - name: Refresh Medicare enrollment data (monthly only)
+        id: enrollment
+        if: github.event.schedule == '0 12 1 * *' || github.event_name == 'workflow_dispatch'
+        run: python build_medicare_enrollment.py
+        timeout-minutes: 5
+        continue-on-error: true
 
       - name: Check for coverage gaps (weekly only)
         id: coverage-gaps
@@ -128,9 +136,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet curated_disasters.json || (
-            git add curated_disasters.json
-            git commit -m "Auto-update curated disaster data"
+          git add curated_disasters.json medicare_enrollment.json
+          git diff --cached --quiet || (
+            git commit -m "Auto-update disaster + enrollment data"
             git push
           )
 

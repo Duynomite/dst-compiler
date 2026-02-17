@@ -368,6 +368,55 @@
     }
 
     // =========================================================================
+    // Medicare beneficiary count helpers
+    // =========================================================================
+
+    function formatBeneficiaryCount(num) {
+      if (!num || num <= 0) return null;
+      if (num >= 1000000) return `~${(num / 1000000).toFixed(1)}M`;
+      if (num >= 1000) return `~${Math.round(num / 1000).toLocaleString()}K`;
+      return `~${num.toLocaleString()}`;
+    }
+
+    function getDisasterBeneficiaries(disaster, enrollmentData) {
+      if (!enrollmentData || !enrollmentData.states) return null;
+      const stateData = enrollmentData.states[disaster.state];
+      if (!stateData) return null;
+
+      if (disaster.statewide) {
+        return stateData.total;
+      }
+
+      if (!disaster.counties || !Array.isArray(disaster.counties)) return null;
+
+      // Build normalized lookup for fuzzy matching (handles DeSoto vs De Soto, etc.)
+      const normalizedLookup = {};
+      for (const [name, data] of Object.entries(stateData.counties)) {
+        normalizedLookup[name.toLowerCase().replace(/\s+/g, '')] = data;
+      }
+
+      let total = 0;
+      let matchedCounties = 0;
+      for (const county of disaster.counties) {
+        if (county === 'Statewide') return stateData.total;
+        // Try exact match first, then normalized
+        const countyData = stateData.counties[county]
+          || normalizedLookup[county.toLowerCase().replace(/\s+/g, '')];
+        if (countyData) {
+          total += countyData.total;
+          matchedCounties++;
+        }
+      }
+      return matchedCounties > 0 ? total : null;
+    }
+
+    function getStateBeneficiaries(stateCode, enrollmentData) {
+      if (!enrollmentData || !enrollmentData.states) return null;
+      const stateData = enrollmentData.states[stateCode];
+      return stateData ? stateData.total : null;
+    }
+
+    // =========================================================================
     // Copy to clipboard — SunFire format
     // =========================================================================
 
@@ -582,7 +631,7 @@
     }
 
     // --- StateSection ---
-    function StateSection({ stateCode, disasters }) {
+    function StateSection({ stateCode, disasters, enrollmentData }) {
       const [collapsed, setCollapsed] = useState(false);
       const stateName = STATE_NAMES[stateCode] || stateCode;
       const sourceBreakdown = useMemo(() => {
@@ -590,6 +639,8 @@
         for (const d of disasters) { counts[d.source] = (counts[d.source] || 0) + 1; }
         return counts;
       }, [disasters]);
+
+      const beneficiaryCount = getStateBeneficiaries(stateCode, enrollmentData);
 
       return (
         <div className="mb-6">
@@ -604,6 +655,11 @@
             <span className="text-xs font-semibold text-mid-blue bg-light-cyan px-2.5 py-0.5 rounded-full">
               {disasters.length} {disasters.length === 1 ? 'DST' : 'DSTs'}
             </span>
+            {beneficiaryCount && (
+              <span className="text-xs text-soft-blue font-body" title="Total Medicare beneficiaries in this state (CMS data)">
+                {formatBeneficiaryCount(beneficiaryCount)} Medicare
+              </span>
+            )}
             <div className="flex items-center gap-1 ml-auto">
               {Object.entries(sourceBreakdown).map(([src, count]) => {
                 const sc = SOURCE_COLORS[src] || SOURCE_COLORS.FEMA;
@@ -861,6 +917,7 @@
       const [lastFemaFetch, setLastFemaFetch] = useState(null);
       const [curatedLastUpdated, setCuratedLastUpdated] = useState(null);
       const [curatedIntegrity, setCuratedIntegrity] = useState(null);
+      const [enrollmentData, setEnrollmentData] = useState(null);
 
       // Search state
       const [selectedState, setSelectedState] = useState('');
@@ -904,6 +961,10 @@
           .then(r => r.ok ? r.json() : {})
           .catch(() => ({}));
 
+        const enrollmentPromise = fetch('medicare_enrollment.json')
+          .then(r => r.ok ? r.json() : null)
+          .catch(() => null);
+
         const curatedPromise = fetch('curated_disasters.json')
           .then(r => {
             if (!r.ok) { debug.curated.status = 'error (' + r.status + ')'; setCuratedError('Failed to load curated disaster data (HTTP ' + r.status + ')'); return []; }
@@ -945,7 +1006,7 @@
           console.error('FEMA API error:', err);
         }
 
-        const [countyData, curatedData] = await Promise.all([countyPromise, curatedPromise]);
+        const [countyData, curatedData, enrollData] = await Promise.all([countyPromise, curatedPromise, enrollmentPromise]);
 
         if (debug.curated.status === 'pending') {
           debug.curated.status = curatedData.length > 0 ? 'success' : 'empty';
@@ -963,6 +1024,7 @@
         setFemaError(femaErr);
         setCuratedDisasters(curatedData);
         setCountyMap(countyData);
+        setEnrollmentData(enrollData);
         setLoading(false);
       }
 
@@ -1135,6 +1197,29 @@
 
       const totalCount = allDisasters.length;
       const displayCount = sortedDisasters.length;
+
+      // Compute total affected beneficiaries (deduplicated by state for statewide disasters)
+      const enrollmentSummary = useMemo(() => {
+        if (!enrollmentData || !enrollmentData.states) return null;
+        const affectedStates = new Set();
+        let totalBeneficiaries = 0;
+
+        // For each disaster, track which states are affected
+        // Use state-level totals and deduplicate to avoid double-counting
+        for (const d of allDisasters) {
+          if (d.state && !affectedStates.has(d.state)) {
+            affectedStates.add(d.state);
+            const stateData = enrollmentData.states[d.state];
+            if (stateData) totalBeneficiaries += stateData.total;
+          }
+        }
+
+        return {
+          totalBeneficiaries,
+          affectedStates: affectedStates.size,
+          period: enrollmentData.metadata?.period || 'Unknown',
+        };
+      }, [allDisasters, enrollmentData]);
       const sourceCounts = useMemo(() => {
         const counts = {};
         for (const d of sortedDisasters) { counts[d.source] = (counts[d.source] || 0) + 1; }
@@ -1332,6 +1417,31 @@
               </div>
             ) : (
               <>
+                {/* Impact Summary Banner */}
+                {enrollmentSummary && !selectedState && sourceFilter === 'all' && !countyInput && (
+                  <div className="mb-4 bg-secondary/5 rounded-lg border border-secondary/15 px-4 py-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-6 text-sm font-body">
+                        <div>
+                          <span className="text-mid-blue">Active DSTs: </span>
+                          <span className="font-semibold text-text">{totalCount}</span>
+                        </div>
+                        <div>
+                          <span className="text-mid-blue">States Affected: </span>
+                          <span className="font-semibold text-text">{enrollmentSummary.affectedStates}</span>
+                        </div>
+                        <div>
+                          <span className="text-mid-blue">Medicare Beneficiaries in Affected Areas: </span>
+                          <span className="font-semibold text-text">{formatBeneficiaryCount(enrollmentSummary.totalBeneficiaries)}</span>
+                        </div>
+                      </div>
+                      <span className="text-xs text-soft-blue font-body" title="Source: CMS Medicare Monthly Enrollment">
+                        CMS data {enrollmentSummary.period}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 {/* Results count */}
                 <div className="flex items-center justify-between mb-4 bg-white rounded-lg border border-light-cyan px-4 py-2.5">
                   <p className="text-sm text-mid-blue font-body">
@@ -1360,6 +1470,7 @@
                       key={stateCode}
                       stateCode={stateCode}
                       disasters={groupedByState[stateCode]}
+                      enrollmentData={enrollmentData}
                     />
                   ))
                 ) : (

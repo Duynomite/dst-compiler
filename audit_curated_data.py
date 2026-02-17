@@ -998,6 +998,30 @@ if __name__ == "__main__":
 
         print()
 
+    # Check 26: Medicare enrollment data freshness
+    enrollment_path = os.path.join(SCRIPT_DIR, "medicare_enrollment.json")
+    if os.path.exists(enrollment_path):
+        try:
+            with open(enrollment_path, "r") as f:
+                enrollment = json.load(f)
+            dl_date = enrollment.get("metadata", {}).get("downloadDate", "")
+            if dl_date:
+                dl = datetime.strptime(dl_date, "%Y-%m-%d").date()
+                age_days = (TODAY - dl).days
+                if age_days > 60:
+                    print(f"  WARN: Medicare enrollment data is {age_days} days old (downloaded {dl_date})")
+                else:
+                    print(f"  OK: Medicare enrollment data is {age_days} days old (downloaded {dl_date})")
+            match_rate = enrollment.get("metadata", {}).get("matchRate", 0)
+            if match_rate < 90:
+                print(f"  WARN: County match rate is {match_rate}% (target: >90%)")
+            else:
+                print(f"  OK: County match rate is {match_rate}%")
+        except Exception as e:
+            print(f"  WARN: Could not read enrollment data: {e}")
+    else:
+        print("  INFO: medicare_enrollment.json not found — run build_medicare_enrollment.py to generate")
+
     # Exit non-zero if any structural audit failures or regulation change detected
     # URL warnings don't block (only HEAD failures do)
     total_failures = failure_count + ecfr_failures
