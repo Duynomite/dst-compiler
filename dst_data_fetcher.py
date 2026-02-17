@@ -2009,6 +2009,30 @@ class StateCollector:
             curated.append(rec)
 
         # =============================================================
+        # MASSACHUSETTS GOVERNOR DECLARATION
+        # =============================================================
+
+        # Gov Healey, Jan 23 2026, Declaration of Emergency (heating fuels + winter storm)
+        # Referenced on FMCSA site; statewide scope
+        rec = build_record(
+            id_str="STATE-2026-001-MA",
+            source="STATE", state="MA",
+            title="Governor Healey Declaration of Emergency — January 2026 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 1, 23),
+            incident_start=date(2026, 1, 23),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
+            confidence="curated",
+            last_verified="2026-02-17",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
         # CALIFORNIA GOVERNOR DECLARATIONS
         # =============================================================
 

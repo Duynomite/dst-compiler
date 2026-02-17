@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "lastUpdated": "2026-02-17T01:54:15Z",
-    "recordCount": 104,
+    "lastUpdated": "2026-02-17T16:43:49Z",
+    "recordCount": 105,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "1f70701661344ed9",
+    "contentHash": "faa317328b67dfb8",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
         "SBA": 13,
-        "STATE": 28,
+        "STATE": 29,
         "FMCSA": 62,
         "HHS": 1
       },
@@ -41,9 +41,9 @@
       "status": "ongoing",
       "sepWindowStart": "2025-06-19",
       "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 196,
+      "daysRemaining": 195,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -63,10 +63,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-AL",
@@ -86,9 +86,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -108,10 +108,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-AR",
@@ -131,9 +131,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -155,9 +155,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "SBA-2026-02443-AZ",
@@ -178,9 +178,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:32Z"
+      "lastUpdated": "2026-02-17T16:41:14Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -201,10 +201,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-01-07",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "SBA-2025-22647-CA",
@@ -224,9 +224,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-11-13",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:33Z"
+      "lastUpdated": "2026-02-17T16:41:15Z"
     },
     {
       "id": "STATE-2025-002-CA",
@@ -251,10 +251,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-21",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 377,
+      "daysRemaining": 376,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "SBA-2026-02443-CA",
@@ -275,9 +275,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:32Z"
+      "lastUpdated": "2026-02-17T16:41:14Z"
     },
     {
       "id": "SBA-2026-02924-CA",
@@ -303,9 +303,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-19",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "SBA-2026-02717-CA",
@@ -326,9 +326,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:31Z"
+      "lastUpdated": "2026-02-17T16:41:14Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -348,9 +348,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -370,9 +370,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -392,9 +392,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -414,10 +414,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-25",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-DC",
@@ -437,9 +437,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -459,10 +459,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -482,9 +482,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -504,9 +504,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -526,10 +526,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-FL",
@@ -549,9 +549,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-GA",
@@ -571,10 +571,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-GA",
@@ -594,9 +594,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -616,10 +616,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-30",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-013-IA",
@@ -639,9 +639,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -661,9 +661,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -683,9 +683,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -705,9 +705,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -727,9 +727,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -749,10 +749,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-013-KS",
@@ -772,9 +772,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -794,10 +794,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-KS",
@@ -817,9 +817,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -839,9 +839,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -861,10 +861,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-KY",
@@ -884,9 +884,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2025-001-LA",
@@ -906,10 +906,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-01-18",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-LA",
@@ -929,9 +929,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -971,9 +971,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -993,9 +993,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -1015,9 +1015,32 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
+    },
+    {
+      "id": "STATE-2026-001-MA",
+      "source": "STATE",
+      "state": "MA",
+      "title": "Governor Healey Declaration of Emergency \u2014 January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
+      "status": "ongoing",
+      "sepWindowStart": "2026-01-23",
+      "sepWindowEnd": "2027-03-31",
+      "daysRemaining": 407,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-012-MD",
@@ -1037,9 +1060,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -1059,9 +1082,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -1081,10 +1104,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -1104,9 +1127,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -1133,10 +1156,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-05",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-MI",
@@ -1156,9 +1179,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-013-MN",
@@ -1178,9 +1201,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -1200,9 +1223,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -1222,9 +1245,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -1244,10 +1267,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-MO",
@@ -1267,9 +1290,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-MS",
@@ -1289,10 +1312,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-MS",
@@ -1312,9 +1335,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -1338,9 +1361,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -1360,9 +1383,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -1382,10 +1405,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-NC",
@@ -1405,9 +1428,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -1427,9 +1450,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -1449,9 +1472,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -1471,9 +1494,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-NH",
@@ -1493,9 +1516,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -1515,9 +1538,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -1537,9 +1560,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -1559,9 +1582,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -1581,10 +1604,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "STATE-2026-001-NM",
@@ -1604,10 +1627,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "SBA-2025-22647-NV",
@@ -1630,9 +1653,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-11-13",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:33Z"
+      "lastUpdated": "2026-02-17T16:41:15Z"
     },
     {
       "id": "SBA-2026-02443-NV",
@@ -1652,9 +1675,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:32Z"
+      "lastUpdated": "2026-02-17T16:41:14Z"
     },
     {
       "id": "SBA-2026-02717-NV",
@@ -1677,9 +1700,9 @@
       "status": "expiring_soon",
       "sepWindowStart": "2025-12-16",
       "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 12,
+      "daysRemaining": 11,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:51:31Z"
+      "lastUpdated": "2026-02-17T16:41:14Z"
     },
     {
       "id": "FMCSA-2025-012-NY",
@@ -1699,9 +1722,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -1721,9 +1744,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -1743,10 +1766,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -1766,9 +1789,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -1788,9 +1811,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -1810,10 +1833,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-OK",
@@ -1833,9 +1856,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-PA",
@@ -1855,9 +1878,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -1877,9 +1900,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -1899,10 +1922,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -1922,9 +1945,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -1944,10 +1967,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -1967,9 +1990,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -1989,9 +2012,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -2011,9 +2034,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -2033,10 +2056,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-TN",
@@ -2056,9 +2079,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -2078,10 +2101,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-TX",
@@ -2101,9 +2124,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -2124,9 +2147,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -2146,10 +2169,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -2169,9 +2192,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -2191,9 +2214,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -2213,9 +2236,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -2235,9 +2258,9 @@
       "status": "active",
       "sepWindowStart": "2025-11-19",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 43,
+      "daysRemaining": 42,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -2272,10 +2295,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-09",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 377,
+      "daysRemaining": 376,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2025-013-WI",
@@ -2295,9 +2318,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -2317,9 +2340,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -2339,9 +2362,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -2361,9 +2384,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -2383,10 +2406,10 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-21",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 408,
+      "daysRemaining": 407,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:15Z",
-      "lastVerified": "2026-02-16"
+      "lastUpdated": "2026-02-17T16:43:48Z",
+      "lastVerified": "2026-02-17"
     },
     {
       "id": "FMCSA-2026-001-WY",
@@ -2406,9 +2429,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 73,
+      "daysRemaining": 72,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-17T01:54:14Z"
+      "lastUpdated": "2026-02-17T16:43:48Z"
     }
   ]
 }

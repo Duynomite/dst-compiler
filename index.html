@@ -1198,25 +1198,59 @@
       const totalCount = allDisasters.length;
       const displayCount = sortedDisasters.length;
 
-      // Compute total affected beneficiaries (deduplicated by state for statewide disasters)
+      // Compute total affected beneficiaries with proper deduplication:
+      // - Deduplicate by state (FEMA + curated can overlap for same state)
+      // - Statewide disasters: use full state enrollment total
+      // - County-only states: sum unique county enrollments (not full state)
       const enrollmentSummary = useMemo(() => {
         if (!enrollmentData || !enrollmentData.states) return null;
-        const affectedStates = new Set();
-        let totalBeneficiaries = 0;
 
-        // For each disaster, track which states are affected
-        // Use state-level totals and deduplicate to avoid double-counting
+        // Phase 1: Merge all disasters by state, track statewide vs county-level
+        const stateInfo = {};
         for (const d of allDisasters) {
-          if (d.state && !affectedStates.has(d.state)) {
-            affectedStates.add(d.state);
-            const stateData = enrollmentData.states[d.state];
-            if (stateData) totalBeneficiaries += stateData.total;
+          if (!d.state) continue;
+          if (!stateInfo[d.state]) {
+            stateInfo[d.state] = { statewide: false, counties: new Set() };
+          }
+          if (d.statewide || (d.counties && d.counties.includes('Statewide'))) {
+            stateInfo[d.state].statewide = true;
+          } else if (d.counties && Array.isArray(d.counties)) {
+            for (const c of d.counties) stateInfo[d.state].counties.add(c);
+          }
+        }
+
+        // Phase 2: Sum beneficiaries (statewide = full total, county-only = county sum)
+        let totalBeneficiaries = 0;
+        for (const [stateCode, info] of Object.entries(stateInfo)) {
+          const stateData = enrollmentData.states[stateCode];
+          if (!stateData) continue;
+
+          if (info.statewide) {
+            totalBeneficiaries += stateData.total;
+          } else {
+            let countyTotal = 0;
+            let matchedAny = false;
+            const normalizedLookup = {};
+            if (stateData.counties) {
+              for (const [name, data] of Object.entries(stateData.counties)) {
+                normalizedLookup[name.toLowerCase().replace(/\s+/g, '')] = data;
+              }
+            }
+            for (const county of info.counties) {
+              const countyData = stateData.counties?.[county]
+                || normalizedLookup[county.toLowerCase().replace(/\s+/g, '')];
+              if (countyData) {
+                countyTotal += countyData.total;
+                matchedAny = true;
+              }
+            }
+            totalBeneficiaries += matchedAny ? countyTotal : stateData.total;
           }
         }
 
         return {
           totalBeneficiaries,
-          affectedStates: affectedStates.size,
+          affectedStates: Object.keys(stateInfo).length,
           period: enrollmentData.metadata?.period || 'Unknown',
         };
       }, [allDisasters, enrollmentData]);
