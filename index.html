@@ -988,22 +988,47 @@
           })
           .catch((err) => { debug.curated.status = 'error'; setCuratedError('Failed to load curated disaster data'); return []; });
 
+        // Try all_disasters.json first (pre-merged FEMA + curated from pipeline)
+        // Falls back to separate FEMA API fetch if all_disasters.json is unavailable
         let femaData = [];
         let femaErr = null;
+        let usedAllDisasters = false;
         const femaStart = performance.now();
+
         try {
-          const rawFema = await fetchAllFEMA();
-          debug.fema.rawCount = rawFema.length;
-          femaData = consolidateFEMA(rawFema);
-          debug.fema.consolidatedCount = femaData.length;
-          debug.fema.status = 'success';
-          debug.fema.timeMs = Math.round(performance.now() - femaStart);
-          setLastFemaFetch(new Date());
-        } catch (err) {
-          femaErr = err.message;
-          debug.fema.status = 'error: ' + err.message;
-          debug.fema.timeMs = Math.round(performance.now() - femaStart);
-          console.error('FEMA API error:', err);
+          const allResp = await fetch('all_disasters.json');
+          if (allResp.ok) {
+            const allData = await allResp.json();
+            if (allData && allData.disasters && allData.disasters.length > 0) {
+              // Extract FEMA records from pre-merged file
+              femaData = allData.disasters.filter(d => d.source === 'FEMA');
+              debug.fema.rawCount = femaData.length;
+              debug.fema.consolidatedCount = femaData.length;
+              debug.fema.status = 'success (all_disasters.json)';
+              debug.fema.timeMs = Math.round(performance.now() - femaStart);
+              setLastFemaFetch(new Date());
+              usedAllDisasters = true;
+            }
+          }
+        } catch (e) {
+          // all_disasters.json not available — fall through to live FEMA fetch
+        }
+
+        if (!usedAllDisasters) {
+          try {
+            const rawFema = await fetchAllFEMA();
+            debug.fema.rawCount = rawFema.length;
+            femaData = consolidateFEMA(rawFema);
+            debug.fema.consolidatedCount = femaData.length;
+            debug.fema.status = 'success (live API)';
+            debug.fema.timeMs = Math.round(performance.now() - femaStart);
+            setLastFemaFetch(new Date());
+          } catch (err) {
+            femaErr = err.message;
+            debug.fema.status = 'error: ' + err.message;
+            debug.fema.timeMs = Math.round(performance.now() - femaStart);
+            console.error('FEMA API error:', err);
+          }
         }
 
         const [countyData, curatedData, enrollData] = await Promise.all([countyPromise, curatedPromise, enrollmentPromise]);

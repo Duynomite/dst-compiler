@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-DST Data Fetcher — Collects non-FEMA disaster data for the DST Compiler Tool.
+DST Data Fetcher — Collects disaster data for the DST Compiler Tool.
 
 Sources:
   - SBA: Federal Register API (automated)
@@ -8,11 +8,12 @@ Sources:
   - FMCSA: Curated + scrape attempt
   - USDA: Curated only
   - STATE: Curated only
+  - FEMA: OpenFEMA API (automated, live)
   - Drought Monitor: Warning signal only (no records)
 
-Output: curated_disasters.json
-
-FEMA records are NOT included — the frontend fetches FEMA live.
+Output:
+  - curated_disasters.json — Non-FEMA sources only (backward compatible)
+  - all_disasters.json — All sources including FEMA (single source of truth)
 """
 
 import sys
@@ -36,6 +37,7 @@ LOOKBACK_MONTHS = 24
 REQUEST_TIMEOUT = 15  # seconds
 USER_AGENT = "DST-Compiler/1.0 (Medicare SEP Tool; contact: admin@clearpathcoverage.com)"
 OUTPUT_FILE = "curated_disasters.json"
+ALL_DISASTERS_FILE = "all_disasters.json"
 
 VERIFY_URLS_ON_BUILD = False  # Set True for local debug runs; False for CI (rate limits)
 
@@ -2058,6 +2060,30 @@ class StateCollector:
         if rec:
             curated.append(rec)
 
+        # =============================================================
+        # MASSACHUSETTS GOVERNOR DECLARATION
+        # =============================================================
+
+        # Gov Healey, Jan 23 2026, Declaration of Emergency (heating fuels + winter storm)
+        # Referenced on FMCSA site; statewide scope
+        rec = build_record(
+            id_str="STATE-2026-001-MA",
+            source="STATE", state="MA",
+            title="Governor Healey Declaration of Emergency — January 2026 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 1, 23),
+            incident_start=date(2026, 1, 23),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
+            confidence="curated",
+            last_verified="2026-02-17",
+        )
+        if rec:
+            curated.append(rec)
+
         # California Jan 2025 LA Wildfires - Gov Newsom
         rec = build_record(
             id_str="STATE-2025-001-CA",
@@ -2078,6 +2104,178 @@ class StateCollector:
             curated.append(rec)
 
         return curated
+
+
+# =========================================================================
+# FEMA Collector — Live API
+# =========================================================================
+
+class FEMACollector:
+    """
+    Collects FEMA disaster declarations via the OpenFEMA API.
+
+    Fetches DisasterDeclarationsSummaries, paginates, filters FM declarations,
+    consolidates county-level records into one disaster per femaDeclarationString,
+    and builds records using the shared build_record() function.
+
+    Mirrors the frontend's consolidateFEMA() logic exactly.
+    """
+
+    FEMA_API_BASE = "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries"
+    PAGE_SIZE = 1000
+
+    def __init__(self):
+        self.records: List[Dict] = []
+        self.errors: List[str] = []
+        self.warnings: List[str] = []
+        self.api_count = 0
+
+    def collect(self) -> List[Dict]:
+        """Fetch, consolidate, and build FEMA disaster records."""
+        try:
+            raw_records = self._fetch_all()
+            consolidated = self._consolidate(raw_records)
+            for group in consolidated.values():
+                rec = self._build_from_group(group)
+                if rec:
+                    self.records.append(rec)
+                    self.api_count += 1
+        except Exception as e:
+            self.errors.append(f"FEMA API fetch failed: {e}")
+            self.warnings.append("FEMA data unavailable — all_disasters.json will have curated sources only")
+
+        return self.records
+
+    def _fetch_all(self) -> List[Dict]:
+        """Paginate through the FEMA API with 24-month lookback."""
+        cutoff = (date.today() - timedelta(days=LOOKBACK_MONTHS * 31)).isoformat()
+        all_records = []
+        skip = 0
+
+        while True:
+            params = {
+                "$filter": f"declarationDate ge '{cutoff}'",
+                "$orderby": "declarationDate desc",
+                "$top": str(self.PAGE_SIZE),
+                "$skip": str(skip),
+            }
+            resp = requests.get(
+                self.FEMA_API_BASE, params=params, timeout=30,
+                headers={"User-Agent": USER_AGENT}
+            )
+            if resp.status_code != 200:
+                raise RuntimeError(f"FEMA API returned HTTP {resp.status_code}")
+
+            data = resp.json()
+            records = data.get("DisasterDeclarationsSummaries", [])
+            all_records.extend(records)
+
+            if len(records) < self.PAGE_SIZE:
+                break
+            skip += self.PAGE_SIZE
+            time.sleep(0.3)  # Be respectful
+
+        return all_records
+
+    def _consolidate(self, records: List[Dict]) -> Dict[str, Dict]:
+        """
+        Group county-level FEMA records by femaDeclarationString.
+        Excludes FM (Fire Management) declarations per 42 CFR § 422.62(b)(18).
+        Strips parenthetical suffixes from county names.
+        Detects statewide declarations.
+        """
+        groups: Dict[str, Dict] = {}
+
+        for rec in records:
+            # EXCLUDE Fire Management — not a Presidential disaster declaration
+            if rec.get("declarationType") == "FM":
+                continue
+
+            key = rec.get("femaDeclarationString", "")
+            if not key:
+                continue
+
+            if key not in groups:
+                decl_date_raw = rec.get("declarationDate", "")
+                inc_begin_raw = rec.get("incidentBeginDate", "")
+                inc_end_raw = rec.get("incidentEndDate", "")
+
+                groups[key] = {
+                    "femaDeclarationString": key,
+                    "declarationType": rec.get("declarationType", ""),
+                    "declarationDate": decl_date_raw.split("T")[0] if decl_date_raw else None,
+                    "incidentBeginDate": inc_begin_raw.split("T")[0] if inc_begin_raw else None,
+                    "incidentEndDate": inc_end_raw.split("T")[0] if inc_end_raw else None,
+                    "state": rec.get("state", ""),
+                    "declarationTitle": rec.get("declarationTitle", ""),
+                    "incidentType": rec.get("incidentType", ""),
+                    "disasterNumber": rec.get("disasterNumber"),
+                    "counties": [],
+                    "statewide": False,
+                }
+
+            # Process county name
+            area = rec.get("designatedArea", "")
+            if area:
+                county = normalize_county_name(area)
+                if county.lower() == "statewide":
+                    groups[key]["statewide"] = True
+                if county and county not in groups[key]["counties"]:
+                    groups[key]["counties"].append(county)
+
+        return groups
+
+    def _build_from_group(self, group: Dict) -> Optional[Dict]:
+        """Convert a consolidated FEMA group into a standard disaster record."""
+        decl_date_str = group.get("declarationDate")
+        inc_begin_str = group.get("incidentBeginDate")
+        inc_end_str = group.get("incidentEndDate")
+        disaster_number = group.get("disasterNumber")
+
+        if not decl_date_str or not inc_begin_str:
+            return None
+
+        decl_date = parse_date_fuzzy(decl_date_str)
+        inc_start = parse_date_fuzzy(inc_begin_str)
+        inc_end = parse_date_fuzzy(inc_end_str) if inc_end_str else None
+
+        if not decl_date or not inc_start:
+            return None
+
+        # Build official URL using numeric disasterNumber (NOT femaDeclarationString)
+        if disaster_number:
+            official_url = f"https://www.fema.gov/disaster/{disaster_number}"
+        else:
+            self.warnings.append(
+                f"No disasterNumber for {group['femaDeclarationString']} — skipping"
+            )
+            return None
+
+        state = group.get("state", "")
+        counties = group.get("counties", [])
+        statewide = group.get("statewide", False)
+
+        # If statewide detected, ensure 'Statewide' is in counties
+        if statewide and "Statewide" not in counties:
+            counties = ["Statewide"] + [c for c in counties if c.lower() != "statewide"]
+
+        fema_decl_string = group["femaDeclarationString"]
+
+        return build_record(
+            id_str=f"FEMA-{fema_decl_string}",
+            source="FEMA",
+            state=state,
+            title=group.get("declarationTitle", ""),
+            incident_type=group.get("incidentType", "Disaster"),
+            declaration_date=decl_date,
+            incident_start=inc_start,
+            incident_end=inc_end,
+            renewal_dates_list=None,
+            counties=counties,
+            statewide=statewide,
+            official_url=official_url,
+            confidence="verified",
+        )
 
 
 # =========================================================================
@@ -2141,7 +2339,7 @@ class CoverageGapAnalyzer:
     Detects missing governor declarations by cross-referencing sources.
 
     Strategy:
-    1. Fetch recent FEMA declarations via the same live API the frontend uses
+    1. Use FEMA records from FEMACollector (no separate API call needed)
     2. Extract unique states with active FEMA disasters
     3. Compare against curated STATE records
     4. Flag states with FEMA/FMCSA coverage but no governor declaration
@@ -2150,32 +2348,36 @@ class CoverageGapAnalyzer:
     responds, but we haven't yet curated the governor's declaration.
     """
 
-    FEMA_API_BASE = "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries"
-
     def __init__(self):
         self.gaps: List[str] = []
         self.warnings: List[str] = []
         self.fema_states: Dict[str, List[str]] = {}  # state -> [disaster titles]
 
-    def analyze(self, all_records: List[Dict]):
-        """Run gap analysis after all collectors finish."""
+    def analyze(self, curated_records: List[Dict], fema_records: List[Dict]):
+        """Run gap analysis using curated records and FEMA collector output."""
         # Collect curated STATE records by state
         state_covered = set()
-        for rec in all_records:
+        for rec in curated_records:
             if rec.get("source") == "STATE":
                 state_covered.add(rec.get("state"))
 
         # Collect FMCSA-covered states
         fmcsa_states: Dict[str, List[str]] = {}
-        for rec in all_records:
+        for rec in curated_records:
             if rec.get("source") == "FMCSA":
                 st = rec.get("state")
                 if st not in fmcsa_states:
                     fmcsa_states[st] = []
                 fmcsa_states[st].append(rec.get("title", ""))
 
-        # Fetch FEMA live data for cross-reference
-        self._fetch_fema_states()
+        # Build FEMA state map from collector output (no separate API call)
+        for rec in fema_records:
+            state = rec.get("state", "")
+            title = rec.get("title", "")
+            if state and state in VALID_STATES:
+                if state not in self.fema_states:
+                    self.fema_states[state] = []
+                self.fema_states[state].append(title)
 
         # Gap detection 1: FEMA state has no governor declaration
         for state, disasters in self.fema_states.items():
@@ -2202,50 +2404,6 @@ class CoverageGapAnalyzer:
                 "governor declarations may be missing"
             )
 
-    def _fetch_fema_states(self):
-        """Fetch recent FEMA declarations and extract states with active disasters."""
-        try:
-            cutoff = date.today() - timedelta(days=90)  # Recent 90 days
-            cutoff_str = cutoff.isoformat()
-            params = {
-                "$filter": f"declarationDate ge '{cutoff_str}'",
-                "$orderby": "declarationDate desc",
-                "$top": "1000",
-                "$select": "state,declarationTitle,declarationType,femaDeclarationString,declarationDate",
-            }
-            resp = requests.get(
-                self.FEMA_API_BASE, params=params, timeout=REQUEST_TIMEOUT,
-                headers={"User-Agent": USER_AGENT}
-            )
-            if resp.status_code != 200:
-                self.warnings.append(f"FEMA API returned {resp.status_code} — gap analysis skipped")
-                return
-
-            data = resp.json()
-            records = data.get("DisasterDeclarationsSummaries", [])
-
-            # Consolidate by femaDeclarationString to avoid counting each county separately
-            seen_declarations = set()
-            for rec in records:
-                decl_str = rec.get("femaDeclarationString", "")
-                if decl_str in seen_declarations:
-                    continue
-                seen_declarations.add(decl_str)
-
-                state = rec.get("state", "")
-                decl_type = rec.get("declarationType", "")
-                # Skip Fire Management (FM) — same filter as frontend
-                if decl_type == "FM":
-                    continue
-                title = rec.get("declarationTitle", "")
-                if state and state in VALID_STATES:
-                    if state not in self.fema_states:
-                        self.fema_states[state] = []
-                    self.fema_states[state].append(title)
-
-        except Exception as e:
-            self.warnings.append(f"FEMA cross-reference failed: {e}")
-
 
 # =========================================================================
 # Validation and Deduplication
@@ -2262,14 +2420,87 @@ def deduplicate(records: List[Dict]) -> List[Dict]:
     return unique
 
 
+def deduplicate_prefer_fema(curated_records: List[Dict], fema_records: List[Dict]) -> List[Dict]:
+    """
+    Merge curated + FEMA records, preferring FEMA for duplicate IDs.
+    Matches the frontend's merge behavior: FEMA records go first,
+    curated records added only if their ID doesn't already exist.
+    """
+    by_id: Dict[str, Dict] = {}
+
+    # FEMA records take priority
+    for rec in fema_records:
+        by_id[rec["id"]] = rec
+
+    # Curated records fill in the rest
+    for rec in curated_records:
+        if rec["id"] not in by_id:
+            by_id[rec["id"]] = rec
+
+    return list(by_id.values())
+
+
 # =========================================================================
 # Summary Report
 # =========================================================================
 
+def write_output(filepath: str, records: List[Dict], sba_collector=None) -> Dict:
+    """
+    Write disaster records to a JSON file with metadata wrapper.
+    Returns the output dict for reference.
+    """
+    # Auto-update lastVerified for STATE/HHS records
+    today_str = date.today().isoformat()
+    for rec in records:
+        if rec.get("source") in ("STATE", "HHS"):
+            rec["lastVerified"] = today_str
+
+    # Sort by state, then declaration date
+    records.sort(key=lambda r: (r["state"], r.get("declarationDate", "")))
+
+    # Compute content hash and source counts
+    records_json = json.dumps(records, sort_keys=True)
+    content_hash = hashlib.sha256(records_json.encode()).hexdigest()[:16]
+
+    source_counts = {}
+    for rec in records:
+        src = rec.get("source", "UNKNOWN")
+        source_counts[src] = source_counts.get(src, 0) + 1
+
+    # Build Federal Register diagnostics from SBA collector
+    fr_diagnostics = {}
+    if sba_collector and hasattr(sba_collector, "fr_count"):
+        fr_diagnostics = {
+            "recordsParsed": sba_collector.fr_count,
+            "curatedOverrides": sba_collector.curated_count,
+        }
+
+    output = {
+        "metadata": {
+            "lastUpdated": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "recordCount": len(records),
+            "generatedBy": "dst_data_fetcher.py",
+            "contentHash": content_hash,
+            "dataIntegrity": {
+                "auditChecks": 25,
+                "sourceCounts": source_counts,
+                "federalRegister": fr_diagnostics,
+                "urlVerification": None,
+                "regulatoryMonitoring": None,
+            },
+        },
+        "disasters": records,
+    }
+    with open(filepath, "w") as f:
+        json.dump(output, f, indent=2)
+
+    return output
+
+
 def print_report(
     collectors: Dict, drought: DroughtMonitor,
     gap_analyzer: CoverageGapAnalyzer,
-    final_count: int, elapsed: float,
+    curated_count: int, all_count: int, elapsed: float,
 ):
     """Print summary report to stdout."""
     print()
@@ -2277,8 +2508,8 @@ def print_report(
     print("DST DATA FETCHER — SUMMARY REPORT")
     print("=" * 60)
     print(f"Run time: {elapsed:.1f} seconds")
-    print(f"Output: {OUTPUT_FILE}")
-    print(f"Total records in output: {final_count}")
+    print(f"Output: {OUTPUT_FILE} ({curated_count} records)")
+    print(f"Output: {ALL_DISASTERS_FILE} ({all_count} records)")
     print()
 
     print("RECORDS BY SOURCE:")
@@ -2287,6 +2518,8 @@ def print_report(
         detail = ""
         if hasattr(collector, "fr_count") and hasattr(collector, "curated_count"):
             detail = f" ({collector.fr_count} from Federal Register, {collector.curated_count} curated)"
+        elif hasattr(collector, "api_count"):
+            detail = f" ({collector.api_count} from API)"
         elif count > 0:
             detail = " (curated)"
         print(f"  {name:8} {count:4} records{detail}")
@@ -2345,7 +2578,8 @@ def main():
     start_time = time.time()
     print("DST Data Fetcher — Starting collection...\n")
 
-    collectors = {
+    # --- Curated collectors (non-FEMA) ---
+    curated_collectors = {
         "SBA": SBACollector(),
         "HHS": HHSCollector(),
         "FMCSA": FMCSACollector(),
@@ -2353,18 +2587,33 @@ def main():
         "STATE": StateCollector(),
     }
 
-    all_records: List[Dict] = []
+    curated_records: List[Dict] = []
 
-    for name, collector in collectors.items():
+    for name, collector in curated_collectors.items():
         print(f"Collecting {name}...")
         try:
             records = collector.collect()
-            all_records.extend(records)
+            curated_records.extend(records)
             print(f"  -> {len(records)} records")
         except Exception as e:
             collector.errors.append(f"Collector crashed: {e}")
             print(f"  -> FAILED: {e}")
         print()
+
+    # --- FEMA collector (live API) ---
+    fema_collector = FEMACollector()
+    print("Collecting FEMA (live API)...")
+    try:
+        fema_records = fema_collector.collect()
+        print(f"  -> {len(fema_records)} records")
+    except Exception as e:
+        fema_collector.errors.append(f"Collector crashed: {e}")
+        fema_records = []
+        print(f"  -> FAILED: {e}")
+    print()
+
+    # All collectors for reporting
+    collectors = {**curated_collectors, "FEMA": fema_collector}
 
     # Drought Monitor signal
     print("Checking US Drought Monitor for D3/D4 signals...")
@@ -2376,10 +2625,10 @@ def main():
         print("  -> No significant D3/D4 drought signals")
     print()
 
-    # Coverage Gap Analysis — cross-reference FEMA/FMCSA → STATE
+    # Coverage Gap Analysis — use FEMA records from collector directly
     print("Running coverage gap analysis (FEMA ↔ STATE cross-reference)...")
     gap_analyzer = CoverageGapAnalyzer()
-    gap_analyzer.analyze(all_records)
+    gap_analyzer.analyze(curated_records, fema_records)
     if gap_analyzer.gaps:
         print(f"  -> {len(gap_analyzer.gaps)} gap(s) found:")
         for gap in gap_analyzer.gaps:
@@ -2388,67 +2637,35 @@ def main():
         print("  -> No coverage gaps detected")
     print()
 
-    # Deduplicate
-    print("Deduplicating...")
-    unique_records = deduplicate(all_records)
-    dup_count = len(all_records) - len(unique_records)
+    # --- Write curated_disasters.json (non-FEMA, backward compatible) ---
+    print("Deduplicating curated records...")
+    unique_curated = deduplicate(curated_records)
+    dup_count = len(curated_records) - len(unique_curated)
     if dup_count > 0:
         print(f"  -> Removed {dup_count} duplicates")
-    print(f"  -> {len(unique_records)} unique records")
+    print(f"  -> {len(unique_curated)} unique curated records")
     print()
 
-    # Sort by state, then declaration date desc
-    unique_records.sort(key=lambda r: (r["state"], r.get("declarationDate", "")))
-
-    # Auto-update lastVerified for STATE/HHS records
-    today_str = date.today().isoformat()
-    for rec in unique_records:
-        if rec.get("source") in ("STATE", "HHS"):
-            rec["lastVerified"] = today_str
-
-    # Compute content hash and source counts
-    records_json = json.dumps(unique_records, sort_keys=True)
-    content_hash = hashlib.sha256(records_json.encode()).hexdigest()[:16]
-
-    source_counts = {}
-    for rec in unique_records:
-        src = rec.get("source", "UNKNOWN")
-        source_counts[src] = source_counts.get(src, 0) + 1
-
-    # Build Federal Register diagnostics from SBA collector
-    sba_collector = collectors.get("SBA")
-    fr_diagnostics = {}
-    if sba_collector and hasattr(sba_collector, "fr_count"):
-        fr_diagnostics = {
-            "recordsParsed": sba_collector.fr_count,
-            "curatedOverrides": sba_collector.curated_count,
-        }
-
-    # Write output with metadata wrapper
+    sba_collector = curated_collectors.get("SBA")
     print(f"Writing to {OUTPUT_FILE}...")
-    output = {
-        "metadata": {
-            "lastUpdated": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "recordCount": len(unique_records),
-            "generatedBy": "dst_data_fetcher.py",
-            "contentHash": content_hash,
-            "dataIntegrity": {
-                "auditChecks": 25,
-                "sourceCounts": source_counts,
-                "federalRegister": fr_diagnostics,
-                "urlVerification": None,
-                "regulatoryMonitoring": None,
-            },
-        },
-        "disasters": unique_records,
-    }
-    with open(OUTPUT_FILE, "w") as f:
-        json.dump(output, f, indent=2)
-    print(f"  -> {len(unique_records)} records written")
+    write_output(OUTPUT_FILE, unique_curated, sba_collector=sba_collector)
+    print(f"  -> {len(unique_curated)} records written")
+
+    # --- Write all_disasters.json (curated + FEMA merged) ---
+    print(f"\nMerging curated + FEMA for {ALL_DISASTERS_FILE}...")
+    merged_records = deduplicate_prefer_fema(unique_curated, fema_records)
+    print(f"  -> {len(merged_records)} merged records ({len(fema_records)} FEMA + {len(unique_curated)} curated, deduped)")
+
+    print(f"Writing to {ALL_DISASTERS_FILE}...")
+    write_output(ALL_DISASTERS_FILE, merged_records, sba_collector=sba_collector)
+    print(f"  -> {len(merged_records)} records written")
 
     # Report
     elapsed = time.time() - start_time
-    print_report(collectors, drought, gap_analyzer, len(unique_records), elapsed)
+    print_report(
+        collectors, drought, gap_analyzer,
+        len(unique_curated), len(merged_records), elapsed,
+    )
 
     print("\nDone.")
     return 0

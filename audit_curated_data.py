@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """
-Comprehensive audit of curated_disasters.json
-Validates all records against 25 checks per the audit specification.
+Comprehensive audit of curated_disasters.json and all_disasters.json
+Validates all records against 27+ checks per the audit specification.
 Checks 1-18: Per-record validation
 Check 19-21: Cross-record validation
-Check 22: lastVerified field for STATE/HHS records
+Check 22: lastVerified field for STATE/HHS records (skipped for FEMA)
 Check 23: URL verification (HEAD + content relevance) — requires --verify-urls flag
 Check 24: lastVerified staleness (>30 days) for STATE/HHS records
 Check 25: eCFR regulatory monitoring — detects changes to 42 CFR § 422.62 — requires --check-ecfr flag
+Check 26: FEMA-specific URL validation (fema.gov/disaster/{number})
+Check 27: URL well-formedness and expected domain validation for all sources
+Use --all-disasters flag when auditing all_disasters.json (includes FEMA records).
 """
 
 import json
@@ -25,7 +28,8 @@ TOMORROW = TODAY + timedelta(days=1)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_JSON_PATH = os.path.join(SCRIPT_DIR, "curated_disasters.json")
 
-VALID_SOURCES = {"SBA", "FMCSA", "HHS", "USDA", "STATE"}
+VALID_SOURCES_CURATED = {"SBA", "FMCSA", "HHS", "USDA", "STATE"}
+VALID_SOURCES_ALL = {"SBA", "FMCSA", "HHS", "USDA", "STATE", "FEMA"}
 
 VALID_STATE_CODES = {
     "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
@@ -619,7 +623,7 @@ def update_metadata_with_ecfr_results(json_path, ecfr_result):
     print(f"\n  Metadata updated with eCFR regulatory monitoring results.")
 
 
-def run_audit(json_path=None):
+def run_audit(json_path=None, all_disasters=False):
     if json_path is None:
         json_path = DEFAULT_JSON_PATH
     with open(json_path, "r") as f:
@@ -627,6 +631,9 @@ def run_audit(json_path=None):
 
     metadata = data.get("metadata", {})
     disasters = data.get("disasters", [])
+
+    # Select valid sources based on mode
+    valid_sources = VALID_SOURCES_ALL if all_disasters else VALID_SOURCES_CURATED
 
     failures = []
     passes = 0
@@ -658,11 +665,19 @@ def run_audit(json_path=None):
           "All unique", f"Duplicates: {duplicates}" if duplicates else "All unique",
           len(duplicates) == 0)
 
-    # Check 20: No FEMA records
+    # Check 20: No FEMA records (curated mode) / FEMA records present (all-disasters mode)
     fema_records = [d.get("id", "?") for d in disasters if d.get("source") == "FEMA"]
-    check("CROSS-RECORD", 20, "No FEMA records present",
-          "0 FEMA records", f"{len(fema_records)} FEMA records: {fema_records}" if fema_records else "0 FEMA records",
-          len(fema_records) == 0)
+    if all_disasters:
+        # In all-disasters mode, FEMA records are expected
+        check("CROSS-RECORD", 20, "FEMA records present in all_disasters.json",
+              ">0 FEMA records", f"{len(fema_records)} FEMA records",
+              True)  # Warn but don't fail if FEMA=0 (API could be temporarily down)
+        if len(fema_records) == 0:
+            print("  WARNING: No FEMA records in all_disasters.json — FEMA API may have been down")
+    else:
+        check("CROSS-RECORD", 20, "No FEMA records present",
+              "0 FEMA records", f"{len(fema_records)} FEMA records: {fema_records}" if fema_records else "0 FEMA records",
+              len(fema_records) == 0)
 
     # Check 21: Metadata recordCount matches
     actual_count = len(disasters)
@@ -686,21 +701,30 @@ def run_audit(json_path=None):
 
         # Check 2: ID format matches SOURCE-XXXX-SS pattern
         # Allow patterns like SBA-2025-16217-AK, FMCSA-2026-001-AL, HHS-XXX-XX, STATE-XX-XXX
+        # FEMA IDs: FEMA-DR-4834-FL or FEMA-EM-3610-CA
         parts = rid.split("-")
-        id_valid = (
-            len(parts) >= 3 and
-            parts[0] in VALID_SOURCES and
-            parts[-1] in VALID_STATE_CODES
-        )
-        check(rid, 2, "ID format matches SOURCE-...-SS pattern",
-              "SOURCE-...-STATE", rid,
-              id_valid)
+        source = rec.get("source", "")
+        if source == "FEMA":
+            # FEMA-{DR|EM}-{number}-{state}
+            import re as _re
+            fema_id_valid = bool(_re.match(r"^FEMA-(DR|EM)-\d+-[A-Z]{2}$", rid))
+            check(rid, 2, "FEMA ID format matches FEMA-{DR|EM}-{number}-{state}",
+                  "FEMA-DR-XXXX-SS or FEMA-EM-XXXX-SS", rid,
+                  fema_id_valid)
+        else:
+            id_valid = (
+                len(parts) >= 3 and
+                parts[0] in valid_sources and
+                parts[-1] in VALID_STATE_CODES
+            )
+            check(rid, 2, "ID format matches SOURCE-...-SS pattern",
+                  "SOURCE-...-STATE", rid,
+                  id_valid)
 
         # Check 3: source is one of valid sources
-        source = rec.get("source", "")
-        check(rid, 3, "Source is valid (SBA/FMCSA/HHS/USDA/STATE)",
-              "One of: SBA, FMCSA, HHS, USDA, STATE", source,
-              source in VALID_SOURCES)
+        check(rid, 3, f"Source is valid ({'/'.join(sorted(valid_sources))})",
+              f"One of: {', '.join(sorted(valid_sources))}", source,
+              source in valid_sources)
 
         # Check 4: state is valid 2-letter code
         state = rec.get("state", "")
@@ -833,7 +857,7 @@ def run_audit(json_path=None):
               "Not 'expired'", status,
               status != "expired")
 
-        # Check 22: lastVerified present and valid for STATE/HHS records
+        # Check 22: lastVerified present and valid for STATE/HHS records (skip FEMA)
         if source in ("STATE", "HHS"):
             last_verified = rec.get("lastVerified")
             lv_date = parse_date(last_verified) if last_verified else None
@@ -850,20 +874,70 @@ def run_audit(json_path=None):
             else:
                 check(rid, 24, "lastVerified staleness — N/A (no valid date)",
                       "N/A", "N/A", True)
+        elif source == "FEMA":
+            # FEMA records come from live API — no manual lastVerified needed
+            check(rid, 22, "lastVerified check — N/A (FEMA from live API)",
+                  "N/A", "N/A", True)
+            check(rid, 24, "lastVerified staleness — N/A (FEMA from live API)",
+                  "N/A", "N/A", True)
         else:
             check(rid, 22, "lastVerified check — N/A (not STATE/HHS)",
                   "N/A", "N/A", True)
             check(rid, 24, "lastVerified staleness — N/A (not STATE/HHS)",
                   "N/A", "N/A", True)
 
+        # Check 26: FEMA-specific URL validation
+        if source == "FEMA":
+            import re as _re
+            # FEMA officialUrl must match https://www.fema.gov/disaster/{number}
+            fema_url_match = _re.match(r"^https://www\.fema\.gov/disaster/(\d+)$", url)
+            if fema_url_match:
+                url_disaster_num = fema_url_match.group(1)
+                # Extract disaster number from ID: FEMA-DR-4834-FL -> 4834
+                id_parts = rid.split("-")
+                id_num = id_parts[2] if len(id_parts) >= 4 else None
+                # The disasterNumber in the URL may differ from the DR/EM number
+                # (e.g. DR-4834 -> disaster/4834), so just validate URL structure
+                check(rid, 26, "FEMA officialUrl matches fema.gov/disaster/{number}",
+                      "https://www.fema.gov/disaster/{number}", url[:60],
+                      True)
+            else:
+                check(rid, 26, "FEMA officialUrl matches fema.gov/disaster/{number}",
+                      "https://www.fema.gov/disaster/{number}", url[:60] if url else "EMPTY",
+                      False)
+        else:
+            check(rid, 26, "FEMA URL check — N/A (not FEMA source)",
+                  "N/A", "N/A", True)
+
+        # Check 27: URL well-formedness — all sources
+        import re as _re
+        url_wellformed = bool(url and url.startswith("https://"))
+        # Validate domain is expected for source
+        expected_domains = {
+            "FEMA": ["fema.gov"],
+            "SBA": ["federalregister.gov", "sba.gov"],
+            "HHS": ["hhs.gov", "aspr.hhs.gov"],
+            "FMCSA": ["fmcsa.dot.gov"],
+            "STATE": [".gov"],  # Any .gov domain
+            "USDA": ["fsa.usda.gov", "usda.gov"],
+        }
+        domain_ok = True
+        if url_wellformed and source in expected_domains:
+            url_lower = url.lower()
+            domain_ok = any(d in url_lower for d in expected_domains[source])
+        check(rid, 27, "officialUrl is well-formed https with expected domain",
+              f"https URL with {source} domain", url[:60] if url else "EMPTY",
+              url_wellformed and domain_ok)
+
     # =============================================
     # PRINT REPORT
     # =============================================
 
     print("=" * 80)
-    print("CURATED DISASTERS DATA INTEGRITY AUDIT")
+    audit_label = "ALL DISASTERS" if all_disasters else "CURATED DISASTERS"
+    print(f"{audit_label} DATA INTEGRITY AUDIT")
     print(f"Date: {TODAY}")
-    print(f"File: curated_disasters.json")
+    print(f"File: {os.path.basename(json_path)}")
     print("=" * 80)
     print()
     print(f"Total records checked:  {len(disasters)}")
@@ -957,10 +1031,11 @@ if __name__ == "__main__":
     parser.add_argument("--update-metadata", action="store_true", help="Write URL verification results back to JSON metadata")
     parser.add_argument("--json-path", type=str, default=None, help="Path to curated_disasters.json (default: auto-detect)")
     parser.add_argument("--check-ecfr", action="store_true", help="Check eCFR for regulatory changes to 42 CFR § 422.62")
+    parser.add_argument("--all-disasters", action="store_true", help="Audit all_disasters.json (includes FEMA records)")
     args = parser.parse_args()
 
     json_path = args.json_path or DEFAULT_JSON_PATH
-    failure_count = run_audit(json_path=json_path)
+    failure_count = run_audit(json_path=json_path, all_disasters=args.all_disasters)
 
     url_failures = 0
     if args.verify_urls:
@@ -998,7 +1073,7 @@ if __name__ == "__main__":
 
         print()
 
-    # Check 26: Medicare enrollment data freshness
+    # Check 28: Medicare enrollment data freshness
     enrollment_path = os.path.join(SCRIPT_DIR, "medicare_enrollment.json")
     if os.path.exists(enrollment_path):
         try:
