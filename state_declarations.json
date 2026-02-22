@@ -1,0 +1,895 @@
+{
+  "metadata": {
+    "description": "State governor emergency declarations — curated registry with end date determination metadata",
+    "lastComprehensiveReview": "2026-02-22",
+    "totalDeclarations": 29,
+    "schema": {
+      "endDateDetermination.method": [
+        "auto_expire",
+        "termination_order",
+        "renewal_lapsed",
+        "storm_passed",
+        "still_active",
+        "unknown"
+      ]
+    }
+  },
+  "declarations": [
+    {
+      "id": "STATE-2026-001-TX",
+      "state": "TX",
+      "title": "Governor Abbott Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-21",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://gov.texas.gov/uploads/files/press/DISASTER_January_winter_storm_IMAGE_01-22-2026.pdf",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "TX Govt Code § 418.014: 30-day default auto-expire. Jan 22 + 30 = Feb 21, 2026. No renewal or termination order found.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2026-02-21",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-NC",
+      "state": "NC",
+      "title": "Governor Stein Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-21",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-20",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.nc.gov/news/press-releases/2026/01/21/governor-stein-declares-state-emergency-ahead-winter-storm",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "NCGS § 166A-19.20: 30-day default. Jan 21 + 30 = Feb 20, 2026. No renewal or extension by General Assembly found.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2026-02-20",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-VA",
+      "state": "VA",
+      "title": "Governor Spanberger Emergency Declaration (EO 11) — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-03-08",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.governor.virginia.gov/newsroom/news-releases/2026/january-releases/name-1111570-en.html",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "VA Code § 44-146.17: 45-day hard cap. Jan 22 + 45 = Mar 8, 2026. Governor prohibited from reissuing for same emergency without General Assembly action.",
+        "stateLawDefault": 45,
+        "calculatedAutoExpire": "2026-03-08",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-GA",
+      "state": "GA",
+      "title": "Governor Kemp Emergency Declaration — January 2026 Winter Storm (Fern)",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-22",
+      "incidentEnd": "2026-01-29",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://gov.georgia.gov/press-releases/2026-01-22/gov-kemp-declares-state-emergency-activates-state-operations-center-ahead",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "Governor's declaration specified effective through Jan 29, 2026. O.C.G.A. § 38-3-51: 30-day default.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-11",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-002-GA",
+      "state": "GA",
+      "title": "Governor Kemp Emergency Declaration — January 2026 Winter Storm (Gianna)",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-30",
+      "incidentStart": "2026-01-30",
+      "incidentEnd": "2026-02-06",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://gov.georgia.gov/press-releases/2026-01-30/gov-kemp-declares-new-state-emergency-ahead-winter-storm",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "Governor's declaration specified effective through Feb 6, 2026. O.C.G.A. § 38-3-51: 30-day default.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-11",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-NY",
+      "state": "NY",
+      "title": "Governor Hochul Emergency Declaration (EO 57) — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-02-22",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.governor.ny.gov/news/governor-hochul-declares-state-emergency-ahead-extreme-cold-and-massive-winter-storm-weekend",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "NY Exec Law § 29-a: emergency orders expire after 30 days unless renewed. Jan 23 + 30 = Feb 22, 2026. No renewal found.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2026-02-22",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-PA",
+      "state": "PA",
+      "title": "Governor Shapiro Disaster Emergency Proclamation — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-24",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-02-14",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-signs-proclamation-of-disaster-emergency",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "Pa. Const. Art. IV, Sec. 20 (2021 amendment): 21-day limit. Jan 24 + 21 = Feb 14. Governor cannot reissue for same facts without General Assembly approval.",
+        "stateLawDefault": 21,
+        "calculatedAutoExpire": "2026-02-14",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-DE",
+      "state": "DE",
+      "title": "Governor Meyer Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-26",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://news.delaware.gov/2026/01/23/soe-eoc-activated-winter-storm/",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "termination_order",
+        "reasoning": "Governor terminated state of emergency on Jan 26, 2026. 20 Del. C. § 3115: 30-day default.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-NM",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency Declaration (EO 2026-005) — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-21",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.governor.state.nm.us/wp-content/uploads/2026/01/Executive-Order-2026-005.pdf",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "NMSA 1978 § 12-10-4: 30-day default auto-expire. Jan 22 + 30 = Feb 21, 2026. No renewal or extension found.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2026-02-21",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-KY",
+      "state": "KY",
+      "title": "Governor Beshear Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-21",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2675",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "KRS § 39A.090 (post-SB1 2021): 30-day default. Jan 22 + 30 = Feb 21, 2026. General Assembly approval required for extension. No extension found.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2026-02-21",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2025-001-LA",
+      "state": "LA",
+      "title": "Governor Landry Emergency Declaration (JML 25-12) — January 2025 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2025-01-18",
+      "incidentStart": "2025-01-18",
+      "incidentEnd": "2025-03-19",
+      "renewalDates": ["2025-02-17"],
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://gov.louisiana.gov/news/4746",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "renewal_lapsed",
+        "reasoning": "La. R.S. § 29:724: 30-day default. JML 25-12 issued Jan 18, 2025. Renewed once via JML 25-21 (~Feb 17, 2025). 30-day renewal → ~Mar 19, 2025. No further renewals found. Winter storm recovery concluded.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2025-03-19",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": true
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": "Jan 2025 event. End date estimated from one known renewal. Exact renewal/termination dates need confirmation."
+      }
+    },
+    {
+      "id": "STATE-2026-001-AR",
+      "state": "AR",
+      "title": "Governor Sanders Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-03-23",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.arkansas.gov/executive_orders/sanders-declares-emergency-for-severe-winter-weather-expected-on-or-about-january-23-2026/",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "Ark. Code § 12-75-107: 60-day default. Jan 22 + 60 = Mar 23, 2026. No termination or early revocation found.",
+        "stateLawDefault": 60,
+        "calculatedAutoExpire": "2026-03-23",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-MS",
+      "state": "MS",
+      "title": "Governor Reeves Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-03-08",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governorreeves.ms.gov/governor-reeves-issues-state-of-emergency-ahead-of-severe-winter-weather/",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "Miss. Code § 33-15-11: 45-day default. Jan 22 + 45 = Mar 8, 2026. No re-proclamation possible for same conditions without Legislature authorization.",
+        "stateLawDefault": 45,
+        "calculatedAutoExpire": "2026-03-08",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-IN",
+      "state": "IN",
+      "title": "Governor Braun Disaster Emergency (EO 26-03) — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-25",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-03-26",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.in.gov/gov/files/EO26-03.pdf",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "IC § 10-14-3-12: statutory 30-day default, but EO 26-03 specified 60-day duration. Jan 25 + 60 = Mar 26, 2026. No termination found.",
+        "stateLawDefault": 60,
+        "calculatedAutoExpire": "2026-03-26",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": "EO 26-03 specified 60 days despite 30-day statutory default. May have used broader authority."
+      }
+    },
+    {
+      "id": "STATE-2025-002-MD",
+      "state": "MD",
+      "title": "Governor Moore Emergency Declaration — January 2025 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2025-01-24",
+      "incidentStart": "2025-01-24",
+      "incidentEnd": "2025-01-28",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "Jan 24-26 storm event. Emergency terminated approximately Jan 28, 2025. MD Public Safety Code § 14-107: 30-day default.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-WV",
+      "state": "WV",
+      "title": "Governor Morrisey Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-21",
+      "incidentEnd": "2026-03-24",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.wv.gov/article/governor-morrisey-declares-state-emergency-all-55-counties-major-winter-storm-approaches",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "WV Code § 15-5-6(b): 60-day default. Jan 23 + 60 = Mar 24, 2026. Legislature must adopt concurrent resolution to extend. No termination or extension found.",
+        "stateLawDefault": 60,
+        "calculatedAutoExpire": "2026-03-24",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-SC",
+      "state": "SC",
+      "title": "Governor McMaster Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-14",
+      "renewalDates": ["2026-01-30"],
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.sc.gov/news/2026-01/gov-mcmaster-declares-state-emergency-ahead-winter-storm",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "SC Code § 25-1-440(a)(2): 15-day default. Initial Jan 22 → auto-expired Feb 6. Extended Jan 30 for Winter Storm Gianna → Feb 14 auto-expire. No further extension found.",
+        "stateLawDefault": 15,
+        "calculatedAutoExpire": "2026-02-14",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-TN",
+      "state": "TN",
+      "title": "Governor Lee Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-22",
+      "incidentEnd": "2026-03-08",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.tn.gov/governor/news/2026/1/22/gov--lee-issues-state-of-emergency-ahead-of-major-winter-storm.html",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "TCA § 58-2-107: 45-day default (amended from 60). Jan 22 + 45 = Mar 8, 2026. Governor can renew without legislature. No renewal found. Federal major disaster approved Feb 6 for 15 counties.",
+        "stateLawDefault": 45,
+        "calculatedAutoExpire": "2026-03-08",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-CT",
+      "state": "CT",
+      "title": "Governor Lamont Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-25",
+      "incidentStart": "2026-01-25",
+      "incidentEnd": "2026-01-27",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://portal.ct.gov/governor/news/press-releases/2026/01-2026/governor-lamont-declares-state-of-emergency-limits-commercial-vehicle-travel",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "Storm passed approximately Jan 27, 2026. Conn. Gen. Stat. § 28-9: governor specifies period, max 6 months.",
+        "stateLawDefault": null,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-OH",
+      "state": "OH",
+      "title": "Governor DeWine Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-24",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-04-24",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://content.govdelivery.com/attachments/OHIOGOVERNOR/2026/01/24/file_attachments/3532597/January%2024%202026%20Winter%20Storm%20final.pdf",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "ORC § 107.42: 90-day default. Jan 24 + 90 = Apr 24, 2026. Proclamation itself stated 90 days. Only legislature can extend (60-day increments). No termination found.",
+        "stateLawDefault": 90,
+        "calculatedAutoExpire": "2026-04-24",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-KS",
+      "state": "KS",
+      "title": "Governor Kelly Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-06",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.kansastag.gov/m/newsflash/Home/Detail/817",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "KSA § 48-924: 15-day default. Jan 22 + 15 = Feb 6, 2026. Extensions require Legislative Coordinating Council (5 votes) or full legislature. No evidence of ratification or extension found.",
+        "stateLawDefault": 15,
+        "calculatedAutoExpire": "2026-02-06",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-MO",
+      "state": "MO",
+      "title": "Governor Kehoe Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-22",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-26-05-declaring-state-emergency",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "auto_expire",
+        "reasoning": "RSMo § 44.100: no statutory duration limit, but EO 26-05 set expiration to Feb 22, 2026 (~31 days). Expired per EO terms.",
+        "stateLawDefault": null,
+        "calculatedAutoExpire": "2026-02-22",
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-AL",
+      "state": "AL",
+      "title": "Governor Ivey Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-22",
+      "incidentStart": "2026-01-20",
+      "incidentEnd": "2026-02-02",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.alabama.gov/newsroom/2026/01/state-of-emergency-winter-weather-6/",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "termination_order",
+        "reasoning": "AL Code § 31-9-8: 60-day default, but Gov. Ivey terminated early on Feb 2, 2026 (11 days after declaration).",
+        "stateLawDefault": 60,
+        "calculatedAutoExpire": "2026-03-23",
+        "terminationOrderUrl": "https://governor.alabama.gov/newsroom/2026/02/termination-of-state-of-emergency-winter-weather-6/",
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-NJ",
+      "state": "NJ",
+      "title": "Governor Sherrill Emergency Declaration (EO 8) — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-24",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-26",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.nj.gov/governor/news/2026/20260123b.shtml",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "termination_order",
+        "reasoning": "N.J.S.A. App.A:9-33: no auto-expiration for disaster emergencies. Gov. Sherrill terminated via EO 9, effective Jan 26 at noon.",
+        "stateLawDefault": null,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": "https://www.nj.gov/governor/news/2026/20260126a.shtml",
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-MD",
+      "state": "MD",
+      "title": "Governor Moore Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-29",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "termination_order",
+        "reasoning": "MD Public Safety Code § 14-107: 30-day default. Gov. Moore rescinded via EO 01.01.2026.03 on Jan 29, 2026 (6 days after declaration).",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": "2026-02-22",
+        "terminationOrderUrl": "https://governor.maryland.gov/news/pages/executive-orders.aspx",
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-DC",
+      "state": "DC",
+      "title": "Mayor Bowser Emergency Declaration — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-27",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://mayor.dc.gov/release/mayor-bowser-declares-state-emergency-washington-dc-ahead-major-winter-storm-and-extreme",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "D.C. Code §§ 7-2304, 7-2306: 15-day default. Snow emergency period Jan 24-27, 2026. Emergency concluded Jan 27.",
+        "stateLawDefault": 15,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-ME",
+      "state": "ME",
+      "title": "Governor Mills Emergency Declaration — January 2026 Energy Emergency & Coastal Flooding",
+      "incidentType": "Energy Emergency",
+      "declarationDate": "2026-01-05",
+      "incidentStart": "2026-01-05",
+      "incidentEnd": "2026-01-15",
+      "renewalDates": null,
+      "counties": [
+        "Cumberland", "Hancock", "Knox", "Lincoln",
+        "Sagadahoc", "Waldo", "Washington", "York"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.maine.gov/governor/mills/official_documents/proclamations/2026-01-proclamation-energy-emergency",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "37-B M.R.S. §§ 742-743: 30-day default. Energy emergency expired Jan 15 per proclamation terms.",
+        "stateLawDefault": 30,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": ""
+      }
+    },
+    {
+      "id": "STATE-2026-001-MA",
+      "state": "MA",
+      "title": "Governor Healey Declaration of Emergency — January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-01-28",
+      "renewalDates": null,
+      "counties": ["Statewide"],
+      "statewide": true,
+      "officialUrl": "https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "storm_passed",
+        "reasoning": "Ch. 639 Acts of 1950 Sec. 5: no statutory time limit in MA. Storm was 2-day event (Jan 25-26). FMCSA transport exemption expired Feb 7. Mass.gov shows no active emergency as of late Feb 2026. Estimated termination ~Jan 28.",
+        "stateLawDefault": null,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": true
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": "URL points to FMCSA-hosted copy. No formal termination order found in public records; end date estimated from storm duration and Mass.gov active emergency page."
+      }
+    },
+    {
+      "id": "STATE-2025-002-CA",
+      "state": "CA",
+      "title": "Governor Newsom Emergency Declaration — December 2025 Winter Storms",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-12-24",
+      "incidentStart": "2025-12-21",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Los Angeles", "Orange", "Riverside", "San Bernardino",
+        "San Diego", "Shasta"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/24/governor-newsom-proclaims-state-of-emergency-to-support-response-in-multiple-counties-due-to-late-december-storms/",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "still_active",
+        "reasoning": "Cal. Gov. Code §§ 8625-8629: CA emergencies do NOT auto-expire. Only terminated by governor proclamation or legislature concurrent resolution. Recovery efforts ongoing. Federal SBA/FEMA declarations followed in Feb 2026.",
+        "stateLawDefault": null,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": "Confirmed still active. CA law has no auto-expiration for emergencies."
+      }
+    },
+    {
+      "id": "STATE-2025-001-CA",
+      "state": "CA",
+      "title": "Governor Newsom Emergency Declaration — January 2025 Los Angeles Wildfires",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-01-07",
+      "incidentStart": "2025-01-07",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": ["Los Angeles", "Ventura"],
+      "statewide": false,
+      "officialUrl": "https://www.gov.ca.gov/2025/01/07/governor-newsom-proclaims-state-of-emergency-meets-with-first-responders-in-pacific-palisades-amid-dangerous-fire-weather/",
+      "confidence": "curated",
+      "endDateDetermination": {
+        "method": "still_active",
+        "reasoning": "Cal. Gov. Code §§ 8625-8629: CA emergencies do NOT auto-expire. One-year anniversary recovery efforts ongoing (acknowledged by Governor Jan 5, 2026). No termination proclamation issued.",
+        "stateLawDefault": null,
+        "calculatedAutoExpire": null,
+        "terminationOrderUrl": null,
+        "renewalOrderUrl": null,
+        "researchedDate": "2026-02-22",
+        "needsReview": false
+      },
+      "verification": {
+        "lastHumanReview": "2026-02-22",
+        "urlStatus": "reachable",
+        "reviewNotes": "Confirmed still active. Recovery ongoing 13+ months after initial declaration."
+      }
+    }
+  ]
+}

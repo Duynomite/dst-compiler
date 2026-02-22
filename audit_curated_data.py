@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Comprehensive audit of curated_disasters.json and all_disasters.json
-Validates all records against 27+ checks per the audit specification.
+Validates all records against 32 checks per the audit specification.
 Checks 1-18: Per-record validation
 Check 19-21: Cross-record validation
 Check 22: lastVerified field for STATE/HHS records (skipped for FEMA)
@@ -10,6 +10,11 @@ Check 24: lastVerified staleness (>30 days) for STATE/HHS records
 Check 25: eCFR regulatory monitoring — detects changes to 42 CFR § 422.62 — requires --check-ecfr flag
 Check 26: FEMA-specific URL validation (fema.gov/disaster/{number})
 Check 27: URL well-formedness and expected domain validation for all sources
+Check 28: End date justification — ongoing STATE entries must have determination method — requires --check-state-health
+Check 29: Staleness by age — STATE declared >60 days ago with no end date = FAIL — requires --check-state-health
+Check 30: State law consistency — declaration age vs state auto-expire default — requires --check-state-health
+Check 31: Human review cadence — lastHumanReview within 30 days — requires --check-state-health
+Check 32: Needs review flag — entries flagged needsReview=true — requires --check-state-health
 Use --all-disasters flag when auditing all_disasters.json (includes FEMA records).
 """
 
@@ -623,6 +628,190 @@ def update_metadata_with_ecfr_results(json_path, ecfr_result):
     print(f"\n  Metadata updated with eCFR regulatory monitoring results.")
 
 
+# =============================================
+# STATE HEALTH CHECKS (28-32)
+# =============================================
+
+def run_state_health_checks(script_dir=None):
+    """
+    Checks 28-32: State declaration health — validates state_declarations.json
+    against state_emergency_laws.json for end date accuracy and freshness.
+
+    Returns (failures, passes, total_checks) tuple.
+    """
+    if script_dir is None:
+        script_dir = SCRIPT_DIR
+
+    decl_path = os.path.join(script_dir, "state_declarations.json")
+    laws_path = os.path.join(script_dir, "state_emergency_laws.json")
+
+    failures = []
+    passes = 0
+    total_checks = 0
+
+    def check(record_id, check_num, description, expected, actual, passed):
+        nonlocal passes, total_checks
+        total_checks += 1
+        if passed:
+            passes += 1
+        else:
+            failures.append({
+                "id": record_id,
+                "check": check_num,
+                "description": description,
+                "expected": str(expected),
+                "actual": str(actual)
+            })
+
+    # Load state declarations registry
+    if not os.path.exists(decl_path):
+        print("  ERROR: state_declarations.json not found")
+        return ([], 0, 0)
+
+    with open(decl_path, "r") as f:
+        decl_data = json.load(f)
+    declarations = decl_data.get("declarations", [])
+
+    # Load state emergency laws (optional — Check 30 skipped if missing)
+    laws = {}
+    if os.path.exists(laws_path):
+        with open(laws_path, "r") as f:
+            laws_data = json.load(f)
+        laws = laws_data.get("states", {})
+
+    print(f"  Loaded {len(declarations)} declarations, {len(laws)} state law entries")
+
+    for entry in declarations:
+        rid = entry.get("id", "UNKNOWN")
+        state = entry.get("state", "")
+        inc_end = entry.get("incidentEnd")
+        inc_start_str = entry.get("incidentStart")
+        decl_date_str = entry.get("declarationDate")
+        renewal_dates = entry.get("renewalDates")
+        det = entry.get("endDateDetermination", {})
+        verif = entry.get("verification", {})
+
+        inc_start = parse_date(inc_start_str)
+        decl_date = parse_date(decl_date_str)
+
+        # Check 28: End Date Justification
+        # STATE record with incidentEnd=null must have method != "unknown"
+        if inc_end is None:
+            method = det.get("method", "unknown")
+            check(rid, 28, "Ongoing STATE record has end date determination method set",
+                  "method != 'unknown'", f"method='{method}'",
+                  method != "unknown")
+        else:
+            check(rid, 28, "End date justification — N/A (has incidentEnd)",
+                  "N/A", "N/A", True)
+
+        # Check 29: Staleness by Age
+        # STATE declared >60 days ago with no end date and no renewals = FAIL
+        # Exception: method="still_active" means explicitly verified as ongoing
+        if inc_end is None and decl_date:
+            age_days = (TODAY - decl_date).days
+            has_renewals = bool(renewal_dates and len(renewal_dates) > 0)
+            method = det.get("method", "unknown")
+            is_confirmed_active = method == "still_active"
+            if is_confirmed_active:
+                check(rid, 29, "Staleness check — confirmed still_active",
+                      "still_active or within age limit",
+                      f"{age_days} days old, method=still_active",
+                      True)
+            elif age_days > 120 and not has_renewals:
+                check(rid, 29, "Ongoing STATE >120 days old without renewals",
+                      "<= 120 days or has renewals or still_active",
+                      f"{age_days} days old, no renewals",
+                      False)
+            elif age_days > 60 and not has_renewals:
+                check(rid, 29, "Ongoing STATE >60 days old without renewals (review needed)",
+                      "<= 60 days or has renewals or still_active",
+                      f"{age_days} days old, no renewals",
+                      False)
+            else:
+                check(rid, 29, "Staleness check — age within acceptable range",
+                      "<= 60 days or has renewals",
+                      f"{age_days} days old" + (", has renewals" if has_renewals else ""),
+                      True)
+        else:
+            check(rid, 29, "Staleness by age — N/A (has incidentEnd)",
+                  "N/A", "N/A", True)
+
+        # Check 30: State Law Consistency
+        # If state has autoTerminates=true and declaration age > defaultDuration
+        # with no renewal → FAIL
+        state_law = laws.get(state, {})
+        if inc_end is None and decl_date and state_law.get("autoTerminates"):
+            default_dur = state_law.get("defaultDuration")
+            if default_dur:
+                age_days = (TODAY - decl_date).days
+                has_renewals = bool(renewal_dates and len(renewal_dates) > 0)
+                method = det.get("method", "unknown")
+                # If age > default duration and no renewals, and method isn't "still_active"
+                if age_days > default_dur and not has_renewals and method != "still_active":
+                    check(rid, 30, f"State law: {state} auto-terminates at {default_dur} days, no renewal found",
+                          f"<= {default_dur} days or has renewal/active status",
+                          f"{age_days} days old, method='{method}'",
+                          False)
+                else:
+                    check(rid, 30, "State law consistency — within legal duration or justified",
+                          "Within duration or justified", "OK",
+                          True)
+            else:
+                check(rid, 30, "State law consistency — N/A (no default duration for state)",
+                      "N/A", "N/A", True)
+        elif inc_end is None and state_law and not state_law.get("autoTerminates"):
+            check(rid, 30, f"State law consistency — {state} has no auto-termination",
+                  "N/A (no auto-terminate)", "N/A", True)
+        else:
+            check(rid, 30, "State law consistency — N/A (has incidentEnd or no law data)",
+                  "N/A", "N/A", True)
+
+        # Check 31: Human Review Cadence
+        # verification.lastHumanReview must be within 30 days
+        last_review_str = verif.get("lastHumanReview")
+        last_review = parse_date(last_review_str)
+        if last_review:
+            review_age = (TODAY - last_review).days
+            check(rid, 31, "Human review within 30 days",
+                  "<= 30 days", f"{review_age} days ago ({last_review_str})",
+                  review_age <= 30)
+        else:
+            check(rid, 31, "Human review date present",
+                  "Valid lastHumanReview date", str(last_review_str),
+                  False)
+
+        # Check 32: needsReview flag
+        # Entries flagged as needsReview should be reviewed
+        needs_review = det.get("needsReview", False)
+        check(rid, 32, "Entry does not need review (needsReview=false)",
+              "needsReview=false", f"needsReview={needs_review}",
+              not needs_review)
+
+    return (failures, passes, total_checks)
+
+
+def print_state_health_report(failures, passes, total_checks):
+    """Print state health check report."""
+    print(f"\n  Total entries checked:  {(passes + len(failures))}")
+    print(f"  Total checks performed: {total_checks}")
+    print(f"  PASSED:                 {passes}")
+    print(f"  FAILED:                 {len(failures)}")
+    if total_checks > 0:
+        print(f"  Pass rate:              {passes/total_checks*100:.1f}%")
+
+    if failures:
+        print(f"\n  FAILURES ({len(failures)}):")
+        for f in failures:
+            print(f"    [{f['id']}] Check #{f['check']}: {f['description']}")
+            print(f"      Expected: {f['expected']}")
+            print(f"      Actual:   {f['actual']}")
+    else:
+        print("\n  ALL STATE HEALTH CHECKS PASSED")
+
+    return len(failures)
+
+
 def run_audit(json_path=None, all_disasters=False):
     if json_path is None:
         json_path = DEFAULT_JSON_PATH
@@ -1032,6 +1221,7 @@ if __name__ == "__main__":
     parser.add_argument("--json-path", type=str, default=None, help="Path to curated_disasters.json (default: auto-detect)")
     parser.add_argument("--check-ecfr", action="store_true", help="Check eCFR for regulatory changes to 42 CFR § 422.62")
     parser.add_argument("--all-disasters", action="store_true", help="Audit all_disasters.json (includes FEMA records)")
+    parser.add_argument("--check-state-health", action="store_true", help="Run state health checks 28-32 (state_declarations.json + state_emergency_laws.json)")
     args = parser.parse_args()
 
     json_path = args.json_path or DEFAULT_JSON_PATH
@@ -1073,7 +1263,17 @@ if __name__ == "__main__":
 
         print()
 
-    # Check 28: Medicare enrollment data freshness
+    state_health_failures = 0
+    if args.check_state_health:
+        print()
+        print("=" * 80)
+        print("STATE HEALTH CHECKS (28-32)")
+        print("=" * 80)
+        sh_failures, sh_passes, sh_total = run_state_health_checks(SCRIPT_DIR)
+        state_health_failures = print_state_health_report(sh_failures, sh_passes, sh_total)
+        print()
+
+    # Medicare enrollment data freshness
     enrollment_path = os.path.join(SCRIPT_DIR, "medicare_enrollment.json")
     if os.path.exists(enrollment_path):
         try:
@@ -1099,5 +1299,5 @@ if __name__ == "__main__":
 
     # Exit non-zero if any structural audit failures or regulation change detected
     # URL warnings don't block (only HEAD failures do)
-    total_failures = failure_count + ecfr_failures
+    total_failures = failure_count + ecfr_failures + state_health_failures
     exit(1 if total_failures > 0 else 0)

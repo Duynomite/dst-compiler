@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "lastUpdated": "2026-02-22T11:14:44Z",
-    "recordCount": 106,
+    "lastUpdated": "2026-02-22T17:17:20Z",
+    "recordCount": 105,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "84bfb8cc776c615b",
+    "contentHash": "95e4c44d7319b4f2",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
         "SBA": 14,
-        "STATE": 29,
+        "STATE": 28,
         "FMCSA": 62,
         "HHS": 1
       },
@@ -43,7 +43,7 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 190,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -53,19 +53,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-02",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://governor.alabama.gov/newsroom/2026/01/governor-ivey-issues-state-of-emergency-for-19-northern-counties-ahead-of-wintery-icy-forecast/",
-      "status": "ongoing",
+      "officialUrl": "https://governor.alabama.gov/newsroom/2026/01/state-of-emergency-winter-weather-6/",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -88,7 +88,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -98,19 +98,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-23",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.arkansas.gov/executive_orders/sanders-declares-emergency-for-severe-winter-weather-expected-on-or-about-january-23-2026/",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 98,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -133,7 +133,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -157,7 +157,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "SBA-2026-02443-AZ",
@@ -180,7 +180,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:18Z"
+      "lastUpdated": "2026-02-22T17:14:29Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -203,7 +203,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -226,7 +226,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:19Z"
+      "lastUpdated": "2026-02-22T17:14:30Z"
     },
     {
       "id": "STATE-2025-002-CA",
@@ -253,7 +253,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 371,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -277,7 +277,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:18Z"
+      "lastUpdated": "2026-02-22T17:14:29Z"
     },
     {
       "id": "SBA-2026-02924-CA",
@@ -305,7 +305,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "SBA-2026-02717-CA",
@@ -328,7 +328,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:18Z"
+      "lastUpdated": "2026-02-22T17:14:29Z"
     },
     {
       "id": "SBA-2026-03274-CA",
@@ -350,7 +350,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:18Z"
+      "lastUpdated": "2026-02-22T17:14:28Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -372,7 +372,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -394,7 +394,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -416,7 +416,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -438,7 +438,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -461,7 +461,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -483,7 +483,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -506,7 +506,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -528,7 +528,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -550,7 +550,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -573,7 +573,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-GA",
@@ -595,7 +595,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -618,7 +618,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -640,7 +640,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -663,7 +663,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -685,7 +685,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -707,7 +707,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -729,7 +729,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -751,7 +751,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -761,19 +761,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-25",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-26",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://events.in.gov/event/gov-mike-braun-commends-first-responders-state-agencies-following-coordinated-response-to-extreme-winter-weather",
-      "status": "ongoing",
+      "officialUrl": "https://www.in.gov/gov/files/EO26-03.pdf",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 98,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -796,7 +796,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -806,19 +806,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-06",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.kansastag.gov/m/newsflash/Home/Detail/817",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -841,7 +841,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -863,7 +863,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -873,19 +873,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-21",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2675",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -908,30 +908,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
-    },
-    {
-      "id": "STATE-2025-001-LA",
-      "source": "STATE",
-      "state": "LA",
-      "title": "Governor Landry Emergency Declaration (JML 25-12) \u2014 January 2025 Winter Storm",
-      "incidentType": "Severe Winter Storm",
-      "declarationDate": "2025-01-18",
-      "incidentStart": "2025-01-18",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://gov.louisiana.gov/news/4746",
-      "status": "ongoing",
-      "sepWindowStart": "2025-01-18",
-      "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 37,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
-      "lastVerified": "2026-02-22"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-LA",
@@ -953,7 +930,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -995,7 +972,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -1017,7 +994,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -1039,7 +1016,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -1049,19 +1026,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-28",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1084,7 +1061,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -1106,7 +1083,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -1116,19 +1093,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-29",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1151,7 +1128,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -1180,7 +1157,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1203,7 +1180,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-013-MN",
@@ -1225,7 +1202,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -1247,7 +1224,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -1269,7 +1246,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -1279,19 +1256,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-22",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-26-05-declaring-state-emergency",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1314,7 +1291,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-MS",
@@ -1324,19 +1301,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-08",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governorreeves.ms.gov/governor-reeves-issues-state-of-emergency-ahead-of-severe-winter-weather/",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 98,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1359,7 +1336,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -1385,7 +1362,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -1407,7 +1384,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -1417,19 +1394,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-21",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-20",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.nc.gov/news/press-releases/2026/01/21/governor-stein-declares-state-emergency-ahead-winter-storm",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1452,7 +1429,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -1474,7 +1451,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -1496,7 +1473,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -1518,7 +1495,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-NH",
@@ -1540,7 +1517,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -1562,7 +1539,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -1584,7 +1561,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -1606,7 +1583,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -1628,7 +1605,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1639,19 +1616,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-21",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://www.dhsem.nm.gov/governor-activates-emergency-resources-as-winter-weather-moves-into-new-mexico/",
-      "status": "ongoing",
+      "officialUrl": "https://www.governor.state.nm.us/wp-content/uploads/2026/01/Executive-Order-2026-005.pdf",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1677,7 +1654,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:19Z"
+      "lastUpdated": "2026-02-22T17:14:30Z"
     },
     {
       "id": "SBA-2026-02443-NV",
@@ -1699,7 +1676,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:18Z"
+      "lastUpdated": "2026-02-22T17:14:29Z"
     },
     {
       "id": "SBA-2026-02717-NV",
@@ -1724,7 +1701,7 @@
       "sepWindowEnd": "2026-02-28",
       "daysRemaining": 6,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:12:18Z"
+      "lastUpdated": "2026-02-22T17:14:29Z"
     },
     {
       "id": "FMCSA-2025-012-NY",
@@ -1746,7 +1723,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -1768,7 +1745,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -1778,19 +1755,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-22",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.governor.ny.gov/news/governor-hochul-declares-state-emergency-ahead-extreme-cold-and-massive-winter-storm-weekend",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1813,7 +1790,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -1835,7 +1812,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -1845,19 +1822,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-24",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-04-24",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://content.govdelivery.com/accounts/OHIOGOVERNOR/bulletins/405eda8",
-      "status": "ongoing",
+      "officialUrl": "https://content.govdelivery.com/attachments/OHIOGOVERNOR/2026/01/24/file_attachments/3532597/January%2024%202026%20Winter%20Storm%20final.pdf",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-06-30",
+      "daysRemaining": 128,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1880,7 +1857,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-PA",
@@ -1902,7 +1879,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -1924,7 +1901,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -1946,7 +1923,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -1969,7 +1946,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -1979,19 +1956,21 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
-      "renewalDates": null,
+      "incidentEnd": "2026-02-14",
+      "renewalDates": [
+        "2026-01-30"
+      ],
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.sc.gov/news/2026-01/gov-mcmaster-declares-state-emergency-ahead-winter-storm",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -2014,7 +1993,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -2036,7 +2015,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -2058,7 +2037,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -2068,19 +2047,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-22",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-08",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.tn.gov/governor/news/2026/1/22/gov--lee-issues-state-of-emergency-ahead-of-major-winter-storm.html",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-22",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 98,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -2103,7 +2082,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -2113,19 +2092,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-21",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://gov.texas.gov/news/post/governor-abbott-provides-update-on-texas-ongoing-response-to-severe-winter-weather-",
-      "status": "ongoing",
+      "officialUrl": "https://gov.texas.gov/uploads/files/press/DISASTER_January_winter_storm_IMAGE_01-22-2026.pdf",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -2148,7 +2127,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -2171,7 +2150,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -2181,19 +2160,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-08",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.governor.virginia.gov/newsroom/news-releases/2026/january-releases/name-1111570-en.html",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 98,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -2216,7 +2195,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -2238,7 +2217,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -2260,7 +2239,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -2282,7 +2261,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 37,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -2319,7 +2298,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 371,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -2342,7 +2321,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -2364,7 +2343,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -2386,7 +2365,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -2408,7 +2387,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -2418,19 +2397,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-21",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-24",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.wv.gov/article/governor-morrisey-declares-state-emergency-all-55-counties-major-winter-storm-approaches",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-21",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 402,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 98,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z",
+      "lastUpdated": "2026-02-22T17:17:15Z",
       "lastVerified": "2026-02-22"
     },
     {
@@ -2453,7 +2432,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 67,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-22T11:14:40Z"
+      "lastUpdated": "2026-02-22T17:17:15Z"
     }
   ]
 }

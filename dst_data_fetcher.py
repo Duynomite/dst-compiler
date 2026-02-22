@@ -16,6 +16,7 @@ Output:
   - all_disasters.json — All sources including FEMA (single source of truth)
 """
 
+import os
 import sys
 import json
 import re
@@ -1439,671 +1440,98 @@ class StateCollector:
         self.records = self._get_curated_state()
         return self.records
 
+    def _resolve_end_date(self, entry: Dict) -> Optional[date]:
+        """Resolve effective end date from registry entry + determination metadata."""
+        # Explicit incidentEnd always wins
+        if entry.get("incidentEnd"):
+            return date.fromisoformat(entry["incidentEnd"])
+
+        # Check end date determination metadata
+        det = entry.get("endDateDetermination", {})
+        method = det.get("method", "unknown")
+
+        if method in ("auto_expire", "termination_order", "renewal_lapsed", "storm_passed"):
+            calc = det.get("calculatedAutoExpire")
+            if calc:
+                return date.fromisoformat(calc)
+
+        # For "still_active" or "unknown", leave ongoing
+        return None
+
     def _get_curated_state(self) -> List[Optional[Dict]]:
         """
-        Curated state governor emergency declarations.
+        Load state governor emergency declarations from state_declarations.json registry.
 
-        No centralized national database of governor declarations exists.
-        FMCSA captures ~15-25% (transportation-related only).
-        Entries here are the primary mechanism for state coverage.
+        The registry separates data from code, enabling:
+        - Non-developer review of declaration data
+        - End date determination metadata tracking
+        - Automated state law consistency checks
+        - Human review cadence tracking
 
         To add a new state declaration:
         1. Find the governor's executive order or proclamation
         2. Get the official URL (governor's office website)
         3. Identify affected counties (or "Statewide")
-        4. Add a build_record() call below
-
-        Last comprehensive review: 2026-02-11
+        4. Add an entry to state_declarations.json with endDateDetermination metadata
         """
         curated = []
+        registry_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "state_declarations.json")
 
-        # =============================================================
-        # JAN 2026 WINTER STORM GOVERNOR DECLARATIONS
-        # Storm hit ~Jan 20-27, 2026 across eastern/central US
-        # =============================================================
+        try:
+            with open(registry_path, "r") as f:
+                registry = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            self.errors.append(f"Failed to load state_declarations.json: {e}")
+            return curated
 
-        # --- TEXAS ---
-        # Gov Abbott, Jan 22 declaration, 219 counties (expanded Jan 25)
-        # No termination found
-        rec = build_record(
-            id_str="STATE-2026-001-TX",
-            source="STATE", state="TX",
-            title="Governor Abbott Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://gov.texas.gov/news/post/governor-abbott-provides-update-on-texas-ongoing-response-to-severe-winter-weather-",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
+        seen_ids = set()
+        for entry in registry.get("declarations", []):
+            entry_id = entry.get("id", "UNKNOWN")
 
-        # --- NORTH CAROLINA ---
-        # Gov Stein, Jan 21 declaration, statewide
-        rec = build_record(
-            id_str="STATE-2026-001-NC",
-            source="STATE", state="NC",
-            title="Governor Stein Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 21),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.nc.gov/news/press-releases/2026/01/21/governor-stein-declares-state-emergency-ahead-winter-storm",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
+            # Skip duplicates (e.g., duplicate MA entry in legacy data)
+            if entry_id in seen_ids:
+                self.warnings.append(f"Duplicate STATE entry skipped: {entry_id}")
+                continue
+            seen_ids.add(entry_id)
 
-        # --- VIRGINIA ---
-        # Gov Spanberger, Jan 22, EO 11, statewide
-        rec = build_record(
-            id_str="STATE-2026-001-VA",
-            source="STATE", state="VA",
-            title="Governor Spanberger Emergency Declaration (EO 11) — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.governor.virginia.gov/newsroom/news-releases/2026/january-releases/name-1111570-en.html",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
+            # Resolve effective end date from registry + state law metadata
+            effective_end = self._resolve_end_date(entry)
 
-        # --- GEORGIA (Winter Storm Fern) ---
-        # Gov Kemp, Jan 22, statewide, effective through Jan 29
-        rec = build_record(
-            id_str="STATE-2026-001-GA",
-            source="STATE", state="GA",
-            title="Governor Kemp Emergency Declaration — January 2026 Winter Storm (Fern)",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 22),
-            incident_end=date(2026, 1, 29),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://gov.georgia.gov/press-releases/2026-01-22/gov-kemp-declares-state-emergency-activates-state-operations-center-ahead",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
+            # Parse renewal dates
+            renewal_dates = None
+            if entry.get("renewalDates"):
+                renewal_dates = [date.fromisoformat(d) for d in entry["renewalDates"]]
 
-        # --- GEORGIA (Winter Storm Gianna) ---
-        # Gov Kemp, Jan 30, statewide, effective through Feb 6
-        rec = build_record(
-            id_str="STATE-2026-002-GA",
-            source="STATE", state="GA",
-            title="Governor Kemp Emergency Declaration — January 2026 Winter Storm (Gianna)",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 30),
-            incident_start=date(2026, 1, 30),
-            incident_end=date(2026, 2, 6),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://gov.georgia.gov/press-releases/2026-01-30/gov-kemp-declares-new-state-emergency-ahead-winter-storm",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
+            # Get human review date from verification metadata
+            verification = entry.get("verification", {})
+            last_verified = verification.get("lastHumanReview")
 
-        # --- NEW YORK ---
-        # Gov Hochul, Jan 23, EO 57, statewide
-        rec = build_record(
-            id_str="STATE-2026-001-NY",
-            source="STATE", state="NY",
-            title="Governor Hochul Emergency Declaration (EO 57) — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 23),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.governor.ny.gov/news/governor-hochul-declares-state-emergency-ahead-extreme-cold-and-massive-winter-storm-weekend",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- PENNSYLVANIA ---
-        # Gov Shapiro, Jan 24, statewide, 21-day auto-expire (~Feb 14)
-        rec = build_record(
-            id_str="STATE-2026-001-PA",
-            source="STATE", state="PA",
-            title="Governor Shapiro Disaster Emergency Proclamation — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 24),
-            incident_start=date(2026, 1, 23),
-            incident_end=date(2026, 2, 14),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-signs-proclamation-of-disaster-emergency",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- DELAWARE ---
-        # Gov Meyer, Jan 23, statewide, TERMINATED Jan 26
-        rec = build_record(
-            id_str="STATE-2026-001-DE",
-            source="STATE", state="DE",
-            title="Governor Meyer Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 23),
-            incident_end=date(2026, 1, 26),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://news.delaware.gov/2026/01/23/soe-eoc-activated-winter-storm/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- NEW MEXICO ---
-        # Gov Lujan Grisham, Jan 22, EO 2026-005, statewide
-        rec = build_record(
-            id_str="STATE-2026-001-NM",
-            source="STATE", state="NM",
-            title="Governor Lujan Grisham Emergency Declaration (EO 2026-005) — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.dhsem.nm.gov/governor-activates-emergency-resources-as-winter-weather-moves-into-new-mexico/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- KENTUCKY ---
-        # Gov Beshear, Jan 2026 winter storm (separate from Jan 2025)
-        rec = build_record(
-            id_str="STATE-2026-001-KY",
-            source="STATE", state="KY",
-            title="Governor Beshear Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2675",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- LOUISIANA ---
-        # Gov Landry, Jan 18 2025, statewide, renewed/extended
-        rec = build_record(
-            id_str="STATE-2025-001-LA",
-            source="STATE", state="LA",
-            title="Governor Landry Emergency Declaration (JML 25-12) — January 2025 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2025, 1, 18),
-            incident_start=date(2025, 1, 18),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://gov.louisiana.gov/news/4746",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- ARKANSAS ---
-        # Gov Sanders, Jan 2026 winter storm
-        rec = build_record(
-            id_str="STATE-2026-001-AR",
-            source="STATE", state="AR",
-            title="Governor Sanders Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.arkansas.gov/executive_orders/sanders-declares-emergency-for-severe-winter-weather-expected-on-or-about-january-23-2026/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- MISSISSIPPI ---
-        # Gov Reeves, Jan 2026 winter storm
-        rec = build_record(
-            id_str="STATE-2026-001-MS",
-            source="STATE", state="MS",
-            title="Governor Reeves Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governorreeves.ms.gov/governor-reeves-issues-state-of-emergency-ahead-of-severe-winter-weather/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- INDIANA ---
-        # Gov Braun, Jan 25 2026, EO 26-03, statewide, 60-day window
-        rec = build_record(
-            id_str="STATE-2026-001-IN",
-            source="STATE", state="IN",
-            title="Governor Braun Disaster Emergency (EO 26-03) — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 25),
-            incident_start=date(2026, 1, 23),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://events.in.gov/event/gov-mike-braun-commends-first-responders-state-agencies-following-coordinated-response-to-extreme-winter-weather",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- MARYLAND ---
-        # Gov Moore, late Jan 2025 (Jan 24-26 storm), statewide
-        rec = build_record(
-            id_str="STATE-2025-002-MD",
-            source="STATE", state="MD",
-            title="Governor Moore Emergency Declaration — January 2025 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2025, 1, 24),
-            incident_start=date(2025, 1, 24),
-            incident_end=date(2025, 1, 28),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- WEST VIRGINIA ---
-        # Gov Morrisey, Jan 23 2026, statewide (all 55 counties)
-        rec = build_record(
-            id_str="STATE-2026-001-WV",
-            source="STATE", state="WV",
-            title="Governor Morrisey Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 21),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.wv.gov/article/governor-morrisey-declares-state-emergency-all-55-counties-major-winter-storm-approaches",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- SOUTH CAROLINA ---
-        # Gov McMaster, Jan 2026 winter storm
-        rec = build_record(
-            id_str="STATE-2026-001-SC",
-            source="STATE", state="SC",
-            title="Governor McMaster Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.sc.gov/news/2026-01/gov-mcmaster-declares-state-emergency-ahead-winter-storm",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- TENNESSEE ---
-        # Gov Lee, Jan 22 2026, statewide (all 95 counties)
-        rec = build_record(
-            id_str="STATE-2026-001-TN",
-            source="STATE", state="TN",
-            title="Governor Lee Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 22),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.tn.gov/governor/news/2026/1/22/gov--lee-issues-state-of-emergency-ahead-of-major-winter-storm.html",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- CONNECTICUT ---
-        # Gov Lamont, Jan 25 2026, statewide, storm passed ~Jan 27
-        rec = build_record(
-            id_str="STATE-2026-001-CT",
-            source="STATE", state="CT",
-            title="Governor Lamont Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 25),
-            incident_start=date(2026, 1, 25),
-            incident_end=date(2026, 1, 27),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://portal.ct.gov/governor/news/press-releases/2026/01-2026/governor-lamont-declares-state-of-emergency-limits-commercial-vehicle-travel",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- OHIO ---
-        # Gov DeWine, Jan 24 2026, statewide (all 88 counties), 90-day window
-        rec = build_record(
-            id_str="STATE-2026-001-OH",
-            source="STATE", state="OH",
-            title="Governor DeWine Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 24),
-            incident_start=date(2026, 1, 23),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://content.govdelivery.com/accounts/OHIOGOVERNOR/bulletins/405eda8",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- KANSAS ---
-        # Gov Kelly, Jan 2026 winter storm
-        rec = build_record(
-            id_str="STATE-2026-001-KS",
-            source="STATE", state="KS",
-            title="Governor Kelly Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.kansastag.gov/m/newsflash/Home/Detail/817",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- MISSOURI ---
-        # Gov Kehoe, Jan 2026 winter storm
-        rec = build_record(
-            id_str="STATE-2026-001-MO",
-            source="STATE", state="MO",
-            title="Governor Kehoe Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-26-05-declaring-state-emergency",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- ALABAMA ---
-        # Gov Ivey, Jan 2026 winter storm
-        rec = build_record(
-            id_str="STATE-2026-001-AL",
-            source="STATE", state="AL",
-            title="Governor Ivey Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 22),
-            incident_start=date(2026, 1, 20),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.alabama.gov/newsroom/2026/01/governor-ivey-issues-state-of-emergency-for-19-northern-counties-ahead-of-wintery-icy-forecast/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- NEW JERSEY ---
-        # Gov Sherrill, Jan 24 2026, Executive Order 8, all 21 counties
-        # Emergency ended Jan 26 at noon
-        rec = build_record(
-            id_str="STATE-2026-001-NJ",
-            source="STATE", state="NJ",
-            title="Governor Sherrill Emergency Declaration (EO 8) — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 24),
-            incident_start=date(2026, 1, 23),
-            incident_end=date(2026, 1, 26),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.nj.gov/governor/news/2026/20260123b.shtml",
-            confidence="curated",
-            last_verified="2026-02-16",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- MARYLAND (Jan 2026 Winter Storm — separate from Jan 2025) ---
-        # Gov Moore, Jan 23 2026, statewide
-        rec = build_record(
-            id_str="STATE-2026-001-MD",
-            source="STATE", state="MD",
-            title="Governor Moore Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 23),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
-            confidence="curated",
-            last_verified="2026-02-16",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- WASHINGTON, D.C. ---
-        # Mayor Bowser, Jan 23 2026, district-wide
-        # Snow emergency period Jan 24 - Jan 27
-        rec = build_record(
-            id_str="STATE-2026-001-DC",
-            source="STATE", state="DC",
-            title="Mayor Bowser Emergency Declaration — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 23),
-            incident_end=date(2026, 1, 27),
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://mayor.dc.gov/release/mayor-bowser-declares-state-emergency-washington-dc-ahead-major-winter-storm-and-extreme",
-            confidence="curated",
-            last_verified="2026-02-16",
-        )
-        if rec:
-            curated.append(rec)
-
-        # --- MAINE ---
-        # Gov Mills, Jan 5 2026, Energy Emergency Proclamation
-        # Also declared Civil Emergency for coastal flooding Jan 10
-        # Energy emergency expired Jan 15; coastal counties affected
-        rec = build_record(
-            id_str="STATE-2026-001-ME",
-            source="STATE", state="ME",
-            title="Governor Mills Emergency Declaration — January 2026 Energy Emergency & Coastal Flooding",
-            incident_type="Energy Emergency",
-            declaration_date=date(2026, 1, 5),
-            incident_start=date(2026, 1, 5),
-            incident_end=date(2026, 1, 15),
-            renewal_dates_list=None,
-            counties=[
-                "Cumberland", "Hancock", "Knox", "Lincoln",
-                "Sagadahoc", "Waldo", "Washington", "York",
-            ],
-            statewide=False,
-            official_url="https://www.maine.gov/governor/mills/official_documents/proclamations/2026-01-proclamation-energy-emergency",
-            confidence="curated",
-            last_verified="2026-02-16",
-        )
-        if rec:
-            curated.append(rec)
-
-        # =============================================================
-        # MASSACHUSETTS GOVERNOR DECLARATION
-        # =============================================================
-
-        # Gov Healey, Jan 23 2026, Declaration of Emergency (heating fuels + winter storm)
-        # Referenced on FMCSA site; statewide scope
-        rec = build_record(
-            id_str="STATE-2026-001-MA",
-            source="STATE", state="MA",
-            title="Governor Healey Declaration of Emergency — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 23),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
-            confidence="curated",
-            last_verified="2026-02-17",
-        )
-        if rec:
-            curated.append(rec)
-
-        # =============================================================
-        # CALIFORNIA GOVERNOR DECLARATIONS
-        # =============================================================
-
-        # California Dec 2025 storms - Gov Newsom, 6 counties
-        rec = build_record(
-            id_str="STATE-2025-002-CA",
-            source="STATE", state="CA",
-            title="Governor Newsom Emergency Declaration — December 2025 Winter Storms",
-            incident_type="Severe Storm",
-            declaration_date=date(2025, 12, 24),
-            incident_start=date(2025, 12, 21),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=[
-                "Los Angeles", "Orange", "Riverside", "San Bernardino",
-                "San Diego", "Shasta",
-            ],
-            statewide=False,
-            official_url="https://www.gov.ca.gov/2025/12/24/governor-newsom-proclaims-state-of-emergency-to-support-response-in-multiple-counties-due-to-late-december-storms/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
-
-        # =============================================================
-        # MASSACHUSETTS GOVERNOR DECLARATION
-        # =============================================================
-
-        # Gov Healey, Jan 23 2026, Declaration of Emergency (heating fuels + winter storm)
-        # Referenced on FMCSA site; statewide scope
-        rec = build_record(
-            id_str="STATE-2026-001-MA",
-            source="STATE", state="MA",
-            title="Governor Healey Declaration of Emergency — January 2026 Winter Storm",
-            incident_type="Severe Winter Storm",
-            declaration_date=date(2026, 1, 23),
-            incident_start=date(2026, 1, 23),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Statewide"],
-            statewide=True,
-            official_url="https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
-            confidence="curated",
-            last_verified="2026-02-17",
-        )
-        if rec:
-            curated.append(rec)
-
-        # California Jan 2025 LA Wildfires - Gov Newsom
-        rec = build_record(
-            id_str="STATE-2025-001-CA",
-            source="STATE", state="CA",
-            title="Governor Newsom Emergency Declaration — January 2025 Los Angeles Wildfires",
-            incident_type="Wildfire",
-            declaration_date=date(2025, 1, 7),
-            incident_start=date(2025, 1, 7),
-            incident_end=None,
-            renewal_dates_list=None,
-            counties=["Los Angeles", "Ventura"],
-            statewide=False,
-            official_url="https://www.gov.ca.gov/2025/01/07/governor-newsom-proclaims-state-of-emergency-meets-with-first-responders-in-pacific-palisades-amid-dangerous-fire-weather/",
-            confidence="curated",
-            last_verified="2026-02-11",
-        )
-        if rec:
-            curated.append(rec)
+            rec = build_record(
+                id_str=entry_id,
+                source="STATE",
+                state=entry["state"],
+                title=entry["title"],
+                incident_type=entry["incidentType"],
+                declaration_date=date.fromisoformat(entry["declarationDate"]),
+                incident_start=date.fromisoformat(entry["incidentStart"]),
+                incident_end=effective_end,
+                renewal_dates_list=renewal_dates,
+                counties=entry["counties"],
+                statewide=entry.get("statewide", False),
+                official_url=entry["officialUrl"],
+                confidence=entry.get("confidence", "curated"),
+                last_verified=last_verified,
+            )
+            if rec:
+                curated.append(rec)
 
         return curated
+
+
+# Dead code removed — all STATE entries now loaded from state_declarations.json
+# See state_declarations.json for the full registry of 29 governor declarations.
+# See state_emergency_laws.json for state-by-state emergency powers law references.
+
 
 
 # =========================================================================
