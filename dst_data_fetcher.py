@@ -687,6 +687,9 @@ class SBACollector:
             "SBA-2025-23887-MN",  # Single-day fire Oct 26, 2025 — EXPIRED
             # Amendment expanded county list — curated override has full list
             "SBA-2026-02294-LA",  # Original had 5 parishes; amendment adds 16 more
+            # FR raw text endpoints blocked (captcha) — curated entries needed
+            "SBA-2026-03274-CA",  # Early January Storm — Marin County
+            "SBA-2026-04576-PA",  # Hotel Hampton Fire — Northampton County
         }
 
     def _get_curated_sba(self) -> List[Optional[Dict]]:
@@ -1129,6 +1132,47 @@ class SBACollector:
             counties=["Adams", "Claiborne", "Issaquena", "Jefferson", "Warren"],
             statewide=False,
             official_url="https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # -----------------------------------------------------------------
+        # SBA-2026-03274-CA: 2026 Early January Storm, Tidal Flooding, King Tides
+        # FR published Feb 19, 2026. Marin County only. SEP end = Mar 31, 2026.
+        # FR raw text blocked — adding as curated.
+        # -----------------------------------------------------------------
+        rec = build_record(
+            id_str="SBA-2026-03274-CA", source="SBA", state="CA",
+            title="2026 Early January Storm, Tidal Flooding, and King Tides",
+            incident_type="Flood",
+            declaration_date=date(2026, 2, 19),
+            incident_start=date(2025, 12, 31), incident_end=date(2026, 1, 5),
+            renewal_dates_list=None,
+            counties=["Marin"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/02/19/2026-03274/administrative-declaration-amendment-of-a-disaster-for-the-state-of-california",
+            confidence="verified",
+        )
+        if rec:
+            curated.append(rec)
+
+        # -----------------------------------------------------------------
+        # SBA-2026-04576-PA: Hotel Hampton Fire, single-day Feb 20, 2026
+        # FR published Mar 9, 2026. Northampton County only.
+        # SEP end = Apr 30, 2026.
+        # FR raw text blocked — adding as curated.
+        # -----------------------------------------------------------------
+        rec = build_record(
+            id_str="SBA-2026-04576-PA", source="SBA", state="PA",
+            title="Hotel Hampton Fire",
+            incident_type="Fire",
+            declaration_date=date(2026, 3, 4),
+            incident_start=date(2026, 2, 20), incident_end=date(2026, 2, 20),
+            renewal_dates_list=None,
+            counties=["Northampton"],
+            statewide=False,
+            official_url="https://www.federalregister.gov/documents/2026/03/09/2026-04576/administrative-declaration-of-a-disaster-for-the-commonwealth-of-pennsylvania",
             confidence="verified",
         )
         if rec:
