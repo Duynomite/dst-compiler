@@ -1,21 +1,21 @@
 {
   "metadata": {
-    "lastUpdated": "2026-02-27T11:25:56Z",
-    "recordCount": 124,
+    "lastUpdated": "2026-03-09T22:09:55Z",
+    "recordCount": 118,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "bb5ebc695f14234e",
+    "contentHash": "8d237ab659d7da9a",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
-        "SBA": 15,
+        "SBA": 9,
         "STATE": 28,
         "FMCSA": 62,
         "FEMA": 18,
         "HHS": 1
       },
       "federalRegister": {
-        "recordsParsed": 13,
-        "curatedOverrides": 6
+        "recordsParsed": 7,
+        "curatedOverrides": 8
       },
       "urlVerification": null,
       "regulatoryMonitoring": null
@@ -42,9 +42,9 @@
       "status": "ongoing",
       "sepWindowStart": "2025-06-19",
       "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 185,
+      "daysRemaining": 175,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -64,10 +64,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-AL",
@@ -87,9 +87,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -109,10 +109,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 93,
+      "daysRemaining": 83,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-AR",
@@ -132,9 +132,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3636-AR",
@@ -225,12 +225,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3636",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -249,35 +249,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:53Z"
-    },
-    {
-      "id": "SBA-2026-02443-AZ",
-      "source": "SBA",
-      "state": "AZ",
-      "title": "2025 Late December Storm",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2026-02-06",
-      "incidentStart": "2025-12-16",
-      "incidentEnd": "2025-12-26",
-      "renewalDates": null,
-      "counties": [
-        "La Paz",
-        "Mohave"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2026/02/06/2026-02443/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-12-16",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -295,35 +272,13 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.gov.ca.gov/2025/01/07/governor-newsom-proclaims-state-of-emergency-meets-with-first-responders-in-pacific-palisades-amid-dangerous-fire-weather/",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2025-01-07",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
-    },
-    {
-      "id": "SBA-2025-22647-CA",
-      "source": "SBA",
-      "state": "CA",
-      "title": "Pack Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-12-12",
-      "incidentStart": "2025-11-13",
-      "incidentEnd": "2025-12-04",
-      "renewalDates": null,
-      "counties": [
-        "Mono"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/12/12/2025-22647/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-11-13",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "STATE-2025-002-CA",
@@ -348,33 +303,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-21",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 366,
+      "daysRemaining": 356,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
-    },
-    {
-      "id": "SBA-2026-02443-CA",
-      "source": "SBA",
-      "state": "CA",
-      "title": "2025 Late December Storm",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2026-02-06",
-      "incidentStart": "2025-12-16",
-      "incidentEnd": "2025-12-26",
-      "renewalDates": null,
-      "counties": [
-        "San Bernardino",
-        "Shasta"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2026/02/06/2026-02443/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-12-16",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "SBA-2026-02924-CA",
@@ -397,35 +329,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/13/2026-02924/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-19",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:53Z"
-    },
-    {
-      "id": "SBA-2026-02717-CA",
-      "source": "SBA",
-      "state": "CA",
-      "title": "2025 Late December Storms",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2026-02-11",
-      "incidentStart": "2025-12-16",
-      "incidentEnd": "2025-12-26",
-      "renewalDates": null,
-      "counties": [
-        "Mono",
-        "Santa Barbara"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2026/02/11/2026-02717/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-12-16",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "SBA-2026-03274-CA",
@@ -442,12 +351,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/19/2026-03274/administrative-declaration-amendment-of-a-disaster-for-the-state-of-california",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2025-12-31",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:31Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -467,9 +376,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -489,9 +398,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -511,9 +420,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -530,13 +439,13 @@
       ],
       "statewide": true,
       "officialUrl": "https://portal.ct.gov/governor/news/press-releases/2026/01-2026/governor-lamont-declares-state-of-emergency-limits-commercial-vehicle-travel",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-25",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-DC",
@@ -556,9 +465,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -575,13 +484,13 @@
       ],
       "statewide": true,
       "officialUrl": "https://mayor.dc.gov/release/mayor-bowser-declares-state-emergency-washington-dc-ahead-major-winter-storm-and-extreme",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FEMA-EM-3643-DC",
@@ -601,9 +510,9 @@
       "status": "ongoing",
       "sepWindowStart": "2026-01-19",
       "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 397,
+      "daysRemaining": 387,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -623,9 +532,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -645,9 +554,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -664,13 +573,13 @@
       ],
       "statewide": true,
       "officialUrl": "https://news.delaware.gov/2026/01/23/soe-eoc-activated-winter-storm/",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-FL",
@@ -690,9 +599,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-GA",
@@ -709,13 +618,13 @@
       ],
       "statewide": true,
       "officialUrl": "https://gov.georgia.gov/press-releases/2026-01-22/gov-kemp-declares-state-emergency-activates-state-operations-center-ahead",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-GA",
@@ -735,9 +644,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3642-GA",
@@ -865,12 +774,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3642",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -890,10 +799,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-30",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2025-013-IA",
@@ -913,9 +822,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -935,9 +844,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -957,9 +866,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -979,9 +888,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -1001,9 +910,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3641-IN",
@@ -1013,7 +922,7 @@
       "incidentType": "Winter Storm",
       "declarationDate": "2026-01-24",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-27",
       "renewalDates": null,
       "counties": [
         "Adams",
@@ -1111,12 +1020,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3641",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 397,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -1136,10 +1045,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 93,
+      "daysRemaining": 83,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2025-013-KS",
@@ -1159,9 +1068,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -1181,10 +1090,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-KS",
@@ -1204,9 +1113,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -1226,9 +1135,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -1248,10 +1157,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-KY",
@@ -1271,9 +1180,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3633-KY",
@@ -1409,12 +1318,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3633",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2026-001-LA",
@@ -1434,9 +1343,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3638-LA",
@@ -1516,12 +1425,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3638",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -1558,12 +1467,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/05/2026-02294/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-louisiana",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-DR-4900-LA",
@@ -1588,12 +1497,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/4900",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -1613,9 +1522,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -1635,9 +1544,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -1654,13 +1563,13 @@
       ],
       "statewide": true,
       "officialUrl": "https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2025-012-MD",
@@ -1680,9 +1589,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -1702,9 +1611,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -1721,13 +1630,13 @@
       ],
       "statewide": true,
       "officialUrl": "https://governor.maryland.gov/news/press/pages/Governor-Moore-Declares-State-of-Emergency,-Requests-Federal-Emergency-Declaration-Ahead-of-Dangerous-Winter-Storm.aspx",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FEMA-EM-3634-MD",
@@ -1737,7 +1646,7 @@
       "incidentType": "Winter Storm",
       "declarationDate": "2026-01-24",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-27",
       "renewalDates": null,
       "counties": [
         "Allegany",
@@ -1766,12 +1675,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3634",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 397,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -1791,9 +1700,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -1817,13 +1726,13 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.maine.gov/governor/mills/official_documents/proclamations/2026-01-proclamation-energy-emergency",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-05",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-MI",
@@ -1843,9 +1752,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-013-MN",
@@ -1865,9 +1774,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -1887,9 +1796,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -1909,9 +1818,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -1931,10 +1840,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-MO",
@@ -1954,9 +1863,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-MS",
@@ -1976,10 +1885,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 93,
+      "daysRemaining": 83,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-MS",
@@ -1999,9 +1908,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3640-MS",
@@ -2100,12 +2009,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3640",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -2126,12 +2035,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-DR-4899-MS",
@@ -2186,12 +2095,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/4899",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FEMA-EM-3630-MT",
@@ -2213,9 +2122,9 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 366,
+      "daysRemaining": 356,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -2235,9 +2144,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -2257,10 +2166,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-NC",
@@ -2280,9 +2189,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3637-NC",
@@ -2400,12 +2309,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3637",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-21",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -2425,9 +2334,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -2447,9 +2356,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -2469,9 +2378,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-012-NH",
@@ -2491,9 +2400,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -2513,9 +2422,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -2535,9 +2444,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -2557,9 +2466,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -2576,13 +2485,35 @@
       ],
       "statewide": true,
       "officialUrl": "https://www.nj.gov/governor/news/2026/20260123b.shtml",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
+    },
+    {
+      "id": "SBA-2026-04576-NJ",
+      "source": "SBA",
+      "state": "NJ",
+      "title": "Hotel Hampton Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2026-03-09",
+      "incidentStart": "2026-02-20",
+      "incidentEnd": "2026-02-20",
+      "renewalDates": null,
+      "counties": [
+        "Warren"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.federalregister.gov/documents/2026/03/09/2026-04576/administrative-declaration-of-a-disaster-for-the-commonwealth-of-pennsylvania",
+      "status": "active",
+      "sepWindowStart": "2026-02-20",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 52,
+      "confidenceLevel": "verified",
+      "lastUpdated": "2026-03-09T22:07:30Z"
     },
     {
       "id": "STATE-2026-001-NM",
@@ -2602,82 +2533,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
-    },
-    {
-      "id": "SBA-2025-22647-NV",
-      "source": "SBA",
-      "state": "NV",
-      "title": "Pack Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-12-12",
-      "incidentStart": "2025-11-13",
-      "incidentEnd": "2025-12-04",
-      "renewalDates": null,
-      "counties": [
-        "Douglas",
-        "Esmeralda",
-        "Lyon",
-        "Mineral"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2025/12/12/2025-22647/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-11-13",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
-    },
-    {
-      "id": "SBA-2026-02443-NV",
-      "source": "SBA",
-      "state": "NV",
-      "title": "2025 Late December Storm",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2026-02-06",
-      "incidentStart": "2025-12-16",
-      "incidentEnd": "2025-12-26",
-      "renewalDates": null,
-      "counties": [
-        "Clark"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2026/02/06/2026-02443/administrative-declaration-of-a-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-12-16",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
-    },
-    {
-      "id": "SBA-2026-02717-NV",
-      "source": "SBA",
-      "state": "NV",
-      "title": "2025 Late December Storms",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2026-02-11",
-      "incidentStart": "2025-12-16",
-      "incidentEnd": "2025-12-26",
-      "renewalDates": null,
-      "counties": [
-        "Douglas",
-        "Esmeralda",
-        "Lyon",
-        "Mineral"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2026/02/11/2026-02717/administrative-declaration-of-an-economic-injury-disaster-for-the-state-of-california",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-12-16",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:32Z"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2025-012-NY",
@@ -2697,9 +2556,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -2719,9 +2578,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -2741,10 +2600,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -2764,9 +2623,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -2786,9 +2645,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -2808,10 +2667,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 123,
+      "daysRemaining": 113,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-OK",
@@ -2831,9 +2690,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-012-PA",
@@ -2853,9 +2712,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -2875,9 +2734,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -2897,10 +2756,32 @@
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
+    },
+    {
+      "id": "SBA-2026-04576-PA",
+      "source": "SBA",
+      "state": "PA",
+      "title": "Hotel Hampton Fire",
+      "incidentType": "Fire",
+      "declarationDate": "2026-03-04",
+      "incidentStart": "2026-02-20",
+      "incidentEnd": "2026-02-20",
+      "renewalDates": null,
+      "counties": [
+        "Northampton"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.federalregister.gov/documents/2026/03/09/2026-04576/administrative-declaration-of-a-disaster-for-the-commonwealth-of-pennsylvania",
+      "status": "active",
+      "sepWindowStart": "2026-02-20",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 52,
+      "confidenceLevel": "verified",
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -2920,9 +2801,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -2944,10 +2825,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FEMA-EM-3632-SC",
@@ -2962,12 +2843,7 @@
       "counties": [
         "Abbeville",
         "Aiken",
-        "Allendale",
-        "Anderson",
-        "Bamberg",
         "Barnwell",
-        "Beaufort",
-        "Berkeley",
         "Calhoun",
         "Catawba Indian Nation",
         "Charleston",
@@ -3010,12 +2886,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3632",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-21",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -3035,9 +2911,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -3057,9 +2933,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -3079,9 +2955,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -3101,10 +2977,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 93,
+      "daysRemaining": 83,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-TN",
@@ -3124,9 +3000,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3635-TN",
@@ -3237,12 +3113,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3635",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FEMA-DR-4898-TN",
@@ -3255,38 +3131,110 @@
       "incidentEnd": "2026-01-27",
       "renewalDates": null,
       "counties": [
+        "Anderson",
+        "Bedford",
+        "Benton",
+        "Bledsoe",
+        "Blount",
+        "Bradley",
+        "Campbell",
+        "Cannon",
+        "Carroll",
+        "Carter",
         "Cheatham",
         "Chester",
+        "Claiborne",
         "Clay",
+        "Cocke",
+        "Coffee",
+        "Crockett",
+        "Cumberland",
         "Davidson",
         "Decatur",
+        "DeKalb",
         "Dickson",
+        "Dyer",
+        "Fayette",
+        "Fentress",
+        "Franklin",
+        "Gibson",
+        "Giles",
+        "Grainger",
+        "Greene",
+        "Grundy",
+        "Hamblen",
+        "Hamilton",
+        "Hancock",
         "Hardeman",
         "Hardin",
+        "Hawkins",
+        "Haywood",
         "Henderson",
+        "Henry",
         "Hickman",
+        "Houston",
+        "Humphreys",
+        "Jackson",
+        "Jefferson",
+        "Johnson",
+        "Knox",
+        "Lake",
+        "Lauderdale",
         "Lawrence",
         "Lewis",
+        "Lincoln",
+        "Loudon",
         "Macon",
+        "Madison",
+        "Marion",
+        "Marshall",
         "Maury",
+        "McMinn",
         "McNairy",
+        "Meigs",
+        "Monroe",
+        "Montgomery",
+        "Moore",
+        "Morgan",
+        "Obion",
+        "Overton",
         "Perry",
+        "Pickett",
+        "Polk",
+        "Putnam",
+        "Rhea",
+        "Roane",
         "Robertson",
         "Rutherford",
+        "Scott",
+        "Sequatchie",
+        "Sevier",
+        "Shelby",
+        "Smith",
+        "Stewart",
+        "Sullivan",
         "Sumner",
+        "Tipton",
         "Trousdale",
+        "Unicoi",
+        "Union",
+        "Van Buren",
+        "Warren",
+        "Washington",
         "Wayne",
+        "Weakley",
+        "White",
         "Williamson",
         "Wilson"
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/4898",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-22",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -3306,10 +3254,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2026-001-TX",
@@ -3329,9 +3277,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -3349,12 +3297,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.federalregister.gov/documents/2026/02/17/2026-03026/administrative-declaration-amendment-of-an-economic-injury-disaster-for-the-state-of-louisiana",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -3374,10 +3322,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 93,
+      "daysRemaining": 83,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FEMA-EM-3631-VA",
@@ -3387,7 +3335,7 @@
       "incidentType": "Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-22",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-27",
       "renewalDates": null,
       "counties": [
         "Accomack",
@@ -3399,33 +3347,39 @@
         "Appomattox",
         "Arlington",
         "Augusta",
+        "Bath",
         "Bedford",
         "Bland",
         "Botetourt",
         "Bristol",
         "Brunswick",
+        "Buchanan",
         "Buckingham",
         "Buena Vista",
         "Campbell",
+        "Caroline",
+        "Carroll",
         "Charles City",
         "Charlotte",
-        "Charlottesville",
         "Chesapeake",
         "Chesterfield",
         "Clarke",
-        "Colonial Heights",
         "Covington",
+        "Craig",
+        "Culpeper",
         "Cumberland",
         "Danville",
+        "Dickenson",
+        "Dinwiddie",
         "Emporia",
-        "Essex",
         "Fairfax",
-        "Falls Church",
         "Fauquier",
+        "Floyd",
         "Fluvanna",
         "Franklin",
-        "Fredericksburg",
+        "Frederick",
         "Galax",
+        "Giles",
         "Gloucester",
         "Goochland",
         "Grayson",
@@ -3435,27 +3389,43 @@
         "Hampton",
         "Hanover",
         "Harrisonburg",
-        "Henrico",
-        "Henry",
+        "Highland",
         "Hopewell",
+        "Isle of Wight",
         "James City",
         "King and Queen",
-        "Lancaster",
+        "King George",
+        "King William",
         "Lexington",
+        "Loudoun",
+        "Louisa",
+        "Lunenburg",
         "Lynchburg",
+        "Madison",
         "Manassas",
         "Manassas Park",
         "Martinsville",
         "Mathews",
         "Mecklenburg",
+        "Montgomery",
+        "Nelson",
+        "New Kent",
         "Newport News",
         "Norfolk",
+        "Northampton",
+        "Northumberland",
         "Norton",
+        "Nottoway",
+        "Orange",
         "Patrick",
         "Petersburg",
-        "Pittsylvania",
         "Poquoson",
         "Portsmouth",
+        "Powhatan",
+        "Prince Edward",
+        "Prince George",
+        "Prince William",
+        "Pulaski",
         "Radford",
         "Rappahannock",
         "Richmond",
@@ -3463,31 +3433,37 @@
         "Rockbridge",
         "Rockingham",
         "Russell",
+        "Salem",
         "Scott",
         "Shenandoah",
         "Smyth",
-        "Southampton",
         "Spotsylvania",
         "Stafford",
+        "Staunton",
+        "Suffolk",
         "Surry",
         "Sussex",
         "Tazewell",
         "UPPER MATTAPONI",
         "Virginia Beach",
+        "Warren",
         "Washington",
+        "Waynesboro",
         "Westmoreland",
+        "Williamsburg",
+        "Winchester",
         "Wise",
         "Wythe",
         "York"
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3631",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-22",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 397,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -3507,9 +3483,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -3529,9 +3505,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -3551,9 +3527,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -3570,12 +3546,12 @@
       ],
       "statewide": true,
       "officialUrl": "https://www.fmcsa.dot.gov/emergency/wsc-wa-extension-emergency-declaration-no-2025-014-12-23-2025",
-      "status": "active",
+      "status": "expiring_soon",
       "sepWindowStart": "2025-11-19",
       "sepWindowEnd": "2026-03-31",
-      "daysRemaining": 32,
+      "daysRemaining": 22,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FEMA-EM-3629-WA",
@@ -3611,9 +3587,9 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-09",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 366,
+      "daysRemaining": 356,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -3648,36 +3624,10 @@
       "status": "ongoing",
       "sepWindowStart": "2025-12-09",
       "sepWindowEnd": "2027-02-28",
-      "daysRemaining": 366,
+      "daysRemaining": 356,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
-    },
-    {
-      "id": "SBA-2026-03916-WA",
-      "source": "SBA",
-      "state": "WA",
-      "title": "2025 Severe Winter Storms",
-      "incidentType": "Severe Winter Storm",
-      "declarationDate": "2026-02-27",
-      "incidentStart": "2025-12-05",
-      "incidentEnd": "2025-12-22",
-      "renewalDates": null,
-      "counties": [
-        "King",
-        "Lewis",
-        "Skagit",
-        "Snohomish",
-        "Whatcom"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.federalregister.gov/documents/2026/02/27/2026-03916/administrative-declaration-of-a-disaster-for-the-state-of-washington",
-      "status": "expiring_soon",
-      "sepWindowStart": "2025-12-05",
-      "sepWindowEnd": "2026-02-28",
-      "daysRemaining": 1,
-      "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:23:31Z"
+      "lastUpdated": "2026-03-09T22:09:51Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FMCSA-2025-013-WI",
@@ -3697,9 +3647,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -3719,9 +3669,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -3741,9 +3691,9 @@
       "status": "active",
       "sepWindowStart": "2025-12-10",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -3763,9 +3713,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -3785,10 +3735,10 @@
       "status": "active",
       "sepWindowStart": "2026-01-21",
       "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 93,
+      "daysRemaining": 83,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z",
-      "lastVerified": "2026-02-27"
+      "lastUpdated": "2026-03-09T22:09:52Z",
+      "lastVerified": "2026-03-09"
     },
     {
       "id": "FEMA-EM-3639-WV",
@@ -3798,7 +3748,7 @@
       "incidentType": "Winter Storm",
       "declarationDate": "2026-01-24",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-27",
       "renewalDates": null,
       "counties": [
         "Barbour",
@@ -3859,12 +3809,12 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.fema.gov/disaster/3639",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 397,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 22,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-02-27T11:25:56Z"
+      "lastUpdated": "2026-03-09T22:09:55Z"
     },
     {
       "id": "FMCSA-2026-001-WY",
@@ -3884,9 +3834,9 @@
       "status": "active",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2026-04-30",
-      "daysRemaining": 62,
+      "daysRemaining": 52,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-02-27T11:25:53Z"
+      "lastUpdated": "2026-03-09T22:09:51Z"
     }
   ]
 }
