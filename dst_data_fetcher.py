@@ -1139,8 +1139,10 @@ class SBACollector:
 
         # -----------------------------------------------------------------
         # SBA-2026-03274-CA: 2026 Early January Storm, Tidal Flooding, King Tides
-        # FR published Feb 19, 2026. Marin County only. SEP end = Mar 31, 2026.
-        # FR raw text blocked — adding as curated.
+        # Original (2026-02442, Feb 6): Del Norte, Humboldt, Mendocino, Siskiyou, Trinity
+        # Amendment (2026-03274, Feb 19): Added Marin (primary), Contra Costa,
+        #   San Francisco, Sonoma (contiguous). 9 counties total.
+        # Incident: Dec 31, 2025 – Jan 5, 2026. SEP end = Mar 31, 2026.
         # -----------------------------------------------------------------
         rec = build_record(
             id_str="SBA-2026-03274-CA", source="SBA", state="CA",
@@ -1149,7 +1151,8 @@ class SBACollector:
             declaration_date=date(2026, 2, 19),
             incident_start=date(2025, 12, 31), incident_end=date(2026, 1, 5),
             renewal_dates_list=None,
-            counties=["Marin"],
+            counties=["Contra Costa", "Del Norte", "Humboldt", "Marin",
+                      "Mendocino", "San Francisco", "Siskiyou", "Sonoma", "Trinity"],
             statewide=False,
             official_url="https://www.federalregister.gov/documents/2026/02/19/2026-03274/administrative-declaration-amendment-of-a-disaster-for-the-state-of-california",
             confidence="verified",
@@ -1358,6 +1361,7 @@ class FMCSACollector:
         # Extended Dec 23, 2025 to add CT/MD/MA/NH/WV.
         # Extended Jan 15, 2026 to Feb 15, 2026.
         # Extended Feb 13, 2026 to Feb 28, 2026 — added ME and VT.
+        # Extended Feb 27, 2026 to Mar 14, 2026 (11:59 PM ET).
         # Pipeline break at Marcus Hook refinery disrupted propane supply.
         # Note: VA is NOT included per verified Feb 13 extension document.
         fmcsa_2025_012_states = [
@@ -1372,7 +1376,7 @@ class FMCSACollector:
                 incident_type="Fuel Supply Emergency",
                 declaration_date=date(2025, 12, 12),
                 incident_start=date(2025, 12, 10),
-                incident_end=date(2026, 2, 28),  # Extended Feb 13 to Feb 28
+                incident_end=date(2026, 3, 14),  # Extended Feb 27 to Mar 14
                 renewal_dates_list=None,
                 counties=["Statewide"],
                 statewide=True,
