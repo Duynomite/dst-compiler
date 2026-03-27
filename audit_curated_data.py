@@ -846,10 +846,16 @@ def run_audit(json_path=None, all_disasters=False):
               decl_date is not None and decl_date < TOMORROW)
 
         # Check 8: incidentStart is valid ISO date and not > 24 months old
+        # Exception: long-running emergencies with recent renewal dates are valid
         inc_start = parse_date(rec.get("incidentStart"))
-        check(rid, 8, "incidentStart is valid and within 24 months",
-              f"Valid date >= {TWENTY_FOUR_MONTHS_AGO}", rec.get("incidentStart"),
-              inc_start is not None and inc_start >= TWENTY_FOUR_MONTHS_AGO)
+        renewal_dates = rec.get("renewalDates", []) or []
+        has_recent_renewal = any(
+            parse_date(rd) is not None and parse_date(rd) >= TWENTY_FOUR_MONTHS_AGO
+            for rd in renewal_dates
+        ) if renewal_dates else False
+        check(rid, 8, "incidentStart is valid and within 24 months (or has recent renewal)",
+              f"Valid date >= {TWENTY_FOUR_MONTHS_AGO} or recent renewal", rec.get("incidentStart"),
+              inc_start is not None and (inc_start >= TWENTY_FOUR_MONTHS_AGO or has_recent_renewal))
 
         # Check 9: If incidentEnd exists: incidentStart <= incidentEnd
         inc_end = parse_date(rec.get("incidentEnd"))

@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "lastUpdated": "2026-03-27T16:49:49Z",
-    "recordCount": 195,
+    "lastUpdated": "2026-03-27T17:33:06Z",
+    "recordCount": 224,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "4e941b8b93a0df51",
+    "contentHash": "cdc5f513b1c226a0",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
         "SBA": 9,
-        "STATE": 68,
+        "STATE": 97,
         "FMCSA": 66,
         "FEMA": 51,
         "HHS": 1
@@ -44,7 +44,77 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 157,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
+    },
+    {
+      "id": "STATE-2025-001-AK",
+      "source": "STATE",
+      "state": "AK",
+      "title": "Governor Dunleavy Disaster Declaration \u2014 Mat-Su Windstorm",
+      "incidentType": "Severe Wind",
+      "declarationDate": "2025-12-10",
+      "incidentStart": "2025-12-09",
+      "incidentEnd": "2026-01-09",
+      "renewalDates": null,
+      "counties": [
+        "Matanuska-Susitna"
+      ],
+      "statewide": false,
+      "officialUrl": "https://ready.alaska.gov/Documents/PIO/PressReleases/2025.12.10_Press%20Release%20-%20Governor%20Dunleavy%20Declares%20December%202025%20Mat-Su%20Windstorm%20a%20Disaster.pdf",
+      "status": "expiring_soon",
+      "sepWindowStart": "2025-12-09",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 4,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-AK",
+      "source": "STATE",
+      "state": "AK",
+      "title": "Governor Dunleavy Disaster Declaration \u2014 Napaskiak Power Outage",
+      "incidentType": "Power Emergency",
+      "declarationDate": "2025-12-30",
+      "incidentStart": "2025-12-06",
+      "incidentEnd": "2026-02-04",
+      "renewalDates": null,
+      "counties": [
+        "Bethel"
+      ],
+      "statewide": false,
+      "officialUrl": "https://ready.alaska.gov/Documents/PIO/PressReleases/2025.01.05_Press%20Release%20-%20Governor%20Dunleavy%20Declares%202025%20Napaskiak%20Power%20Outage.pdf",
+      "status": "active",
+      "sepWindowStart": "2025-12-06",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-001-AK",
+      "source": "STATE",
+      "state": "AK",
+      "title": "Governor Dunleavy Disaster Declaration \u2014 Jan 2026 Southeast Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-10",
+      "incidentStart": "2026-01-06",
+      "incidentEnd": "2026-02-09",
+      "renewalDates": null,
+      "counties": [
+        "Hoonah-Angoon",
+        "Juneau"
+      ],
+      "statewide": false,
+      "officialUrl": "https://ready.alaska.gov/Documents/PIO/PressReleases/2026.01.10_Press%20Release%20-%20Governor%20Dunleavy%20Declares%202026%20Jan%20Southeast%20Winter%20Storm.pdf",
+      "status": "active",
+      "sepWindowStart": "2026-01-06",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -66,7 +136,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -89,7 +159,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -111,7 +181,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -134,7 +204,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3636-AR",
@@ -230,7 +300,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -254,7 +324,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-FM-5549-CA",
@@ -276,7 +346,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -299,7 +369,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -322,7 +392,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -345,7 +415,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5551-CA",
@@ -367,7 +437,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-010-CA",
@@ -389,7 +459,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -412,7 +482,7 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 187,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -435,7 +505,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -458,7 +528,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-014-CA",
@@ -480,7 +550,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -503,7 +573,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -526,7 +596,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-016-CA",
@@ -548,7 +618,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -571,7 +641,7 @@
       "sepWindowEnd": "2027-01-31",
       "daysRemaining": 310,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -599,7 +669,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -628,7 +698,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "SBA-2026-03274-CA",
@@ -650,7 +720,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:47:22Z"
+      "lastUpdated": "2026-03-27T17:30:35Z"
     },
     {
       "id": "FEMA-FM-5603-CO",
@@ -672,7 +742,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5604-CO",
@@ -694,7 +764,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5606-CO",
@@ -716,7 +786,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -738,7 +808,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -760,7 +830,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -782,7 +852,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -804,7 +874,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -827,7 +897,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -850,7 +920,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -872,7 +942,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -895,7 +965,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -917,7 +987,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -939,7 +1009,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -961,7 +1031,233 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2023-001-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor DeSantis Emergency \u2014 Illegal Immigration (EO 23-03)",
+      "incidentType": "Immigration Emergency",
+      "declarationDate": "2023-01-06",
+      "incidentStart": "2023-01-06",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-03-24",
+        "2025-05-22",
+        "2025-07-20",
+        "2025-09-17",
+        "2025-11-25",
+        "2026-03-24"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2026-75",
+      "status": "ongoing",
+      "sepWindowStart": "2023-01-06",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2024-004-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor DeSantis Emergency \u2014 May 2024 North Florida Tornadoes (EO 24-94)",
+      "incidentType": "Tornado",
+      "declarationDate": "2024-05-10",
+      "incidentStart": "2024-05-10",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2024-09-06",
+        "2024-11-04",
+        "2025-03-03",
+        "2025-05-01",
+        "2025-07-01",
+        "2025-09-01",
+        "2025-11-01",
+        "2026-01-01",
+        "2026-03-01"
+      ],
+      "counties": [
+        "Baker",
+        "Columbia",
+        "Escambia",
+        "Gadsden",
+        "Hamilton",
+        "Jefferson",
+        "Lafayette",
+        "Leon",
+        "Liberty",
+        "Madison",
+        "Okaloosa",
+        "Santa Rosa",
+        "Suwannee",
+        "Taylor",
+        "Wakulla"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2026-34",
+      "status": "ongoing",
+      "sepWindowStart": "2024-05-10",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2024-001-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor DeSantis Emergency \u2014 Hurricane Debby (EO 24-156)",
+      "incidentType": "Hurricane",
+      "declarationDate": "2024-08-01",
+      "incidentStart": "2024-08-01",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2024-08-07",
+        "2024-09-25",
+        "2024-11-22",
+        "2025-01-17",
+        "2025-03-14",
+        "2025-05-14",
+        "2025-07-11",
+        "2025-09-09",
+        "2025-11-07",
+        "2026-01-06",
+        "2026-03-06"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2026-59",
+      "status": "ongoing",
+      "sepWindowStart": "2024-08-01",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2024-002-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor DeSantis Emergency \u2014 Hurricane Helene (EO 24-208)",
+      "incidentType": "Hurricane",
+      "declarationDate": "2024-09-23",
+      "incidentStart": "2024-09-23",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2024-11-21",
+        "2025-05-14",
+        "2025-07-10",
+        "2025-09-08",
+        "2026-01-05",
+        "2026-03-05"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2026-58",
+      "status": "ongoing",
+      "sepWindowStart": "2024-09-23",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2024-003-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor DeSantis Emergency \u2014 Hurricane Milton (EO 24-214)",
+      "incidentType": "Hurricane",
+      "declarationDate": "2024-10-05",
+      "incidentStart": "2024-10-05",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2024-12-03",
+        "2025-01-31",
+        "2025-03-31",
+        "2025-07-28",
+        "2025-09-26",
+        "2025-11-25"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2025-242",
+      "status": "ongoing",
+      "sepWindowStart": "2024-10-05",
+      "sepWindowEnd": "2027-01-31",
+      "daysRemaining": 310,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-001-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor Emergency \u2014 May 2025 NW Florida Tornadoes (EO 25-101)",
+      "incidentType": "Tornado",
+      "declarationDate": "2025-05-11",
+      "incidentStart": "2025-05-10",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-07-10",
+        "2025-09-08",
+        "2025-11-07",
+        "2026-01-06",
+        "2026-03-06"
+      ],
+      "counties": [
+        "Holmes"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2025-101",
+      "status": "ongoing",
+      "sepWindowStart": "2025-05-10",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-FL",
+      "source": "STATE",
+      "state": "FL",
+      "title": "Governor Emergency \u2014 Lake County Flooding (EO 25-213)",
+      "incidentType": "Flood",
+      "declarationDate": "2025-10-29",
+      "incidentStart": "2025-10-26",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-12-22"
+      ],
+      "counties": [
+        "Lake"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.flgov.com/eog/news/executive-orders/2025-213",
+      "status": "ongoing",
+      "sepWindowStart": "2025-10-26",
+      "sepWindowEnd": "2027-02-28",
+      "daysRemaining": 338,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -984,7 +1280,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-FL",
@@ -1006,7 +1302,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1029,7 +1325,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1052,7 +1348,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3642-GA",
@@ -1184,7 +1480,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -1206,7 +1502,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1229,7 +1525,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-001-HI",
@@ -1251,7 +1547,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1274,7 +1570,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -1296,7 +1592,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -1318,7 +1614,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -1340,7 +1636,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -1362,7 +1658,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3641-IN",
@@ -1466,7 +1762,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -1488,7 +1784,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1511,7 +1807,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -1533,7 +1829,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1556,7 +1852,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-002-KS",
@@ -1578,7 +1874,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1601,7 +1897,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -1623,7 +1919,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1646,7 +1942,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3633-KY",
@@ -1787,7 +2083,38 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
+    },
+    {
+      "id": "STATE-2021-001-LA",
+      "source": "STATE",
+      "state": "LA",
+      "title": "Governor Emergency \u2014 Hurricane Ida (JBE 2021-165, renewed through 2026)",
+      "incidentType": "Hurricane",
+      "declarationDate": "2021-08-26",
+      "incidentStart": "2021-08-26",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-09-01",
+        "2025-10-01",
+        "2025-11-01",
+        "2025-12-01",
+        "2026-01-01",
+        "2026-02-01",
+        "2026-03-01"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.doa.la.gov/doa/osr/executive-orders/",
+      "status": "ongoing",
+      "sepWindowStart": "2021-08-26",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2025-001-LA",
@@ -1809,7 +2136,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1832,7 +2159,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3638-LA",
@@ -1917,7 +2244,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -1959,7 +2286,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-DR-4900-LA",
@@ -1997,7 +2324,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -2019,7 +2346,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -2041,7 +2368,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -2063,7 +2390,30 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-002-MA",
+      "source": "STATE",
+      "state": "MA",
+      "title": "Governor Healey Emergency \u2014 February 2026 Blizzard",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-02-22",
+      "incidentStart": "2026-02-22",
+      "incidentEnd": "2026-02-24",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.mass.gov/news/governor-healey-declares-emergency-activates-national-guard-ahead-of-strong-winter-storm",
+      "status": "active",
+      "sepWindowStart": "2026-02-22",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2086,7 +2436,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -2108,7 +2458,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -2130,7 +2480,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2174,7 +2524,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -2196,7 +2546,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -2225,7 +2575,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2248,7 +2598,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2271,7 +2621,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-002-MI",
@@ -2295,7 +2645,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2326,7 +2676,30 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-001-MN",
+      "source": "STATE",
+      "state": "MN",
+      "title": "Governor Walz Peacetime Emergency \u2014 NE Minnesota Wildfires (EO 25-05)",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-05-20",
+      "incidentStart": "2025-05-12",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Saint Louis"
+      ],
+      "statewide": false,
+      "officialUrl": "https://mn.gov/governor/newsroom/press-releases/?id=1055-685281",
+      "status": "ongoing",
+      "sepWindowStart": "2025-05-12",
+      "sepWindowEnd": "2026-07-31",
+      "daysRemaining": 126,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2349,7 +2722,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -2371,7 +2744,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2025-001-MO",
@@ -2393,7 +2766,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2416,7 +2789,7 @@
       "sepWindowEnd": "2026-07-31",
       "daysRemaining": 126,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2439,7 +2812,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -2461,7 +2834,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2484,7 +2857,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-002-MO",
@@ -2506,7 +2879,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2529,7 +2902,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2552,7 +2925,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3640-MS",
@@ -2656,7 +3029,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -2682,7 +3055,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-DR-4899-MS",
@@ -2786,7 +3159,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-001-MT",
@@ -2808,7 +3181,30 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-MT",
+      "source": "STATE",
+      "state": "MT",
+      "title": "Governor Gianforte Disaster Declaration \u2014 Severe Wind (EO 11-2025)",
+      "incidentType": "Severe Wind",
+      "declarationDate": "2025-12-18",
+      "incidentStart": "2025-12-17",
+      "incidentEnd": "2026-02-01",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://news.mt.gov/Governors-Office/Governor-Gianforte-Issues-Executive-Order-Declaring-Wind-Disaster",
+      "status": "active",
+      "sepWindowStart": "2025-12-17",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2833,7 +3229,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -2855,7 +3251,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-FM-5574-NC",
@@ -2877,7 +3273,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5577-NC",
@@ -2899,7 +3295,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5578-NC",
@@ -2921,7 +3317,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5580-NC",
@@ -2943,7 +3339,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5582-NC",
@@ -2965,7 +3361,7 @@
       "sepWindowEnd": "2026-07-31",
       "daysRemaining": 126,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-012-NC",
@@ -2987,7 +3383,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -3009,7 +3405,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3032,7 +3428,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3637-NC",
@@ -3147,7 +3543,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -3169,7 +3565,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2025-001-NE",
@@ -3216,7 +3612,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3239,7 +3635,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3262,7 +3658,7 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 157,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3285,7 +3681,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3308,7 +3704,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -3330,7 +3726,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
+    },
+    {
+      "id": "STATE-2026-001-NE",
+      "source": "STATE",
+      "state": "NE",
+      "title": "Governor Pillen Emergency \u2014 Power Demands (EO 26-01)",
+      "incidentType": "Power Emergency",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": "2026-02-27",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.nebraska.gov/sites/default/files/doc/press/EO-26-01.pdf",
+      "status": "active",
+      "sepWindowStart": "2026-01-23",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FEMA-FM-5623-NE",
@@ -3356,7 +3775,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-002-NE",
@@ -3378,7 +3797,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3401,7 +3820,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -3423,7 +3842,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-FM-5581-NJ",
@@ -3445,7 +3864,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -3467,7 +3886,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -3489,7 +3908,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -3511,7 +3930,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3534,7 +3953,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
+    },
+    {
+      "id": "STATE-2025-004-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 Albuquerque Crime (EO 2025-080)",
+      "incidentType": "Crime Emergency",
+      "declarationDate": "2025-04-08",
+      "incidentStart": "2025-04-08",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Bernalillo"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.governor.state.nm.us/wp-content/uploads/2025/04/Executive-Order-2025-080-1.pdf",
+      "status": "ongoing",
+      "sepWindowStart": "2025-04-08",
+      "sepWindowEnd": "2026-06-30",
+      "daysRemaining": 95,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FEMA-FM-5579-NM",
@@ -3556,7 +3998,53 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
+    },
+    {
+      "id": "STATE-2025-005-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 Cotton Fire / Desert Willow Complex (EO 2025-247)",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-06-21",
+      "incidentStart": "2025-06-21",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Valencia"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.governor.state.nm.us/2025/06/21/governor-secures-resources-to-support-cotton-fire-response-additional-firefighting-crews-air-support-and-shelter-services-mobilized/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-06-21",
+      "sepWindowEnd": "2026-08-31",
+      "daysRemaining": 157,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-006-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 Lincoln County Flooding (EO 2025-248)",
+      "incidentType": "Flood",
+      "declarationDate": "2025-06-26",
+      "incidentStart": "2025-06-23",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Lincoln"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.dhsem.nm.gov/governor-signs-emergency-declarations-for-lincoln-and-chaves-county/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-06-23",
+      "sepWindowEnd": "2026-08-31",
+      "daysRemaining": 157,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2025-001-NM",
@@ -3578,7 +4066,53 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 187,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-007-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 Dona Ana County Flooding (EO 2025-333)",
+      "incidentType": "Flood",
+      "declarationDate": "2025-07-25",
+      "incidentStart": "2025-07-22",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Dona Ana"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.governor.state.nm.us/2025/07/25/governor-signs-emergency-order-for-dona-ana-county-flooding/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-22",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-003-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 Espa\u00f1ola Crime (EO 2025-358)",
+      "incidentType": "Crime Emergency",
+      "declarationDate": "2025-08-13",
+      "incidentStart": "2025-08-13",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Rio Arriba"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.governor.state.nm.us/2025/08/13/governor-declares-emergency-in-espanola-area-due-to-crime/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-13",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3601,7 +4135,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3624,7 +4158,38 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-001-NY",
+      "source": "STATE",
+      "state": "NY",
+      "title": "Governor Hochul Disaster Declaration \u2014 Vaccine Access (EO 52)",
+      "incidentType": "Healthcare Emergency",
+      "declarationDate": "2025-09-05",
+      "incidentStart": "2025-09-05",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-10-04",
+        "2025-11-03",
+        "2025-12-03",
+        "2026-01-02",
+        "2026-01-31",
+        "2026-02-20",
+        "2026-03-21"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.governor.ny.gov/executive-order/no-527-extending-declaration-disaster-state-new-york-due-federal-actions-related",
+      "status": "ongoing",
+      "sepWindowStart": "2025-09-05",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3647,7 +4212,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -3669,7 +4234,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -3691,7 +4256,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3714,7 +4279,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -3736,7 +4301,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -3758,7 +4323,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -3780,7 +4345,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3803,7 +4368,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-FM-5616-OK",
@@ -3826,7 +4391,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5618-OK",
@@ -3848,7 +4413,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5617-OK",
@@ -3870,7 +4435,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-003-OK",
@@ -3892,7 +4457,33 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-001-OK",
+      "source": "STATE",
+      "state": "OK",
+      "title": "Governor Stitt Emergency \u2014 Wildfires (EO 2026-09)",
+      "incidentType": "Wildfire",
+      "declarationDate": "2026-02-18",
+      "incidentStart": "2026-02-17",
+      "incidentEnd": "2026-03-19",
+      "renewalDates": null,
+      "counties": [
+        "Beaver",
+        "Harper",
+        "Texas",
+        "Woodward"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.sos.ok.gov/documents/executive/2170.pdf",
+      "status": "active",
+      "sepWindowStart": "2026-02-17",
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 65,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3916,7 +4507,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5620-OK",
@@ -3938,7 +4529,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-002-OK",
@@ -3967,7 +4558,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3990,7 +4581,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5626-OK",
@@ -4012,7 +4603,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5628-OK",
@@ -4034,7 +4625,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5627-OK",
@@ -4056,7 +4647,81 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
+    },
+    {
+      "id": "STATE-2023-001-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Homelessness (EO 25-01)",
+      "incidentType": "Homelessness Emergency",
+      "declarationDate": "2023-01-10",
+      "incidentStart": "2023-01-10",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2024-01-09",
+        "2025-01-09",
+        "2026-01-09"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.oregon.gov/oem/pages/housing-emergency-executive-orders.aspx",
+      "status": "ongoing",
+      "sepWindowStart": "2023-01-10",
+      "sepWindowEnd": "2027-03-31",
+      "daysRemaining": 369,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-010-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Alder Springs Fire (EO 25-07)",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-06-16",
+      "incidentStart": "2025-06-16",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Deschutes",
+        "Jefferson"
+      ],
+      "statewide": false,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-alder-springs-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-06-16",
+      "sepWindowEnd": "2026-08-31",
+      "daysRemaining": 157,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-011-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Rowena Fire (EO 25-08)",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-06-21",
+      "incidentStart": "2025-06-11",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Wasco"
+      ],
+      "statewide": false,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-declares-state-of-emergency-due-to-rowena-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-06-11",
+      "sepWindowEnd": "2026-08-31",
+      "daysRemaining": 157,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2025-002-OR",
@@ -4078,7 +4743,7 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 187,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4101,7 +4766,7 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 187,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4124,7 +4789,7 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 187,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4147,7 +4812,7 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 187,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4170,7 +4835,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4193,7 +4858,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4216,7 +4881,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -4238,7 +4903,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -4260,7 +4925,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4287,7 +4952,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-012-RI",
@@ -4309,7 +4974,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -4331,7 +4996,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-RI",
@@ -4353,7 +5018,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4376,7 +5041,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5576-SC",
@@ -4399,7 +5064,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5575-SC",
@@ -4421,7 +5086,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -4443,7 +5108,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4512,7 +5177,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -4534,7 +5199,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2025-001-SD",
@@ -4556,7 +5221,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4579,7 +5244,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-FM-5622-SD",
@@ -4601,7 +5266,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -4623,7 +5288,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -4645,7 +5310,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4668,7 +5333,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-EM-3635-TN",
@@ -4771,7 +5436,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-DR-4898-TN",
@@ -4887,7 +5552,148 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
+    },
+    {
+      "id": "STATE-2021-001-TX",
+      "source": "STATE",
+      "state": "TX",
+      "title": "Governor Abbott Disaster Proclamation \u2014 Border Security",
+      "incidentType": "Immigration Emergency",
+      "declarationDate": "2021-05-31",
+      "incidentStart": "2021-05-31",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-09-01",
+        "2025-10-01",
+        "2025-11-01",
+        "2025-12-01",
+        "2026-01-01",
+        "2026-02-01"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://gov.texas.gov/news/post/governor-abbott-renews-border-security-disaster-proclamation-in-november-2024-",
+      "status": "ongoing",
+      "sepWindowStart": "2021-05-31",
+      "sepWindowEnd": "2027-04-30",
+      "daysRemaining": 399,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2024-001-TX",
+      "source": "STATE",
+      "state": "TX",
+      "title": "Governor Abbott Disaster Proclamation \u2014 Drought",
+      "incidentType": "Drought",
+      "declarationDate": "2024-07-01",
+      "incidentStart": "2024-07-01",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-09-18",
+        "2025-10-18",
+        "2025-11-18",
+        "2025-12-18",
+        "2026-01-18",
+        "2026-02-18",
+        "2026-03-18"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://gov.texas.gov/news/post/governor-abbott-amends-renews-drought-disaster-proclamation-in-march-2026",
+      "status": "ongoing",
+      "sepWindowStart": "2024-07-01",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-001-TX",
+      "source": "STATE",
+      "state": "TX",
+      "title": "Governor Abbott Disaster Proclamation \u2014 Hill Country Flooding",
+      "incidentType": "Flood",
+      "declarationDate": "2025-07-04",
+      "incidentStart": "2025-07-02",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2025-07-22",
+        "2026-03-01"
+      ],
+      "counties": [
+        "Bandera",
+        "Bexar",
+        "Burnet",
+        "Caldwell",
+        "Coke",
+        "Comal",
+        "Concho",
+        "Edwards",
+        "Gillespie",
+        "Guadalupe",
+        "Hamilton",
+        "Kendall",
+        "Kerr",
+        "Kimble",
+        "Kinney",
+        "Lampasas",
+        "Llano",
+        "Mason",
+        "Maverick",
+        "McCulloch",
+        "Menard",
+        "Real",
+        "Reeves",
+        "San Saba",
+        "Schleicher",
+        "Sutton",
+        "Tom Green",
+        "Travis",
+        "Uvalde",
+        "Williamson"
+      ],
+      "statewide": false,
+      "officialUrl": "https://gov.texas.gov/news/post/governor-abbott-amends-renews-flooding-disaster-proclamation-in-march-2026",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-02",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-TX",
+      "source": "STATE",
+      "state": "TX",
+      "title": "Governor Abbott Disaster Proclamation \u2014 Fire Weather Conditions",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-08-12",
+      "incidentStart": "2025-08-10",
+      "incidentEnd": null,
+      "renewalDates": [
+        "2026-03-09"
+      ],
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://gov.texas.gov/news/post/governor-abbott-amends-renews-fire-weather-conditions-disaster-proclamation-in-march-2026",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-10",
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 430,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T17:33:01Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -4909,7 +5715,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4932,7 +5738,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -4955,7 +5761,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FEMA-FM-5619-TX",
@@ -4978,7 +5784,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FEMA-FM-5625-TX",
@@ -5000,7 +5806,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2025-012-VA",
@@ -5022,7 +5828,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -5044,7 +5850,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5196,7 +6002,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -5218,7 +6024,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -5240,7 +6046,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -5262,7 +6068,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -5284,7 +6090,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2025-001-WA",
@@ -5306,7 +6112,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5345,7 +6151,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -5382,7 +6188,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27",
       "pheExpiryDate": "2026-03-23"
     },
@@ -5406,7 +6212,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -5428,7 +6234,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -5450,7 +6256,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -5472,7 +6278,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -5494,7 +6300,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5570,7 +6376,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-001-WY",
@@ -5592,7 +6398,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5615,7 +6421,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T16:49:49Z"
+      "lastUpdated": "2026-03-27T17:33:06Z"
     },
     {
       "id": "STATE-2025-002-WY",
@@ -5637,7 +6443,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastUpdated": "2026-03-27T17:33:01Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5660,7 +6466,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T16:49:45Z"
+      "lastUpdated": "2026-03-27T17:33:01Z"
     }
   ]
 }

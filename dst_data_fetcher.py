@@ -2897,6 +2897,872 @@ class StateCollector:
         if rec:
             curated.append(rec)
 
+        # =============================================================
+        # FLORIDA — HURRICANE / STORM GOVERNOR DECLARATIONS
+        # Carrier cross-reference: Aetna + Wellcare both track these
+        # =============================================================
+
+        # --- FL Hurricane Debby (Aug 2024) ---
+        # EO 24-156 initial, 11+ extensions through EO 26-59 (Mar 2026)
+        # 51+ counties, still active
+        rec = build_record(
+            id_str="STATE-2024-001-FL",
+            source="STATE", state="FL",
+            title="Governor DeSantis Emergency — Hurricane Debby (EO 24-156)",
+            incident_type="Hurricane",
+            declaration_date=date(2024, 8, 1),
+            incident_start=date(2024, 8, 1),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2024, 8, 7), date(2024, 9, 25), date(2024, 11, 22),
+                date(2025, 1, 17), date(2025, 3, 14), date(2025, 5, 14),
+                date(2025, 7, 11), date(2025, 9, 9), date(2025, 11, 7),
+                date(2026, 1, 6), date(2026, 3, 6),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2026-59",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- FL Hurricane Helene (Sep 2024) ---
+        # EO 24-208 initial, 6+ extensions through EO 26-58
+        # 61 counties, still active
+        rec = build_record(
+            id_str="STATE-2024-002-FL",
+            source="STATE", state="FL",
+            title="Governor DeSantis Emergency — Hurricane Helene (EO 24-208)",
+            incident_type="Hurricane",
+            declaration_date=date(2024, 9, 23),
+            incident_start=date(2024, 9, 23),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2024, 11, 21), date(2025, 5, 14), date(2025, 7, 10),
+                date(2025, 9, 8), date(2026, 1, 5), date(2026, 3, 5),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2026-58",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- FL Hurricane Milton (Oct 2024) ---
+        # EO 24-214 initial (titled "Tropical Storm Milton" at issuance), 6 extensions
+        # 51 counties, still active
+        rec = build_record(
+            id_str="STATE-2024-003-FL",
+            source="STATE", state="FL",
+            title="Governor DeSantis Emergency — Hurricane Milton (EO 24-214)",
+            incident_type="Hurricane",
+            declaration_date=date(2024, 10, 5),
+            incident_start=date(2024, 10, 5),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2024, 12, 3), date(2025, 1, 31), date(2025, 3, 31),
+                date(2025, 7, 28), date(2025, 9, 26), date(2025, 11, 25),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2025-242",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- FL May 2024 North Florida Tornadoes ---
+        # EO 24-94 initial, 9+ extensions, 15 counties, still active
+        rec = build_record(
+            id_str="STATE-2024-004-FL",
+            source="STATE", state="FL",
+            title="Governor DeSantis Emergency — May 2024 North Florida Tornadoes (EO 24-94)",
+            incident_type="Tornado",
+            declaration_date=date(2024, 5, 10),
+            incident_start=date(2024, 5, 10),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2024, 9, 6), date(2024, 11, 4), date(2025, 3, 3),
+                date(2025, 5, 1), date(2025, 7, 1), date(2025, 9, 1),
+                date(2025, 11, 1), date(2026, 1, 1), date(2026, 3, 1),
+            ],
+            counties=["Baker", "Columbia", "Escambia", "Gadsden", "Hamilton",
+                       "Jefferson", "Lafayette", "Leon", "Liberty", "Madison",
+                       "Okaloosa", "Santa Rosa", "Suwannee", "Taylor", "Wakulla"],
+            statewide=False,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2026-34",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- FL May 2025 NW Florida Tornadoes ---
+        # EO 25-101, 5 extensions, Holmes County
+        rec = build_record(
+            id_str="STATE-2025-001-FL",
+            source="STATE", state="FL",
+            title="Governor Emergency — May 2025 NW Florida Tornadoes (EO 25-101)",
+            incident_type="Tornado",
+            declaration_date=date(2025, 5, 11),
+            incident_start=date(2025, 5, 10),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 7, 10), date(2025, 9, 8), date(2025, 11, 7),
+                date(2026, 1, 6), date(2026, 3, 6),
+            ],
+            counties=["Holmes"],
+            statewide=False,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2025-101",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- FL Lake County Flooding ---
+        # EO 25-213, extended by EO 25-257
+        rec = build_record(
+            id_str="STATE-2025-002-FL",
+            source="STATE", state="FL",
+            title="Governor Emergency — Lake County Flooding (EO 25-213)",
+            incident_type="Flood",
+            declaration_date=date(2025, 10, 29),
+            incident_start=date(2025, 10, 26),
+            incident_end=None,
+            renewal_dates_list=[date(2025, 12, 22)],
+            counties=["Lake"],
+            statewide=False,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2025-213",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- FL Illegal Migration ---
+        # EO 23-03, Jan 6 2023, statewide, 19+ renewals, still active (EO 2026-75)
+        rec = build_record(
+            id_str="STATE-2023-001-FL",
+            source="STATE", state="FL",
+            title="Governor DeSantis Emergency — Illegal Immigration (EO 23-03)",
+            incident_type="Immigration Emergency",
+            declaration_date=date(2023, 1, 6),
+            incident_start=date(2023, 1, 6),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 3, 24), date(2025, 5, 22), date(2025, 7, 20),
+                date(2025, 9, 17), date(2025, 11, 25), date(2026, 3, 24),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.flgov.com/eog/news/executive-orders/2026-75",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # NEW YORK — NON-STANDARD GOVERNOR DECLARATIONS
+        # =============================================================
+
+        # --- NY Vaccine Access Disaster ---
+        # EO No. 52, Sep 5 2025, statewide, extended through Apr 19 2026 (EO 52.7)
+        rec = build_record(
+            id_str="STATE-2025-001-NY",
+            source="STATE", state="NY",
+            title="Governor Hochul Disaster Declaration — Vaccine Access (EO 52)",
+            incident_type="Healthcare Emergency",
+            declaration_date=date(2025, 9, 5),
+            incident_start=date(2025, 9, 5),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 10, 4), date(2025, 11, 3), date(2025, 12, 3),
+                date(2026, 1, 2), date(2026, 1, 31), date(2026, 2, 20),
+                date(2026, 3, 21),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.governor.ny.gov/executive-order/no-527-extending-declaration-disaster-state-new-york-due-federal-actions-related",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # TEXAS — BORDER CRISIS + DROUGHT
+        # =============================================================
+
+        # --- TX Border Crisis ---
+        # Disaster Proclamation May 31 2021, renewed monthly, 60+ counties
+        rec = build_record(
+            id_str="STATE-2021-001-TX",
+            source="STATE", state="TX",
+            title="Governor Abbott Disaster Proclamation — Border Security",
+            incident_type="Immigration Emergency",
+            declaration_date=date(2021, 5, 31),
+            incident_start=date(2021, 5, 31),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 9, 1), date(2025, 10, 1), date(2025, 11, 1),
+                date(2025, 12, 1), date(2026, 1, 1), date(2026, 2, 1),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://gov.texas.gov/news/post/governor-abbott-renews-border-security-disaster-proclamation-in-november-2024-",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # OKLAHOMA — WILDFIRES
+        # =============================================================
+
+        # --- OK Wildfires EO 2026-09 ---
+        # Feb 18 2026, Beaver/Texas/Woodward/Harper counties
+        rec = build_record(
+            id_str="STATE-2026-001-OK",
+            source="STATE", state="OK",
+            title="Governor Stitt Emergency — Wildfires (EO 2026-09)",
+            incident_type="Wildfire",
+            declaration_date=date(2026, 2, 18),
+            incident_start=date(2026, 2, 17),
+            incident_end=date(2026, 3, 19),
+            renewal_dates_list=None,
+            counties=["Beaver", "Harper", "Texas", "Woodward"],
+            statewide=False,
+            official_url="https://www.sos.ok.gov/documents/executive/2170.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # MONTANA — FLOODING + HIGH WIND
+        # =============================================================
+
+        # --- MT Flooding EO 9-2025 ---
+        rec = build_record(
+            id_str="STATE-2025-001-MT",
+            source="STATE", state="MT",
+            title="Governor Gianforte Disaster Declaration — Flooding (EO 9-2025)",
+            incident_type="Flood",
+            declaration_date=date(2025, 12, 11),
+            incident_start=date(2025, 12, 8),
+            incident_end=date(2026, 1, 25),
+            renewal_dates_list=None,
+            counties=["Lincoln", "Sanders", "Flathead"],
+            statewide=False,
+            official_url="https://news.mt.gov/Governors-Office/Governor-Gianforte-Issues-Executive-Order-Declaring-Flooding-Disaster",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- MT Damaging High Wind EO 11-2025 ---
+        rec = build_record(
+            id_str="STATE-2025-002-MT",
+            source="STATE", state="MT",
+            title="Governor Gianforte Disaster Declaration — Severe Wind (EO 11-2025)",
+            incident_type="Severe Wind",
+            declaration_date=date(2025, 12, 18),
+            incident_start=date(2025, 12, 17),
+            incident_end=date(2026, 2, 1),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://news.mt.gov/Governors-Office/Governor-Gianforte-Issues-Executive-Order-Declaring-Wind-Disaster",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # CONNECTICUT — FEB 2026 BLIZZARD
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2026-001-CT",
+            source="STATE", state="CT",
+            title="Governor Lamont Emergency — February 2026 Blizzard",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 22),
+            incident_start=date(2026, 2, 22),
+            incident_end=date(2026, 2, 23),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://portal.ct.gov/-/media/office-of-the-governor/news/2026/20260222-emergency-declaration.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # GEORGIA — SPALDING COUNTY WATER SUPPLY
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2026-001-GA",
+            source="STATE", state="GA",
+            title="Governor Kemp Emergency — Spalding County Water Supply (EO 01.30.26.02)",
+            incident_type="Infrastructure Emergency",
+            declaration_date=date(2026, 1, 30),
+            incident_start=date(2026, 1, 30),
+            incident_end=date(2026, 2, 6),
+            renewal_dates_list=None,
+            counties=["Spalding"],
+            statewide=False,
+            official_url="https://gov.georgia.gov/document/2026-executive-order/01302602/download",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # NEBRASKA — POWER DEMANDS
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2026-001-NE",
+            source="STATE", state="NE",
+            title="Governor Pillen Emergency — Power Demands (EO 26-01)",
+            incident_type="Power Emergency",
+            declaration_date=date(2026, 1, 23),
+            incident_start=date(2026, 1, 23),
+            incident_end=date(2026, 2, 27),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://governor.nebraska.gov/sites/default/files/doc/press/EO-26-01.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # UTAH — WILDFIRES (single EO covers all 3 fires)
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2025-001-UT",
+            source="STATE", state="UT",
+            title="Governor Cox Emergency — 2025 Wildfires (EO 2025-08)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 7, 31),
+            incident_start=date(2025, 7, 1),
+            incident_end=date(2025, 8, 30),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://governor.utah.gov/press/gov-cox-declares-state-of-emergency-as-wildfires-intensify/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # LOUISIANA — HURRICANE IDA (still active 2026!)
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2021-001-LA",
+            source="STATE", state="LA",
+            title="Governor Emergency — Hurricane Ida (JBE 2021-165, renewed through 2026)",
+            incident_type="Hurricane",
+            declaration_date=date(2021, 8, 26),
+            incident_start=date(2021, 8, 26),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 9, 1), date(2025, 10, 1), date(2025, 11, 1),
+                date(2025, 12, 1), date(2026, 1, 1), date(2026, 2, 1),
+                date(2026, 3, 1),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.doa.la.gov/doa/osr/executive-orders/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # OREGON — ADDITIONAL DECLARATIONS
+        # =============================================================
+
+        # --- OR Alder Springs Fire ---
+        # EO 25-07, Jun 16 2025, Jefferson/Deschutes (Conflagration Act)
+        rec = build_record(
+            id_str="STATE-2025-010-OR",
+            source="STATE", state="OR",
+            title="Governor Kotek Emergency — Alder Springs Fire (EO 25-07)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 6, 16),
+            incident_start=date(2025, 6, 16),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Jefferson", "Deschutes"],
+            statewide=False,
+            official_url="https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-alder-springs-fire",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- OR Rowena Fire ---
+        # EO 25-08, Jun 21 2025, Wasco County
+        rec = build_record(
+            id_str="STATE-2025-011-OR",
+            source="STATE", state="OR",
+            title="Governor Kotek Emergency — Rowena Fire (EO 25-08)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 6, 21),
+            incident_start=date(2025, 6, 11),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Wasco"],
+            statewide=False,
+            official_url="https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-declares-state-of-emergency-due-to-rowena-fire",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- OR Statewide Wildfire Emergency ---
+        # EO 25-16, Jul 16 2025, statewide, through Dec 2025
+        rec = build_record(
+            id_str="STATE-2025-008-OR",
+            source="STATE", state="OR",
+            title="Governor Kotek Emergency — Statewide Wildfire Threat (EO 25-16)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 7, 16),
+            incident_start=date(2025, 7, 16),
+            incident_end=date(2025, 12, 31),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-declares-state-of-emergency-due-to-imminent-threat-of-wildfire",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- OR Homelessness Emergency ---
+        # EO 25-01 (originally 23-02), statewide, through Jan 10 2027
+        rec = build_record(
+            id_str="STATE-2023-001-OR",
+            source="STATE", state="OR",
+            title="Governor Kotek Emergency — Homelessness (EO 25-01)",
+            incident_type="Homelessness Emergency",
+            declaration_date=date(2023, 1, 10),
+            incident_start=date(2023, 1, 10),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2024, 1, 9), date(2025, 1, 9), date(2026, 1, 9),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.oregon.gov/oem/pages/housing-emergency-executive-orders.aspx",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- OR December 2025 Severe Storms ---
+        # EO 25-32, Dec 30 2025, 25 counties
+        rec = build_record(
+            id_str="STATE-2025-009-OR",
+            source="STATE", state="OR",
+            title="Governor Kotek Emergency — December 2025 Severe Storms (EO 25-32)",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 12, 30),
+            incident_start=date(2025, 12, 15),
+            incident_end=date(2025, 12, 21),
+            renewal_dates_list=None,
+            counties=["Clackamas", "Clatsop", "Coos", "Curry", "Douglas",
+                       "Hood River", "Jackson", "Klamath", "Lane", "Lincoln",
+                       "Linn", "Marion", "Multnomah", "Polk", "Tillamook",
+                       "Umatilla", "Union", "Wallowa", "Washington", "Yamhill"],
+            statewide=False,
+            official_url="https://www.oregon.gov/gov/eo/eo-25-32.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # KENTUCKY — UPS PLANE CRASH
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2025-001-KY",
+            source="STATE", state="KY",
+            title="Governor Beshear Emergency — Louisville UPS Plane Crash (EO 2025-758)",
+            incident_type="Plane Crash",
+            declaration_date=date(2025, 11, 5),
+            incident_start=date(2025, 11, 4),
+            incident_end=date(2025, 11, 4),
+            renewal_dates_list=None,
+            counties=["Jefferson"],
+            statewide=False,
+            official_url="https://governor.ky.gov/Documents/Executive%20Order%202025-758%20-%20State%20of%20Emergency%20Related%20to%20Louisville%20Plane%20Crash.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # MINNESOTA — WILDFIRES
+        # =============================================================
+
+        # --- MN Munger Shaw / Camp House Fires ---
+        # EO 25-05, May 20 2025, Saint Louis County
+        rec = build_record(
+            id_str="STATE-2025-001-MN",
+            source="STATE", state="MN",
+            title="Governor Walz Peacetime Emergency — NE Minnesota Wildfires (EO 25-05)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 5, 20),
+            incident_start=date(2025, 5, 12),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Saint Louis"],
+            statewide=False,
+            official_url="https://mn.gov/governor/newsroom/press-releases/?id=1055-685281",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # LOUISIANA — TALLULAH WATER SYSTEM
+        # =============================================================
+
+        # EO JML 25-054, renewed monthly through JML 26-027
+        rec = build_record(
+            id_str="STATE-2025-001-LA",
+            source="STATE", state="LA",
+            title="Governor Landry Emergency — Tallulah Water System (JML 25-054)",
+            incident_type="Infrastructure Emergency",
+            declaration_date=date(2025, 2, 13),
+            incident_start=date(2025, 2, 13),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 3, 15), date(2025, 4, 14), date(2025, 5, 14),
+                date(2025, 6, 13), date(2025, 7, 13), date(2025, 8, 12),
+                date(2025, 9, 11), date(2025, 10, 11), date(2025, 11, 10),
+                date(2025, 12, 10), date(2026, 1, 9), date(2026, 2, 8),
+            ],
+            counties=["Madison"],
+            statewide=False,
+            official_url="https://gov.louisiana.gov/assets/2026-Executive-Orders/JML-Exective-Order-26-027.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # MASSACHUSETTS — FEB 2026 BLIZZARD
+        # =============================================================
+
+        rec = build_record(
+            id_str="STATE-2026-002-MA",
+            source="STATE", state="MA",
+            title="Governor Healey Emergency — February 2026 Blizzard",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 22),
+            incident_start=date(2026, 2, 22),
+            incident_end=date(2026, 2, 24),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.mass.gov/news/governor-healey-declares-emergency-activates-national-guard-ahead-of-strong-winter-storm",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # ALASKA — WINDSTORM + WINTER STORM + POWER OUTAGE
+        # =============================================================
+
+        # --- AK Mat-SU Windstorm ---
+        rec = build_record(
+            id_str="STATE-2025-001-AK",
+            source="STATE", state="AK",
+            title="Governor Dunleavy Disaster Declaration — Mat-Su Windstorm",
+            incident_type="Severe Wind",
+            declaration_date=date(2025, 12, 10),
+            incident_start=date(2025, 12, 9),
+            incident_end=date(2026, 1, 9),
+            renewal_dates_list=None,
+            counties=["Matanuska-Susitna"],
+            statewide=False,
+            official_url="https://ready.alaska.gov/Documents/PIO/PressReleases/2025.12.10_Press%20Release%20-%20Governor%20Dunleavy%20Declares%20December%202025%20Mat-Su%20Windstorm%20a%20Disaster.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- AK Napaskiak Power Outage ---
+        # Dec 30 2025 declaration, Bethel Census Area
+        rec = build_record(
+            id_str="STATE-2025-002-AK",
+            source="STATE", state="AK",
+            title="Governor Dunleavy Disaster Declaration — Napaskiak Power Outage",
+            incident_type="Power Emergency",
+            declaration_date=date(2025, 12, 30),
+            incident_start=date(2025, 12, 6),
+            incident_end=date(2026, 2, 4),
+            renewal_dates_list=None,
+            counties=["Bethel"],
+            statewide=False,
+            official_url="https://ready.alaska.gov/Documents/PIO/PressReleases/2025.01.05_Press%20Release%20-%20Governor%20Dunleavy%20Declares%202025%20Napaskiak%20Power%20Outage.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- AK Southeast Winter Storm ---
+        rec = build_record(
+            id_str="STATE-2026-001-AK",
+            source="STATE", state="AK",
+            title="Governor Dunleavy Disaster Declaration — Jan 2026 Southeast Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 1, 10),
+            incident_start=date(2026, 1, 6),
+            incident_end=date(2026, 2, 9),
+            renewal_dates_list=None,
+            counties=["Hoonah-Angoon", "Juneau"],
+            statewide=False,
+            official_url="https://ready.alaska.gov/Documents/PIO/PressReleases/2026.01.10_Press%20Release%20-%20Governor%20Dunleavy%20Declares%202026%20Jan%20Southeast%20Winter%20Storm.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- TX Flooding / Hill Country ---
+        # Jul 4 2025, 30 counties, renewed through Mar 2026
+        rec = build_record(
+            id_str="STATE-2025-001-TX",
+            source="STATE", state="TX",
+            title="Governor Abbott Disaster Proclamation — Hill Country Flooding",
+            incident_type="Flood",
+            declaration_date=date(2025, 7, 4),
+            incident_start=date(2025, 7, 2),
+            incident_end=None,
+            renewal_dates_list=[date(2025, 7, 22), date(2026, 3, 1)],
+            counties=["Bandera", "Bexar", "Burnet", "Caldwell", "Coke", "Comal",
+                       "Concho", "Edwards", "Gillespie", "Guadalupe", "Hamilton",
+                       "Kendall", "Kerr", "Kimble", "Kinney", "Lampasas", "Llano",
+                       "Mason", "Maverick", "McCulloch", "Menard", "Real", "Reeves",
+                       "San Saba", "Schleicher", "Sutton", "Tom Green", "Travis",
+                       "Uvalde", "Williamson"],
+            statewide=False,
+            official_url="https://gov.texas.gov/news/post/governor-abbott-amends-renews-flooding-disaster-proclamation-in-march-2026",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- TX Wildfires / Fire Weather ---
+        # Aug 12 2025, statewide, renewed through Mar 2026
+        rec = build_record(
+            id_str="STATE-2025-002-TX",
+            source="STATE", state="TX",
+            title="Governor Abbott Disaster Proclamation — Fire Weather Conditions",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 8, 12),
+            incident_start=date(2025, 8, 10),
+            incident_end=None,
+            renewal_dates_list=[date(2026, 3, 9)],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://gov.texas.gov/news/post/governor-abbott-amends-renews-fire-weather-conditions-disaster-proclamation-in-march-2026",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- TX Drought ---
+        # Governor Abbott disaster proclamation, renewed monthly, 80+ counties
+        rec = build_record(
+            id_str="STATE-2024-001-TX",
+            source="STATE", state="TX",
+            title="Governor Abbott Disaster Proclamation — Drought",
+            incident_type="Drought",
+            declaration_date=date(2024, 7, 1),
+            incident_start=date(2024, 7, 1),
+            incident_end=None,
+            renewal_dates_list=[
+                date(2025, 9, 18), date(2025, 10, 18), date(2025, 11, 18),
+                date(2025, 12, 18), date(2026, 1, 18), date(2026, 2, 18),
+                date(2026, 3, 18),
+            ],
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://gov.texas.gov/news/post/governor-abbott-amends-renews-drought-disaster-proclamation-in-march-2026",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # =============================================================
+        # NEW MEXICO — CRIME, FLOODS, FIRE, INFRASTRUCTURE
+        # =============================================================
+
+        # --- NM Española Crime Emergency ---
+        # EO 2025-358, Aug 13 2025, Rio Arriba County + Pueblos
+        rec = build_record(
+            id_str="STATE-2025-003-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency — Española Crime (EO 2025-358)",
+            incident_type="Crime Emergency",
+            declaration_date=date(2025, 8, 13),
+            incident_start=date(2025, 8, 13),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Rio Arriba"],
+            statewide=False,
+            official_url="https://www.governor.state.nm.us/2025/08/13/governor-declares-emergency-in-espanola-area-due-to-crime/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NM Albuquerque Crime Emergency ---
+        # EO 2025-080, Apr 8 2025, Albuquerque/Bernalillo County
+        rec = build_record(
+            id_str="STATE-2025-004-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency — Albuquerque Crime (EO 2025-080)",
+            incident_type="Crime Emergency",
+            declaration_date=date(2025, 4, 8),
+            incident_start=date(2025, 4, 8),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Bernalillo"],
+            statewide=False,
+            official_url="https://www.governor.state.nm.us/wp-content/uploads/2025/04/Executive-Order-2025-080-1.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NM Cotton/Desert Willow Complex Fire ---
+        # EO 2025-247, Jun 21 2025, Valencia County
+        rec = build_record(
+            id_str="STATE-2025-005-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency — Cotton Fire / Desert Willow Complex (EO 2025-247)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 6, 21),
+            incident_start=date(2025, 6, 21),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Valencia"],
+            statewide=False,
+            official_url="https://www.governor.state.nm.us/2025/06/21/governor-secures-resources-to-support-cotton-fire-response-additional-firefighting-crews-air-support-and-shelter-services-mobilized/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NM Lincoln County Flood ---
+        # EO 2025-248, Jun 26 2025, Lincoln County
+        rec = build_record(
+            id_str="STATE-2025-006-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency — Lincoln County Flooding (EO 2025-248)",
+            incident_type="Flood",
+            declaration_date=date(2025, 6, 26),
+            incident_start=date(2025, 6, 23),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Lincoln"],
+            statewide=False,
+            official_url="https://www.dhsem.nm.gov/governor-signs-emergency-declarations-for-lincoln-and-chaves-county/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NM Dona Ana County Flood ---
+        # EO 2025-333, Jul 25 2025, Dona Ana County
+        rec = build_record(
+            id_str="STATE-2025-007-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency — Dona Ana County Flooding (EO 2025-333)",
+            incident_type="Flood",
+            declaration_date=date(2025, 7, 25),
+            incident_start=date(2025, 7, 22),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Dona Ana"],
+            statewide=False,
+            official_url="https://www.governor.state.nm.us/2025/07/25/governor-signs-emergency-order-for-dona-ana-county-flooding/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NM Torrance County Well Outages ---
+        # EO 2025-373, Oct 2025, Torrance County
+        rec = build_record(
+            id_str="STATE-2025-008-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency — Torrance County Water System (EO 2025-373)",
+            incident_type="Infrastructure Emergency",
+            declaration_date=date(2025, 10, 15),
+            incident_start=date(2024, 12, 1),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Torrance"],
+            statewide=False,
+            official_url="https://www.dhsem.nm.gov/state-to-provide-emergency-water-to-torrance-county-community/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
         return curated
 
 
