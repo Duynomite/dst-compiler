@@ -1676,7 +1676,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.governor.ny.gov/news/governor-hochul-declares-state-emergency-ahead-extreme-cold-and-massive-winter-storm-weekend",
+            official_url="https://www.governor.ny.gov/executive-order/no-55-declaring-disaster-emergency-counties-albany-bronx-broome-cayuga-chenango",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1696,7 +1696,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-signs-proclamation-of-disaster-emergency",
+            official_url="https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-signs-proclamation-of-disaster-emergency-to-prepare-/",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1756,7 +1756,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2675",
+            official_url="https://governor.ky.gov/attachments/20260123_Executive-Order_2026-047_State-of-Emergency-Related-to-Continuing-Winter-Weather-Event.pdf",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -1836,7 +1836,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://events.in.gov/event/gov-mike-braun-commends-first-responders-state-agencies-following-coordinated-response-to-extreme-winter-weather",
+            official_url="https://www.in.gov/gov/files/EO26-03.pdfies-following-coordinated-response-to-extreme-winter-weather",
             confidence="curated",
             last_verified="2026-02-11",
         )
@@ -2103,7 +2103,7 @@ class StateCollector:
                 "Sagadahoc", "Waldo", "Washington", "York",
             ],
             statewide=False,
-            official_url="https://www.maine.gov/governor/mills/official_documents/proclamations/2026-01-proclamation-energy-emergency",
+            official_url="https://www.maine.gov/governor/mills/news/governor-mills-declares-state-civil-emergency-coastal-counties-impacted-flooding-urges-maine",
             confidence="curated",
             last_verified="2026-02-16",
         )

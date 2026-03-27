@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "lastUpdated": "2026-03-27T14:54:04Z",
+    "lastUpdated": "2026-03-27T15:08:51Z",
     "recordCount": 130,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "1b3a66f6cc0103cc",
+    "contentHash": "d4df0374bba57712",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
@@ -44,7 +44,7 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 157,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -66,7 +66,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -89,7 +89,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -111,7 +111,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -134,7 +134,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3636-AR",
@@ -230,7 +230,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -254,7 +254,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -277,7 +277,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -305,7 +305,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -334,7 +334,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "SBA-2026-03274-CA",
@@ -356,7 +356,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:51:40Z"
+      "lastUpdated": "2026-03-27T15:06:21Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -378,7 +378,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -400,7 +400,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -422,7 +422,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -444,7 +444,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -467,7 +467,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -489,7 +489,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -512,7 +512,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -534,7 +534,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -556,7 +556,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -578,7 +578,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -601,7 +601,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-FL",
@@ -623,7 +623,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -646,7 +646,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -669,7 +669,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3642-GA",
@@ -801,7 +801,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -823,7 +823,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -846,7 +846,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -868,7 +868,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -890,7 +890,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -912,7 +912,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -934,7 +934,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3641-IN",
@@ -1038,7 +1038,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -1054,13 +1054,13 @@
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://events.in.gov/event/gov-mike-braun-commends-first-responders-state-agencies-following-coordinated-response-to-extreme-winter-weather",
+      "officialUrl": "https://www.in.gov/gov/files/EO26-03.pdfies-following-coordinated-response-to-extreme-winter-weather",
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1083,7 +1083,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -1105,7 +1105,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1128,7 +1128,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -1150,7 +1150,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -1166,13 +1166,13 @@
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://www.kentucky.gov/Pages/Activity-stream.aspx?n=GovernorBeshear&prId=2675",
+      "officialUrl": "https://governor.ky.gov/attachments/20260123_Executive-Order_2026-047_State-of-Emergency-Related-to-Continuing-Winter-Weather-Event.pdf",
       "status": "ongoing",
       "sepWindowStart": "2026-01-20",
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1195,7 +1195,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3633-KY",
@@ -1336,7 +1336,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "STATE-2025-001-LA",
@@ -1358,7 +1358,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1381,7 +1381,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3638-LA",
@@ -1466,7 +1466,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -1508,7 +1508,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-DR-4900-LA",
@@ -1546,7 +1546,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -1568,7 +1568,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -1590,7 +1590,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -1612,7 +1612,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1635,7 +1635,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -1657,7 +1657,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -1679,7 +1679,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1723,7 +1723,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -1745,7 +1745,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -1768,13 +1768,13 @@
         "York"
       ],
       "statewide": false,
-      "officialUrl": "https://www.maine.gov/governor/mills/official_documents/proclamations/2026-01-proclamation-energy-emergency",
+      "officialUrl": "https://www.maine.gov/governor/mills/news/governor-mills-declares-state-civil-emergency-coastal-counties-impacted-flooding-urges-maine",
       "status": "expiring_soon",
       "sepWindowStart": "2026-01-05",
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1797,7 +1797,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-002-MI",
@@ -1821,7 +1821,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1852,7 +1852,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1875,7 +1875,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -1897,7 +1897,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -1919,7 +1919,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -1941,7 +1941,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1964,7 +1964,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-002-MO",
@@ -1986,7 +1986,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2009,7 +2009,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2032,7 +2032,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3640-MS",
@@ -2136,7 +2136,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -2162,7 +2162,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-DR-4899-MS",
@@ -2266,7 +2266,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FEMA-EM-3630-MT",
@@ -2290,7 +2290,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -2312,7 +2312,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-NC",
@@ -2334,7 +2334,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -2356,7 +2356,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2379,7 +2379,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3637-NC",
@@ -2494,7 +2494,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -2516,7 +2516,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -2538,7 +2538,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -2560,7 +2560,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-002-NE",
@@ -2582,7 +2582,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2605,7 +2605,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -2627,7 +2627,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -2649,7 +2649,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -2671,7 +2671,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -2693,7 +2693,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2716,7 +2716,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-NM",
@@ -2738,7 +2738,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2761,7 +2761,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -2783,7 +2783,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -2799,13 +2799,13 @@
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://www.governor.ny.gov/news/governor-hochul-declares-state-emergency-ahead-extreme-cold-and-massive-winter-storm-weekend",
+      "officialUrl": "https://www.governor.ny.gov/executive-order/no-55-declaring-disaster-emergency-counties-albany-bronx-broome-cayuga-chenango",
       "status": "ongoing",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2828,7 +2828,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -2850,7 +2850,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -2872,7 +2872,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -2894,7 +2894,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2917,7 +2917,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-002-OK",
@@ -2946,7 +2946,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2969,7 +2969,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -2991,7 +2991,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -3007,13 +3007,13 @@
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-signs-proclamation-of-disaster-emergency",
+      "officialUrl": "https://www.pa.gov/governor/newsroom/2026-press-releases/gov-shapiro-signs-proclamation-of-disaster-emergency-to-prepare-/",
       "status": "active",
       "sepWindowStart": "2026-01-23",
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3040,7 +3040,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-RI",
@@ -3062,7 +3062,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -3084,7 +3084,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-RI",
@@ -3106,7 +3106,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3129,7 +3129,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3198,7 +3198,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -3220,7 +3220,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -3242,7 +3242,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -3264,7 +3264,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -3286,7 +3286,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3309,7 +3309,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3635-TN",
@@ -3412,7 +3412,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FEMA-DR-4898-TN",
@@ -3528,7 +3528,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -3550,7 +3550,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3573,7 +3573,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -3596,7 +3596,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:00Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-VA",
@@ -3618,7 +3618,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -3640,7 +3640,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3792,7 +3792,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -3814,7 +3814,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -3836,7 +3836,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -3858,7 +3858,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -3880,7 +3880,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FEMA-EM-3629-WA",
@@ -3918,7 +3918,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -3955,7 +3955,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:00Z",
+      "lastUpdated": "2026-03-27T15:08:47Z",
       "lastVerified": "2026-03-27",
       "pheExpiryDate": "2026-03-23"
     },
@@ -3979,7 +3979,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -4001,7 +4001,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -4023,7 +4023,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -4045,7 +4045,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -4067,7 +4067,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z",
+      "lastUpdated": "2026-03-27T15:08:48Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4143,7 +4143,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T14:54:03Z"
+      "lastUpdated": "2026-03-27T15:08:51Z"
     },
     {
       "id": "FMCSA-2026-001-WY",
@@ -4165,7 +4165,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T14:54:01Z"
+      "lastUpdated": "2026-03-27T15:08:47Z"
     }
   ]
 }
