@@ -222,10 +222,9 @@
     // =========================================================================
 
     function consolidateFEMA(records) {
-      const validRecords = records.filter(r => r.declarationType !== 'FM');
-
+      // v3.0: Include FM (Fire Management) — carriers honor FMAG as valid DST triggers
       const groups = {};
-      for (const rec of validRecords) {
+      for (const rec of records) {
         const key = rec.femaDeclarationString;
         if (!groups[key]) {
           groups[key] = {

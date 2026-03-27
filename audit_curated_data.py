@@ -802,9 +802,9 @@ def run_audit(json_path=None, all_disasters=False):
         if source == "FEMA":
             # FEMA-{DR|EM}-{number}-{state}
             import re as _re
-            fema_id_valid = bool(_re.match(r"^FEMA-(DR|EM)-\d+-[A-Z]{2}$", rid))
-            check(rid, 2, "FEMA ID format matches FEMA-{DR|EM}-{number}-{state}",
-                  "FEMA-DR-XXXX-SS or FEMA-EM-XXXX-SS", rid,
+            fema_id_valid = bool(_re.match(r"^FEMA-(DR|EM|FM)-\d+-[A-Z]{2}$", rid))
+            check(rid, 2, "FEMA ID format matches FEMA-{DR|EM|FM}-{number}-{state}",
+                  "FEMA-DR-XXXX-SS, FEMA-EM-XXXX-SS, or FEMA-FM-XXXX-SS", rid,
                   fema_id_valid)
         else:
             id_valid = (
@@ -1154,7 +1154,12 @@ if __name__ == "__main__":
     parser.add_argument("--all-disasters", action="store_true", help="Audit all_disasters.json (includes FEMA records)")
     args = parser.parse_args()
 
-    json_path = args.json_path or DEFAULT_JSON_PATH
+    if args.json_path:
+        json_path = args.json_path
+    elif args.all_disasters:
+        json_path = os.path.join(SCRIPT_DIR, "all_disasters.json")
+    else:
+        json_path = DEFAULT_JSON_PATH
     failure_count = run_audit(json_path=json_path, all_disasters=args.all_disasters)
 
     url_failures = 0

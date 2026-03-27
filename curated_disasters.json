@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "lastUpdated": "2026-03-27T15:08:51Z",
-    "recordCount": 112,
+    "lastUpdated": "2026-03-27T16:49:49Z",
+    "recordCount": 144,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "180c5221ea45131b",
+    "contentHash": "2c496071c6204d8b",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
         "SBA": 9,
-        "STATE": 36,
+        "STATE": 68,
         "FMCSA": 66,
         "HHS": 1
       },
@@ -43,7 +43,7 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 157,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-AL",
@@ -65,7 +65,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -88,7 +88,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -110,7 +110,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -133,7 +133,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -157,7 +157,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -180,7 +180,191 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-011-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 Rancho Cucamonga Windstorm",
+      "incidentType": "Severe Wind",
+      "declarationDate": "2025-01-07",
+      "incidentStart": "2025-01-07",
+      "incidentEnd": "2026-01-07",
+      "renewalDates": null,
+      "counties": [
+        "San Bernardino"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+      "status": "expiring_soon",
+      "sepWindowStart": "2025-01-07",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 4,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-010-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 February 2025 Storms",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-02-01",
+      "incidentStart": "2025-01-31",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.gov.ca.gov/2025/07/29/governor-newsom-issues-emergency-proclamation-for-additional-california-counties-impacted-by-storms/",
+      "status": "expiring_soon",
+      "sepWindowStart": "2025-01-31",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 4,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-012-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 July 2025 Tsunami",
+      "incidentType": "Tsunami",
+      "declarationDate": "2025-07-30",
+      "incidentStart": "2025-07-30",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-30",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-013-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 Gifford Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-08-01",
+      "incidentStart": "2025-08-01",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-01",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-014-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 August Storms and Mudslides",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-08-23",
+      "incidentStart": "2025-08-23",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-23",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-015-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 September Lightning Complex",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-09-02",
+      "incidentStart": "2025-09-02",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.gov.ca.gov/2025/09/02/california-secures-federal-assistance-to-support-firefighting-efforts-on-september-lightning-complex-fire/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-09-02",
+      "sepWindowEnd": "2026-11-30",
+      "daysRemaining": 248,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-016-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 Tropical Storm Mario",
+      "incidentType": "Tropical Storm",
+      "declarationDate": "2025-09-18",
+      "incidentStart": "2025-09-18",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-09-18",
+      "sepWindowEnd": "2026-11-30",
+      "daysRemaining": 248,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-017-CA",
+      "source": "STATE",
+      "state": "CA",
+      "title": "Governor Newsom Emergency \u2014 Mono Pack Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-12-09",
+      "incidentStart": "2025-11-13",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Mono"
+      ],
+      "statewide": false,
+      "officialUrl": "https://www.gov.ca.gov/2025/12/09/governor-newsom-proclaims-state-of-emergency-in-mono-county-due-to-the-pack-fire/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-11-13",
+      "sepWindowEnd": "2027-01-31",
+      "daysRemaining": 310,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -208,7 +392,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -237,7 +421,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "SBA-2026-03274-CA",
@@ -259,7 +443,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:06:21Z"
+      "lastUpdated": "2026-03-27T16:47:22Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -281,7 +465,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -303,7 +487,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -325,7 +509,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-CT",
@@ -347,7 +531,30 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-002-CT",
+      "source": "STATE",
+      "state": "CT",
+      "title": "Governor Lamont Emergency Declaration \u2014 February 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-02-22",
+      "incidentStart": "2026-02-22",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://portal.ct.gov/governor/news/press-releases/2026/02-2026/governor-lamont-declares-state-of-emergency-ahead-of-major-winter-storm",
+      "status": "ongoing",
+      "sepWindowStart": "2026-02-22",
+      "sepWindowEnd": "2027-04-30",
+      "daysRemaining": 399,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -370,7 +577,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -392,7 +599,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -415,7 +622,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -437,7 +644,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -459,7 +666,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -482,29 +689,29 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-FL",
       "source": "STATE",
       "state": "FL",
-      "title": "Governor DeSantis Emergency Declaration \u2014 Cold Front, Drought, Wildfires",
+      "title": "Governor DeSantis EO 26-33 \u2014 Cold Front, Drought, Wildfires",
       "incidentType": "Wildfire",
       "declarationDate": "2026-02-09",
-      "incidentStart": "2026-02-09",
+      "incidentStart": "2026-01-31",
       "incidentEnd": null,
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
-      "officialUrl": "https://www.flgov.com/eog/news/emergency",
+      "officialUrl": "https://www.flgov.com/eog/sites/default/files/executive-orders/2026/EO%2026-33.pdf",
       "status": "ongoing",
-      "sepWindowStart": "2026-02-09",
-      "sepWindowEnd": "2027-04-30",
-      "daysRemaining": 399,
+      "sepWindowStart": "2026-01-31",
+      "sepWindowEnd": "2027-03-31",
+      "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -527,7 +734,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -550,7 +757,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -572,7 +779,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-001-HI",
+      "source": "STATE",
+      "state": "HI",
+      "title": "Governor Green Emergency \u2014 February 2026 Severe Weather",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2026-02-06",
+      "incidentStart": "2026-02-06",
+      "incidentEnd": "2026-02-11",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.hawaii.gov/newsroom/news-release-hiema-advises-public-to-prepare-for-severe-weather/",
+      "status": "active",
+      "sepWindowStart": "2026-02-06",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -595,7 +825,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -617,7 +847,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -639,7 +869,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -661,7 +891,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -683,7 +913,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -705,7 +935,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -728,7 +958,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -750,7 +980,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -773,7 +1003,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2026-002-KS",
+      "source": "STATE",
+      "state": "KS",
+      "title": "Governor Kelly Emergency \u2014 Wildland Fires",
+      "incidentType": "Wildfire",
+      "declarationDate": "2026-02-15",
+      "incidentStart": "2026-02-15",
+      "incidentEnd": "2026-03-02",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.kansastag.gov/m/newsflash/Home/Detail/821",
+      "status": "active",
+      "sepWindowStart": "2026-02-15",
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 65,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -795,7 +1048,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -817,7 +1070,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -840,7 +1093,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2025-001-LA",
@@ -862,7 +1115,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -885,7 +1138,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -927,7 +1180,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -949,7 +1202,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -971,7 +1224,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -993,7 +1246,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1016,7 +1269,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -1038,7 +1291,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -1060,7 +1313,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1083,7 +1336,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -1112,7 +1365,30 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-002-ME",
+      "source": "STATE",
+      "state": "ME",
+      "title": "Governor Mills Emergency \u2014 January 2026 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-25",
+      "incidentStart": "2026-01-25",
+      "incidentEnd": "2026-02-24",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.maine.gov/governor/mills/news/major-winter-storm-ahead-governor-mills-declares-state-civil-emergency",
+      "status": "active",
+      "sepWindowStart": "2026-01-25",
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1135,7 +1411,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-002-MI",
@@ -1159,7 +1435,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1190,7 +1466,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1213,7 +1489,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -1235,7 +1511,53 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2025-001-MO",
+      "source": "STATE",
+      "state": "MO",
+      "title": "Governor Kehoe Emergency \u2014 April 2025 Severe Storms",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-04-29",
+      "incidentStart": "2025-04-29",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-requests-federal-disaster-declaration-following-severe-storms",
+      "status": "ongoing",
+      "sepWindowStart": "2025-04-29",
+      "sepWindowEnd": "2026-06-30",
+      "daysRemaining": 95,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-MO",
+      "source": "STATE",
+      "state": "MO",
+      "title": "Governor Kehoe Emergency \u2014 May 2025 Memorial Weekend Storms",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-05-23",
+      "incidentStart": "2025-05-23",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-announces-fema-partnership-following-memorial-day-weekend-tornadoes",
+      "status": "ongoing",
+      "sepWindowStart": "2025-05-23",
+      "sepWindowEnd": "2026-07-31",
+      "daysRemaining": 126,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -1257,7 +1579,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -1279,7 +1601,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1302,7 +1624,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-002-MO",
@@ -1324,7 +1646,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1347,7 +1669,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1370,7 +1692,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -1396,7 +1718,30 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2025-001-MT",
+      "source": "STATE",
+      "state": "MT",
+      "title": "Governor Gianforte Emergency \u2014 December 2025 Flooding",
+      "incidentType": "Flood",
+      "declarationDate": "2025-12-08",
+      "incidentStart": "2025-12-08",
+      "incidentEnd": "2026-01-25",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://news.mt.gov/Governors-Office/Governor-Gianforte-Receives-Incident-Commander-Briefing-Issues-Executive-Order",
+      "status": "expiring_soon",
+      "sepWindowStart": "2025-12-08",
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 4,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -1418,7 +1763,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-NC",
@@ -1440,7 +1785,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-NC",
@@ -1462,7 +1807,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1485,7 +1830,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -1507,7 +1852,124 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2025-001-NE",
+      "source": "STATE",
+      "state": "NE",
+      "title": "Governor Pillen Emergency \u2014 March 2025 Winter Storm",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2025-03-21",
+      "incidentStart": "2025-03-18",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Boone",
+        "Burt",
+        "Butler",
+        "Cass",
+        "Clay",
+        "Colfax",
+        "Cuming",
+        "Dodge",
+        "Douglas",
+        "Fillmore",
+        "Hamilton",
+        "Jefferson",
+        "Johnson",
+        "Lancaster",
+        "Nuckolls",
+        "Otoe",
+        "Platte",
+        "Polk",
+        "Saline",
+        "Sarpy",
+        "Saunders",
+        "Seward",
+        "Thayer",
+        "Thurston",
+        "Washington",
+        "York"
+      ],
+      "statewide": false,
+      "officialUrl": "https://governor.nebraska.gov/gov-pillen-declares-emergency-counties-impacted-winter-storm",
+      "status": "ongoing",
+      "sepWindowStart": "2025-03-18",
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 65,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-NE",
+      "source": "STATE",
+      "state": "NE",
+      "title": "Governor Pillen Emergency \u2014 Plum Creek Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-04-21",
+      "incidentStart": "2025-04-21",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.nebraska.gov/governor-pillen-declares-emergency-mobilizes-nebraska-national-guard-plum-creek-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-04-21",
+      "sepWindowEnd": "2026-06-30",
+      "daysRemaining": 95,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-003-NE",
+      "source": "STATE",
+      "state": "NE",
+      "title": "Governor Pillen Emergency \u2014 Dawson County Severe Storms",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-06-29",
+      "incidentStart": "2025-06-29",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Dawson"
+      ],
+      "statewide": false,
+      "officialUrl": "https://governor.nebraska.gov/gov-pillen-issues-disaster-declaration-dawson-county-severe-storms",
+      "status": "ongoing",
+      "sepWindowStart": "2025-06-29",
+      "sepWindowEnd": "2026-08-31",
+      "daysRemaining": 157,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-004-NE",
+      "source": "STATE",
+      "state": "NE",
+      "title": "Governor Pillen Emergency \u2014 August 2025 Storms",
+      "incidentType": "Severe Storm",
+      "declarationDate": "2025-08-08",
+      "incidentStart": "2025-08-08",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.nebraska.gov/gov-pillen-issues-disaster-declaration-23-counties-following-aug-8-storms",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-08",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -1529,7 +1991,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -1551,7 +2013,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-002-NE",
@@ -1573,7 +2035,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1596,7 +2058,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -1618,7 +2080,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -1640,7 +2102,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -1662,7 +2124,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -1684,7 +2146,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1707,7 +2169,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2025-001-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 July 2025 Flooding",
+      "incidentType": "Flood",
+      "declarationDate": "2025-07-25",
+      "incidentStart": "2025-07-22",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.governor.state.nm.us/2025/07/25/governor-signs-emergency-order-for-devastating-flooding/",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-22",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2026-001-NM",
@@ -1729,7 +2214,30 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2026-002-NM",
+      "source": "STATE",
+      "state": "NM",
+      "title": "Governor Lujan Grisham Emergency \u2014 January 2026 Severe Weather",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2026-01-23",
+      "incidentStart": "2026-01-23",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://www.dot.nm.gov/blog/2026/01/22/winter-storm-watch-and-travel-advisory-issued/",
+      "status": "ongoing",
+      "sepWindowStart": "2026-01-23",
+      "sepWindowEnd": "2027-03-31",
+      "daysRemaining": 369,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1752,7 +2260,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-NY",
@@ -1774,7 +2282,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -1796,7 +2304,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1819,7 +2327,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -1841,7 +2349,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -1863,7 +2371,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -1885,7 +2393,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1908,7 +2416,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2026-003-OK",
+      "source": "STATE",
+      "state": "OK",
+      "title": "Governor Stitt Emergency \u2014 February 2026 Wildfires",
+      "incidentType": "Wildfire",
+      "declarationDate": "2026-02-17",
+      "incidentStart": "2026-02-17",
+      "incidentEnd": "2026-03-19",
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://oklahoma.gov/governor/newsroom/newsroom/2026/governor-declares-state-of-emergency.html",
+      "status": "active",
+      "sepWindowStart": "2026-02-17",
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 65,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2026-002-OK",
@@ -1937,7 +2468,145 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Cold Spring Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-07-02",
+      "incidentStart": "2025-07-02",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-cold-spring-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-02",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-003-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Elk Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-07-09",
+      "incidentStart": "2025-07-09",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-elk-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-09",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-004-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Highland Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-07-12",
+      "incidentStart": "2025-07-12",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-highland-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-12",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-005-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Cram Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-07-14",
+      "incidentStart": "2025-07-14",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-cram-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-07-14",
+      "sepWindowEnd": "2026-09-30",
+      "daysRemaining": 187,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-006-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Flat Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-08-22",
+      "incidentStart": "2025-08-22",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-flat-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-22",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-007-OR",
+      "source": "STATE",
+      "state": "OR",
+      "title": "Governor Kotek Emergency \u2014 Moon Complex Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-09-27",
+      "incidentStart": "2025-09-27",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-moon-complex-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-09-27",
+      "sepWindowEnd": "2026-11-30",
+      "daysRemaining": 248,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1960,7 +2629,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -1982,7 +2651,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-PA",
@@ -2004,7 +2673,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2031,7 +2700,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-RI",
@@ -2053,7 +2722,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -2075,7 +2744,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-RI",
@@ -2097,7 +2766,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2120,7 +2789,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2143,7 +2812,30 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2025-001-SD",
+      "source": "STATE",
+      "state": "SD",
+      "title": "Governor Noem Emergency \u2014 Severe Winter Wind Storm",
+      "incidentType": "Severe Wind",
+      "declarationDate": "2025-12-17",
+      "incidentStart": "2025-12-17",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://news.sd.gov/news?id=news_kb_article_view&sys_id=96a3de25dbd2b2d091ce9f9583d5bfbd",
+      "status": "ongoing",
+      "sepWindowStart": "2025-12-17",
+      "sepWindowEnd": "2027-02-28",
+      "daysRemaining": 338,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -2165,7 +2857,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -2187,7 +2879,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -2209,7 +2901,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2232,7 +2924,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-TX",
@@ -2254,7 +2946,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2277,7 +2969,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -2300,7 +2992,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-VA",
@@ -2322,7 +3014,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -2344,7 +3036,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2367,7 +3059,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -2389,7 +3081,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -2411,7 +3103,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -2433,7 +3125,30 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
+    },
+    {
+      "id": "STATE-2025-001-WA",
+      "source": "STATE",
+      "state": "WA",
+      "title": "Governor Ferguson Emergency \u2014 Winter Weather and River Flooding",
+      "incidentType": "Severe Winter Storm",
+      "declarationDate": "2025-12-02",
+      "incidentStart": "2025-12-02",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.wa.gov/news/2025/governor-ferguson-declares-statewide-emergency",
+      "status": "ongoing",
+      "sepWindowStart": "2025-12-02",
+      "sepWindowEnd": "2027-02-28",
+      "daysRemaining": 338,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -2470,7 +3185,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z",
+      "lastUpdated": "2026-03-27T16:49:45Z",
       "lastVerified": "2026-03-27",
       "pheExpiryDate": "2026-03-23"
     },
@@ -2494,7 +3209,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -2516,7 +3231,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -2538,7 +3253,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -2560,7 +3275,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -2582,7 +3297,53 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:48Z",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-001-WY",
+      "source": "STATE",
+      "state": "WY",
+      "title": "Governor Gordon Emergency \u2014 Red Canyon Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-08-13",
+      "incidentStart": "2025-08-13",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.wyo.gov/news-releases/governor-gordon-issues-emergency-declaration-for-red-canyon-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-13",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
+      "lastVerified": "2026-03-27"
+    },
+    {
+      "id": "STATE-2025-002-WY",
+      "source": "STATE",
+      "state": "WY",
+      "title": "Governor Gordon Emergency \u2014 Dollar Fire",
+      "incidentType": "Wildfire",
+      "declarationDate": "2025-08-21",
+      "incidentStart": "2025-08-21",
+      "incidentEnd": null,
+      "renewalDates": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "officialUrl": "https://governor.wyo.gov/news-releases/governor-gordon-provides-wildfire-updates-dollar-fire",
+      "status": "ongoing",
+      "sepWindowStart": "2025-08-21",
+      "sepWindowEnd": "2026-10-31",
+      "daysRemaining": 218,
+      "confidenceLevel": "curated",
+      "lastUpdated": "2026-03-27T16:49:46Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2605,7 +3366,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-27T15:08:47Z"
+      "lastUpdated": "2026-03-27T16:49:45Z"
     }
   ]
 }
