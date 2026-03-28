@@ -3256,7 +3256,8 @@ class StateCollector:
         # =============================================================
 
         # --- TX Border Crisis ---
-        # Disaster Proclamation May 31 2021, renewed monthly, 60+ counties
+        # Disaster Proclamation May 31 2021, renewed monthly, 66 counties
+        # Latest renewal: Mar 18, 2026
         rec = build_record(
             id_str="STATE-2021-001-TX",
             source="STATE", state="TX",
@@ -3268,10 +3269,11 @@ class StateCollector:
             renewal_dates_list=[
                 date(2025, 9, 1), date(2025, 10, 1), date(2025, 11, 1),
                 date(2025, 12, 1), date(2026, 1, 1), date(2026, 2, 1),
+                date(2026, 3, 18),
             ],
             counties=["Statewide"],
             statewide=True,
-            official_url="https://gov.texas.gov/news/post/governor-abbott-renews-border-security-disaster-proclamation-in-november-2024-",
+            official_url="https://gov.texas.gov/news/post/governor-abbott-renews-border-security-disaster-proclamation-in-march-2026",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -4804,9 +4806,12 @@ def apply_incident_end_corrections(records: List[Dict]) -> None:
         "STATE-2026-001-MD": ("2026-02-22", "T4", "MD GPS 14-107: 30-day auto-expire, no renewal found"),
         "STATE-2026-001-FL": ("2026-04-10", "T4", "FL 60-day EO auto-expire from Feb 9; no extension EO found"),
 
+        # === T3: From verifier Layer 1 (FEMA API cross-reference) ===
+        "STATE-2026-002-DC": ("2026-03-14", "T3", "FEMA EM-3643-DC incident ended Mar 14"),
+        "STATE-2025-004-NE": ("2025-08-10", "T3", "FEMA DR-4896-NE incident ended Aug 10"),
+
         # === STILL NO EVIDENCE — kept as ongoing ===
         # STATE-2025-003-NE: NE Dawson storms — no auto-expire, no termination found
-        # STATE-2025-004-NE: NE Aug storms — no auto-expire, no termination found
         # STATE-2025-016-CA: Tropical Storm Mario — no termination, no CA auto-expire
         # STATE-2025-012-CA: Tsunami — no termination, no CA auto-expire
         # STATE-2026-001-MA: MA winter storm — no auto-expire, no termination found
