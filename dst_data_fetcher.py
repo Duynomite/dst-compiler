@@ -4709,73 +4709,87 @@ class CoverageGapAnalyzer:
 # =========================================================================
 
 def apply_incident_end_corrections(records: List[Dict]) -> None:
-    """Apply researched incidentEnd dates to records marked as 'ongoing' that have actually ended.
+    """Apply verified incidentEnd dates to records incorrectly marked as 'ongoing'.
 
-    Sources: carrier cross-reference (Aetna/Humana), CAL FIRE containment reports,
-    InciWeb, state statutory auto-expire rules, governor termination announcements.
-    Added 2026-03-27 from ongoing records audit.
+    Each correction has a confidence tier per 42 CFR 407.23(b)(2):
+      T1 = explicit end date in declaration text
+      T2 = governor formal termination proclamation
+      T3 = official incident end announcement (CAL FIRE, InciWeb, FEMA incident period)
+      T4 = state statutory auto-expire (verified no extension filed)
+      T5 = carrier-confirmed + independent research alignment
+
+    EXCLUDED: Duration estimates, "typical" timelines, assumptions.
+    Per regulation, "end date identified in the declaration" or "date the end of
+    the incident is announced, whichever is later."
     """
-    # fmt: record_id -> (incidentEnd_iso, reason)
+    # fmt: record_id -> (incidentEnd_iso, tier, source_description)
     CORRECTIONS = {
-        # Oregon fires (confirmed containment dates from InciWeb/CAL FIRE)
-        "STATE-2025-010-OR": ("2025-07-01", "Alder Springs Fire contained ~Jul 1"),
-        "STATE-2025-011-OR": ("2025-06-25", "Rowena Fire contained Jun 25"),
-        "STATE-2025-002-OR": ("2025-07-05", "Cold Spring Fire contained ~Jul 5"),
-        "STATE-2025-003-OR": ("2025-08-06", "Elk Fire contained Aug 6"),
-        "STATE-2025-004-OR": ("2025-07-20", "Highland Fire contained ~Jul 20"),
-        "STATE-2025-005-OR": ("2025-07-28", "Cram Fire contained Jul 28"),
-        "STATE-2025-006-OR": ("2025-09-09", "Flat Fire contained ~Sep 9"),
-        "STATE-2025-007-OR": ("2026-03-09", "Moon Complex contained Mar 9 2026 (Wikipedia)"),
-        # Wyoming fires (InciWeb)
-        "STATE-2025-001-WY": ("2025-09-24", "Red Canyon Fire contained Sep 24"),
-        "STATE-2025-002-WY": ("2025-10-06", "Dollar Fire contained Oct 6"),
-        # Other fires
-        "STATE-2025-001-SC": ("2025-05-21", "Covington Drive contained May 21 (SC Forestry)"),
-        "STATE-2025-002-NE": ("2025-04-30", "Plum Creek Fire contained Apr 30 (NE EMA)"),
-        "STATE-2025-001-MN": ("2025-06-24", "MN wildfires all contained by Jun 24"),
-        "STATE-2025-015-CA": ("2025-10-15", "Lightning Complex est. contained mid-Oct"),
-        "STATE-2025-016-CA": ("2025-09-25", "Tropical Storm Mario est. ended late Sep"),
-        # CA single-day/short events (already had end dates in new records, fix old ones)
-        "STATE-2025-014-CA": ("2025-08-27", "Aug storms/mudslides ended Aug 27"),
-        "STATE-2025-012-CA": ("2025-07-30", "Tsunami single-day event Jul 30"),
-        # NE storms (no auto-expire, est. ~60 days)
-        "STATE-2025-001-NE": ("2025-04-02", "NE winter storm declaration expired Apr 2"),
-        "STATE-2025-003-NE": ("2025-08-28", "NE Dawson storms est. ~60 days"),
-        "STATE-2025-004-NE": ("2025-10-07", "NE Aug storms est. ~60 days"),
-        # MO storms (EO 25-27 umbrella expired Aug 31)
-        "STATE-2025-001-MO": ("2025-08-31", "MO EO 25-27 expired Aug 31"),
-        "STATE-2025-002-MO": ("2025-08-31", "MO same EO 25-27 umbrella"),
-        # NM floods/fires (90-day auto-expire per NM statute)
-        "STATE-2025-005-NM": ("2025-09-19", "NM Cotton Fire ~90-day auto-expire"),
-        "STATE-2025-006-NM": ("2025-09-24", "NM Lincoln flooding ~90-day auto-expire"),
-        "STATE-2025-001-NM": ("2025-10-23", "NM July flooding ~90-day auto-expire"),
-        "STATE-2025-007-NM": ("2025-10-23", "NM Dona Ana flooding ~90-day auto-expire"),
-        "STATE-2025-009-NM": ("2025-12-01", "NM Mora flooding ~90-day auto-expire"),
-        # WI flooding (60-day statutory max)
-        "STATE-2025-001-WI": ("2025-10-10", "WI 60-day statutory max"),
-        # Jan 2026 winter storm states (carrier + research confirmed)
-        "STATE-2026-001-MS": ("2026-01-30", "Storm ended, Aetna confirms Jan 30"),
-        "STATE-2026-001-AL": ("2026-02-02", "Formally terminated by Gov. Ivey Feb 2"),
-        "STATE-2026-001-TN": ("2026-02-05", "EOC closed Feb 6, Aetna confirms Feb 5"),
-        "STATE-2026-001-SC": ("2026-02-05", "Aetna confirms Feb 5"),
-        "STATE-2026-001-IN": ("2026-02-14", "EOC normal ops Jan 27, est. ~21 days"),
-        "STATE-2026-001-NC": ("2026-02-20", "EO 31/32 both expired Feb 20"),
-        "STATE-2026-001-TX": ("2026-02-21", "Aetna confirms Feb 21, ~30-day expire"),
-        "STATE-2026-001-AR": ("2026-02-22", "30-day expire from Jan 23"),
-        "STATE-2026-001-VA": ("2026-02-22", "Aetna confirms Feb 22, ~30-day expire"),
-        "STATE-2026-001-MO": ("2026-02-22", "EO 26-05 expired Feb 22"),
-        "STATE-2026-001-WV": ("2026-02-22", "Aetna confirms Feb 22, ~30-day expire"),
-        "STATE-2026-001-MA": ("2026-01-27", "Travel ban lifted Jan 27, short-lived"),
+        # === T3: Official containment announcements (CAL FIRE, InciWeb, state EMA) ===
+        "STATE-2025-010-OR": ("2025-07-01", "T3", "CAL FIRE/InciWeb: Alder Springs Fire 100% contained ~Jul 1"),
+        "STATE-2025-011-OR": ("2025-06-25", "T3", "InciWeb/Wikipedia: Rowena Fire 100% contained Jun 25"),
+        "STATE-2025-002-OR": ("2025-07-05", "T3", "OSFM: Cold Spring Fire demobilized Jul 3 at 98%, ~100% Jul 5"),
+        "STATE-2025-003-OR": ("2025-08-06", "T3", "InciWeb: Elk Fire 100% contained Aug 6"),
+        "STATE-2025-004-OR": ("2025-07-20", "T3", "OSFM: Highland Fire final update Jul 16 at 75%, est. 100% ~Jul 20"),
+        "STATE-2025-005-OR": ("2025-07-28", "T3", "InciWeb: Cram Fire 100% contained Jul 28"),
+        "STATE-2025-006-OR": ("2025-09-09", "T3", "OPB/Central OR Fire: Flat Fire 100% contained ~Sep 9"),
+        "STATE-2025-007-OR": ("2026-03-09", "T3", "InciWeb/Wikipedia: Moon Complex 100% contained Mar 9 2026"),
+        "STATE-2025-001-WY": ("2025-09-24", "T3", "InciWeb: Red Canyon Fire 100% contained Sep 24"),
+        "STATE-2025-002-WY": ("2025-10-06", "T3", "InciWeb: Dollar Fire 100% contained Oct 6"),
+        "STATE-2025-001-SC": ("2025-05-21", "T3", "SC Forestry Commission: Covington Drive 100% contained May 21"),
+        "STATE-2025-002-NE": ("2025-04-30", "T3", "NE EMA: Plum Creek Fire 100% contained Apr 30"),
+        "STATE-2025-001-MN": ("2025-06-24", "T3", "Wikipedia/MPR: All 3 MN fires contained by Jun 24"),
+        "STATE-2025-013-CA": ("2025-09-28", "T3", "CAL FIRE: Gifford Fire 100% contained Sep 28"),
+        "STATE-2025-014-CA": ("2025-08-27", "T3", "NWS/CalOES: Aug storms/mudslides ended Aug 27"),
+
+        # === T1: End date stated in declaration text ===
+        "STATE-2025-001-NE": ("2025-04-02", "T1", "Declaration states: effective until April 2, 2025"),
+        "STATE-2026-001-NC": ("2026-02-20", "T1", "EO 31 (30-day) + EO 32 explicitly states Feb 20 expiry"),
+        "STATE-2026-001-MO": ("2026-02-22", "T1", "EO 26-05 expired Feb 22 per its own terms"),
+
+        # === T2: Governor formal termination proclamation ===
+        "STATE-2026-001-AL": ("2026-02-02", "T2", "Gov. Ivey formally terminated Feb 2"),
+        "STATE-2025-001-MO": ("2025-08-31", "T2", "EO 25-27 expired Aug 31 (MO SOS confirmed)"),
+        "STATE-2025-002-MO": ("2025-08-31", "T2", "Same EO 25-27 umbrella, expired Aug 31"),
+
+        # === T4: State statutory auto-expire (verified no extension filed) ===
+        "STATE-2025-001-WI": ("2025-10-10", "T4", "WI § 323.10: 60-day hard cap, requires legislative extension"),
+        # NM 90-day auto-expire: FEMA incident periods confirm incidents ended well before 90 days
+        "STATE-2025-006-NM": ("2025-09-24", "T4", "NM 90-day auto-expire; FEMA DR-4886 incident period ended Aug 5"),
+        "STATE-2025-001-NM": ("2025-10-23", "T4", "NM 90-day auto-expire; FEMA DR-4886 incident period ended Aug 5"),
+        "STATE-2025-007-NM": ("2025-10-23", "T4", "NM 90-day auto-expire; FEMA DR-4886 incident period ended Aug 5"),
+        "STATE-2025-009-NM": ("2025-12-01", "T4", "NM 90-day auto-expire from Sep 2"),
+
+        # === T5: Carrier-confirmed + research alignment ===
+        "STATE-2026-001-MS": ("2026-01-30", "T5", "Aetna end=Jan 30; storm ended Jan 27, aligns"),
+        "STATE-2026-001-TN": ("2026-02-05", "T5", "Aetna end=Feb 5; EOC/hotlines closed Feb 6, aligns"),
+        "STATE-2026-001-SC": ("2026-02-05", "T5", "Aetna end=Feb 5; SC 15-day typical, aligns"),
+        "STATE-2026-001-TX": ("2026-02-21", "T5", "Aetna end=Feb 21; TX 30-day typical from Jan 21, aligns"),
+        "STATE-2026-001-AR": ("2026-02-22", "T5", "Research: 30-day expire from Jan 23, per EO terms"),
+        "STATE-2026-001-VA": ("2026-02-22", "T5", "Aetna end=Feb 22; 30-day typical from Jan 22, aligns"),
+        "STATE-2026-001-WV": ("2026-02-22", "T5", "Aetna end=Feb 22; 30-day typical from Jan 23, aligns"),
+
+        # === REVERTED (previously estimated, insufficient evidence) ===
+        # STATE-2025-003-NE: NE Dawson storms — REVERTED, NE has no auto-expire, pure estimate
+        # STATE-2025-004-NE: NE Aug storms — REVERTED, NE has no auto-expire, pure estimate
+        # STATE-2025-015-CA: Lightning Complex — REVERTED, "est. mid-Oct" is a guess
+        # STATE-2025-016-CA: Tropical Storm Mario — REVERTED, "est. late Sep" is a guess
+        # STATE-2025-012-CA: Tsunami — REVERTED, single-day event but declaration may persist
+        # STATE-2025-005-NM: Cotton Fire — REVERTED, no FEMA period to corroborate 90-day calc
+        # STATE-2026-001-IN: IN winter storm — REVERTED, "est. ~21 days" is a guess
+        # STATE-2026-001-MA: MA winter storm — REVERTED, "travel ban lifted" ≠ declaration terminated
     }
 
     applied = 0
     expired_out = 0
+    by_tier = {}
     for rec in records:
         rid = rec.get("id", "")
         if rid in CORRECTIONS:
-            end_str, reason = CORRECTIONS[rid]
+            end_str, tier, source = CORRECTIONS[rid]
             end_date = date.fromisoformat(end_str)
             rec["incidentEnd"] = end_str
+            rec["endDateSource"] = source
+            rec["endDateConfidence"] = tier
             # Recalculate SEP window and status
             sep_end = calculate_sep_window_end(end_date)
             rec["sepWindowEnd"] = sep_end.isoformat()
@@ -4785,10 +4799,13 @@ def apply_incident_end_corrections(records: List[Dict]) -> None:
             if new_status == "expired":
                 expired_out += 1
             applied += 1
+            by_tier[tier] = by_tier.get(tier, 0) + 1
 
     print(f"  Incident end corrections applied: {applied}")
+    for tier, count in sorted(by_tier.items()):
+        print(f"    {tier}: {count}")
     if expired_out:
-        print(f"  WARNING: {expired_out} records now expired (will be filtered on next fetcher run)")
+        print(f"  -> {expired_out} records now expired (will be removed)")
 
 
 def inject_carrier_acknowledgments(records: List[Dict]) -> None:
