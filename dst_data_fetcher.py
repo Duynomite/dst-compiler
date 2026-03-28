@@ -59,6 +59,30 @@ VALID_STATES = {
     "AS",
 }
 
+# State emergency declaration duration limits (days).
+# None = no auto-expire (governor must formally terminate).
+# Used to flag stale ongoing records and verify T4 corrections.
+# Sources: state statutes, verified 2026-03-27.
+STATE_EMERGENCY_DURATION = {
+    "KS": 15,   # K.S.A. 48-924 (requires legislative ratification to extend)
+    "NV": 15,   # NRS 414.070
+    "ME": 14,   # 37-B MRSA §742 (30 for civil emergencies)
+    "IN": 30,   # IC 10-14-3-12
+    "KY": 30,   # KRS 39A.090
+    "MD": 30,   # GPS 14-107
+    "NY": 30,   # per EO (governor issues sequential EOs to extend)
+    "LA": 30,   # per renewal (governor re-issues monthly)
+    "TX": 30,   # per renewal
+    "FL": 60,   # per EO signature
+    "WI": 60,   # § 323.10 (requires joint legislative resolution)
+    "PA": 90,   # PA Constitution Art. IV §20
+    "AZ": 120,  # 30-day increments up to 120 max
+    # States with NO auto-expire (governor must formally terminate):
+    # AL, AK, AR, CA, CO, CT, DC, DE, GA, HI, ID, IL, IA,
+    # MA, MI, MN, MS, MO, MT, NE, NH, NJ, NM, NC, ND, OH,
+    # OK, OR, RI, SC, SD, TN, UT, VT, VA, WA, WV, WY
+}
+
 STATE_NAME_TO_CODE = {
     "Alabama": "AL", "Alaska": "AK", "Arizona": "AZ", "Arkansas": "AR",
     "California": "CA", "Colorado": "CO", "Connecticut": "CT", "Delaware": "DE",
@@ -4815,6 +4839,30 @@ def apply_incident_end_corrections(records: List[Dict]) -> None:
         print(f"    {tier}: {count}")
     if expired_out:
         print(f"  -> {expired_out} records now expired (will be removed)")
+
+    # --- Staleness scan: flag ongoing STATE records past their state's auto-expire ---
+    stale = []
+    for rec in records:
+        if rec.get("status") != "ongoing" or rec.get("source") != "STATE":
+            continue
+        if rec.get("id") in CORRECTIONS:
+            continue  # already corrected
+        state = rec.get("state", "")
+        duration_limit = STATE_EMERGENCY_DURATION.get(state)
+        if not duration_limit:
+            continue  # state has no auto-expire
+        decl_date = date.fromisoformat(rec["declarationDate"])
+        renewals = rec.get("renewalDates", [])
+        latest = date.fromisoformat(renewals[-1]) if renewals else decl_date
+        days_since = (date.today() - latest).days
+        if days_since > duration_limit:
+            stale.append((rec["id"], state, duration_limit, days_since, rec["title"][:50]))
+
+    if stale:
+        print(f"\n  STALENESS WARNINGS ({len(stale)} records past state auto-expire):")
+        for rid, st, limit, age, title in stale:
+            print(f"    {rid}: {st} limit={limit}d, last activity {age}d ago — {title}")
+        print(f"  ACTION: Research governor EO archives for extensions or terminations.")
 
 
 def inject_carrier_acknowledgments(records: List[Dict]) -> None:
