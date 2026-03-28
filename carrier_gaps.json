@@ -1,0 +1,1145 @@
+{
+  "total_gaps": 44,
+  "by_type": {
+    "Wildfire": 23,
+    "Other": 5,
+    "Infrastructure Emergency": 4,
+    "Flood/Severe Storm": 4,
+    "Severe Winter Storm": 2,
+    "Hurricane/Tropical Storm": 1,
+    "Tornado": 1,
+    "International Crisis": 1,
+    "Plane Crash": 1,
+    "Severe Wind": 1,
+    "Drought": 1
+  },
+  "by_state": {
+    "AR": 1,
+    "AZ": 4,
+    "CO": 4,
+    "CT": 1,
+    "DC": 2,
+    "FL": 1,
+    "GA": 1,
+    "HI": 4,
+    "ID": 1,
+    "KS": 3,
+    "KY": 1,
+    "LA": 1,
+    "MA": 2,
+    "MN": 1,
+    "MO": 1,
+    "MT": 1,
+    "NC": 2,
+    "NM": 1,
+    "NV": 3,
+    "OR": 2,
+    "SC": 1,
+    "TX": 1,
+    "UT": 3,
+    "WA": 2
+  },
+  "gaps": [
+    {
+      "carrier": "wellcare",
+      "state": "OR",
+      "title": "Drought",
+      "incident_type": "Drought",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-07-09",
+      "sep_end": "2026-02-28",
+      "counties": [
+        "Lincoln County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 5,
+      "carriers": [
+        "wellcare",
+        "wellcare",
+        "wellcare",
+        "wellcare",
+        "wellcare"
+      ],
+      "priority_score": 50
+    },
+    {
+      "carrier": "wellcare",
+      "state": "AR",
+      "title": "Severe Storms, Tornadoes, and Flooding",
+      "incident_type": "Tornado",
+      "declaring_authority": "FEMA",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-04-02",
+      "sep_end": "2026-06-30",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency/FEMA",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "AZ",
+      "title": "Cody Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-05-22",
+      "sep_end": "2026-05-22",
+      "counties": [
+        "Pinal County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "AZ",
+      "title": "Greer Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-05-14",
+      "sep_end": "2026-07-31",
+      "counties": [
+        "Apache"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "CO",
+      "title": "Elk Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-02",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Rio Blanco county"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "CO",
+      "title": "Flooding in Western Colorado",
+      "incident_type": "Flood/Severe Storm",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-10-12",
+      "sep_end": "2026-03-31",
+      "counties": [
+        "Archuleta",
+        "La Plata",
+        "Mineral counties"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Amended",
+      "wellcare_type": "Disaster",
+      "notes": "11/10/2025: Date changed from 10/12/2025 - 1/31/2026 to 10/12/2025 - 3/31/2026. Added Archuleta and Mineral counties",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "CO",
+      "title": "Lee Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-02",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Rio Blanco county"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "CO",
+      "title": "Oak Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-10",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Archuleta County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "DC",
+      "title": "Declaration of Public Emergency",
+      "incident_type": "Other",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2026-01-23",
+      "sep_end": "2026-04-30",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "DC",
+      "title": "Sewer Line Collapse",
+      "incident_type": "Infrastructure Emergency",
+      "declaring_authority": "FEMA",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2026-01-19",
+      "sep_end": "2027-04-30",
+      "counties": [
+        "District-wide"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "aetna",
+      "state": "GA",
+      "title": "GA State Of Emergency Spalding County Water Supply",
+      "incident_type": "Other",
+      "declaring_authority": "Governor",
+      "incident_start": "2026-01-30",
+      "incident_end": "2026-02-06",
+      "sep_start": "2026-01-30",
+      "sep_end": "2026-04-30",
+      "counties": [
+        "Spalding"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "HI",
+      "title": "Heavy Rains",
+      "incident_type": "Flood/Severe Storm",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2026-02-20",
+      "sep_end": "2026-04-30",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "HI",
+      "title": "Holomua Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-09-23",
+      "sep_end": "2026-11-30",
+      "counties": [
+        "Maui County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "HI",
+      "title": "Kunia Road Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-19",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Honolulu County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "ID",
+      "title": "Sunset Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-13",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Bonner County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "KS",
+      "title": "Fire Weather Conditions",
+      "incident_type": "Wildfire",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2026-02-15",
+      "sep_end": "2026-05-31",
+      "counties": [
+        "Allen",
+        "Barber",
+        "Barton",
+        "Bourbon",
+        "Chautauqua"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "2/24/26: Updated counties based on proclamation signed on 2/24/2026.  Verbal Proclamation was on 2/15/26.",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "KS",
+      "title": "Red Flag Fire Conditions",
+      "incident_type": "Wildfire",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-12-18",
+      "sep_end": "2026-04-30",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "KY",
+      "title": "Plane Crash",
+      "incident_type": "Plane Crash",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-11-04",
+      "sep_end": "2026-03-31",
+      "counties": [
+        "Jefferson County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "MN",
+      "title": "Severe Storms and Straight-line Winds",
+      "incident_type": "Severe Wind",
+      "declaring_authority": "FEMA",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-06-21",
+      "sep_end": "2026-12-31",
+      "counties": [
+        "Leech Lake Band of Ojibwe Tribe"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "MT",
+      "title": "Windy Rock Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-14",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Powell County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "NC",
+      "title": "Sam Davis Road Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-04-18",
+      "sep_end": "2026-06-30",
+      "counties": [
+        "Swain County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "NC",
+      "title": "Sunset Drive Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-05-02",
+      "sep_end": "2026-07-31",
+      "counties": [
+        "Brunswick County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "NV",
+      "title": "Conner Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-06-20",
+      "sep_end": "2026-08-31",
+      "counties": [
+        "Douglas County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "NV",
+      "title": "Peavine Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-08-02",
+      "sep_end": "2026-10-31",
+      "counties": [
+        "Washoe County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "SC",
+      "title": "Covington Drive Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-03-01",
+      "sep_end": "2026-05-31",
+      "counties": [
+        "Horry County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "UT",
+      "title": "Deer Creek Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-07-10",
+      "sep_end": "2026-09-30",
+      "counties": [
+        "San Juan County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "UT",
+      "title": "Forsyth Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-06-19",
+      "sep_end": "2026-08-31",
+      "counties": [
+        "Washington County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "UT",
+      "title": "Monroe Canyon Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-07-07",
+      "sep_end": "2026-09-30",
+      "counties": [
+        "Sevier",
+        "Piute Counties"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "WA",
+      "title": "Burdoin Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-07-20",
+      "sep_end": "2026-09-30",
+      "counties": [
+        "Klickitat County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "wellcare",
+      "state": "WA",
+      "title": "Lower Sugarloaf Complex Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA/FMAG",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-09-01",
+      "sep_end": "2026-11-30",
+      "counties": [
+        "Chelan County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster/FEMA/FMAG",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 15
+    },
+    {
+      "carrier": "aetna",
+      "state": "AZ",
+      "title": "Arizonia Cody Fire Pinal County (FM-5585-AZ)",
+      "incident_type": "Wildfire",
+      "declaring_authority": "FEMA",
+      "incident_start": "2025-05-21",
+      "incident_end": null,
+      "sep_start": "2025-05-21",
+      "sep_end": null,
+      "counties": [
+        "Pinal"
+      ],
+      "statewide": false,
+      "official_urls": [
+        "https://www.fema.gov/disaster/5585"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "wellcare",
+      "state": "AZ",
+      "title": "Gila County Flooding/Post Tropical Storms Supercell",
+      "incident_type": "Hurricane/Tropical Storm",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-09-25",
+      "sep_end": "2026-02-28",
+      "counties": [
+        "Gila",
+        "Maricopa Counties"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Amended",
+      "wellcare_type": "Emergency",
+      "notes": "10/17/25: Amendment: Adds Contract H0354 and Maricopa county. Date changed from 9/25/2025 - 1/31/2026 to 9/25/2025 - 2/28/2026",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "CT",
+      "title": "CT State Of Emergency 2.22.26",
+      "incident_type": "Other",
+      "declaring_authority": "Governor",
+      "incident_start": "2026-02-22",
+      "incident_end": null,
+      "sep_start": "2026-02-22",
+      "sep_end": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [
+        "https://portal.ct.gov/governor/news/press-releases/2026/02-2026/governor-lamont-declares-state-of-emergency-prohibits-commercial-vehicle-travel?language=en_US",
+        "https://portal.ct.gov/governor/-/media/office-of-the-governor/news/2026/20260222-emergency-declaration.pdf?rev=f9569a2951c1443f99ca175cd2e9169f&hash=760FE09399100F2B32663849EC60775B"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "wellcare",
+      "state": "FL",
+      "title": "Impacts of War in Israel",
+      "incident_type": "International Crisis",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2023-10-07",
+      "sep_end": "2026-01-31",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [],
+      "status": "Renewed",
+      "wellcare_type": "Emergency",
+      "notes": "7/11/25 Renewal: Date changed from 10/7/2023 - 9/30/2025 to 10/7/2023 - 11/30/2025",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "HI",
+      "title": "EXTENSION: Hawaii Wild Fires",
+      "incident_type": "Other",
+      "declaring_authority": "Governor",
+      "incident_start": "2025-07-15",
+      "incident_end": "2025-10-21",
+      "sep_start": "2025-07-15",
+      "sep_end": "2025-12-31",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [
+        "https://governor.hawaii.gov/wp-content/uploads/2025/07/2507065_ATG-Proclamation-Relating-to-the-2025-Wildfire-Season.pdf",
+        "https://governor.hawaii.gov/wp-content/uploads/2025/08/2508068-ATG_Twenty-Fifth-Proclamation-Relating-to-Wildfires.pdf"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "wellcare",
+      "state": "KS",
+      "title": "Severe Storms, Straight-line Winds, and Flooding",
+      "incident_type": "Flood/Severe Storm",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-07-17",
+      "sep_end": "2026-02-28",
+      "counties": [
+        "Barton",
+        "Comanche",
+        "Edwards",
+        "Hodgeman",
+        "Logan"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Disaster",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "LA",
+      "title": "EXTENSION: Louisiana Tallulah Water System EO 25-018",
+      "incident_type": "Infrastructure Emergency",
+      "declaring_authority": "Governor",
+      "incident_start": "2025-02-13",
+      "incident_end": "2025-11-02",
+      "sep_start": "2025-02-13",
+      "sep_end": "2026-01-31",
+      "counties": [
+        "Madison"
+      ],
+      "statewide": false,
+      "official_urls": [
+        "https://gov.louisiana.gov/assets/ExecutiveOrders/2026/JML-Exective-Order-26-007.pdf"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "MA",
+      "title": "MA Preparedness Ahead of Weekend Snowfall and Bitter Cold",
+      "incident_type": "Severe Winter Storm",
+      "declaring_authority": "Governor",
+      "incident_start": "2026-02-06",
+      "incident_end": null,
+      "sep_start": "2026-02-06",
+      "sep_end": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [
+        "https://www.mass.gov/news/governor-healey-urges-preparedness-ahead-of-weekend-snowfall-and-bitter-cold"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "MA",
+      "title": "MA Preparedness Snow Fall_Bitter Cold",
+      "incident_type": "Severe Winter Storm",
+      "declaring_authority": "Governor",
+      "incident_start": "2026-02-06",
+      "incident_end": null,
+      "sep_start": "2026-02-06",
+      "sep_end": null,
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [
+        "https://www.mass.gov/news/governor-healey-urges-preparedness-ahead-of-weekend-snowfall-and-bitter-cold"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "wellcare",
+      "state": "MO",
+      "title": "Disruption in the residential heating fuel supply chain",
+      "incident_type": "Infrastructure Emergency",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-12-15",
+      "sep_end": "2026-02-28",
+      "counties": [
+        "Statewide"
+      ],
+      "statewide": true,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "wellcare",
+      "state": "NM",
+      "title": "Well Outages",
+      "incident_type": "Infrastructure Emergency",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-10-27",
+      "sep_end": "2026-02-28",
+      "counties": [
+        "Torrance County"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Active",
+      "wellcare_type": "Emergency",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "NV",
+      "title": "Nevada Peavine Fire",
+      "incident_type": "Wildfire",
+      "declaring_authority": "Governor",
+      "incident_start": "2025-08-02",
+      "incident_end": null,
+      "sep_start": "2025-08-02",
+      "sep_end": null,
+      "counties": [
+        "Washoe"
+      ],
+      "statewide": false,
+      "official_urls": [
+        "https://www.fema.gov/press-release/20250805/fema-fire-management-assistance-grant-approved-peavine-fire"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "wellcare",
+      "state": "OR",
+      "title": "Severe Storm High Winds, Heavy Rain, Flooding and Landslides",
+      "incident_type": "Flood/Severe Storm",
+      "declaring_authority": "Governor",
+      "incident_start": null,
+      "incident_end": null,
+      "sep_start": "2025-12-08",
+      "sep_end": "2026-02-28",
+      "counties": [
+        "Clackamas",
+        "Clatsop",
+        "Coos",
+        "Curry",
+        "Douglas"
+      ],
+      "statewide": false,
+      "official_urls": [],
+      "status": "Amended",
+      "wellcare_type": "Emergency",
+      "notes": "Amendment 1/15/2026 Add counties: Linn, Polk, Umatilla, Union and Wallowa",
+      "carrier_count": 1,
+      "carriers": [
+        "wellcare"
+      ],
+      "priority_score": 10
+    },
+    {
+      "carrier": "aetna",
+      "state": "TX",
+      "title": "EXTENSION: Texas Wild Fires",
+      "incident_type": "Other",
+      "declaring_authority": "Governor",
+      "incident_start": "2025-08-10",
+      "incident_end": "2025-09-11",
+      "sep_start": "2025-08-10",
+      "sep_end": "2025-11-30",
+      "counties": [
+        "Andrews",
+        "Aransas",
+        "Archer",
+        "Armstrong",
+        "Atascosa"
+      ],
+      "statewide": false,
+      "official_urls": [
+        "https://gov.texas.gov/news/post/governor-abbott-mobilizes-state-wildfire-response-resources-issues-disaster-declaration-for-wildfire-danger",
+        "https://gov.texas.gov/news/post/governor-abbott-activates-additional-state-wildfire-resources-updates-disaster-declaration-ahead-of-increased-fire-danger",
+        "https://gov.texas.gov/news/post/governor-abbott-amends-renews-fire-weather-conditions-disaster-proclamation-in-november-2025",
+        "https://gov.texas.gov/news/post/governor-abbott-amends-renews-fire-weather-conditions-disaster-proclamation-in-january-2026"
+      ],
+      "status": "Active",
+      "wellcare_type": "",
+      "notes": "",
+      "carrier_count": 1,
+      "carriers": [
+        "aetna"
+      ],
+      "priority_score": 10
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "run_date": "2026-03-27",
+  "total_gaps": 44,
+  "expired": 10,
+  "matched": 8,
+  "unmatched": 26,
+  "matched_details": [
+    {
+      "gap_state": "CO",
+      "gap_title": "Elk Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5604-CO",
+      "matched_title": "ELK FIRE",
+      "score": 1.0
+    },
+    {
+      "gap_state": "CO",
+      "gap_title": "Lee Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5603-CO",
+      "matched_title": "LEE FIRE",
+      "score": 1.0
+    },
+    {
+      "gap_state": "CO",
+      "gap_title": "Oak Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5606-CO",
+      "matched_title": "OAK FIRE",
+      "score": 1.0
+    },
+    {
+      "gap_state": "DC",
+      "gap_title": "Sewer Line Collapse",
+      "gap_type": "Infrastructure Emergency",
+      "matched_id": "FEMA-EM-3643-DC",
+      "matched_title": "SEWER LINE COLLAPSE ",
+      "score": 1.0
+    },
+    {
+      "gap_state": "HI",
+      "gap_title": "Kunia Road Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5609-HI",
+      "matched_title": "KUNIA ROAD FIRE",
+      "score": 1.0
+    },
+    {
+      "gap_state": "NC",
+      "gap_title": "Sam Davis Road Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5580-NC",
+      "matched_title": "SAM DAVIS ROAD FIRE",
+      "score": 1.0
+    },
+    {
+      "gap_state": "NC",
+      "gap_title": "Sunset Drive Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5582-NC",
+      "matched_title": "SUNSET DRIVE FIRE ",
+      "score": 1.0
+    },
+    {
+      "gap_state": "SC",
+      "gap_title": "Covington Drive Fire",
+      "gap_type": "Wildfire",
+      "matched_id": "FEMA-FM-5554-SC",
+      "matched_title": "COVINGTON DRIVE FIRE",
+      "score": 1.0
+    }
+  ],
+  "unmatched_details": [
+    {
+      "state": "AR",
+      "title": "Severe Storms, Tornadoes, and Flooding",
+      "type": "Tornado",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": "2026-06-30",
+      "declaring_authority": "FEMA"
+    },
+    {
+      "state": "AZ",
+      "title": "Cody Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Pinal County"
+      ],
+      "sep_end": "2026-05-22",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "AZ",
+      "title": "Greer Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Apache"
+      ],
+      "sep_end": "2026-07-31",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "CO",
+      "title": "Flooding in Western Colorado",
+      "type": "Flood/Severe Storm",
+      "counties": [
+        "Archuleta",
+        "La Plata",
+        "Mineral counties"
+      ],
+      "sep_end": "2026-03-31",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "DC",
+      "title": "Declaration of Public Emergency",
+      "type": "Other",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": "2026-04-30",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "GA",
+      "title": "GA State Of Emergency Spalding County Water Supply",
+      "type": "Other",
+      "counties": [
+        "Spalding"
+      ],
+      "sep_end": "2026-04-30",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "HI",
+      "title": "Heavy Rains",
+      "type": "Flood/Severe Storm",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": "2026-04-30",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "HI",
+      "title": "Holomua Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Maui County"
+      ],
+      "sep_end": "2026-11-30",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "ID",
+      "title": "Sunset Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Bonner County"
+      ],
+      "sep_end": "2026-10-31",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "KS",
+      "title": "Fire Weather Conditions",
+      "type": "Wildfire",
+      "counties": [
+        "Allen",
+        "Barber",
+        "Barton",
+        "Bourbon",
+        "Chautauqua"
+      ],
+      "sep_end": "2026-05-31",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "KS",
+      "title": "Red Flag Fire Conditions",
+      "type": "Wildfire",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": "2026-04-30",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "KY",
+      "title": "Plane Crash",
+      "type": "Plane Crash",
+      "counties": [
+        "Jefferson County"
+      ],
+      "sep_end": "2026-03-31",
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "MN",
+      "title": "Severe Storms and Straight-line Winds",
+      "type": "Severe Wind",
+      "counties": [
+        "Leech Lake Band of Ojibwe Tribe"
+      ],
+      "sep_end": "2026-12-31",
+      "declaring_authority": "FEMA"
+    },
+    {
+      "state": "MT",
+      "title": "Windy Rock Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Powell County"
+      ],
+      "sep_end": "2026-10-31",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "NV",
+      "title": "Conner Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Douglas County"
+      ],
+      "sep_end": "2026-08-31",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "NV",
+      "title": "Peavine Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Washoe County"
+      ],
+      "sep_end": "2026-10-31",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "UT",
+      "title": "Deer Creek Fire",
+      "type": "Wildfire",
+      "counties": [
+        "San Juan County"
+      ],
+      "sep_end": "2026-09-30",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "UT",
+      "title": "Forsyth Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Washington County"
+      ],
+      "sep_end": "2026-08-31",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "UT",
+      "title": "Monroe Canyon Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Sevier",
+        "Piute Counties"
+      ],
+      "sep_end": "2026-09-30",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "WA",
+      "title": "Burdoin Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Klickitat County"
+      ],
+      "sep_end": "2026-09-30",
+      "declaring_authority": "FEMA"
+    },
+    {
+      "state": "WA",
+      "title": "Lower Sugarloaf Complex Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Chelan County"
+      ],
+      "sep_end": "2026-11-30",
+      "declaring_authority": "FEMA/FMAG"
+    },
+    {
+      "state": "AZ",
+      "title": "Arizonia Cody Fire Pinal County (FM-5585-AZ)",
+      "type": "Wildfire",
+      "counties": [
+        "Pinal"
+      ],
+      "sep_end": null,
+      "declaring_authority": "FEMA"
+    },
+    {
+      "state": "CT",
+      "title": "CT State Of Emergency 2.22.26",
+      "type": "Other",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": null,
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "MA",
+      "title": "MA Preparedness Ahead of Weekend Snowfall and Bitter Cold",
+      "type": "Severe Winter Storm",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": null,
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "MA",
+      "title": "MA Preparedness Snow Fall_Bitter Cold",
+      "type": "Severe Winter Storm",
+      "counties": [
+        "Statewide"
+      ],
+      "sep_end": null,
+      "declaring_authority": "Governor"
+    },
+    {
+      "state": "NV",
+      "title": "Nevada Peavine Fire",
+      "type": "Wildfire",
+      "counties": [
+        "Washoe"
+      ],
+      "sep_end": null,
+      "declaring_authority": "Governor"
+    }
+  ]
+}

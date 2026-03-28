@@ -202,6 +202,36 @@ Carrier data is validation-only, not authoritative. Government sources are the s
 
 ---
 
+## Quarterly Carrier Data Refresh
+
+Carrier acknowledgment badges are based on a one-time Excel import (March 2026). To refresh:
+
+1. Request updated DST tracking files from carriers:
+   - **Aetna:** Excel file with active DST list (contact compliance team)
+   - **Wellcare:** Excel file or live page scrape (`1b3050-423b.icpage.net/Wellcare-SEP-Declarations---FEMAState`)
+   - **Humana:** PDF of active DST declarations (contact compliance team)
+   - **Healthspring:** Excel file (same contact as Humana — Cigna subsidiary)
+
+2. Place Excel files in project root, run parser:
+   ```bash
+   python3 carrier_data_parser.py --aetna new_aetna.xlsx --wellcare new_wellcare.xlsx
+   ```
+   This regenerates `carrier_analysis.json` with updated match/gap data.
+
+3. For Humana PDF: update the `HUMANA` array in `four_carrier_crossref.py` manually (parse PDF visually).
+
+4. Run fetcher to re-inject carrier acks:
+   ```bash
+   python3 dst_data_fetcher.py
+   ```
+
+5. Check for new gaps (records carriers have that we don't):
+   ```bash
+   python3 -c "import json; gaps=[g for g in json.load(open('carrier_analysis.json')).get('gaps',[]) if g]; print(f'{len(gaps)} gaps')"
+   ```
+
+---
+
 ## Troubleshooting
 
 ### Audit fails in CI

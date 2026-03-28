@@ -57,22 +57,6 @@ jobs:
         run: |
           python3 << 'PYEOF'
           import json, subprocess, sys, os
-          from datetime import date
-
-          today = date.today().isoformat()
-
-          def count_non_expired(records):
-              """Count records by source, excluding those whose SEP window has expired."""
-              by_source = {}
-              total = 0
-              for r in records:
-                  sep_end = r.get('sepWindowEnd', '')
-                  if sep_end and sep_end < today:
-                      continue  # Naturally expired — don't count in baseline
-                  src = r.get('source', 'UNKNOWN')
-                  by_source[src] = by_source.get(src, 0) + 1
-                  total += 1
-              return total, by_source
 
           def validate_file(filename, allow_fema_zero=False):
               """Validate record counts for a JSON file. Returns list of errors."""
@@ -96,25 +80,23 @@ jobs:
                   ).decode()
                   old = json.loads(old_json)
                   old_records = old.get('disasters', []) if isinstance(old, dict) else old
-                  old_total_raw = len(old_records)
-                  # Baseline: only count old records that haven't naturally expired
-                  old_total, old_by_source = count_non_expired(old_records)
-                  expired_count = old_total_raw - old_total
-                  if expired_count > 0:
-                      print(f'{filename} (previous): {old_total_raw} raw, {expired_count} now expired, {old_total} active baseline')
-                  else:
-                      print(f'{filename} (previous): {old_total} total, by source: {old_by_source}')
+                  old_total = len(old_records)
+                  old_by_source = {}
+                  for r in old_records:
+                      src = r.get('source', 'UNKNOWN')
+                      old_by_source[src] = old_by_source.get(src, 0) + 1
               except Exception:
                   old_by_source = {}
                   old_total = 0
+              print(f'{filename} (previous): {old_total} total, by source: {old_by_source}')
 
               errors = []
 
-              # Check 1: Total count must not drop vs non-expired baseline
+              # Check 1: Total count must not drop (for curated; all_disasters may vary with FEMA)
               if not allow_fema_zero and new_total < old_total:
-                  errors.append(f'{filename}: Total count DROPPED from {old_total} (active) to {new_total}')
+                  errors.append(f'{filename}: Total count DROPPED from {old_total} to {new_total}')
 
-              # Check 2: Per-source integrity (vs non-expired baseline)
+              # Check 2: Per-source integrity
               for src, old_count in old_by_source.items():
                   new_count = new_by_source.get(src, 0)
                   # FEMA source: warn but don't block if 0 (API could be temporarily down)
@@ -125,7 +107,7 @@ jobs:
                   # Any non-FEMA source dropping to 0 from non-zero = blocked
                   if old_count > 0 and new_count == 0:
                       errors.append(f'{filename}: {src} dropped from {old_count} to 0 (total loss)')
-                  # Source with 5+ active records losing >20% = blocked
+                  # Source with 5+ records losing >20% = blocked
                   elif old_count >= 5 and new_count < old_count * 0.8:
                       pct = (1 - new_count / old_count) * 100
                       errors.append(f'{filename}: {src} dropped from {old_count} to {new_count} ({pct:.0f}% loss)')
@@ -160,6 +142,26 @@ jobs:
         run: python audit_curated_data.py --ci --all-disasters --json-path all_disasters.json
         timeout-minutes: 2
 
+      - name: Run renewal checker (weekly only)
+        id: renewal-check
+        if: github.event.schedule == '0 15 * * 1' || github.event_name == 'workflow_dispatch'
+        run: python dst_renewal_checker.py --auto-apply 2>&1 | tee renewal_output.txt
+        timeout-minutes: 10
+        continue-on-error: true
+
+      - name: Re-run fetcher after renewal checker (weekly only)
+        if: (github.event.schedule == '0 15 * * 1' || github.event_name == 'workflow_dispatch') && steps.renewal-check.outcome == 'success'
+        run: python dst_data_fetcher.py
+        timeout-minutes: 15
+        continue-on-error: true
+
+      - name: Run declaration page verifier (weekly only)
+        id: verifier
+        if: github.event.schedule == '0 15 * * 1' || github.event_name == 'workflow_dispatch'
+        run: python dst_verifier.py --fema-only --staleness-only 2>&1 | tee verifier_output.txt
+        timeout-minutes: 5
+        continue-on-error: true
+
       - name: Verify URLs (weekly only)
         id: url-check
         if: github.event.schedule == '0 15 * * 1' || github.event_name == 'workflow_dispatch'
@@ -174,18 +176,11 @@ jobs:
         timeout-minutes: 2
         continue-on-error: true
 
-      - name: Run state health checks (weekly only)
-        id: state-health
-        if: github.event.schedule == '0 15 * * 1' || github.event_name == 'workflow_dispatch'
-        run: python audit_curated_data.py --check-state-health
-        timeout-minutes: 2
-        continue-on-error: true
-
       - name: Commit and push if data changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add curated_disasters.json all_disasters.json medicare_enrollment.json state_declarations.json state_emergency_laws.json
+          git add curated_disasters.json all_disasters.json medicare_enrollment.json
           git diff --cached --quiet || (
             git commit -m "Auto-update disaster + enrollment data"
             git push
@@ -263,17 +258,4 @@ jobs:
               title: 'DST Coverage Gap — Missing Governor Declarations',
               body: `The weekly coverage gap analysis found states with FEMA or FMCSA disasters but **no curated governor declaration**.\n\n## Gaps Detected\n${gapList}\n\n## Why This Matters\nGovernor emergency declarations independently trigger Medicare DST Special Enrollment Periods. Without them, agents may miss valid SEP opportunities for beneficiaries in affected counties.\n\n## Action Required\n1. Research governor emergency declarations for each flagged state\n2. Find the official proclamation URL on the governor's website\n3. Add to \`StateCollector._get_curated_state()\` in \`dst_data_fetcher.py\`\n4. Run \`python dst_data_fetcher.py && python audit_curated_data.py\` to validate\n5. Push to main\n\nSee the run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
               labels: ['data-integrity', 'coverage-gap']
-            });
-
-      - name: Create issue on state health check failure
-        if: steps.state-health.outcome == 'failure'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: 'DST State Health — Declarations Need Review',
-              body: `The weekly state health check (checks 28-32) found STATE declarations that need attention.\n\nPossible issues:\n- **Check 28**: Ongoing entries without end date determination method\n- **Check 29**: Declarations >60 days old with no end date or renewals\n- **Check 30**: Declaration exceeds state law auto-expire duration without renewal\n- **Check 31**: Human review overdue (>30 days since last review)\n- **Check 32**: Entries flagged as needing review\n\n**Action required:**\n1. Run \`python audit_curated_data.py --check-state-health\` locally to see details\n2. Update \`state_declarations.json\` with researched end dates\n3. Set \`needsReview: false\` after verifying each entry\n4. Update \`verification.lastHumanReview\` dates\n\nSee the run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-              labels: ['data-integrity', 'state-health']
             });
