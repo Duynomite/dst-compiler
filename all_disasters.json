@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "lastUpdated": "2026-03-28T11:20:32Z",
+    "lastUpdated": "2026-03-28T12:41:04Z",
     "recordCount": 215,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "5c28cf2f731b345b",
+    "contentHash": "75ddc3fbd3f1f75d",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
@@ -44,7 +44,13 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 156,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-AK",
@@ -66,8 +72,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-002-AK",
@@ -89,8 +101,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-AK",
@@ -113,8 +131,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-AL",
@@ -136,10 +160,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Gov. Ivey formally terminated Feb 2",
-      "endDateConfidence": "T2"
+      "endDateConfidence": "T2",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-AL",
@@ -161,7 +191,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -183,10 +213,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Research: 30-day expire from Jan 23, per EO terms",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-AR",
@@ -208,7 +244,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-EM-3636-AR",
@@ -304,7 +340,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -328,7 +364,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-AZ",
@@ -354,7 +396,7 @@
       "sepWindowEnd": "2026-12-31",
       "daysRemaining": 278,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -377,7 +419,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -400,8 +442,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-011-CA",
@@ -423,8 +471,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5550-CA",
@@ -446,7 +500,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5551-CA",
@@ -468,7 +522,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2025-010-CA",
@@ -490,8 +544,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-012-CA",
@@ -513,8 +573,14 @@
       "sepWindowEnd": "2026-09-30",
       "daysRemaining": 186,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5605-CA",
@@ -536,7 +602,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5612-CA",
@@ -558,7 +624,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 247,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2025-016-CA",
@@ -580,8 +646,14 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 247,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-017-CA",
@@ -603,8 +675,14 @@
       "sepWindowEnd": "2027-01-31",
       "daysRemaining": 309,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-024-CA",
@@ -627,7 +705,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 247,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -655,8 +733,14 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 337,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-025-CA",
@@ -683,8 +767,14 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 337,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "SBA-2026-02924-CA",
@@ -712,7 +802,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "SBA-2026-03274-CA",
@@ -734,7 +830,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:18:11Z"
+      "lastUpdated": "2026-03-28T12:38:34Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5603-CO",
@@ -756,7 +858,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5604-CO",
@@ -778,7 +880,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5606-CO",
@@ -800,7 +902,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -822,7 +924,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -844,7 +946,13 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-CT",
@@ -866,7 +974,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-CT",
@@ -888,8 +1002,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-CT",
@@ -899,20 +1019,22 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-02-22",
       "incidentStart": "2026-02-22",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-23",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://portal.ct.gov/governor/news/press-releases/2026/02-2026/governor-lamont-declares-state-of-emergency-prohibits-commercial-vehicle-travel",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-02-22",
-      "sepWindowEnd": "2027-04-30",
-      "daysRemaining": 398,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "endDateSource": "Governor terminated commercial vehicle ban 4pm Feb 23",
+      "endDateConfidence": "T2"
     },
     {
       "id": "FMCSA-2026-001-DC",
@@ -934,7 +1056,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -956,7 +1078,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -979,7 +1101,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "FEMA EM-3643-DC incident ended Mar 14",
       "endDateConfidence": "T3"
@@ -1004,7 +1126,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -1026,7 +1148,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -1048,7 +1170,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -1070,8 +1192,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-DE",
@@ -1093,7 +1221,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -1123,8 +1251,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2024-001-FL",
@@ -1157,7 +1291,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "extensions": [
         {
@@ -1220,7 +1354,13 @@
           "url": "https://www.flgov.com/eog/news/executive-orders/2026-59",
           "notes": "Tenth extension (current)"
         }
-      ]
+      ],
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2024-002-FL",
@@ -1250,7 +1390,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "extensions": [
         {
@@ -1295,7 +1435,13 @@
           "url": "https://www.flgov.com/eog/news/executive-orders/2026-58",
           "notes": "Seventh extension (current)"
         }
-      ]
+      ],
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2024-003-FL",
@@ -1325,7 +1471,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "extensions": [
         {
@@ -1370,7 +1516,13 @@
           "url": "https://www.flgov.com/eog/news/executive-orders/2025-242",
           "notes": "Seventh extension (last known \u2014 no 2026 renewal found)"
         }
-      ]
+      ],
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-FL",
@@ -1398,8 +1550,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-FL",
@@ -1421,7 +1579,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-FL",
@@ -1443,10 +1601,16 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "FL 60-day EO auto-expire from Feb 9; no extension EO found",
-      "endDateConfidence": "T4"
+      "endDateConfidence": "T4",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-GA",
@@ -1468,8 +1632,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-GA",
@@ -1491,7 +1661,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-EM-3642-GA",
@@ -1623,7 +1793,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -1645,7 +1815,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -1668,7 +1838,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -1682,7 +1852,8 @@
       "incidentEnd": null,
       "renewalDates": [
         "2025-11-07",
-        "2026-01-09"
+        "2026-01-09",
+        "2026-03-06"
       ],
       "counties": [
         "Maui"
@@ -1691,10 +1862,10 @@
       "officialUrl": "https://governor.hawaii.gov/wp-content/uploads/2025/11/2511016.pdf",
       "status": "ongoing",
       "sepWindowStart": "2023-08-08",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 368,
+      "sepWindowEnd": "2027-05-31",
+      "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -1717,7 +1888,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-001-HI",
@@ -1739,8 +1910,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-HI",
@@ -1762,7 +1939,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -1785,7 +1962,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -1807,7 +1984,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -1829,7 +2006,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -1851,7 +2028,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-IN",
@@ -1873,7 +2056,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3641-IN",
@@ -1977,7 +2166,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -1999,10 +2188,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "IN IC 10-14-3-12: 30-day auto-expire, no renewal found",
-      "endDateConfidence": "T4"
+      "endDateConfidence": "T4",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-013-KS",
@@ -2024,7 +2219,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -2046,7 +2241,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "KS K.S.A. 48-924: 15-day auto-expire, no legislative ratification",
       "endDateConfidence": "T4"
@@ -2071,7 +2266,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-KS",
@@ -2093,8 +2294,14 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-013-KY",
@@ -2116,7 +2323,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -2138,10 +2345,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "KY KRS 39A.090: 30-day auto-expire, no legislative extension",
-      "endDateConfidence": "T4"
+      "endDateConfidence": "T4",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-KY",
@@ -2163,7 +2376,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3633-KY",
@@ -2304,7 +2523,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2021-001-LA",
@@ -2334,8 +2553,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-LA",
@@ -2357,8 +2582,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-LA",
@@ -2380,7 +2611,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3638-LA",
@@ -2465,7 +2702,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -2507,7 +2744,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-DR-4900-LA",
@@ -2545,7 +2788,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -2567,7 +2810,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -2589,7 +2832,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -2599,20 +2842,28 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-27",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 368,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "endDateSource": "Governor Healey formally ended emergency Feb 27 per Boston Globe",
+      "endDateConfidence": "T2",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-MA",
@@ -2634,8 +2885,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-012-MD",
@@ -2657,7 +2914,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -2679,7 +2936,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -2701,10 +2958,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "MD GPS 14-107: 30-day auto-expire, no renewal found",
-      "endDateConfidence": "T4"
+      "endDateConfidence": "T4",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3634-MD",
@@ -2747,7 +3010,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -2769,7 +3032,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -2798,7 +3061,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -2821,8 +3084,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-MI",
@@ -2844,7 +3113,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-002-MI",
@@ -2854,7 +3123,7 @@
       "incidentType": "Tornado",
       "declarationDate": "2026-03-08",
       "incidentStart": "2026-03-08",
-      "incidentEnd": null,
+      "incidentEnd": "2026-04-05",
       "renewalDates": null,
       "counties": [
         "Branch",
@@ -2863,24 +3132,28 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.michigan.gov/whitmer/news/press-releases/2026/03/08/whitmer-declares-state-emergency-following-deadly-tornadoes-in-southwest-michigan",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-03-08",
-      "sepWindowEnd": "2027-05-31",
-      "daysRemaining": 429,
+      "sepWindowEnd": "2026-06-30",
+      "daysRemaining": 94,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "endDateSource": "EO 2026-1 states max expiry Apr 5, 2026",
+      "endDateConfidence": "T1"
     },
     {
       "id": "STATE-2026-003-MI",
       "source": "STATE",
       "state": "MI",
-      "title": "Governor Whitmer Emergency Declaration \u2014 Historic Blizzard",
+      "title": "Governor Whitmer Emergency Declaration \u2014 Historic Blizzard (EO 2026-2, amended 2026-3)",
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-03-17",
       "incidentStart": "2026-03-17",
-      "incidentEnd": null,
-      "renewalDates": null,
+      "incidentEnd": "2026-04-21",
+      "renewalDates": [
+        "2026-03-25"
+      ],
       "counties": [
         "Antrim",
         "Benzie",
@@ -2894,13 +3167,15 @@
       ],
       "statewide": false,
       "officialUrl": "https://www.michigan.gov/whitmer/news/state-orders-and-directives/2026/03/17/executive-order-2026-2-declaration-of-state-of-emergency-and-energy-emergency",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-03-17",
-      "sepWindowEnd": "2027-05-31",
-      "daysRemaining": 429,
+      "sepWindowEnd": "2026-06-30",
+      "daysRemaining": 94,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "endDateSource": "EO 2026-3 (amended Mar 25) states max expiry Apr 21, 2026",
+      "endDateConfidence": "T1"
     },
     {
       "id": "FMCSA-2025-013-MN",
@@ -2922,7 +3197,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-MN",
@@ -2944,7 +3225,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -2966,7 +3247,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -2988,10 +3269,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "EO 26-05 expired Feb 22 per its own terms",
-      "endDateConfidence": "T1"
+      "endDateConfidence": "T1",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-MO",
@@ -3013,7 +3300,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-002-MO",
@@ -3035,8 +3322,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-MS",
@@ -3058,10 +3351,16 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Aetna end=Jan 30; storm ended Jan 27, aligns",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-MS",
@@ -3083,7 +3382,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-EM-3640-MS",
@@ -3187,7 +3486,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -3213,7 +3512,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-DR-4899-MS",
@@ -3317,7 +3622,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2025-001-MT",
@@ -3339,8 +3644,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-002-MT",
@@ -3362,8 +3673,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3630-MT",
@@ -3387,7 +3704,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 337,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -3409,7 +3726,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-FM-5574-NC",
@@ -3431,7 +3748,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5577-NC",
@@ -3453,7 +3770,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2025-001-NC",
@@ -3496,7 +3813,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -3519,7 +3836,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5580-NC",
@@ -3541,7 +3858,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5582-NC",
@@ -3563,7 +3880,7 @@
       "sepWindowEnd": "2026-07-31",
       "daysRemaining": 125,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-012-NC",
@@ -3585,7 +3902,13 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-NC",
@@ -3607,10 +3930,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "EO 31 (30-day) + EO 32 explicitly states Feb 20 expiry",
-      "endDateConfidence": "T1"
+      "endDateConfidence": "T1",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-NC",
@@ -3632,7 +3961,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-EM-3637-NC",
@@ -3747,7 +4076,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -3769,7 +4098,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2025-003-NE",
@@ -3791,8 +4120,14 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 156,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -3814,7 +4149,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -3836,7 +4171,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-NE",
@@ -3858,8 +4193,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5623-NE",
@@ -3885,7 +4226,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-002-NE",
@@ -3907,7 +4248,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -3930,7 +4271,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -3952,7 +4293,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-FM-5581-NJ",
@@ -3974,7 +4315,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -3996,7 +4337,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -4018,7 +4359,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-NJ",
@@ -4040,8 +4387,14 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-NJ",
@@ -4063,7 +4416,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4086,7 +4439,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-004-NM",
@@ -4108,8 +4467,14 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5579-NM",
@@ -4131,7 +4496,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2025-003-NM",
@@ -4153,8 +4518,14 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-009-NM",
@@ -4176,7 +4547,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4199,7 +4570,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 368,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4222,8 +4593,14 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 368,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-NY",
@@ -4253,8 +4630,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-012-NY",
@@ -4276,7 +4659,13 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-002-NY",
@@ -4332,7 +4721,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4355,7 +4744,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -4365,20 +4754,28 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-19",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.governor.ny.gov/executive-order/no-57-declaring-disaster-emergency-throughout-state-new-york",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 368,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "endDateSource": "EO 57.1 (Feb 17) states emergency continues until Mar 19, 2026",
+      "endDateConfidence": "T1",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-003-NY",
@@ -4421,7 +4818,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4444,7 +4841,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -4466,7 +4863,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -4488,7 +4885,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -4510,8 +4907,14 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 94,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-OK",
@@ -4533,7 +4936,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5616-OK",
@@ -4556,7 +4965,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5618-OK",
@@ -4578,7 +4987,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5617-OK",
@@ -4600,7 +5009,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-003-OK",
@@ -4622,8 +5031,14 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-OK",
@@ -4648,7 +5063,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4672,7 +5087,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5620-OK",
@@ -4694,7 +5109,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-002-OK",
@@ -4723,7 +5138,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4746,7 +5161,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5626-OK",
@@ -4768,7 +5183,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5628-OK",
@@ -4790,7 +5205,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5627-OK",
@@ -4812,7 +5227,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2023-001-OR",
@@ -4838,8 +5253,14 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 368,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-008-OR",
@@ -4871,7 +5292,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 247,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -4894,10 +5315,16 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "InciWeb/Wikipedia: Moon Complex 100% contained Mar 9 2026",
-      "endDateConfidence": "T3"
+      "endDateConfidence": "T3",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-012-PA",
@@ -4919,7 +5346,13 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-PA",
@@ -4941,7 +5374,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-PA",
@@ -4963,8 +5402,14 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-002-PA",
@@ -4986,7 +5431,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28"
     },
     {
@@ -5013,7 +5458,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-012-RI",
@@ -5035,7 +5486,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -5057,7 +5508,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-RI",
@@ -5079,8 +5536,14 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": false,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5554-SC",
@@ -5102,7 +5565,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5576-SC",
@@ -5125,7 +5588,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5575-SC",
@@ -5147,7 +5610,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -5169,10 +5632,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Aetna end=Feb 5; SC 15-day typical, aligns",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3632-SC",
@@ -5240,7 +5709,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -5262,7 +5731,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2025-001-SD",
@@ -5284,8 +5753,14 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 337,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-SD",
@@ -5307,7 +5782,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-FM-5622-SD",
@@ -5329,7 +5804,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -5351,7 +5826,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -5373,10 +5848,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Aetna end=Feb 5; EOC/hotlines closed Feb 6, aligns",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-TN",
@@ -5398,7 +5879,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FEMA-EM-3635-TN",
@@ -5501,7 +5982,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-DR-4898-TN",
@@ -5617,7 +6098,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "STATE-2021-001-TX",
@@ -5647,8 +6128,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2024-001-TX",
@@ -5678,8 +6165,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-TX",
@@ -5733,8 +6226,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-002-TX",
@@ -5758,8 +6257,14 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2026-001-TX",
@@ -5781,10 +6286,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Aetna end=Feb 21; TX 30-day typical from Jan 21, aligns",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2026-001-TX",
@@ -5806,7 +6317,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -5829,7 +6340,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-FM-5619-TX",
@@ -5852,7 +6369,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 398,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5625-TX",
@@ -5874,7 +6391,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 429,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2025-012-VA",
@@ -5896,7 +6413,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -5918,10 +6435,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Aetna end=Feb 22; 30-day typical from Jan 22, aligns",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3631-VA",
@@ -6072,7 +6595,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -6094,7 +6617,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -6116,7 +6639,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -6138,7 +6661,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -6160,7 +6683,13 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "STATE-2025-001-WA",
@@ -6182,8 +6711,14 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 337,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3629-WA",
@@ -6221,7 +6756,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 337,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -6258,8 +6793,14 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
-      "lastVerified": "2026-03-28"
+      "lastUpdated": "2026-03-28T12:41:00Z",
+      "lastVerified": "2026-03-28",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-013-WI",
@@ -6281,7 +6822,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -6303,7 +6844,13 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z",
+      "carrierAcknowledgments": {
+        "aetna": false,
+        "wellcare": false,
+        "humana": true,
+        "healthspring": false
+      }
     },
     {
       "id": "FMCSA-2025-012-WV",
@@ -6325,7 +6872,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 64,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -6347,7 +6894,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -6369,10 +6916,16 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z",
+      "lastUpdated": "2026-03-28T12:41:01Z",
       "lastVerified": "2026-03-28",
       "endDateSource": "Aetna end=Feb 22; 30-day typical from Jan 23, aligns",
-      "endDateConfidence": "T5"
+      "endDateConfidence": "T5",
+      "carrierAcknowledgments": {
+        "aetna": true,
+        "wellcare": true,
+        "humana": false,
+        "healthspring": false
+      }
     },
     {
       "id": "FEMA-EM-3639-WV",
@@ -6447,7 +7000,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 3,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FEMA-FM-5608-WY",
@@ -6469,7 +7022,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 217,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T11:20:32Z"
+      "lastUpdated": "2026-03-28T12:41:04Z"
     },
     {
       "id": "FMCSA-2026-001-WY",
@@ -6491,7 +7044,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 33,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T11:20:29Z"
+      "lastUpdated": "2026-03-28T12:41:01Z"
     }
   ]
 }

@@ -76,9 +76,10 @@ STATE_EMERGENCY_DURATION = {
     "FL": 60,   # per EO signature
     "WI": 60,   # § 323.10 (requires joint legislative resolution)
     "PA": 90,   # PA Constitution Art. IV §20
-    "AZ": 120,  # 30-day increments up to 120 max
+    # AZ REMOVED: A.R.S. 26-303's 120-day limit applies ONLY to public health
+    # emergencies. Natural disaster declarations have NO statutory time limit.
     # States with NO auto-expire (governor must formally terminate):
-    # AL, AK, AR, CA, CO, CT, DC, DE, GA, HI, ID, IL, IA,
+    # AL, AK, AR, AZ, CA, CO, CT, DC, DE, GA, HI, ID, IL, IA,
     # MA, MI, MN, MS, MO, MT, NE, NH, NJ, NM, NC, ND, OH,
     # OK, OR, RI, SC, SD, TN, UT, VT, VA, WA, WV, WY
 }
@@ -2357,12 +2358,12 @@ class StateCollector:
         rec = build_record(
             id_str="STATE-2026-003-MI",
             source="STATE", state="MI",
-            title="Governor Whitmer Emergency Declaration — Historic Blizzard",
+            title="Governor Whitmer Emergency Declaration — Historic Blizzard (EO 2026-2, amended 2026-3)",
             incident_type="Severe Winter Storm",
             declaration_date=date(2026, 3, 17),
             incident_start=date(2026, 3, 17),
             incident_end=None,
-            renewal_dates_list=None,
+            renewal_dates_list=[date(2026, 3, 25)],  # EO 2026-3 amendment added Osceola County
             counties=["Antrim", "Benzie", "Grand Traverse", "Kalkaska", "Leelanau",
                        "Manistee", "Missaukee", "Osceola", "Wexford"],
             statewide=False,
@@ -4243,7 +4244,7 @@ class StateCollector:
             declaration_date=date(2023, 8, 9),
             incident_start=date(2023, 8, 8),
             incident_end=None,
-            renewal_dates_list=[date(2025, 11, 7), date(2026, 1, 9)],
+            renewal_dates_list=[date(2025, 11, 7), date(2026, 1, 9), date(2026, 3, 6)],
             counties=["Maui"],
             statewide=True,
             official_url="https://governor.hawaii.gov/wp-content/uploads/2025/11/2511016.pdf",
@@ -4810,11 +4811,19 @@ def apply_incident_end_corrections(records: List[Dict]) -> None:
         "STATE-2026-002-DC": ("2026-03-14", "T3", "FEMA EM-3643-DC incident ended Mar 14"),
         "STATE-2025-004-NE": ("2025-08-10", "T3", "FEMA DR-4896-NE incident ended Aug 10"),
 
+        # === T1: From verifier keyword scan (end date in declaration text) ===
+        "STATE-2026-001-NY": ("2026-03-19", "T1", "EO 57.1 (Feb 17) states emergency continues until Mar 19, 2026"),
+        "STATE-2026-002-MI": ("2026-04-05", "T1", "EO 2026-1 states max expiry Apr 5, 2026"),
+        "STATE-2026-003-MI": ("2026-04-21", "T1", "EO 2026-3 (amended Mar 25) states max expiry Apr 21, 2026"),
+
+        # === T2: Governor formal termination ===
+        "STATE-2026-002-CT": ("2026-02-23", "T2", "Governor terminated commercial vehicle ban 4pm Feb 23"),
+        "STATE-2026-001-MA": ("2026-02-27", "T2", "Governor Healey formally ended emergency Feb 27 per Boston Globe"),
+
         # === STILL NO EVIDENCE — kept as ongoing ===
         # STATE-2025-003-NE: NE Dawson storms — no auto-expire, no termination found
         # STATE-2025-016-CA: Tropical Storm Mario — no termination, no CA auto-expire
         # STATE-2025-012-CA: Tsunami — no termination, no CA auto-expire
-        # STATE-2026-001-MA: MA winter storm — no auto-expire, no termination found
     }
 
     applied = 0
