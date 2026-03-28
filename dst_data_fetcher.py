@@ -3417,7 +3417,7 @@ class StateCollector:
         rec = build_record(
             id_str="STATE-2021-001-LA",
             source="STATE", state="LA",
-            title="Governor Emergency — Hurricane Ida (JBE 2021-165, renewed through 2026)",
+            title="Governor Emergency — Hurricane Ida (JBE 2021-165, latest renewal JML 26-023)",
             incident_type="Hurricane",
             declaration_date=date(2021, 8, 26),
             incident_start=date(2021, 8, 26),
@@ -4753,11 +4753,12 @@ def apply_incident_end_corrections(records: List[Dict]) -> None:
 
         # === T4: State statutory auto-expire (verified no extension filed) ===
         "STATE-2025-001-WI": ("2025-10-10", "T4", "WI § 323.10: 60-day hard cap, requires legislative extension"),
-        # NM 90-day auto-expire: FEMA incident periods confirm incidents ended well before 90 days
-        "STATE-2025-006-NM": ("2025-09-24", "T4", "NM 90-day auto-expire; FEMA DR-4886 incident period ended Aug 5"),
-        "STATE-2025-001-NM": ("2025-10-23", "T4", "NM 90-day auto-expire; FEMA DR-4886 incident period ended Aug 5"),
-        "STATE-2025-007-NM": ("2025-10-23", "T4", "NM 90-day auto-expire; FEMA DR-4886 incident period ended Aug 5"),
-        "STATE-2025-009-NM": ("2025-12-01", "T4", "NM 90-day auto-expire from Sep 2"),
+        # NM has NO statutory auto-expire (proposed bills HB0040/HB0080 failed).
+        # Using FEMA incident period end dates as T3 where available.
+        "STATE-2025-006-NM": ("2025-08-05", "T3", "FEMA DR-4886 incident period ended Aug 5"),
+        "STATE-2025-001-NM": ("2025-08-05", "T3", "FEMA DR-4886 incident period ended Aug 5"),
+        "STATE-2025-007-NM": ("2025-08-05", "T3", "FEMA DR-4886 incident period ended Aug 5"),
+        # STATE-2025-009-NM: NM Mora flooding — no FEMA period, no auto-expire. REVERTED to ongoing.
 
         # === T5: Carrier-confirmed + research alignment ===
         "STATE-2026-001-MS": ("2026-01-30", "T5", "Aetna end=Jan 30; storm ended Jan 27, aligns"),
@@ -4768,15 +4769,23 @@ def apply_incident_end_corrections(records: List[Dict]) -> None:
         "STATE-2026-001-VA": ("2026-02-22", "T5", "Aetna end=Feb 22; 30-day typical from Jan 22, aligns"),
         "STATE-2026-001-WV": ("2026-02-22", "T5", "Aetna end=Feb 22; 30-day typical from Jan 23, aligns"),
 
-        # === REVERTED (previously estimated, insufficient evidence) ===
-        # STATE-2025-003-NE: NE Dawson storms — REVERTED, NE has no auto-expire, pure estimate
-        # STATE-2025-004-NE: NE Aug storms — REVERTED, NE has no auto-expire, pure estimate
-        # STATE-2025-015-CA: Lightning Complex — REVERTED, "est. mid-Oct" is a guess
-        # STATE-2025-016-CA: Tropical Storm Mario — REVERTED, "est. late Sep" is a guess
-        # STATE-2025-012-CA: Tsunami — REVERTED, single-day event but declaration may persist
-        # STATE-2025-005-NM: Cotton Fire — REVERTED, no FEMA period to corroborate 90-day calc
-        # STATE-2026-001-IN: IN winter storm — REVERTED, "est. ~21 days" is a guess
-        # STATE-2026-001-MA: MA winter storm — REVERTED, "travel ban lifted" ≠ declaration terminated
+        # === T3: Additional verified (from follow-up research) ===
+        "STATE-2025-015-CA": ("2025-09-13", "T3", "CAL FIRE: TCU Lightning Complex 100% contained Sep 13"),
+        "STATE-2025-005-NM": ("2025-07-28", "T3", "FEMA FM-5593/5594 incident period ended Jul 28"),
+
+        # === T4: Additional statutory auto-expire (verified no extension) ===
+        "STATE-2026-001-IN": ("2026-02-24", "T4", "IN IC 10-14-3-12: 30-day auto-expire, no renewal found"),
+        "STATE-2026-001-KS": ("2026-02-06", "T4", "KS K.S.A. 48-924: 15-day auto-expire, no legislative ratification"),
+        "STATE-2026-001-KY": ("2026-02-21", "T4", "KY KRS 39A.090: 30-day auto-expire, no legislative extension"),
+        "STATE-2026-001-MD": ("2026-02-22", "T4", "MD GPS 14-107: 30-day auto-expire, no renewal found"),
+        "STATE-2026-001-FL": ("2026-04-10", "T4", "FL 60-day EO auto-expire from Feb 9; no extension EO found"),
+
+        # === STILL NO EVIDENCE — kept as ongoing ===
+        # STATE-2025-003-NE: NE Dawson storms — no auto-expire, no termination found
+        # STATE-2025-004-NE: NE Aug storms — no auto-expire, no termination found
+        # STATE-2025-016-CA: Tropical Storm Mario — no termination, no CA auto-expire
+        # STATE-2025-012-CA: Tsunami — no termination, no CA auto-expire
+        # STATE-2026-001-MA: MA winter storm — no auto-expire, no termination found
     }
 
     applied = 0
