@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "lastUpdated": "2026-03-28T02:03:30Z",
-    "recordCount": 239,
+    "lastUpdated": "2026-03-28T02:41:27Z",
+    "recordCount": 212,
     "generatedBy": "dst_data_fetcher.py",
-    "contentHash": "03d42702d9ff887c",
+    "contentHash": "7e183ffc4fadf4c3",
     "dataIntegrity": {
       "auditChecks": 25,
       "sourceCounts": {
         "SBA": 9,
-        "STATE": 112,
+        "STATE": 85,
         "FMCSA": 66,
         "FEMA": 51,
         "HHS": 1
@@ -44,7 +44,7 @@
       "sepWindowEnd": "2026-08-31",
       "daysRemaining": 157,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": true,
@@ -72,7 +72,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -101,7 +101,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -131,7 +131,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -148,19 +148,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-02",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.alabama.gov/newsroom/2026/01/governor-ivey-issues-state-of-emergency-for-19-northern-counties-ahead-of-wintery-icy-forecast/",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -189,7 +189,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-AR",
@@ -199,19 +199,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-22",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.arkansas.gov/executive_orders/sanders-declares-emergency-for-severe-winter-weather-expected-on-or-about-january-23-2026/",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -240,7 +240,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-EM-3636-AR",
@@ -336,7 +336,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "SBA-2026-02294-AR",
@@ -360,7 +360,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -392,7 +392,7 @@
       "sepWindowEnd": "2026-12-31",
       "daysRemaining": 279,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -415,7 +415,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2025-001-CA",
@@ -438,7 +438,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -467,7 +467,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -496,7 +496,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5551-CA",
@@ -518,7 +518,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2025-010-CA",
@@ -540,36 +540,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-012-CA",
-      "source": "STATE",
-      "state": "CA",
-      "title": "Governor Newsom Emergency \u2014 July 2025 Tsunami",
-      "incidentType": "Tsunami",
-      "declarationDate": "2025-07-30",
-      "incidentStart": "2025-07-30",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-30",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -598,7 +569,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -627,65 +598,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
-    },
-    {
-      "id": "STATE-2025-014-CA",
-      "source": "STATE",
-      "state": "CA",
-      "title": "Governor Newsom Emergency \u2014 August Storms and Mudslides",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2025-08-23",
-      "incidentStart": "2025-08-23",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-23",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": true,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-015-CA",
-      "source": "STATE",
-      "state": "CA",
-      "title": "Governor Newsom Emergency \u2014 September Lightning Complex",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-09-02",
-      "incidentStart": "2025-09-02",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://www.gov.ca.gov/2025/09/19/governor-newsom-issues-emergency-proclamation-to-help-calaveras-and-tuolumne-counties-recover-from-tcu-lightning-complex-fires/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-09-02",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 248,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5612-CA",
@@ -707,36 +620,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
-    },
-    {
-      "id": "STATE-2025-016-CA",
-      "source": "STATE",
-      "state": "CA",
-      "title": "Governor Newsom Emergency \u2014 Tropical Storm Mario",
-      "incidentType": "Tropical Storm",
-      "declarationDate": "2025-09-18",
-      "incidentStart": "2025-09-18",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-09-18",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 248,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2025-017-CA",
@@ -758,7 +642,7 @@
       "sepWindowEnd": "2027-01-31",
       "daysRemaining": 310,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -788,7 +672,7 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -816,7 +700,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -850,7 +734,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -885,7 +769,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -913,7 +797,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:00:53Z",
+      "lastUpdated": "2026-03-28T02:38:56Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -941,7 +825,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5604-CO",
@@ -963,7 +847,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5606-CO",
@@ -985,7 +869,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2026-001-CO",
@@ -1007,7 +891,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-012-CT",
@@ -1029,7 +913,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": true,
@@ -1057,7 +941,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -1085,7 +969,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -1114,7 +998,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1137,7 +1021,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-DC",
@@ -1159,7 +1043,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1182,7 +1066,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1205,7 +1089,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-012-DE",
@@ -1227,7 +1111,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-DE",
@@ -1249,7 +1133,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-DE",
@@ -1271,7 +1155,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -1300,7 +1184,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1330,7 +1214,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -1370,7 +1254,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "extensions": [
         {
@@ -1469,7 +1353,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "extensions": [
         {
@@ -1550,7 +1434,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "extensions": [
         {
@@ -1629,7 +1513,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -1658,7 +1542,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-FL",
@@ -1680,7 +1564,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -1709,7 +1593,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -1738,7 +1622,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-EM-3642-GA",
@@ -1870,7 +1754,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-002-GA",
@@ -1892,7 +1776,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1915,7 +1799,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1941,7 +1825,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -1964,7 +1848,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-001-HI",
@@ -1986,7 +1870,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -2015,7 +1899,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2038,7 +1922,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-IA",
@@ -2060,7 +1944,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-013-IL",
@@ -2082,7 +1966,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-IL",
@@ -2104,7 +1988,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -2132,7 +2016,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -2242,7 +2126,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-001-IN",
@@ -2252,19 +2136,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-25",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-14",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.in.gov/gov/files/EO26-03.pdf",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -2293,7 +2177,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-KS",
@@ -2315,7 +2199,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -2338,7 +2222,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": true,
@@ -2366,7 +2250,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -2395,7 +2279,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-KY",
@@ -2417,7 +2301,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -2446,7 +2330,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -2593,7 +2477,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2021-001-LA",
@@ -2623,7 +2507,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -2652,7 +2536,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -2681,7 +2565,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -2772,7 +2656,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "SBA-2026-02294-LA",
@@ -2814,7 +2698,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -2858,7 +2742,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-012-MA",
@@ -2880,7 +2764,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-MA",
@@ -2902,7 +2786,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-MA",
@@ -2912,19 +2796,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-23",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-27",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.fmcsa.dot.gov/emergency/massachusetts-declaration-emergency-notice-1-23-2026",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-23",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -2953,7 +2837,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -2982,7 +2866,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-MD",
@@ -3004,7 +2888,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-MD",
@@ -3026,7 +2910,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3076,7 +2960,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-012-ME",
@@ -3098,7 +2982,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-ME",
@@ -3127,7 +3011,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3150,7 +3034,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3179,7 +3063,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-002-MI",
@@ -3203,7 +3087,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3234,37 +3118,8 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
-    },
-    {
-      "id": "STATE-2025-001-MN",
-      "source": "STATE",
-      "state": "MN",
-      "title": "Governor Walz Peacetime Emergency \u2014 NE Minnesota Wildfires (EO 25-05)",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-05-20",
-      "incidentStart": "2025-05-12",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Saint Louis"
-      ],
-      "statewide": false,
-      "officialUrl": "https://mn.gov/governor/newsroom/press-releases/?id=1055-685281",
-      "status": "ongoing",
-      "sepWindowStart": "2025-05-12",
-      "sepWindowEnd": "2026-07-31",
-      "daysRemaining": 126,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": false,
-        "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
     },
     {
       "id": "FMCSA-2025-013-MN",
@@ -3286,7 +3141,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -3314,65 +3169,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
-    },
-    {
-      "id": "STATE-2025-001-MO",
-      "source": "STATE",
-      "state": "MO",
-      "title": "Governor Kehoe Emergency \u2014 April 2025 Severe Storms",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2025-04-29",
-      "incidentStart": "2025-04-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-requests-federal-disaster-declaration-response-march-30-april",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-29",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 95,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-002-MO",
-      "source": "STATE",
-      "state": "MO",
-      "title": "Governor Kehoe Emergency \u2014 May 2025 Memorial Weekend Storms",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2025-05-23",
-      "incidentStart": "2025-05-23",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-announces-fema-participate-joint-damage-assessments-5",
-      "status": "ongoing",
-      "sepWindowStart": "2025-05-23",
-      "sepWindowEnd": "2026-07-31",
-      "daysRemaining": 126,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-013-MO",
@@ -3394,7 +3191,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-MO",
@@ -3404,19 +3201,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-22",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-26-05-declaring-state-emergency",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3445,7 +3242,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-002-MO",
@@ -3467,7 +3264,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3484,19 +3281,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-01-30",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governorreeves.ms.gov/governor-reeves-issues-state-of-emergency-ahead-of-severe-winter-weather/",
-      "status": "ongoing",
+      "status": "expiring_soon",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-03-31",
+      "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3525,7 +3322,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-EM-3640-MS",
@@ -3629,7 +3426,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "SBA-2026-02294-MS",
@@ -3655,7 +3452,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -3765,7 +3562,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2025-001-MT",
@@ -3787,7 +3584,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3816,7 +3613,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -3847,7 +3644,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2026-001-MT",
@@ -3869,7 +3666,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-FM-5574-NC",
@@ -3891,7 +3688,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5577-NC",
@@ -3913,7 +3710,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2025-001-NC",
@@ -3956,7 +3753,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -3979,7 +3776,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5580-NC",
@@ -4001,7 +3798,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5582-NC",
@@ -4023,7 +3820,7 @@
       "sepWindowEnd": "2026-07-31",
       "daysRemaining": 126,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-012-NC",
@@ -4045,7 +3842,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": true,
@@ -4061,19 +3858,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-21",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-20",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.nc.gov/news/press-releases/2026/01/21/governor-stein-declares-state-emergency-ahead-winter-storm",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -4102,7 +3899,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-EM-3637-NC",
@@ -4217,7 +4014,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2026-001-ND",
@@ -4239,148 +4036,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
-    },
-    {
-      "id": "STATE-2025-001-NE",
-      "source": "STATE",
-      "state": "NE",
-      "title": "Governor Pillen Emergency \u2014 March 2025 Winter Storm",
-      "incidentType": "Severe Winter Storm",
-      "declarationDate": "2025-03-21",
-      "incidentStart": "2025-03-18",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Boone",
-        "Burt",
-        "Butler",
-        "Cass",
-        "Clay",
-        "Colfax",
-        "Cuming",
-        "Dodge",
-        "Douglas",
-        "Fillmore",
-        "Hamilton",
-        "Jefferson",
-        "Johnson",
-        "Lancaster",
-        "Nuckolls",
-        "Otoe",
-        "Platte",
-        "Polk",
-        "Saline",
-        "Sarpy",
-        "Saunders",
-        "Seward",
-        "Thayer",
-        "Thurston",
-        "Washington",
-        "York"
-      ],
-      "statewide": false,
-      "officialUrl": "https://governor.nebraska.gov/gov-pillen-declares-emergency-counties-impacted-winter-storm",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-18",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 65,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-002-NE",
-      "source": "STATE",
-      "state": "NE",
-      "title": "Governor Pillen Emergency \u2014 Plum Creek Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-04-21",
-      "incidentStart": "2025-04-21",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://governor.nebraska.gov/governor-pillen-declares-emergency-mobilizes-nebraska-national-guard-and-issues-statewide-burn-ban",
-      "status": "ongoing",
-      "sepWindowStart": "2025-04-21",
-      "sepWindowEnd": "2026-06-30",
-      "daysRemaining": 95,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-003-NE",
-      "source": "STATE",
-      "state": "NE",
-      "title": "Governor Pillen Emergency \u2014 Dawson County Severe Storms",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2025-06-29",
-      "incidentStart": "2025-06-29",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Dawson"
-      ],
-      "statewide": false,
-      "officialUrl": "https://governor.nebraska.gov/gov-pillen-issues-disaster-declaration-dawson-county-following-june-storms",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-29",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 157,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-004-NE",
-      "source": "STATE",
-      "state": "NE",
-      "title": "Governor Pillen Emergency \u2014 August 2025 Storms",
-      "incidentType": "Severe Storm",
-      "declarationDate": "2025-08-08",
-      "incidentStart": "2025-08-08",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://governor.nebraska.gov/gov-pillen-issues-disaster-declaration-23-counties-following-aug-8-storms",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-08",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-013-NE",
@@ -4402,7 +4058,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-NE",
@@ -4424,7 +4080,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-NE",
@@ -4446,7 +4102,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -4479,7 +4135,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-002-NE",
@@ -4501,7 +4157,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4524,7 +4180,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-NH",
@@ -4546,7 +4202,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-FM-5581-NJ",
@@ -4568,7 +4224,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-012-NJ",
@@ -4590,7 +4246,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-NJ",
@@ -4612,7 +4268,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -4640,7 +4296,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -4669,7 +4325,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4692,7 +4348,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": true,
@@ -4720,7 +4376,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -4749,117 +4405,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
-    },
-    {
-      "id": "STATE-2025-005-NM",
-      "source": "STATE",
-      "state": "NM",
-      "title": "Governor Lujan Grisham Emergency \u2014 Cotton Fire / Desert Willow Complex (EO 2025-247)",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-06-21",
-      "incidentStart": "2025-06-21",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Valencia"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.governor.state.nm.us/2025/06/21/governor-secures-resources-to-support-cotton-fire-response-additional-firefighting-crews-air-support-and-shelter-services-mobilized/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-21",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 157,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": false,
-        "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-006-NM",
-      "source": "STATE",
-      "state": "NM",
-      "title": "Governor Lujan Grisham Emergency \u2014 Lincoln County Flooding (EO 2025-248)",
-      "incidentType": "Flood",
-      "declarationDate": "2025-06-26",
-      "incidentStart": "2025-06-23",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Lincoln"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.dhsem.nm.gov/governor-signs-emergency-declarations-for-lincoln-and-chaves-county/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-23",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 157,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-001-NM",
-      "source": "STATE",
-      "state": "NM",
-      "title": "Governor Lujan Grisham Emergency \u2014 July 2025 Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-07-25",
-      "incidentStart": "2025-07-22",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://www.governor.state.nm.us/2025/07/08/new-mexico-governor-mobilizes-resources-following-catastrophic-flooding-in-ruidoso/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-22",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-007-NM",
-      "source": "STATE",
-      "state": "NM",
-      "title": "Governor Lujan Grisham Emergency \u2014 Dona Ana County Flooding (EO 2025-333)",
-      "incidentType": "Flood",
-      "declarationDate": "2025-07-25",
-      "incidentStart": "2025-07-22",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Dona Ana"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.governor.state.nm.us/2025/07/25/governor-signs-emergency-order-for-dona-ana-county-flooding/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-22",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2025-003-NM",
@@ -4881,7 +4427,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -4889,29 +4435,6 @@
         "humana": false,
         "healthspring": false
       }
-    },
-    {
-      "id": "STATE-2025-009-NM",
-      "source": "STATE",
-      "state": "NM",
-      "title": "Governor Lujan Grisham Emergency (EO 2025-362) \u2014 Mora County Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-09-02",
-      "incidentStart": "2025-08-28",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Mora"
-      ],
-      "statewide": false,
-      "officialUrl": "https://www.governor.state.nm.us/2025/09/02/governor-signs-emergency-order-for-mora-county-flooding/",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-28",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27"
     },
     {
       "id": "STATE-2026-001-NM",
@@ -4933,7 +4456,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -4956,7 +4479,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -4993,7 +4516,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -5022,7 +4545,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": true,
@@ -5084,7 +4607,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5107,7 +4630,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-NY",
@@ -5129,7 +4652,7 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -5179,7 +4702,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5202,7 +4725,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-013-OH",
@@ -5224,7 +4747,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-OH",
@@ -5246,7 +4769,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-OH",
@@ -5268,7 +4791,7 @@
       "sepWindowEnd": "2026-06-30",
       "daysRemaining": 95,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -5297,7 +4820,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -5326,7 +4849,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5618-OK",
@@ -5348,7 +4871,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5617-OK",
@@ -5370,7 +4893,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-003-OK",
@@ -5392,7 +4915,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -5424,7 +4947,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5448,7 +4971,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5620-OK",
@@ -5470,7 +4993,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-002-OK",
@@ -5499,7 +5022,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -5522,7 +5045,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5626-OK",
@@ -5544,7 +5067,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5628-OK",
@@ -5566,7 +5089,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5627-OK",
@@ -5588,7 +5111,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2023-001-OR",
@@ -5614,186 +5137,11 @@
       "sepWindowEnd": "2027-03-31",
       "daysRemaining": 369,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-010-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Alder Springs Fire (EO 25-07)",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-06-16",
-      "incidentStart": "2025-06-16",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Deschutes",
-        "Jefferson"
-      ],
-      "statewide": false,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-alder-springs-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-16",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 157,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": true,
-        "humana": true,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-011-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Rowena Fire (EO 25-08)",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-06-21",
-      "incidentStart": "2025-06-11",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Wasco"
-      ],
-      "statewide": false,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-declares-state-of-emergency-due-to-rowena-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-06-11",
-      "sepWindowEnd": "2026-08-31",
-      "daysRemaining": 157,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": true,
-        "humana": true,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-002-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Cold Spring Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-07-02",
-      "incidentStart": "2025-07-02",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-cold-springs-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-02",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-003-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Elk Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-07-09",
-      "incidentStart": "2025-07-09",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-elk-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-09",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-004-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Highland Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-07-12",
-      "incidentStart": "2025-07-12",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-highland-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-12",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
-    },
-    {
-      "id": "STATE-2025-005-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Cram Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-07-14",
-      "incidentStart": "2025-07-14",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-cram-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-07-14",
-      "sepWindowEnd": "2026-09-30",
-      "daysRemaining": 187,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
         "humana": false,
         "healthspring": false
       }
@@ -5828,37 +5176,8 @@
       "sepWindowEnd": "2026-11-30",
       "daysRemaining": 248,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
-    },
-    {
-      "id": "STATE-2025-006-OR",
-      "source": "STATE",
-      "state": "OR",
-      "title": "Governor Kotek Emergency \u2014 Flat Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-08-22",
-      "incidentStart": "2025-08-22",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-flat-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-22",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
     },
     {
       "id": "STATE-2025-007-OR",
@@ -5868,19 +5187,19 @@
       "incidentType": "Wildfire",
       "declarationDate": "2025-09-27",
       "incidentStart": "2025-09-27",
-      "incidentEnd": null,
+      "incidentEnd": "2026-03-09",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-moon-complex-fire",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2025-09-27",
-      "sepWindowEnd": "2026-11-30",
-      "daysRemaining": 248,
+      "sepWindowEnd": "2026-05-31",
+      "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -5909,7 +5228,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": false,
@@ -5937,7 +5256,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -5965,7 +5284,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -5994,7 +5313,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27"
     },
     {
@@ -6021,7 +5340,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -6049,7 +5368,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-RI",
@@ -6071,7 +5390,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": true,
         "wellcare": true,
@@ -6099,7 +5418,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -6107,29 +5426,6 @@
         "humana": false,
         "healthspring": false
       }
-    },
-    {
-      "id": "STATE-2025-001-SC",
-      "source": "STATE",
-      "state": "SC",
-      "title": "Governor McMaster Emergency (EO 2025-10) \u2014 Covington Drive Wildfire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-03-02",
-      "incidentStart": "2025-03-01",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Horry"
-      ],
-      "statewide": false,
-      "officialUrl": "https://governor.sc.gov/news/2025-03/governor-henry-mcmaster-declares-state-emergency-due-wildfires",
-      "status": "ongoing",
-      "sepWindowStart": "2025-03-01",
-      "sepWindowEnd": "2026-05-31",
-      "daysRemaining": 65,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27"
     },
     {
       "id": "FEMA-FM-5554-SC",
@@ -6151,7 +5447,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5576-SC",
@@ -6174,7 +5470,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5575-SC",
@@ -6196,7 +5492,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2026-001-SC",
@@ -6206,19 +5502,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-05",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.sc.gov/news/2026-01/gov-mcmaster-declares-state-emergency-ahead-winter-storm",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -6293,7 +5589,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2026-001-SC",
@@ -6315,7 +5611,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2025-001-SD",
@@ -6337,7 +5633,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -6366,7 +5662,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-FM-5622-SD",
@@ -6388,7 +5684,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-013-TN",
@@ -6410,7 +5706,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-TN",
@@ -6420,19 +5716,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-22",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-05",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.tn.gov/governor/news/2026/1/22/gov--lee-issues-state-of-emergency-ahead-of-major-winter-storm.html",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-22",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -6461,7 +5757,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FEMA-EM-3635-TN",
@@ -6564,7 +5860,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-DR-4898-TN",
@@ -6680,7 +5976,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "STATE-2021-001-TX",
@@ -6709,7 +6005,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -6746,7 +6042,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -6807,7 +6103,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -6838,7 +6134,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -6855,19 +6151,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-21",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://gov.texas.gov/news/post/governor-abbott-provides-update-on-texas-ongoing-response-to-severe-winter-weather-",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -6896,7 +6192,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "SBA-2026-02294-TX",
@@ -6919,7 +6215,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -6948,7 +6244,7 @@
       "sepWindowEnd": "2027-04-30",
       "daysRemaining": 399,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5625-TX",
@@ -6970,7 +6266,7 @@
       "sepWindowEnd": "2027-05-31",
       "daysRemaining": 430,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2025-012-VA",
@@ -6992,7 +6288,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-VA",
@@ -7002,19 +6298,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-22",
       "incidentStart": "2026-01-20",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-22",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://www.governor.virginia.gov/newsroom/news-releases/2026/january-releases/name-1111570-en.html",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-20",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -7172,7 +6468,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2026-001-VA",
@@ -7194,7 +6490,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-012-VT",
@@ -7216,7 +6512,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-VT",
@@ -7238,7 +6534,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2025-014-WA",
@@ -7260,7 +6556,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": true,
@@ -7288,7 +6584,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -7333,7 +6629,7 @@
       "sepWindowEnd": "2027-02-28",
       "daysRemaining": 338,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "HHS-2025-001-WA",
@@ -7370,7 +6666,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": false,
@@ -7378,29 +6674,6 @@
         "humana": false,
         "healthspring": false
       }
-    },
-    {
-      "id": "STATE-2025-001-WI",
-      "source": "STATE",
-      "state": "WI",
-      "title": "Governor Evers Emergency (EO 272) \u2014 August 2025 Flooding",
-      "incidentType": "Flood",
-      "declarationDate": "2025-08-11",
-      "incidentStart": "2025-08-09",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://evers.wi.gov/Documents/EO/EO272-EmergencyOrderFlooding.pdf",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-09",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27"
     },
     {
       "id": "FMCSA-2025-013-WI",
@@ -7422,7 +6695,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-WI",
@@ -7444,7 +6717,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "carrierAcknowledgments": {
         "aetna": false,
         "wellcare": false,
@@ -7472,7 +6745,7 @@
       "sepWindowEnd": "2026-05-31",
       "daysRemaining": 65,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "FMCSA-2026-001-WV",
@@ -7494,7 +6767,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     },
     {
       "id": "STATE-2026-001-WV",
@@ -7504,19 +6777,19 @@
       "incidentType": "Severe Winter Storm",
       "declarationDate": "2026-01-23",
       "incidentStart": "2026-01-21",
-      "incidentEnd": null,
+      "incidentEnd": "2026-02-22",
       "renewalDates": null,
       "counties": [
         "Statewide"
       ],
       "statewide": true,
       "officialUrl": "https://governor.wv.gov/article/governor-morrisey-declares-state-emergency-all-55-counties-major-winter-storm-approaches",
-      "status": "ongoing",
+      "status": "active",
       "sepWindowStart": "2026-01-21",
-      "sepWindowEnd": "2027-03-31",
-      "daysRemaining": 369,
+      "sepWindowEnd": "2026-04-30",
+      "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
+      "lastUpdated": "2026-03-28T02:41:23Z",
       "lastVerified": "2026-03-27",
       "carrierAcknowledgments": {
         "aetna": true,
@@ -7598,36 +6871,7 @@
       "sepWindowEnd": "2026-03-31",
       "daysRemaining": 4,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
-    },
-    {
-      "id": "STATE-2025-001-WY",
-      "source": "STATE",
-      "state": "WY",
-      "title": "Governor Gordon Emergency \u2014 Red Canyon Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-08-13",
-      "incidentStart": "2025-08-13",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://governor.wyo.gov/news-releases/governor-gordon-issues-emergency-declaration-for-red-canyon-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-13",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": true,
-        "humana": false,
-        "healthspring": false
-      }
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FEMA-FM-5608-WY",
@@ -7649,36 +6893,7 @@
       "sepWindowEnd": "2026-10-31",
       "daysRemaining": 218,
       "confidenceLevel": "verified",
-      "lastUpdated": "2026-03-28T02:03:30Z"
-    },
-    {
-      "id": "STATE-2025-002-WY",
-      "source": "STATE",
-      "state": "WY",
-      "title": "Governor Gordon Emergency \u2014 Dollar Fire",
-      "incidentType": "Wildfire",
-      "declarationDate": "2025-08-21",
-      "incidentStart": "2025-08-21",
-      "incidentEnd": null,
-      "renewalDates": null,
-      "counties": [
-        "Statewide"
-      ],
-      "statewide": true,
-      "officialUrl": "https://governor.wyo.gov/news-releases/governor-gordon-provides-wildfire-updates-dollar-fire",
-      "status": "ongoing",
-      "sepWindowStart": "2025-08-21",
-      "sepWindowEnd": "2026-10-31",
-      "daysRemaining": 218,
-      "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z",
-      "lastVerified": "2026-03-27",
-      "carrierAcknowledgments": {
-        "aetna": true,
-        "wellcare": false,
-        "humana": true,
-        "healthspring": false
-      }
+      "lastUpdated": "2026-03-28T02:41:27Z"
     },
     {
       "id": "FMCSA-2026-001-WY",
@@ -7700,7 +6915,7 @@
       "sepWindowEnd": "2026-04-30",
       "daysRemaining": 34,
       "confidenceLevel": "curated",
-      "lastUpdated": "2026-03-28T02:03:25Z"
+      "lastUpdated": "2026-03-28T02:41:23Z"
     }
   ]
 }

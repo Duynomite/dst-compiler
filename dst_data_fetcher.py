@@ -4708,6 +4708,89 @@ class CoverageGapAnalyzer:
 # Validation and Deduplication
 # =========================================================================
 
+def apply_incident_end_corrections(records: List[Dict]) -> None:
+    """Apply researched incidentEnd dates to records marked as 'ongoing' that have actually ended.
+
+    Sources: carrier cross-reference (Aetna/Humana), CAL FIRE containment reports,
+    InciWeb, state statutory auto-expire rules, governor termination announcements.
+    Added 2026-03-27 from ongoing records audit.
+    """
+    # fmt: record_id -> (incidentEnd_iso, reason)
+    CORRECTIONS = {
+        # Oregon fires (confirmed containment dates from InciWeb/CAL FIRE)
+        "STATE-2025-010-OR": ("2025-07-01", "Alder Springs Fire contained ~Jul 1"),
+        "STATE-2025-011-OR": ("2025-06-25", "Rowena Fire contained Jun 25"),
+        "STATE-2025-002-OR": ("2025-07-05", "Cold Spring Fire contained ~Jul 5"),
+        "STATE-2025-003-OR": ("2025-08-06", "Elk Fire contained Aug 6"),
+        "STATE-2025-004-OR": ("2025-07-20", "Highland Fire contained ~Jul 20"),
+        "STATE-2025-005-OR": ("2025-07-28", "Cram Fire contained Jul 28"),
+        "STATE-2025-006-OR": ("2025-09-09", "Flat Fire contained ~Sep 9"),
+        "STATE-2025-007-OR": ("2026-03-09", "Moon Complex contained Mar 9 2026 (Wikipedia)"),
+        # Wyoming fires (InciWeb)
+        "STATE-2025-001-WY": ("2025-09-24", "Red Canyon Fire contained Sep 24"),
+        "STATE-2025-002-WY": ("2025-10-06", "Dollar Fire contained Oct 6"),
+        # Other fires
+        "STATE-2025-001-SC": ("2025-05-21", "Covington Drive contained May 21 (SC Forestry)"),
+        "STATE-2025-002-NE": ("2025-04-30", "Plum Creek Fire contained Apr 30 (NE EMA)"),
+        "STATE-2025-001-MN": ("2025-06-24", "MN wildfires all contained by Jun 24"),
+        "STATE-2025-015-CA": ("2025-10-15", "Lightning Complex est. contained mid-Oct"),
+        "STATE-2025-016-CA": ("2025-09-25", "Tropical Storm Mario est. ended late Sep"),
+        # CA single-day/short events (already had end dates in new records, fix old ones)
+        "STATE-2025-014-CA": ("2025-08-27", "Aug storms/mudslides ended Aug 27"),
+        "STATE-2025-012-CA": ("2025-07-30", "Tsunami single-day event Jul 30"),
+        # NE storms (no auto-expire, est. ~60 days)
+        "STATE-2025-001-NE": ("2025-04-02", "NE winter storm declaration expired Apr 2"),
+        "STATE-2025-003-NE": ("2025-08-28", "NE Dawson storms est. ~60 days"),
+        "STATE-2025-004-NE": ("2025-10-07", "NE Aug storms est. ~60 days"),
+        # MO storms (EO 25-27 umbrella expired Aug 31)
+        "STATE-2025-001-MO": ("2025-08-31", "MO EO 25-27 expired Aug 31"),
+        "STATE-2025-002-MO": ("2025-08-31", "MO same EO 25-27 umbrella"),
+        # NM floods/fires (90-day auto-expire per NM statute)
+        "STATE-2025-005-NM": ("2025-09-19", "NM Cotton Fire ~90-day auto-expire"),
+        "STATE-2025-006-NM": ("2025-09-24", "NM Lincoln flooding ~90-day auto-expire"),
+        "STATE-2025-001-NM": ("2025-10-23", "NM July flooding ~90-day auto-expire"),
+        "STATE-2025-007-NM": ("2025-10-23", "NM Dona Ana flooding ~90-day auto-expire"),
+        "STATE-2025-009-NM": ("2025-12-01", "NM Mora flooding ~90-day auto-expire"),
+        # WI flooding (60-day statutory max)
+        "STATE-2025-001-WI": ("2025-10-10", "WI 60-day statutory max"),
+        # Jan 2026 winter storm states (carrier + research confirmed)
+        "STATE-2026-001-MS": ("2026-01-30", "Storm ended, Aetna confirms Jan 30"),
+        "STATE-2026-001-AL": ("2026-02-02", "Formally terminated by Gov. Ivey Feb 2"),
+        "STATE-2026-001-TN": ("2026-02-05", "EOC closed Feb 6, Aetna confirms Feb 5"),
+        "STATE-2026-001-SC": ("2026-02-05", "Aetna confirms Feb 5"),
+        "STATE-2026-001-IN": ("2026-02-14", "EOC normal ops Jan 27, est. ~21 days"),
+        "STATE-2026-001-NC": ("2026-02-20", "EO 31/32 both expired Feb 20"),
+        "STATE-2026-001-TX": ("2026-02-21", "Aetna confirms Feb 21, ~30-day expire"),
+        "STATE-2026-001-AR": ("2026-02-22", "30-day expire from Jan 23"),
+        "STATE-2026-001-VA": ("2026-02-22", "Aetna confirms Feb 22, ~30-day expire"),
+        "STATE-2026-001-MO": ("2026-02-22", "EO 26-05 expired Feb 22"),
+        "STATE-2026-001-WV": ("2026-02-22", "Aetna confirms Feb 22, ~30-day expire"),
+        "STATE-2026-001-MA": ("2026-01-27", "Travel ban lifted Jan 27, short-lived"),
+    }
+
+    applied = 0
+    expired_out = 0
+    for rec in records:
+        rid = rec.get("id", "")
+        if rid in CORRECTIONS:
+            end_str, reason = CORRECTIONS[rid]
+            end_date = date.fromisoformat(end_str)
+            rec["incidentEnd"] = end_str
+            # Recalculate SEP window and status
+            sep_end = calculate_sep_window_end(end_date)
+            rec["sepWindowEnd"] = sep_end.isoformat()
+            rec["daysRemaining"] = days_remaining(sep_end)
+            new_status = calculate_status(sep_end, False)
+            rec["status"] = new_status
+            if new_status == "expired":
+                expired_out += 1
+            applied += 1
+
+    print(f"  Incident end corrections applied: {applied}")
+    if expired_out:
+        print(f"  WARNING: {expired_out} records now expired (will be filtered on next fetcher run)")
+
+
 def inject_carrier_acknowledgments(records: List[Dict]) -> None:
     """Inject carrierAcknowledgments from carrier_analysis.json + Humana/Healthspring crossref.
 
@@ -5064,6 +5147,16 @@ def main():
         print(f"  -> Removed {dup_count} duplicates")
     print(f"  -> {len(unique_curated)} unique curated records")
     print()
+
+    # --- Apply researched incidentEnd corrections for false "ongoing" records ---
+    apply_incident_end_corrections(unique_curated)
+    # Remove records that are now expired after corrections
+    pre_count = len(unique_curated)
+    unique_curated = [r for r in unique_curated if r.get("status") != "expired"]
+    removed = pre_count - len(unique_curated)
+    if removed:
+        print(f"  -> Removed {removed} now-expired records after corrections")
+        print(f"  -> {len(unique_curated)} records remain")
 
     # --- Inject carrier acknowledgments from carrier_analysis.json ---
     inject_carrier_acknowledgments(unique_curated)
