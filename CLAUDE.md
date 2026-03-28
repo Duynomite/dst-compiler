@@ -1,10 +1,10 @@
 # CLAUDE.md — DST Compiler Tool
 
 ## Project Status
-- **Status:** v2.5 — Double-Audited + All Corrections Verified
-- **Last Session:** 2026-02-16
+- **Status:** v3.0 — Carrier Cross-Reference + FMAG Inclusion (Phase 1 complete)
+- **Last Session:** 2026-03-27
 - **Blocker:** None
-- **Next Action:** Continue coverage gap research (18 states flagged); monitor Feb 14-15 TX/LA/MS tornado declarations
+- **Next Action:** **Expiring-Soon Visual Indicator** (badge on cards nearing SEP window end). Also: UI rendering of extension arrays on FL hurricane cards, carrier acknowledgment badges.
 - **Live URL:** https://duynomite.github.io/dst-compiler/
 
 ## Your Role
@@ -59,9 +59,16 @@ The v1 tool captures FEMA disasters well via live API but misses governor-declar
 ```
 dst-compiler/
 ├── index.html                 # The tool — agents open this (React 18 + Tailwind v4 + CPC brand)
-├── curated_disasters.json     # Non-FEMA disaster data (104 records, updated by fetcher)
-├── dst_data_fetcher.py        # Python pipeline: SBA/HHS/FMCSA/STATE collectors
-├── audit_curated_data.py      # Validation script (22 checks per record)
+├── curated_disasters.json     # Non-FEMA disaster data (105 records, updated by fetcher)
+├── all_disasters.json         # Curated + FEMA DR/EM combined (NEW v2.8)
+├── medicare_enrollment.json   # County-level Medicare enrollment data (CMS, ~3,200 counties)
+├── dst_data_fetcher.py        # Python pipeline: SBA/HHS/FMCSA/STATE/FEMA collectors
+├── carrier_data_parser.py     # Carrier Excel parser + cross-referencer (v3.0)
+├── carrier_analysis.json      # Carrier match/gap/discrepancy data (v3.0 output)
+├── carrier_gaps.json          # Research queue: 135 missing DSTs (v3.0 output)
+├── carrier_report.md          # Human-readable gap report (v3.0 output)
+├── carrier_intelligence.md    # Source discovery + process improvements (v3.0 output)
+├── audit_curated_data.py      # Validation script (28 checks per record, dual-mode)
 ├── build_governor_entries.py   # Phase 2 utility: builds governor entries (run once)
 ├── requirements.txt           # Python dependencies (requests, beautifulsoup4)
 ├── county_state_map.json      # County-to-state lookup (~3,200 entries)
@@ -74,36 +81,49 @@ dst-compiler/
 ```
 
 ## Current State
-[Updated 2026-02-16 — v2.5 Full Audit + Data Corrections]
-- **v2.5 AUDITED AND LIVE** at `duynomite.github.io/dst-compiler/`
-- **104 curated records** (62 FMCSA + 13 SBA + 28 STATE + 1 HHS)
+[Updated 2026-03-27 — v3.0 Phase 3 Session 2: Carrier Gap Fills]
+- **v3.0 Phase 3 DEPLOYED** at `duynomite.github.io/dst-compiler/`
+- **Dual output pipeline**: `curated_disasters.json` (184 records, non-FEMA) + `all_disasters.json` (235 total, curated + FEMA DR/EM/FM)
+- **FEMACollector**: Live OpenFEMA API, DR/EM/FM (FM re-included per carrier data analysis)
+- **184 curated records** (66 FMCSA + 9 SBA + 111 STATE + 1 HHS) — **+20 records this session from carrier cross-reference gap fills**
+- **FL Hurricane Extension Arrays**: Full EO chains documented for Debby (10 extensions), Helene (7), Milton (7). Extensions data model populated for first time.
+- **Carrier gap resolution**: 44 remaining gaps → 26 after fuzzy matching + FEMA API analysis. 10 expired, 8 matched existing FM records, all 16 unmatched wildfires have expired FEMA FM records (carrier uses longer windows than regulatory 2-month calc).
+- **FL Israel EO 23-208**: Confirmed expired ~Nov 8, 2025. Last extension EO 25-183 (Sep 9). No further renewals found.
+- **FL Milton**: Confirmed expired Jan 24, 2026 per Humana data. incidentEnd set. SEP ends Mar 31, 2026.
+- **FL data corrections**: May 2024 Tornadoes (end 2025-12-23), Lake County Flooding (end 2025-12-28), NW FL Tornadoes (end 2026-01-06), OH winter storm (end 2026-04-26) — all per Humana carrier data.
+- **NY EO 57 URL fix**: Was pointing to EO 55 (Dec 26 storm). Corrected to EO 57 URL.
+- **Audit**: 4,233/4,235 + 5,406/5,408 checks pass (1 expected HHS PHE expiry + 1 PR non-gov URL domain)
 - **Full audit results** (this session):
-  - FEMA API: 16 active disasters (correct), 84 expired (filtered)
-  - SBA: All 13 records verified against Federal Register source documents
-  - FMCSA: All 62 records verified against FMCSA website + secondary sources
-  - STATE: 26/28 URLs verified OK (TN connection reset, MS SSL issue — both known)
-  - Zero expired records in curated data
-  - 2,083/2,083 audit checks pass (100%) — after second audit corrections
-- **Fixes applied this session**:
-  - 3 more expired SBA records corrected (IL apartment fire, IN contiguous, MN fire) — parser used FR pub date as incident date
-  - 1 missing SBA record added: SBA-2026-02924-CA (Oakland Apartment Fire, Jan 19 2026)
-  - SBA-2026-02294-LA county list expanded (5→21 parishes) + 3 contiguous state records added (TX, AR, MS)
-  - FMCSA-2025-012: Removed VA (never part of this declaration per verified Feb 13 extension doc)
-  - FMCSA-2025-013: End date confirmed as Feb 15 (not Feb 28 — that was 2025-012 only); MN is correct (MI was never added)
-  - FMCSA-2025-014-WA: End date corrected to Jan 23 (not Feb 20 — no further extension found)
-  - SBA-2025-16217-AK: Removed Southeast Fairbanks county (not in FR source doc)
-  - SBA-2026-02924-CA: Title corrected to "Oakland Apartment Fire"; removed 7 non-adjacent counties
-- **28 governor declarations** covering 24 states + DC
-- **1 HHS PHE** (Washington State severe weather)
-- FEMA live API: Healthy, ~16 active disasters
+  - FEMA API: 18 active disasters, 155 expired (filtered)
+  - SBA: 9 active records verified against Federal Register source documents
+  - FMCSA: 66 records across 4 declarations (2025-012 extended to Mar 14 + 4 new states)
+  - STATE: 36 records across 28 states (18/29 original URLs broken — replacement search in progress)
+  - HHS: 1 record — PHE 90-day limit flagged as expired
+  - 2,578/2,579 audit checks pass (1 expected HHS PHE expiry failure)
+- **Fixes applied this session (Mar 27, 2026)**:
+  - FMCSA-2025-012: End date Feb 28 → Mar 14 (new extension found). Added NC, OH, RI, VA (4 new states, 15 total)
+  - FMCSA-2025-013: End date Feb 15 → Feb 28 (extension confirmed via PA Propane Gas Assn). Previous session's "2025-012 only" determination was incorrect.
+  - Added SBA-2026-04576-PA (Hotel Hampton Fire, Feb 20 2026) + SBA-2026-04576-NJ (contiguous, Warren County)
+  - Added 7 new STATE declarations: FL (wildfires), MI×2 (tornadoes + blizzard), MO (tornadoes), NE (wildfires), OK (tornadoes), RI (blizzard)
+  - 4 FEMA records updated from ONGOING to closed: EM-3641-IN, EM-3634-MD, EM-3639-WV (Jan 27), EM-3643-DC (Mar 14)
+  - HHS-2025-001-WA: PHE 90-day statutory limit flagged as expired
+- **Pipeline improvements (v2.9)**:
+  - PHE 90-day expiry tracker: fetcher warns when PHEs approach/pass statutory limit; audit Check 28 validates
+  - SBA parser: now matches amendment titles + fallback contiguous county regex
+  - URL archive fallback: Wayback Machine lookup for failed URLs + proactive snapshot submission
+  - Archive link display in index.html DSTCard component
+  - Weekly monitoring scheduled task (dst-weekly-monitor) — checks pipeline health, new declarations, broken URLs every Monday
+- **36 governor declarations** covering 28 states + DC
+- **1 HHS PHE** (Washington State severe weather — 90-day expiry flagged)
+- FEMA live API: Healthy, 18 active disasters
 - GitHub Actions cron: Running daily at 6AM EST + weekly Monday 10AM EST
-- **eCFR regulatory monitoring**: § 422.62 confirmed UNCHANGED
 - **eCFR regulatory monitoring**: § 422.62 confirmed UNCHANGED (effective since 2024-06-03) — runs weekly in CI
-- **Coverage Gap Analyzer (NEW v2.3)**: Cross-references FEMA/FMCSA declarations against curated STATE records, flags states with federal disaster coverage but no governor declaration. Runs every fetcher execution. Weekly CI creates GitHub Issue for gaps.
+- **Coverage Gap Analyzer**: 12 FMCSA→STATE gaps flagged for research
 - SEP calculations: Verified correct for all edge cases (end-of-month, leap year, year boundary)
 - Data integrity pipeline:
-  - **Audit script runs in CI** — gates every commit on 25 checks per record
-  - **Per-source record count thresholds** — blocks if any source drops >20% or to zero
+  - **Audit script runs in CI** — gates every commit on 27 checks per record (added FEMA URL + domain validation)
+  - **Dual audit in CI** — curated_disasters.json (strict) + all_disasters.json (FEMA-tolerant)
+  - **Per-source record count thresholds** — blocks if any source drops >20% or to zero; FEMA=0 is warning only
   - **Content hash in metadata** — detects silent data corruption
   - **URL verification (HEAD + content relevance)** — catches wrong URLs, dead links, generic pages
   - **Smart domain handling** — FMCSA (403 bots) → structure check, Federal Register (JS) → HEAD only
@@ -125,13 +145,23 @@ dst-compiler/
 - Validation benchmark: Davidson County TN = 5 DSTs (2 FEMA + 2 FMCSA + 1 GOV) ✅
 
 ## TODO — Next Session
-1. ~~**URL Verification System**~~ **DONE (v2.1)** — Full HEAD + content relevance checks, weekly CI, smart domain handling
-2. ~~**eCFR Regulatory Monitoring**~~ **DONE (v2.2)** — Weekly check for amendments to 42 CFR § 422.62(b)(18), GitHub Issue alerting, UI status display
-3. ~~**Coverage Gap Analyzer**~~ **DONE (v2.3)** — FEMA/FMCSA→STATE cross-reference, weekly CI issue creation
-4. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
-5. ~~**"Data Last Updated" in UI**~~ **DONE (v2.0)** — Timestamp in header
-6. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions (1 SBA vs 55 locally). Per-source safeguard blocks data loss, but root cause unclear. Consider: caching last-good SBA results, retry logic, or fallback to curated-only mode in CI.
-7. **Research remaining coverage gaps** — 18 states flagged by analyzer (most advisory). Priority: MA, NH, VT, RI (heating fuel impact), WA (flooding), WI/IA/IL/MN (winter storm impact).
+1. ~~**URL Verification System**~~ **DONE (v2.1)**
+2. ~~**eCFR Regulatory Monitoring**~~ **DONE (v2.2)**
+3. ~~**Coverage Gap Analyzer**~~ **DONE (v2.3)**
+4. ~~**Carrier Cross-Reference + FMAG**~~ **DONE (v3.0 Phase 1)**
+5. ~~**Carrier Gap Research (85 governor declarations)**~~ **DONE (v3.0 Phase 2)** — 135→48 gaps (64% reduction), +29 STATE records
+6. ~~**FL Hurricane Extension Arrays**~~ **DONE** — Debby (10 EO extensions), Helene (7), Milton (7). Aug 7 Debby date was CFO/FDACS, not governor. Helene had missing Nov 7 extension. Milton had missing May 30 extension.
+7. ~~**Name-matching pass on 48 remaining gaps**~~ **DONE** — Fuzzy matcher + FEMA API: 10 expired, 8 matched FM records, 16 have expired FM records (carrier window discrepancy), 5 already covered under different names, 5 genuinely missing → 2 added (HI rains, GA ID fix), 2 expired (CO flooding, KS Dec fire), 1 already existed (KS Feb).
+8. **Expiring-Soon Visual Indicator** — Orange/red badge on cards nearing SEP window end
+9. **Federal Register API reliability** — API returns inconsistent results in GitHub Actions. Per-source safeguard blocks data loss.
+10. ~~**Verify FL Israel EO 23-208 status**~~ **DONE** — Expired ~Nov 8, 2025 (last extension EO 25-183, Sep 9). No further renewals found. Correctly absent from tool.
+11. ~~**Push main repo**~~ **DONE**
+12. ~~**Verify FL Milton expiry**~~ **DONE** — Confirmed expired Jan 24, 2026 per Humana data. incidentEnd set. SEP ends Mar 31, 2026.
+13. **UI: Render extensions in DSTCard** — Extension arrays populated but not displayed. Show EO chain timeline on FL hurricane cards.
+14. **UI: Carrier acknowledgment badges** — Show Aetna/Wellcare badges on matched DST cards.
+15. **PR URL improvement** — Replace ayudalegalpr.org with official docs.pr.gov URL for OE-2025-022 when found.
+16. **PR OE-2024-004 research** — Landslides declaration from Wellcare data. Could not find official EO. Try docs.pr.gov directly.
+17. **22 records expiring Mar 31** — Multiple STATE and SBA records have SEP windows ending 2026-03-31. After expiry, they'll auto-hide from the tool.
 
 ## Known Issues
 - USDA: Confirmed NOT a valid DST trigger for Medicare — USDA drought designations are agricultural loan programs, not disaster declarations under 42 CFR 422.62(b)(18)
@@ -139,10 +169,10 @@ dst-compiler/
 - ~~Some FMCSA entries may have outdated incident end dates~~ **RESOLVED 2026-02-16** — Updated 2025-012 (Feb 28 extension, +ME/VT), 2026-001 (Feb 20 extension), added 2025-014 WA
 - ~~**43 expired SBA records showing as active**~~ **RESOLVED 2026-02-16** — Parser bug: single-day incidents classified as "ongoing". Fixed with Pattern 4 regex + 10 curated overrides.
 - ~~**All 28 STATE URLs returning 404**~~ **FALSE ALARM 2026-02-16** — Re-tested with proper User-Agent: 26/28 return 200 OK with correct page titles. TN has server-side connection reset, MS has known SSL issue. Initial test was likely affected by missing User-Agent header or transient network issue.
-- **18 FMCSA→STATE coverage gaps** flagged by analyzer — most are advisory (FMCSA covers 30-40 states broadly); research needed for MA, VT, NH, RI, WI, IA, IL, MN, CO, WA
+- **12 FMCSA→STATE coverage gaps** flagged by analyzer — most are advisory (FMCSA covers 30-40 states broadly). Added FL, MI, MO, NE, OK, RI this session. Remaining: VT, NH, WI, IA, IL, MN, CO, ND, SD, WY, MT, WA
 - ~~**4 remaining ongoing SBA records need verification**~~ **RESOLVED 2026-02-16** — IL/IN/MN were expired single-day events (fixed with curated overrides). AK wildfire confirmed truly ongoing per FR text ("and continuing").
 - ~~**FMCSA-2025-014-WA cannot be verified**~~ **VERIFIED 2026-02-16** — Declaration confirmed to exist via FMCSA PDF. Extended Dec 23 to Jan 23, 2026 (expired). SEP window active through Mar 31, 2026.
-- **FMCSA-2026-001 expires Feb 20** — No extension published yet. Monitor for extension this week. If not extended, SEP window remains active through April 30, 2026.
+- **FMCSA-2026-001 expired Feb 20** — No extension found. SEP window remains active through April 30, 2026.
 - **Feb 14-15 TX/LA/MS tornadoes** — Resource activation by TX governor (not formal declaration). Monitor for formal state/federal declarations that would trigger DST.
 - LA governor declaration (Jan 2025) was renewed multiple times — tracked as ongoing
 - ~~**No automated URL verification**~~ **RESOLVED 2026-02-12** — URL verification system built with HEAD + content relevance checks, weekly CI runs, smart domain handling (FMCSA/FR)
@@ -169,6 +199,13 @@ dst-compiler/
 | 16 | 2026-02-16 | FMCSA-2025-014-WA end date was Feb 20, should be Jan 23 | Medium | Fixed | Dec 23 extension expired Jan 23, 2026 per FMCSA PDF. No further extension found. SEP window still active (ends Mar 31, 2026). |
 | 17 | 2026-02-16 | SBA-2025-16217-AK included Southeast Fairbanks county not in FR doc | Low | Fixed | FR doc 2025-16217 lists Denali, Yukon-Koyukuk (primary) + Matanuska-Susitna (contiguous). Southeast Fairbanks not mentioned. Removed. |
 | 18 | 2026-02-16 | SBA-2026-02924-CA had wrong title and 7 extra counties | Medium | Fixed | FR doc says "Oakland Apartment Fire" (not "Complex"). Only 7 counties in FR doc (Alameda + 6 contiguous), not 14. Corrected. |
+| 19 | 2026-02-17 | Banner beneficiary count overcounting by ~3.5M | Medium | Fixed | Used full state totals for county-only SBA disasters (AK, AZ, CA, NV). Replaced simple state-level dedup with statewide vs county-level logic. Banner: ~66.1M → ~62.5M. |
+| 20 | 2026-02-17 | Missing MA governor declaration (Gov. Healey, Jan 23 2026) | Medium | Fixed | Winter storm/heating fuels emergency. Referenced by FMCSA. Added as STATE-2026-001-MA (statewide). |
+| 21 | 2026-03-27 | FMCSA-2025-012 end date wrong + 4 missing states | **Critical** | Fixed | Extension to Mar 14, 2026 missed (was Feb 28). Added NC, OH, RI, VA. Previous session incorrectly noted "VA is NOT included" — Feb 27 extension added it. |
+| 22 | 2026-03-27 | FMCSA-2025-013 end date wrong | Medium | Fixed | Extension to Feb 28 was incorrectly attributed to 2025-012 only. Confirmed via PA Propane Gas Assn that 2025-013 was also extended to Feb 28. |
+| 23 | 2026-03-27 | 18/29 STATE URLs broken (404/403/SSL) after 33 days | High | Partial | 5 fixed (IN, KY, ME, NY, PA). Remaining ~13 may be transient (many matched agent-found URLs already in code). Weekly monitor will re-check Monday. |
+| 24 | 2026-03-27 | HHS-2025-001-WA PHE 90-day limit likely lapsed | Medium | Monitoring | 90-day statutory limit from Dec 24 = Mar 24. CMS still lists as "current emergency" (page updated Mar 16). No renewal or termination notice found. Treated as active pending verification. |
+| 25 | 2026-03-27 | 12+ missing STATE/SBA declarations (Feb-Mar 2026) | High | Fixed | "Blizzard of 2026" (Feb 22-24), OK/MI/MO tornadoes (Mar), NE wildfires (Mar), PA Hotel Fire (SBA). Added 7 STATE + 2 SBA records. |
 
 ## Decisions Made
 | Date | Decision | Why | Alternatives |
@@ -192,6 +229,19 @@ dst-compiler/
 | 2026-02-16 | FMCSA→STATE gaps are advisory, not blocking | FMCSA covers 30-40 states broadly for transportation; many won't have governor declarations because impact wasn't locally severe enough. Gaps are flagged for review, not auto-resolved | Block pipeline on any gap (rejected: too many false positives) |
 | 2026-02-16 | Curated SBA overrides for confirmed expired single-day events | Parser fix alone can't retroactively correct records already in curated_disasters.json from prior fetcher runs. Override IDs suppress the bad FR-parsed versions; curated entries with correct single-day end dates return None from build_record() (expired), ensuring clean data | Delete records manually from JSON (rejected: fragile, doesn't prevent re-fetch) |
 | 2026-02-16 | Pattern 3 regex tightened to require "and continuing" | Original Pattern 3 had `$` fallback that could match non-continuing text, incorrectly classifying records as ongoing | Keep loose regex (rejected: caused false ongoing classifications) |
+| 2026-02-17 | Banner dedup: statewide vs county-level distinction | States with ONLY county-specific disasters (AK, AZ, CA, NV) should sum county enrollments, not full state totals. Prevents ~3.5M overcount. Fallback to full state if no county names match enrollment data. | Always use full state totals (rejected: inflates number by 5.6%) |
+| 2026-02-17 | RI and TX tornado declarations NOT added despite initial research suggesting them | RI: only preparedness measures found, no formal EO. TX tornado: URLs were from June 2023 Perryton tornado, not Feb 2026. Accuracy > coverage. | Add with low confidence (rejected: compliance tool must be certain) |
+| 2026-02-17 | Medicare enrollment data integrated into banner and state headers | Shows ~62.5M affected beneficiaries across 47 states. County-level granularity for SBA-only states. Data from CMS Monthly Enrollment (Oct 2025). | Per-card beneficiary counts (rejected: too noisy for agent workflow) |
+| 2026-02-22 | FEMA API integration via FEMACollector in Python pipeline | Fetches live DR/EM declarations from OpenFEMA API into all_disasters.json. Frontend still fetches FEMA live; backend now also captures for audit/analysis. Dual output: curated (strict) + all (FEMA-tolerant). | FEMA in curated JSON (rejected: dedup complexity), frontend-only FEMA (existing: maintained) |
+| 2026-02-22 | FM (Fire Management) declarations excluded from FEMA data | 6-layer regulatory analysis: 42 CFR 422.62(b)(18) uses Stafford Act terms "emergency or major disaster"; FM is neither (42 USC 5187). Medicare.gov doesn't list FEMA Administrator as declaring authority. Carriers don't recognize FM. ClearMatch anomaly = concurrent governor/DR declarations. | Include FM (rejected: compliance risk, FM is not "emergency" or "major disaster" under Stafford Act) |
+| 2026-02-22 | Dual-mode audit (curated vs all_disasters) | curated_disasters.json gets strict validation (no FEMA allowed); all_disasters.json gets FEMA-tolerant validation (FEMA=0 is warning, not failure). Separate CI steps with different flags. | Single audit mode (rejected: different validation rules needed) |
+| 2026-03-27 | PHE 90-day statutory expiry tracking | HHS PHEs expire after 90 days (Section 319 PHS Act) unless renewed. Added automatic tracking in fetcher + audit Check 28. Prevents silent expiration where record stays "ongoing" indefinitely. | Manual monitoring only (rejected: WA PHE proved this fails) |
+| 2026-03-27 | **REVERSED: FM/FMAG declarations NOW INCLUDED** | Carrier data analysis (Aetna 109, Wellcare 3,885, Humana PDF) revealed all 3 major carriers honor FMAG as valid DST triggers — 36 active FMAG records tracked by Wellcare alone. v2.8 excluded FM per Stafford Act analysis (FM ≠ "major disaster" or "emergency"). But agents need the same DSTs carriers honor, and the accompanying governor declarations ARE valid under § 422.62(b)(18). Pragmatic compliance: include FM with FEMA URLs, let the governor declaration be the legal basis. | Keep FM excluded (rejected: agents can't enroll beneficiaries for carrier-honored DSTs) |
+| 2026-03-27 | Carrier data as discovery + validation + acknowledgment | Parsed Aetna + Wellcare Excel files. 100 matched to our data, 135 gaps (missing from us), 73 SEP window discrepancies. Government sources remain authoritative for dates/links. Carrier data used to discover gaps and validate. Future: show carrier acknowledgment badges on DST cards. | Carrier data as primary source (rejected: compliance risk), Carrier data ignored (rejected: missing 135+ valid DSTs) |
+| 2026-03-27 | Carrier intelligence as process improvement driver | Analyzed carrier data collection patterns to improve our pipeline. Key findings: NIFC/InciWeb for wildfire discovery, US Drought Monitor for drought emergencies, municipal declarations for local emergencies. Carrier data serves as early warning system for new governor declarations. | One-time import only (rejected: loses ongoing intelligence value) |
+| 2026-03-27 | Wayback Machine archive fallback for STATE URLs | Governor sites rotate/archive pages (62% failure rate after 33 days). Archive.org snapshots persist. Proactive snapshots on weekly URL verification + fallback lookup for failed URLs. | Accept URL rot (rejected: compliance tool requires working declaration links) |
+| 2026-03-27 | Weekly Claude Code scheduled task for monitoring | Automated monitoring catches staleness before it becomes a 33-day gap. Checks: pipeline health, new SBA/FMCSA/HHS declarations, STATE URL health, expiring DSTs. ~15 min/week human review vs periodic full audits. | Manual-only monitoring (rejected: proven to miss entire weather seasons) |
+| 2026-03-27 | HHS WA PHE treated as active despite 90-day flag | CMS "Current Emergencies" page (updated Mar 16) still lists it. No termination found. PHE renewals are administrative and don't always generate public notices. Conservative compliance approach = treat as active. | Set incidentEnd to Mar 24 (rejected: CMS listing suggests renewal occurred) |
 
 ## Session Log
 | Date | Session | What Was Done | Phase Completed | Tests Passing |
@@ -208,6 +258,13 @@ dst-compiler/
 | 2026-02-16 | Data Backfill + Gap Analyzer | (1) Identified 7 missing records via comprehensive web research. (2) Added 4 governor declarations: NJ (Sherrill), MD (Moore), DC (Bowser), ME (Mills). (3) Added FMCSA 2025-014 WA flooding. (4) Updated FMCSA 2025-012 extension: end date Feb 28, added ME+VT (9→11 states). (5) Built CoverageGapAnalyzer: cross-references FEMA/FMCSA against STATE records, flags states with federal disasters but no governor declaration. (6) Added weekly CI step to create GitHub Issues for coverage gaps. (7) All 146 records pass audit (2,923 checks, 100%). (8) All 4 new STATE URLs verified (200 OK, content match). | v2.3 ✅ | 2923/2923 (100%) |
 | 2026-02-16 | Critical SBA Audit + Parser Fix | (1) Comprehensive audit: FEMA API (16 active, 162 filtered), SBA Federal Register verification, STATE URL verification. (2) Discovered critical parser bug: single-day SBA incidents ("Incident Period: Jan 25, 2025.") classified as "ongoing" with 14-month windows. (3) Added Pattern 4 to `_extract_incident_dates()`, tightened Pattern 3 regex. (4) Added 10 curated SBA overrides for confirmed expired single-day events. (5) Re-ran fetcher: 146→103 records (43 expired SBA removed). SBA: 55→12. (6) Audit passed: 2,063/2,063 checks (100%). (7) STATE URLs verified OK (26/28, false alarm on earlier 404 report). | v2.4 ✅ | 2063/2063 (100%) |
 | 2026-02-16 | Full Audit + Data Corrections | (1) Second comprehensive audit: verified all SBA records against FR source docs, checked FMCSA for updates, searched for new declarations. (2) Found 3 more expired SBA records (IL/IN apartment fire, MN fire). (3) Found missing SBA-2026-02924-CA (Oakland fire). (4) Found FMCSA updates and SBA-2026-02294-LA amendment. (5) Third audit (double-check): verified FMCSA against secondary sources, found first agent had incorrect data for VA, MI/MN, and WA end date. All corrections applied. (6) Final state: 104 records, 2,083/2,083 checks pass (100%). | v2.5 ✅ | 2083/2083 (100%) |
+| 2026-02-17 | Audit + Banner Fix + MA Declaration | (1) Full-scale audit: 5 parallel audit tracks (data integrity, SEP calculations, enrollment dedup, beneficiary counts, missing declarations). (2) Fixed banner beneficiary overcounting: replaced simple state-level dedup with statewide vs county-only logic (~66.1M → ~62.5M, saving 3.5M overcount from AK/AZ/CA/NV). (3) Added MA governor declaration (STATE-2026-001-MA, Gov. Healey Jan 23 2026 winter storm). (4) Verified RI (no formal EO) and TX tornado (URLs from 2023, not 2026) — NOT added. (5) Medicare enrollment analysis: 34.7M beneficiaries in ongoing DSTs (55.6% of total). (6) Deployed v2.7 to GitHub Pages. | v2.7 ✅ | 2103/2103 (100%) |
+| 2026-02-22 | FEMA API Integration + FM Compliance Research | (1) Added FEMACollector class to dst_data_fetcher.py — fetches live DR/EM from OpenFEMA API, excludes FM. (2) Dual output: curated_disasters.json (unchanged) + all_disasters.json (curated + FEMA). (3) Updated audit with FEMA checks 26-27, --all-disasters flag. (4) Updated CI workflow with dual audit, FEMA-aware record count validation. (5) Updated frontend with FEMA source support. (6) Deep regulatory research on FM exclusion: 6-layer analysis (Stafford Act, CFR, Medicare.gov, SSA POMS, carriers, industry) confirms FM is NOT "emergency" or "major disaster" per 42 CFR 422.62(b)(18). (7) All validation passed: 2335 curated + 2731 all-disasters checks (100%). (8) Merged to main via PR #11. | v2.8 ✅ | 2335+2731 (100%) |
+| 2026-03-27 | Full 118-DST Audit + Pipeline Freshness | (1) Audited all 118 DSTs: 7 expired SBA, 4 FEMA date changes, 2 FMCSA extensions missed, 18/29 STATE URLs broken, HHS PHE likely expired, 12+ missing declarations. (2) Added PHE 90-day expiry tracker (fetcher + audit Check 28). (3) SBA parser improvements (amendment matching + contiguous fallback regex). (4) Wayback Machine archive fallback for STATE URL rot. (5) Data corrections: 118→130 records (FMCSA-012 extended to Mar 14 + 4 new states, FMCSA-013 extended to Feb 28, PA Hotel Fire + NJ contiguous, 7 new STATE declarations). (6) Fixed 5 broken STATE URLs. (7) Created weekly monitoring scheduled task. (8) Deployed to GitHub Pages. | v2.9 ✅ | 2578+2992 (100%, 1 expected HHS fail) |
+| 2026-03-27 | v3.0 Phase 1: Carrier Cross-Reference + FMAG | (1) Built `carrier_data_parser.py` — standalone tool parsing Aetna (108 records) + Wellcare (132 active) Excel files. (2) Cross-referenced against curated_disasters.json: 100 matched, 135 gaps, 73 SEP discrepancies. (3) Generated 4 reports: carrier_analysis.json, carrier_gaps.json, carrier_report.md, carrier_intelligence.md. (4) Intelligence findings: 57 missing wildfires, 36 FMAG records carriers honor, carrier URL domains to monitor, amendment/renewal patterns. (5) **REVERSED FM/FMAG exclusion** — all 3 carriers honor FMAG; added 33 FM fire records to FEMA pipeline. Updated both Python fetcher and JS frontend. (6) Added `extensions` + `carrierAcknowledgments` optional fields to `build_record()` (backward-compatible). (7) Added openpyxl dependency. (8) Audit: 2578/2579 pass (no regression). | v3.0 Phase 1 ✅ | 2578/2579 (no regression) |
+| 2026-03-27 | v3.0 Phase 2: Carrier Gap Research | (1) Triaged 135 carrier gaps: 60 already captured, 75 new → 58 unique events after Aetna/Wellcare dedup. (2) Launched 4 parallel research agents across 25+ states (FL hurricanes, OR/NM/AK, TX/OK/MT/KS+12 others, non-standard DST validity). (3) Added 29 new STATE records across 16 states: FL (7: Debby/Helene/Milton hurricanes, 2024+2025 tornadoes, Lake County flooding, immigration), TX (4: border crisis, drought, flooding, wildfires), OR (5: Alder Springs, Rowena, statewide wildfire, homelessness, Dec storms), NM (6: Española+Albuquerque crime, Cotton Fire, Lincoln+Dona Ana floods, Torrance water), NY (1: vaccine access EO 52), AK (3: windstorm, winter storm, power outage), KY (plane crash), MN (wildfires), LA (Tallulah water + Hurricane Ida 4yr renewal), MA (blizzard), OK (wildfires), MT (flooding + wind), CT (blizzard), GA (water supply), NE (power), UT (wildfires). (4) Non-standard DSTs validated: crime emergencies (NM), homelessness (OR), immigration (FL/TX), healthcare/vaccine (NY), infrastructure (LA/GA/NM). (5) Audit fixes: FM ID validation, --all-disasters file path, Check 8 accepts long-running declarations with recent renewals. (6) Deployed to GitHub Pages. | v3.0 Phase 2 ✅ | 3981/3982 (1 expected HHS) |
+| 2026-03-27 | v3.0 Phase 2 Continued: Extensions + Gap Resolution | (1) FL Hurricane Extension Arrays: researched full EO chains via 3 parallel agents. Debby: 10 extensions (removed Aug 7 CFO/FDACS date, not governor). Helene: 7 extensions (added missing Nov 7 EO 2025-231, corrected dates ±1-2 days). Milton: 7 extensions (added missing May 30 EO 2025-119); WARNING: no 2026 renewals found, may have expired ~Jan 24, 2026. (2) Fuzzy gap matcher built (fuzzy_gap_matcher.py): 44 gaps → 10 expired + 8 matched existing FM + 5 already covered under different names + 16 expired FM (carrier window discrepancy) + 5 genuinely missing. (3) FEMA API analysis: all 47 "missing" FM records have expired SEP windows per 2-month calc. Carriers use 12-14 month windows — regulatory discrepancy documented. (4) FL Israel EO 23-208: confirmed expired ~Nov 8, 2025 (last extension EO 25-183, Sep 9). Not in our tool, correctly absent. (5) Added HI Feb 20-22 rains (STATE-2026-002-HI, Proclamation 2602068). Fixed GA Spalding County ID collision (STATE-2026-001 → 003). CO flooding expired per 2-month calc (correctly excluded by build_record). (6) New analysis files: carrier_gap_analysis.md, gap_match_results.json. | v3.0 Phase 2+ ✅ | 4027+5200 (1 expected HHS) |
+| 2026-03-27 | v3.0 Phase 3 Session 2: Carrier Gap Fills | (1) Applied 5 P2 data corrections from Humana carrier data: FL Milton incidentEnd=2026-01-24, FL May 2024 Tornadoes end=2025-12-23, FL Lake County Flooding end=2025-12-28, FL NW FL Tornadoes end=2026-01-06, OH winter storm end=2026-04-26. (2) 4 parallel research agents across PR, CA, NY/NJ/DE, FL+others. (3) Added 20 new records: CA (8: Pack Fire, Tsunami, Aug Storms, Monsoons, Gifford Fire, Windstorm, Sept Storm, Dec Storms), NJ (4: EO 409 winter, EO 392 flooding, EO 394 flooding, EO 14 nor'easter), NY (2: EO 55 Dec winter storm, EO 58 Feb nor'easter), DE (1: Feb nor'easter), WI (1: EO 272 flooding), PA (1: Feb blizzard), NM (1: EO 2025-362 Mora flooding), HI (1: Lahaina wildfires 27th+ proclamation since Aug 2023), PR (1: OE-2025-022 April rains, 28 municipalities). (4) Fixed NY EO 57 URL (was incorrectly pointing to EO 55). (5) Skipped: CA Forest Mgmt (preventive), CA LA Board Resolution (immigration), NY EO 56 (healthcare strike), WY EO 2025-08 (govt shutdown), 2 unconfirmed PR records. (6) carrier_intelligence_v2.md written. (7) Audit: 4233/4235 + 5406/5408 (2 expected: HHS PHE expiry + PR non-gov URL). | v3.0 Phase 3 ✅ | 4233+5406 (2 expected) |
 
 ## Definition of Done
 - [ ] All test cases pass (happy path, edge cases, bad data, business logic, operational failures)
@@ -399,7 +456,7 @@ Official link pattern: https://www.fema.gov/disaster/{disasterNumber}
 
 **Consolidation:** Group records by `femaDeclarationString` (e.g., "DR-4834-FL"). Collect all unique `designatedArea` values into the `counties` array. Use the declaration-level fields (declarationDate, incidentBeginDate, incidentEndDate, declarationTitle, incidentType) from any record in the group (they're identical across counties).
 
-FEMA disasters include both "Major Disaster" (DR) and "Emergency" (EM) declarations. Both are valid DST triggers. Include both types. "Fire Management" (FM) declarations are NOT valid DST triggers — exclude them.
+FEMA disasters include both "Major Disaster" (DR) and "Emergency" (EM) declarations. Both are valid DST triggers. Include both types. "Fire Management" (FM) declarations are NOT valid DST triggers — exclude them. FM is a separate Stafford Act category (42 USC 5187), not an "emergency" or "major disaster" as required by 42 CFR 422.62(b)(18). FM is declared by the FEMA Administrator, not the President. Medicare.gov lists only President, HHS Secretary, and Governor as qualifying declaring authorities. Qualifying wildfires are captured via governor STATE declarations and/or subsequent DR declarations.
 
 **Territory coverage:** FEMA covers all US territories. Use the `state` field which includes: PR, VI, GU, AS, MP.
 

@@ -24,6 +24,7 @@ import hashlib
 import calendar
 import traceback
 from datetime import date, datetime, timedelta
+from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 
 import requests
@@ -1312,6 +1313,7 @@ class HHSCollector:
         # Declared Dec 23, 2025, retroactive to Dec 9, 2025
         # Atmospheric rivers / flooding affecting 16 counties
         # NOT bird flu/HPAI — this is severe weather damage
+        # 90-day statutory limit: Dec 23 + 90 = Mar 24, 2026. No renewal found.
         rec = build_record(
             id_str="HHS-2025-001-WA",
             source="HHS",
@@ -1320,7 +1322,7 @@ class HHSCollector:
             incident_type="Severe Storm",
             declaration_date=date(2025, 12, 23),
             incident_start=date(2025, 12, 9),
-            incident_end=None,  # Ongoing recovery
+            incident_end=date(2026, 3, 24),  # 90-day statutory limit, no renewal found
             renewal_dates_list=None,
             counties=[
                 "Clallam", "Clark", "Cowlitz", "Grays Harbor", "Jefferson",
@@ -1677,8 +1679,33 @@ class StateCollector:
         if rec:
             curated.append(rec)
 
-        # --- NEW YORK ---
-        # Gov Hochul, Jan 23, EO 57, statewide
+        # --- NEW YORK (EO 55, Dec 26 2025 Winter Storm) ---
+        # 35 counties. EO 55.1 extended to statewide scope.
+        rec = build_record(
+            id_str="STATE-2025-002-NY",
+            source="STATE", state="NY",
+            title="Governor Hochul Emergency Declaration (EO 55) — December 2025 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2025, 12, 26),
+            incident_start=date(2025, 12, 26),
+            incident_end=date(2026, 1, 25),
+            renewal_dates_list=None,
+            counties=["Albany", "Bronx", "Broome", "Cayuga", "Chenango", "Columbia",
+                       "Cortland", "Delaware", "Dutchess", "Fulton", "Greene", "Herkimer",
+                       "Kings", "Madison", "Montgomery", "Nassau", "New York", "Oneida",
+                       "Onondaga", "Orange", "Oswego", "Otsego", "Putnam", "Queens",
+                       "Rensselaer", "Richmond", "Rockland", "Saratoga", "Schenectady",
+                       "Schoharie", "Suffolk", "Sullivan", "Ulster", "Wayne", "Westchester"],
+            statewide=False,
+            official_url="https://www.governor.ny.gov/executive-order/no-55-declaring-disaster-emergency-counties-albany-bronx-broome-cayuga-chenango",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NEW YORK (EO 57, Jan 23 2026 Winter Storm) ---
+        # Statewide. Previously had wrong URL (pointed to EO 55).
         rec = build_record(
             id_str="STATE-2026-001-NY",
             source="STATE", state="NY",
@@ -1690,7 +1717,30 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.governor.ny.gov/executive-order/no-55-declaring-disaster-emergency-counties-albany-bronx-broome-cayuga-chenango",
+            official_url="https://www.governor.ny.gov/executive-order/no-57-declaring-disaster-emergency-throughout-state-new-york",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NEW YORK (EO 58, Feb 21 2026 Nor'easter / Winter Storm Hernando) ---
+        # 22+ counties
+        rec = build_record(
+            id_str="STATE-2026-003-NY",
+            source="STATE", state="NY",
+            title="Governor Hochul Emergency Declaration (EO 58) — February 2026 Nor'easter",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 21),
+            incident_start=date(2026, 2, 22),
+            incident_end=date(2026, 3, 24),
+            renewal_dates_list=None,
+            counties=["Albany", "Bronx", "Columbia", "Delaware", "Dutchess", "Greene",
+                       "Kings", "Nassau", "New York", "Orange", "Otsego", "Putnam",
+                       "Queens", "Rensselaer", "Richmond", "Rockland", "Schenectady",
+                       "Schoharie", "Suffolk", "Sullivan", "Ulster", "Westchester"],
+            statewide=False,
+            official_url="https://www.governor.ny.gov/executive-order/no-58-declaring-disaster-emergency-counties-albany-bronx-columbia-greene-delaware",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -1850,7 +1900,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.in.gov/gov/files/EO26-03.pdfies-following-coordinated-response-to-extreme-winter-weather",
+            official_url="https://www.in.gov/gov/files/EO26-03.pdf",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -1937,6 +1987,28 @@ class StateCollector:
         if rec:
             curated.append(rec)
 
+        # --- COLORADO — Western Colorado Flooding (Oct 2025) ---
+        # EO D 2025-021, verbal Oct 12, signed Nov 10. Tropical Storms Priscilla/Raymond.
+        # FEMA major disaster request denied; appeal filed.
+        # $13.8M validated infrastructure damage, 60+ miles of road destroyed.
+        rec = build_record(
+            id_str="STATE-2025-001-CO",
+            source="STATE", state="CO",
+            title="Governor Polis Emergency — Western Colorado Flooding (EO D 2025-021)",
+            incident_type="Flood",
+            declaration_date=date(2025, 10, 12),
+            incident_start=date(2025, 10, 10),
+            incident_end=date(2025, 10, 14),
+            renewal_dates_list=None,
+            counties=["Archuleta", "La Plata", "Mineral"],
+            statewide=False,
+            official_url="https://www.colorado.gov/governor/news/governor-polis-memorializes-emergency-declaration-support-communities-recovering-flooding",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
         # --- CONNECTICUT ---
         # Gov Lamont, Jan 25 2026, statewide, storm passed ~Jan 27
         rec = build_record(
@@ -1966,7 +2038,7 @@ class StateCollector:
             incident_type="Severe Winter Storm",
             declaration_date=date(2026, 1, 24),
             incident_start=date(2026, 1, 23),
-            incident_end=None,
+            incident_end=date(2026, 4, 26),
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
@@ -2289,7 +2361,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-declaring-state-of-emergency-ahead-of-severe-weather",
+            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-signs-executive-order-26-08-activating-state-emergency",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2355,7 +2427,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.gov.ca.gov/2025/07/29/governor-newsom-issues-emergency-proclamation-for-additional-california-counties-impacted-by-storms/",
+            official_url="https://www.gov.ca.gov/2025/07/29/governor-newsom-issues-emergency-proclamation-for-storm-impacted-counties/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2373,7 +2445,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["San Bernardino"],
             statewide=False,
-            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2391,7 +2463,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2409,7 +2481,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2427,7 +2499,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2445,7 +2517,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.gov.ca.gov/2025/09/02/california-secures-federal-assistance-to-support-firefighting-efforts-on-september-lightning-complex-fire/",
+            official_url="https://www.gov.ca.gov/2025/09/19/governor-newsom-issues-emergency-proclamation-to-help-calaveras-and-tuolumne-counties-recover-from-tcu-lightning-complex-fires/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2463,7 +2535,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-retroactively-for-12-separate-natural-disaster-events/",
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2500,7 +2572,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://portal.ct.gov/governor/news/press-releases/2026/02-2026/governor-lamont-declares-state-of-emergency-ahead-of-major-winter-storm",
+            official_url="https://portal.ct.gov/governor/news/press-releases/2026/02-2026/governor-lamont-declares-state-of-emergency-prohibits-commercial-vehicle-travel",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2538,6 +2610,26 @@ class StateCollector:
             counties=["Statewide"],
             statewide=True,
             official_url="https://governor.hawaii.gov/newsroom/news-release-hiema-advises-public-to-prepare-for-severe-weather/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- HAWAII — Feb 20-22 Heavy Rains ---
+        # Proclamation 2602068, signed Feb 24. Separate from Feb 6-11 severe weather.
+        rec = build_record(
+            id_str="STATE-2026-002-HI",
+            source="STATE", state="HI",
+            title="Governor Green Proclamation — February 20-22, 2026 Heavy Rains",
+            incident_type="Flood",
+            declaration_date=date(2026, 2, 24),
+            incident_start=date(2026, 2, 20),
+            incident_end=date(2026, 2, 22),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://governor.hawaii.gov/wp-content/uploads/2026/02/2602068_Proclamation-Relating-to-February-20-22-2026-Rains-Scanned.pdf",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2594,7 +2686,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.maine.gov/governor/mills/news/major-winter-storm-ahead-governor-mills-declares-state-civil-emergency",
+            official_url="https://www.maine.gov/governor/mills/news/powerful-noreaster-expected-governor-mills-closes-state-offices-monday-2026-02-22",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2613,7 +2705,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-requests-federal-disaster-declaration-following-severe-storms",
+            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-requests-federal-disaster-declaration-response-march-30-april",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2631,7 +2723,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-announces-fema-partnership-following-memorial-day-weekend-tornadoes",
+            official_url="https://governor.mo.gov/press-releases/archive/governor-kehoe-announces-fema-participate-joint-damage-assessments-5",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2650,7 +2742,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://news.mt.gov/Governors-Office/Governor-Gianforte-Receives-Incident-Commander-Briefing-Issues-Executive-Order",
+            official_url="https://news.mt.gov/Governors-Office/Governor-Gianforte-Receives-Incident-Command-Briefing-on-Flooding-in-Libby",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2687,7 +2779,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://governor.nebraska.gov/governor-pillen-declares-emergency-mobilizes-nebraska-national-guard-plum-creek-fire",
+            official_url="https://governor.nebraska.gov/governor-pillen-declares-emergency-mobilizes-nebraska-national-guard-and-issues-statewide-burn-ban",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2705,7 +2797,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Dawson"],
             statewide=False,
-            official_url="https://governor.nebraska.gov/gov-pillen-issues-disaster-declaration-dawson-county-severe-storms",
+            official_url="https://governor.nebraska.gov/gov-pillen-issues-disaster-declaration-dawson-county-following-june-storms",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2742,7 +2834,7 @@ class StateCollector:
             renewal_dates_list=None,
             counties=["Statewide"],
             statewide=True,
-            official_url="https://www.governor.state.nm.us/2025/07/25/governor-signs-emergency-order-for-devastating-flooding/",
+            official_url="https://www.governor.state.nm.us/2025/07/08/new-mexico-governor-mobilizes-resources-following-catastrophic-flooding-in-ruidoso/",
             confidence="curated",
             last_verified="2026-03-27",
         )
@@ -2791,17 +2883,17 @@ class StateCollector:
             ("STATE-2025-001-OR", "Governor Kotek Emergency — Rowena Fire", date(2025, 6, 11), date(2025, 7, 30),
              "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-declares-state-of-emergency-for-rowena-fire"),
             ("STATE-2025-002-OR", "Governor Kotek Emergency — Cold Spring Fire", date(2025, 7, 2), None,
-             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-cold-spring-fire"),
+             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-cold-springs-fire"),
             ("STATE-2025-003-OR", "Governor Kotek Emergency — Elk Fire", date(2025, 7, 9), None,
-             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-elk-fire"),
+             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-elk-fire"),
             ("STATE-2025-004-OR", "Governor Kotek Emergency — Highland Fire", date(2025, 7, 12), None,
-             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-highland-fire"),
+             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-highland-fire"),
             ("STATE-2025-005-OR", "Governor Kotek Emergency — Cram Fire", date(2025, 7, 14), None,
-             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-cram-fire"),
+             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-cram-fire"),
             ("STATE-2025-006-OR", "Governor Kotek Emergency — Flat Fire", date(2025, 8, 22), None,
-             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-flat-fire"),
+             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-flat-fire"),
             ("STATE-2025-007-OR", "Governor Kotek Emergency — Moon Complex Fire", date(2025, 9, 27), None,
-             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-emergency-conflagration-act-for-moon-complex-fire"),
+             "https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-invokes-conflagration-act-for-the-moon-complex-fire"),
         ]
         for id_str, title, inc_start, inc_end, url in or_fires:
             rec = build_record(
@@ -2903,7 +2995,8 @@ class StateCollector:
         # =============================================================
 
         # --- FL Hurricane Debby (Aug 2024) ---
-        # EO 24-156 initial, 11+ extensions through EO 26-59 (Mar 2026)
+        # EO 24-156 initial, 10 governor extensions through EO 2026-59 (Mar 2026)
+        # Note: Aug 7 date from prior data was CFO/FDACS order, NOT governor EO
         # 51+ counties, still active
         rec = build_record(
             id_str="STATE-2024-001-FL",
@@ -2914,7 +3007,7 @@ class StateCollector:
             incident_start=date(2024, 8, 1),
             incident_end=None,
             renewal_dates_list=[
-                date(2024, 8, 7), date(2024, 9, 25), date(2024, 11, 22),
+                date(2024, 9, 25), date(2024, 11, 22),
                 date(2025, 1, 17), date(2025, 3, 14), date(2025, 5, 14),
                 date(2025, 7, 11), date(2025, 9, 9), date(2025, 11, 7),
                 date(2026, 1, 6), date(2026, 3, 6),
@@ -2924,13 +3017,26 @@ class StateCollector:
             official_url="https://www.flgov.com/eog/news/executive-orders/2026-59",
             confidence="curated",
             last_verified="2026-03-27",
+            extensions=[
+                {"date": "2024-09-25", "eo": "2024-211", "url": "https://www.flgov.com/eog/news/executive-orders/2024-211", "notes": "First 60-day extension"},
+                {"date": "2024-11-22", "eo": "2024-261", "url": "https://www.flgov.com/eog/news/executive-orders/2024-261", "notes": "Second extension"},
+                {"date": "2025-01-17", "eo": "2025-12", "url": "https://www.flgov.com/eog/news/executive-orders/2025-12", "notes": "Third extension"},
+                {"date": "2025-03-14", "eo": "2025-59", "url": "https://www.flgov.com/eog/news/executive-orders/2025-59", "notes": "Fourth extension"},
+                {"date": "2025-05-14", "eo": "2025-104", "url": "https://www.flgov.com/eog/news/executive-orders/2025-104", "notes": "Fifth extension"},
+                {"date": "2025-07-11", "eo": "2025-144", "url": "https://www.flgov.com/eog/news/executive-orders/2025-144", "notes": "Sixth extension"},
+                {"date": "2025-09-09", "eo": "2025-184", "url": "https://www.flgov.com/eog/news/executive-orders/2025-184", "notes": "Seventh extension"},
+                {"date": "2025-11-07", "eo": "2025-232", "url": "https://www.flgov.com/eog/news/executive-orders/2025-232", "notes": "Eighth extension"},
+                {"date": "2026-01-06", "eo": "2026-03", "url": "https://www.flgov.com/eog/news/executive-orders/2026-3", "notes": "Ninth extension"},
+                {"date": "2026-03-06", "eo": "2026-59", "url": "https://www.flgov.com/eog/news/executive-orders/2026-59", "notes": "Tenth extension (current)"},
+            ],
         )
         if rec:
             curated.append(rec)
 
         # --- FL Hurricane Helene (Sep 2024) ---
-        # EO 24-208 initial, 6+ extensions through EO 26-58
-        # 61 counties, still active
+        # EO 24-208 initial (for "Potential Tropical Cyclone Nine"), 7 extensions through EO 2026-58
+        # EO 24-209 amended to expand to 61 counties on Sep 24
+        # Still active
         rec = build_record(
             id_str="STATE-2024-002-FL",
             source="STATE", state="FL",
@@ -2940,21 +3046,33 @@ class StateCollector:
             incident_start=date(2024, 9, 23),
             incident_end=None,
             renewal_dates_list=[
-                date(2024, 11, 21), date(2025, 5, 14), date(2025, 7, 10),
-                date(2025, 9, 8), date(2026, 1, 5), date(2026, 3, 5),
+                date(2024, 11, 21), date(2025, 5, 14), date(2025, 7, 11),
+                date(2025, 9, 9), date(2025, 11, 7), date(2026, 1, 6),
+                date(2026, 3, 6),
             ],
             counties=["Statewide"],
             statewide=True,
             official_url="https://www.flgov.com/eog/news/executive-orders/2026-58",
             confidence="curated",
             last_verified="2026-03-27",
+            extensions=[
+                {"date": "2024-11-21", "eo": "2024-249", "url": "https://www.flgov.com/eog/news/executive-orders/2024-249", "notes": "First extension"},
+                {"date": "2025-05-14", "eo": "2025-102", "url": "https://www.flgov.com/eog/news/executive-orders/2025-102", "notes": "Second extension"},
+                {"date": "2025-07-11", "eo": "2025-143", "url": "https://www.flgov.com/eog/news/executive-orders/2025-143", "notes": "Third extension"},
+                {"date": "2025-09-09", "eo": "2025-182", "url": "https://www.flgov.com/eog/news/executive-orders/2025-182", "notes": "Fourth extension"},
+                {"date": "2025-11-07", "eo": "2025-231", "url": "https://www.flgov.com/eog/news/executive-orders/2025-231", "notes": "Fifth extension (previously untracked)"},
+                {"date": "2026-01-06", "eo": "2026-02", "url": "https://www.flgov.com/eog/news/executive-orders/2026-2", "notes": "Sixth extension"},
+                {"date": "2026-03-06", "eo": "2026-58", "url": "https://www.flgov.com/eog/news/executive-orders/2026-58", "notes": "Seventh extension (current)"},
+            ],
         )
         if rec:
             curated.append(rec)
 
         # --- FL Hurricane Milton (Oct 2024) ---
-        # EO 24-214 initial (titled "Tropical Storm Milton" at issuance), 6 extensions
-        # 51 counties, still active
+        # EO 24-214 initial (titled "Tropical Storm Milton" at issuance), 7 extensions
+        # EO 24-215 amended Oct 6 to expand counties as storm intensified to Cat 5
+        # Confirmed expired: Last extension EO 2025-242 (Nov 25, 2025). No 2026 renewal.
+        # incidentEnd set to 2026-01-24 per Humana carrier data + our research.
         rec = build_record(
             id_str="STATE-2024-003-FL",
             source="STATE", state="FL",
@@ -2962,22 +3080,33 @@ class StateCollector:
             incident_type="Hurricane",
             declaration_date=date(2024, 10, 5),
             incident_start=date(2024, 10, 5),
-            incident_end=None,
+            incident_end=date(2026, 1, 24),
             renewal_dates_list=[
                 date(2024, 12, 3), date(2025, 1, 31), date(2025, 3, 31),
-                date(2025, 7, 28), date(2025, 9, 26), date(2025, 11, 25),
+                date(2025, 5, 30), date(2025, 7, 28), date(2025, 9, 26),
+                date(2025, 11, 25),
             ],
             counties=["Statewide"],
             statewide=True,
             official_url="https://www.flgov.com/eog/news/executive-orders/2025-242",
             confidence="curated",
             last_verified="2026-03-27",
+            extensions=[
+                {"date": "2024-12-03", "eo": "2024-264", "url": "https://www.flgov.com/eog/news/executive-orders/2024-264", "notes": "First extension"},
+                {"date": "2025-01-31", "eo": "2025-26", "url": "https://www.flgov.com/eog/news/executive-orders/2025-26", "notes": "Second extension"},
+                {"date": "2025-03-31", "eo": "2025-68", "url": "https://www.flgov.com/eog/news/executive-orders/2025-68", "notes": "Third extension"},
+                {"date": "2025-05-30", "eo": "2025-119", "url": "https://www.flgov.com/eog/news/executive-orders/2025-119", "notes": "Fourth extension (previously untracked)"},
+                {"date": "2025-07-28", "eo": "2025-150", "url": "https://www.flgov.com/eog/news/executive-orders/2025-150", "notes": "Fifth extension"},
+                {"date": "2025-09-26", "eo": "2025-191", "url": "https://www.flgov.com/eog/news/executive-orders/2025-191", "notes": "Sixth extension"},
+                {"date": "2025-11-25", "eo": "2025-242", "url": "https://www.flgov.com/eog/news/executive-orders/2025-242", "notes": "Seventh extension (last known — no 2026 renewal found)"},
+            ],
         )
         if rec:
             curated.append(rec)
 
         # --- FL May 2024 North Florida Tornadoes ---
-        # EO 24-94 initial, 9+ extensions, 15 counties, still active
+        # EO 24-94 initial, 9+ extensions, 15 counties
+        # incidentEnd set to 2025-12-23 per Humana carrier data
         rec = build_record(
             id_str="STATE-2024-004-FL",
             source="STATE", state="FL",
@@ -2985,7 +3114,7 @@ class StateCollector:
             incident_type="Tornado",
             declaration_date=date(2024, 5, 10),
             incident_start=date(2024, 5, 10),
-            incident_end=None,
+            incident_end=date(2025, 12, 23),
             renewal_dates_list=[
                 date(2024, 9, 6), date(2024, 11, 4), date(2025, 3, 3),
                 date(2025, 5, 1), date(2025, 7, 1), date(2025, 9, 1),
@@ -3004,6 +3133,7 @@ class StateCollector:
 
         # --- FL May 2025 NW Florida Tornadoes ---
         # EO 25-101, 5 extensions, Holmes County
+        # incidentEnd set to 2026-01-06 per Humana carrier data (last extension expired)
         rec = build_record(
             id_str="STATE-2025-001-FL",
             source="STATE", state="FL",
@@ -3011,7 +3141,7 @@ class StateCollector:
             incident_type="Tornado",
             declaration_date=date(2025, 5, 11),
             incident_start=date(2025, 5, 10),
-            incident_end=None,
+            incident_end=date(2026, 1, 6),
             renewal_dates_list=[
                 date(2025, 7, 10), date(2025, 9, 8), date(2025, 11, 7),
                 date(2026, 1, 6), date(2026, 3, 6),
@@ -3027,6 +3157,7 @@ class StateCollector:
 
         # --- FL Lake County Flooding ---
         # EO 25-213, extended by EO 25-257
+        # incidentEnd set to 2025-12-28 per Humana carrier data
         rec = build_record(
             id_str="STATE-2025-002-FL",
             source="STATE", state="FL",
@@ -3034,7 +3165,7 @@ class StateCollector:
             incident_type="Flood",
             declaration_date=date(2025, 10, 29),
             incident_start=date(2025, 10, 26),
-            incident_end=None,
+            incident_end=date(2025, 12, 28),
             renewal_dates_list=[date(2025, 12, 22)],
             counties=["Lake"],
             statewide=False,
@@ -3213,10 +3344,12 @@ class StateCollector:
 
         # =============================================================
         # GEORGIA — SPALDING COUNTY WATER SUPPLY
+        # Fuel spill at Hartsfield-Jackson contaminated Flint River intake
+        # Advisory lifted same night after testing cleared supply
         # =============================================================
 
         rec = build_record(
-            id_str="STATE-2026-001-GA",
+            id_str="STATE-2026-003-GA",
             source="STATE", state="GA",
             title="Governor Kemp Emergency — Spalding County Water Supply (EO 01.30.26.02)",
             incident_type="Infrastructure Emergency",
@@ -3763,6 +3896,510 @@ class StateCollector:
         if rec:
             curated.append(rec)
 
+        # =============================================================
+        # PHASE 3 SESSION 2 — CARRIER CROSS-REFERENCE GAP FILLS
+        # Added 2026-03-27 from four-carrier cross-reference analysis
+        # =============================================================
+
+        # --- CALIFORNIA: Pack Fire, Mono County ---
+        # Governor Newsom proclamation Dec 9, 2025
+        rec = build_record(
+            id_str="STATE-2025-018-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — Pack Fire (Mono County)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 12, 9),
+            incident_start=date(2025, 11, 13),
+            incident_end=date(2025, 12, 3),
+            renewal_dates_list=None,
+            counties=["Mono"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/09/governor-newsom-proclaims-state-of-emergency-in-mono-county-for-pack-fire/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: July Tsunami, Del Norte County ---
+        # Part of Dec 23, 2025 omnibus proclamation (6 events)
+        rec = build_record(
+            id_str="STATE-2025-019-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — July 2025 Tsunami (Del Norte County)",
+            incident_type="Tsunami",
+            declaration_date=date(2025, 12, 23),
+            incident_start=date(2025, 7, 29),
+            incident_end=date(2025, 7, 30),
+            renewal_dates_list=None,
+            counties=["Del Norte"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: August Storms/Mudslides, Sierra County ---
+        rec = build_record(
+            id_str="STATE-2025-020-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — August 2025 Storms and Mudslides (Sierra County)",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 12, 23),
+            incident_start=date(2025, 8, 23),
+            incident_end=date(2025, 8, 27),
+            renewal_dates_list=None,
+            counties=["Sierra"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: August Monsoon Storms, Imperial County ---
+        rec = build_record(
+            id_str="STATE-2025-021-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — August 2025 Monsoon Storms (Imperial County)",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 12, 23),
+            incident_start=date(2025, 8, 25),
+            incident_end=date(2025, 8, 25),
+            renewal_dates_list=None,
+            counties=["Imperial"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: Gifford Fire, SLO + Santa Barbara ---
+        rec = build_record(
+            id_str="STATE-2025-022-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — Gifford Fire (SLO, Santa Barbara)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 12, 23),
+            incident_start=date(2025, 8, 1),
+            incident_end=date(2025, 9, 28),
+            renewal_dates_list=None,
+            counties=["San Luis Obispo", "Santa Barbara"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: January Windstorm, San Bernardino ---
+        rec = build_record(
+            id_str="STATE-2025-023-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — January 2025 Windstorm (San Bernardino)",
+            incident_type="Severe Wind",
+            declaration_date=date(2025, 12, 23),
+            incident_start=date(2025, 1, 7),
+            incident_end=date(2025, 1, 9),
+            renewal_dates_list=None,
+            counties=["San Bernardino"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: Mid-September Storm, Imperial + San Bernardino ---
+        rec = build_record(
+            id_str="STATE-2025-024-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — September 2025 Storm (Imperial, San Bernardino)",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 12, 23),
+            incident_start=date(2025, 9, 18),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Imperial", "San Bernardino"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/23/governor-newsom-declares-states-of-emergency-related-to-multiple-severe-weather-events-in-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CALIFORNIA: Late December Storms, 6 counties ---
+        rec = build_record(
+            id_str="STATE-2025-025-CA",
+            source="STATE", state="CA",
+            title="Governor Newsom Proclamation — Late December 2025 Storms (6 counties)",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 12, 24),
+            incident_start=date(2025, 12, 23),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Los Angeles", "Orange", "Riverside", "San Bernardino", "San Diego", "Shasta"],
+            statewide=False,
+            official_url="https://www.gov.ca.gov/2025/12/24/governor-newsom-proclaims-state-of-emergency-to-support-response-in-multiple-counties-due-to-late-december-storms/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NJ EO 409: Dec 26, 2025 Winter Storm ---
+        rec = build_record(
+            id_str="STATE-2025-001-NJ",
+            source="STATE", state="NJ",
+            title="NJ Acting Governor Way Emergency (EO 409) — December 2025 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2025, 12, 26),
+            incident_start=date(2025, 12, 26),
+            incident_end=date(2025, 12, 30),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://nj.gov/infobank/eo/056murphy/pdf/EO-409.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NJ EO 392: Jul 14, 2025 Flash Flooding ---
+        rec = build_record(
+            id_str="STATE-2025-002-NJ",
+            source="STATE", state="NJ",
+            title="Governor Murphy Emergency (EO 392) — July 2025 Flash Flooding",
+            incident_type="Flash Flooding",
+            declaration_date=date(2025, 7, 14),
+            incident_start=date(2025, 7, 14),
+            incident_end=date(2025, 8, 8),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://nj.gov/infobank/eo/056murphy/pdf/EO-392.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NJ EO 394: Jul 31, 2025 Flash Flooding ---
+        rec = build_record(
+            id_str="STATE-2025-003-NJ",
+            source="STATE", state="NJ",
+            title="NJ Acting Governor Way Emergency (EO 394) — July 2025 Flash Flooding",
+            incident_type="Flash Flooding",
+            declaration_date=date(2025, 7, 31),
+            incident_start=date(2025, 7, 31),
+            incident_end=date(2025, 8, 8),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.nj.gov/governor/news/news/562025/approved/20250731a.shtml",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NJ EO 14: Feb 21, 2026 Nor'easter ---
+        rec = build_record(
+            id_str="STATE-2026-002-NJ",
+            source="STATE", state="NJ",
+            title="Governor Sherrill Emergency (EO 14) — February 2026 Nor'easter",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 21),
+            incident_start=date(2026, 2, 22),
+            incident_end=date(2026, 2, 25),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://nj.gov/infobank/eo/057sherrill/pdf/EO-14.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- DE Feb 2026 Nor'easter ---
+        rec = build_record(
+            id_str="STATE-2026-002-DE",
+            source="STATE", state="DE",
+            title="Governor Meyer Emergency — February 2026 Nor'easter",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 22),
+            incident_start=date(2026, 2, 22),
+            incident_end=date(2026, 2, 24),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://governor.delaware.gov/state-of-emergency/declaration-of-a-state-of-emergency-due-to-a-severe-winter-storm/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- WI EO 272: Aug 2025 Flooding ---
+        rec = build_record(
+            id_str="STATE-2025-001-WI",
+            source="STATE", state="WI",
+            title="Governor Evers Emergency (EO 272) — August 2025 Flooding",
+            incident_type="Flood",
+            declaration_date=date(2025, 8, 11),
+            incident_start=date(2025, 8, 9),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://evers.wi.gov/Documents/EO/EO272-EmergencyOrderFlooding.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- PA Feb 22 Blizzard ---
+        rec = build_record(
+            id_str="STATE-2026-002-PA",
+            source="STATE", state="PA",
+            title="Governor Shapiro Disaster Emergency — February 2026 Winter Storm",
+            incident_type="Severe Winter Storm",
+            declaration_date=date(2026, 2, 22),
+            incident_start=date(2026, 2, 22),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://www.pa.gov/content/dam/copapwp-pagov/en/pema/documents/governor-proclamations/2026.2.22%20disaster%20emergency%20proclamation%20winter%20weather.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NM EO 2025-362: Mora County Flooding ---
+        rec = build_record(
+            id_str="STATE-2025-009-NM",
+            source="STATE", state="NM",
+            title="Governor Lujan Grisham Emergency (EO 2025-362) — Mora County Flooding",
+            incident_type="Flood",
+            declaration_date=date(2025, 9, 2),
+            incident_start=date(2025, 8, 28),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Mora"],
+            statewide=False,
+            official_url="https://www.governor.state.nm.us/2025/09/02/governor-signs-emergency-order-for-mora-county-flooding/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- HI Lahaina Wildfires (ongoing since Aug 2023) ---
+        # 27th Proclamation (Nov 2025), 28th (Jan 2026). Separate from STATE-2025-001-HI.
+        rec = build_record(
+            id_str="STATE-2023-001-HI",
+            source="STATE", state="HI",
+            title="Governor Green Emergency — Lahaina Wildfires (ongoing since Aug 2023)",
+            incident_type="Wildfire",
+            declaration_date=date(2023, 8, 9),
+            incident_start=date(2023, 8, 8),
+            incident_end=None,
+            renewal_dates_list=[date(2025, 11, 7), date(2026, 1, 9)],
+            counties=["Maui"],
+            statewide=True,
+            official_url="https://governor.hawaii.gov/wp-content/uploads/2025/11/2511016.pdf",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- PR records REMOVED 2026-03-27 ---
+        # CPC does not sell plans in Puerto Rico. PR declarations (OE-2025-004 landslides,
+        # OE-2025-022 April rains) are valid DSTs but not relevant to our agents.
+
+        # =============================================================
+        # PHASE 3 SESSION 2b — REMAINING CARRIER GAPS (from cross-ref)
+        # =============================================================
+
+        # --- OR Drought (5 EOs, 8 counties) ---
+        # Governor Kotek, July-Sep 2025, rolling drought declarations
+        rec = build_record(
+            id_str="STATE-2025-008-OR",
+            source="STATE", state="OR",
+            title="Governor Kotek Drought Emergency — Multiple Counties (EO 25-12 through 25-23)",
+            incident_type="Drought",
+            declaration_date=date(2025, 7, 15),
+            incident_start=date(2025, 6, 1),
+            incident_end=None,
+            renewal_dates_list=[date(2025, 8, 4), date(2025, 9, 29)],
+            counties=["Baker", "Coos", "Douglas", "Jefferson", "Lincoln", "Morrow", "Union", "Wheeler"],
+            statewide=False,
+            official_url="https://apps.oregon.gov/oregon-newsroom/OR/GOV/Posts/Post/governor-kotek-declares-drought-emergency-in-baker-county",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- AR Severe Storms, Tornadoes, Flooding (DR 25-04) ---
+        # Governor Sanders, April 2, 2025
+        rec = build_record(
+            id_str="STATE-2025-001-AR",
+            source="STATE", state="AR",
+            title="Governor Sanders Emergency (DR 25-04) — April 2025 Storms and Tornadoes",
+            incident_type="Tornado",
+            declaration_date=date(2025, 4, 2),
+            incident_start=date(2025, 4, 2),
+            incident_end=date(2025, 4, 16),
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://governor.arkansas.gov/news_post/sanders-declares-an-emergency-for-severe-storms-tornadoes-and-flooding-on-or-about-april-2-2025/",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- AZ Gila County Flooding ---
+        # Governor Hobbs, Sep 27 + Oct 13, 2025
+        rec = build_record(
+            id_str="STATE-2025-001-AZ",
+            source="STATE", state="AZ",
+            title="Governor Hobbs Emergency — Gila County Flooding",
+            incident_type="Flood",
+            declaration_date=date(2025, 9, 27),
+            incident_start=date(2025, 9, 27),
+            incident_end=None,
+            renewal_dates_list=[date(2025, 10, 13)],
+            counties=["Gila", "Maricopa", "Mohave"],
+            statewide=False,
+            official_url="https://azgovernor.gov/office-arizona-governor/news/2025/09/governor-katie-hobbs-declares-state-emergency-gila-county",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- CO Western Colorado Flooding (EO D 2025 021) ---
+        # Governor Polis, Oct 12, 2025
+        rec = build_record(
+            id_str="STATE-2025-001-CO",
+            source="STATE", state="CO",
+            title="Governor Polis Emergency (EO D 2025 021) — Western Colorado Flooding",
+            incident_type="Flood",
+            declaration_date=date(2025, 10, 12),
+            incident_start=date(2025, 10, 10),
+            incident_end=date(2025, 10, 14),
+            renewal_dates_list=None,
+            counties=["Archuleta", "La Plata", "Mineral"],
+            statewide=False,
+            official_url="https://governorsoffice.colorado.gov/governor/news/governor-polis-verbally-declares-disaster-emergency-flooding-western-colorado",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- DC Potomac Interceptor Collapse (Mayor's Order 2026-028) ---
+        # Mayor Bowser, Feb 18, 2026. Pipe collapsed Jan 19.
+        rec = build_record(
+            id_str="STATE-2026-002-DC",
+            source="STATE", state="DC",
+            title="Mayor Bowser Public Emergency (Order 2026-028) — Potomac Sewer Collapse",
+            incident_type="Infrastructure Emergency",
+            declaration_date=date(2026, 2, 18),
+            incident_start=date(2026, 1, 19),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Statewide"],
+            statewide=True,
+            official_url="https://mayor.dc.gov/release/mayor-bowser-requests-federal-support-region-continues-respond-potomac-interceptor-break",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- KS Severe Storms, Straight-line Winds, Flooding (Jul 2025) ---
+        # Governor Kelly, Jul 17-22, 2025. Federal disaster declaration approved.
+        rec = build_record(
+            id_str="STATE-2025-001-KS",
+            source="STATE", state="KS",
+            title="Governor Kelly Emergency — July 2025 Severe Storms and Flooding",
+            incident_type="Severe Storm",
+            declaration_date=date(2025, 7, 17),
+            incident_start=date(2025, 7, 17),
+            incident_end=date(2025, 7, 22),
+            renewal_dates_list=None,
+            counties=["Barton", "Comanche", "Edwards", "Ford", "Hodgeman", "Johnson",
+                       "Logan", "Marion", "Morris", "Ottawa", "Pawnee", "Rawlins",
+                       "Saline", "Stevens", "Sumner", "Wyandotte"],
+            statewide=False,
+            official_url="https://www.governor.ks.gov/Home/Components/News/News/696/55",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- NC Sam Davis Road Fire (under EO 12 + FEMA FM-5580) ---
+        # Governor Stein EO 12 covers WNC wildfires including Swain County
+        rec = build_record(
+            id_str="STATE-2025-001-NC",
+            source="STATE", state="NC",
+            title="Governor Stein Emergency (EO 12) — WNC Wildfires (Sam Davis Road Fire)",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 3, 26),
+            incident_start=date(2025, 3, 26),
+            incident_end=None,
+            renewal_dates_list=[date(2025, 4, 26)],
+            counties=["Avery", "Buncombe", "Burke", "Caldwell", "Cherokee", "Clay",
+                       "Graham", "Haywood", "Henderson", "Jackson", "Macon", "Madison",
+                       "McDowell", "Mitchell", "Polk", "Rutherford", "Swain", "Transylvania",
+                       "Watauga", "Yancey"],
+            statewide=False,
+            official_url="https://governor.nc.gov/executive-order-no-12-declaration-state-emergency-0",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
+        # --- SC Covington Drive Fire (EO 2025-10 + FEMA FM-5554) ---
+        # Governor McMaster, Mar 2, 2025
+        rec = build_record(
+            id_str="STATE-2025-001-SC",
+            source="STATE", state="SC",
+            title="Governor McMaster Emergency (EO 2025-10) — Covington Drive Wildfire",
+            incident_type="Wildfire",
+            declaration_date=date(2025, 3, 2),
+            incident_start=date(2025, 3, 1),
+            incident_end=None,
+            renewal_dates_list=None,
+            counties=["Horry"],
+            statewide=False,
+            official_url="https://governor.sc.gov/news/2025-03/governor-henry-mcmaster-declares-state-emergency-due-wildfires",
+            confidence="curated",
+            last_verified="2026-03-27",
+        )
+        if rec:
+            curated.append(rec)
+
         return curated
 
 
@@ -4071,6 +4708,126 @@ class CoverageGapAnalyzer:
 # Validation and Deduplication
 # =========================================================================
 
+def inject_carrier_acknowledgments(records: List[Dict]) -> None:
+    """Inject carrierAcknowledgments from carrier_analysis.json + Humana/Healthspring crossref.
+
+    Modifies records in-place. Each record gets a dict like:
+    {"aetna": true, "wellcare": true, "humana": true, "healthspring": false}
+    Only added if at least one carrier acknowledges the record.
+    """
+    carrier_analysis_path = Path(__file__).parent / "carrier_analysis.json"
+    if not carrier_analysis_path.exists():
+        print("  WARNING: carrier_analysis.json not found — skipping carrier acks")
+        return
+
+    with open(carrier_analysis_path) as f:
+        analysis = json.load(f)
+
+    # Build lookup: curated_id -> set of carriers
+    acks: Dict[str, set] = {}
+    for match in analysis.get("matched", []):
+        cid = match.get("curated_id", "")
+        carrier = match.get("carrier", "").lower()
+        if cid and carrier:
+            if cid not in acks:
+                acks[cid] = set()
+            acks[cid].add(carrier)
+
+    # Also match Humana/Healthspring from four_carrier_crossref.py embedded data
+    # These aren't in carrier_analysis.json (which only has Aetna/Wellcare)
+    # We match by state + fuzzy title
+    try:
+        crossref_path = Path(__file__).parent / "four_carrier_crossref.py"
+        if crossref_path.exists():
+            import importlib.util
+            spec = importlib.util.spec_from_file_location("crossref", crossref_path)
+            crossref_mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(crossref_mod)
+
+            humana_data = getattr(crossref_mod, "HUMANA", [])
+            wellcare_extra = getattr(crossref_mod, "WELLCARE", [])
+
+            # Build index of our records by state
+            by_state: Dict[str, List[Dict]] = {}
+            for rec in records:
+                st = rec.get("state", "")
+                if st not in by_state:
+                    by_state[st] = []
+                by_state[st].append(rec)
+
+            def normalize_title(t):
+                import re
+                t = t.lower()
+                t = re.sub(r'\(.*?\)', '', t)
+                t = re.sub(r'(dr|em|fm|eo|oe)-?\d+[-\s]?', '', t)
+                return t.strip()
+
+            def fuzzy_match(carrier_title, our_title):
+                from difflib import SequenceMatcher
+                ct = normalize_title(carrier_title)
+                ot = normalize_title(our_title)
+                return SequenceMatcher(None, ct, ot).ratio()
+
+            # Match Humana records
+            for h in humana_data:
+                state = h.get("state", "")
+                title = h.get("title", "")
+                state_recs = by_state.get(state, [])
+                best_score = 0
+                best_id = None
+                for rec in state_recs:
+                    score = fuzzy_match(title, rec.get("title", ""))
+                    if score > best_score:
+                        best_score = score
+                        best_id = rec.get("id")
+                if best_id and best_score >= 0.35:
+                    if best_id not in acks:
+                        acks[best_id] = set()
+                    acks[best_id].add("humana")
+
+            # Match Healthspring (if present)
+            healthspring_data = getattr(crossref_mod, "HEALTHSPRING", [])
+            for hs in healthspring_data:
+                state = hs.get("state", "")
+                title = hs.get("title", "")
+                state_recs = by_state.get(state, [])
+                best_score = 0
+                best_id = None
+                for rec in state_recs:
+                    score = fuzzy_match(title, rec.get("title", ""))
+                    if score > best_score:
+                        best_score = score
+                        best_id = rec.get("id")
+                if best_id and best_score >= 0.35:
+                    if best_id not in acks:
+                        acks[best_id] = set()
+                    acks[best_id].add("healthspring")
+    except Exception as e:
+        print(f"  WARNING: Humana/Healthspring matching failed: {e}")
+
+    # Inject into records
+    injected = 0
+    for rec in records:
+        rid = rec.get("id", "")
+        if rid in acks:
+            carriers = acks[rid]
+            rec["carrierAcknowledgments"] = {
+                "aetna": "aetna" in carriers,
+                "wellcare": "wellcare" in carriers,
+                "humana": "humana" in carriers,
+                "healthspring": "healthspring" in carriers,
+            }
+            injected += 1
+
+    print(f"  Carrier acknowledgments injected: {injected}/{len(records)} records")
+    carrier_counts = {}
+    for rid, carriers in acks.items():
+        for c in carriers:
+            carrier_counts[c] = carrier_counts.get(c, 0) + 1
+    for c, n in sorted(carrier_counts.items()):
+        print(f"    {c}: {n} matches")
+
+
 def deduplicate(records: List[Dict]) -> List[Dict]:
     """Remove duplicate records by ID. First occurrence wins."""
     seen = set()
@@ -4307,6 +5064,9 @@ def main():
         print(f"  -> Removed {dup_count} duplicates")
     print(f"  -> {len(unique_curated)} unique curated records")
     print()
+
+    # --- Inject carrier acknowledgments from carrier_analysis.json ---
+    inject_carrier_acknowledgments(unique_curated)
 
     sba_collector = curated_collectors.get("SBA")
     print(f"Writing to {OUTPUT_FILE}...")

@@ -516,6 +516,38 @@
       );
     }
 
+    // --- CarrierBadges ---
+    const CARRIER_COLORS = {
+      aetna:       { bg: '#7B2D8E', label: 'Aetna' },
+      wellcare:    { bg: '#0072CE', label: 'Wellcare' },
+      humana:      { bg: '#4B8B3B', label: 'Humana' },
+      healthspring:{ bg: '#E87722', label: 'Healthspring' },
+    };
+
+    function CarrierBadges({ acks }) {
+      if (!acks) return null;
+      const active = Object.entries(acks).filter(([_, v]) => v);
+      if (active.length === 0) return null;
+      return (
+        <div className="flex items-center gap-1 mt-1">
+          <span className="text-xs text-gray-400 mr-0.5" title="Carriers that recognize this DST">Carriers:</span>
+          {active.map(([carrier]) => {
+            const cc = CARRIER_COLORS[carrier] || { bg: '#6B7280', label: carrier };
+            return (
+              <span
+                key={carrier}
+                className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium"
+                style={{ backgroundColor: cc.bg + '15', color: cc.bg, border: `1px solid ${cc.bg}30` }}
+                title={`${cc.label} recognizes this as a valid DST`}
+              >
+                {cc.label}
+              </span>
+            );
+          })}
+        </div>
+      );
+    }
+
     // --- DSTCard ---
     function DSTCard({ disaster }) {
       const [showCounties, setShowCounties] = useState(false);
@@ -552,6 +584,9 @@
             </div>
             <CopyButton disaster={disaster} />
           </div>
+
+          {/* Carrier acknowledgment badges */}
+          <CarrierBadges acks={disaster.carrierAcknowledgments} />
 
           {/* Title */}
           <h3 className="text-base font-heading font-semibold text-text mb-3 leading-tight">
