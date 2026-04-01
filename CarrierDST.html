@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DST Lookup — Clear Path Coverage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-accent: #3DCEB2;
+      --color-accent-dark: #2BA891;
+      --color-secondary: #2D5A7A;
+      --color-secondary-light: #3B6F94;
+      --color-text: #34252F;
+      --color-deep-navy: #10202C;
+      --color-light-cyan: #D8E6E3;
+      --color-mid-blue: #4B7797;
+      --color-soft-blue: #A7B8C5;
+      --font-heading: "Urbanist", sans-serif;
+      --font-body: "Jost", sans-serif;
+    }
+  </style>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes copiedPop { 0%{opacity:0;transform:scale(.8)} 50%{opacity:1;transform:scale(1.05)} 100%{opacity:0;transform:scale(1)} }
+    @keyframes urgentPulse { 0%,100%{opacity:1} 50%{opacity:.7} }
+    .fade-in { animation: fadeIn .3s ease-out; }
+    .copied-anim { animation: copiedPop 1.2s ease-out forwards; }
+    .pulse-urgent { animation: urgentPulse 2s ease-in-out infinite; }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-50 text-text font-body min-h-screen">
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+// ─── Carrier colors ───
+const CARRIER_COLORS = {
+  aetna: { bg: '#7B2D8E', label: 'Aetna' },
+  uhc: { bg: '#002677', label: 'UHC' },
+  cigna: { bg: '#0070C0', label: 'Cigna' },
+  humana: { bg: '#4B8B3B', label: 'Humana' },
+  devoted: { bg: '#FF6B35', label: 'Devoted' },
+};
+
+const STATUS_STYLES = {
+  ongoing: { bg: 'bg-secondary/10', text: 'text-secondary', border: 'border-t-secondary', label: 'ONGOING' },
+  active: { bg: 'bg-accent/10', text: 'text-accent-dark', border: 'border-t-accent', label: 'ACTIVE' },
+  expiring_soon: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-t-red-400', label: 'EXPIRING' },
+  expired: { bg: 'bg-gray-100', text: 'text-gray-500', border: 'border-t-gray-300', label: 'EXPIRED' },
+};
+
+const INCIDENT_ICONS = {
+  'Hurricane': '\u{1F300}', 'Wildfire': '\u{1F525}', 'Tornado': '\u{1F32A}',
+  'Severe Winter Storm': '\u{2744}\uFE0F', 'Flood/Severe Storm': '\u{1F30A}',
+  'Drought': '\u{2600}\uFE0F', 'Earthquake': '\u{1F30D}', 'Severe Wind': '\u{1F4A8}',
+};
+
+// ─── Utility functions ───
+function formatDate(iso) {
+  if (!iso) return 'Ongoing';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function daysLabel(days) {
+  if (days === null || days === undefined) return '';
+  if (days < 0) return 'Expired';
+  if (days === 0) return 'Expires today';
+  if (days === 1) return '1 day left';
+  return `${days} days left`;
+}
+
+// ─── Copy helper ───
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    return true;
+  }
+}
+
+// ─── Components ───
+
+function CarrierBadge({ carrier, active }) {
+  const c = CARRIER_COLORS[carrier];
+  if (!c) return null;
+  return (
+    <span
+      className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border"
+      style={{
+        backgroundColor: active ? c.bg + '20' : '#f3f4f6',
+        color: active ? c.bg : '#9ca3af',
+        borderColor: active ? c.bg + '40' : '#e5e7eb',
+      }}
+    >
+      {active ? '\u2713 ' : ''}{c.label}
+    </span>
+  );
+}
+
+function StatusBadge({ status, days }) {
+  const s = STATUS_STYLES[status] || STATUS_STYLES.active;
+  return (
+    <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold border ${s.bg} ${s.text} ${status === 'expiring_soon' ? 'pulse-urgent' : ''}`}>
+      {s.label}
+      {days !== null && days !== undefined && days >= 0 && <span className="font-semibold">({daysLabel(days)})</span>}
+    </span>
+  );
+}
+
+function CopyButton({ text, label = 'Copy for SunFire' }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = useCallback(async () => {
+    await copyText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  }, [text]);
+  return (
+    <div className="relative inline-block">
+      <button onClick={handleCopy}
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-accent/10 text-accent-dark rounded-full hover:bg-accent/20 transition-colors cursor-pointer">
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" strokeWidth="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" strokeWidth="2"/></svg>
+        {label}
+      </button>
+      {copied && <span className="copied-anim absolute -top-8 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-lg z-50">Copied!</span>}
+    </div>
+  );
+}
+
+function TalkTrack({ dst, searchCounty }) {
+  const county = searchCounty || (dst.statewide ? null : dst.counties[0]);
+  const location = county ? `${county}, ${dst.state}` : `the state of ${dst.state}`;
+  const text = `I see you're located in ${location}, which was affected by ${dst.title}. Because of this disaster, you may have a special opportunity to review your Medicare coverage options.\n\nCan I ask you a few quick questions?\n1. Were you living in ${location} when this disaster occurred?\n2. Were you already eligible to change your Medicare plan at that time?\n3. Did the disaster prevent you from making changes during that period?\n\nGreat \u2014 you qualify for a Disaster Special Enrollment Period, which means we can look at plans available in your area right now.`;
+  return (
+    <div className="mt-3 bg-secondary/5 rounded-lg p-4 border border-secondary/10">
+      <div className="flex items-center justify-between mb-2">
+        <h4 className="text-sm font-heading font-semibold text-secondary">Talk Track</h4>
+        <CopyButton text={text} label="Copy" />
+      </div>
+      <p className="text-sm text-text/80 whitespace-pre-line leading-relaxed">{text}</p>
+    </div>
+  );
+}
+
+function AttestationChecklist({ dst, checks, onToggle }) {
+  const allChecked = checks.every(Boolean);
+
+  const toggle = (i) => {
+    onToggle(i);
+  };
+
+  const items = [
+    'Client confirms residence in declared disaster area (or relied on someone in affected area for healthcare decisions)',
+    'Client was eligible for another election period during the disaster',
+    'Client confirms they missed enrollment due to the disaster',
+  ];
+
+  const sunfireText = `SEP Type: DST (Disaster)\nDisaster: ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}\nCarriers: ${Object.entries(dst.carriers).filter(([,v])=>v).map(([k])=>CARRIER_COLORS[k]?.label).join(', ')}\n\nAttestation: ${allChecked ? 'COMPLETE \u2014 All 3 criteria verified' : 'INCOMPLETE'}\n1. Residence: ${checks[0] ? 'Verified' : 'Not verified'}\n2. Eligible for another EP: ${checks[1] ? 'Verified' : 'Not verified'}\n3. Missed due to disaster: ${checks[2] ? 'Verified' : 'Not verified'}`;
+
+  return (
+    <div className="mt-3 bg-deep-navy/5 rounded-lg p-4 border border-deep-navy/10">
+      <div className="flex items-center justify-between mb-3">
+        <h4 className="text-sm font-heading font-semibold text-deep-navy">3-Part Attestation</h4>
+        <CopyButton text={sunfireText} label="Copy for SunFire" />
+      </div>
+      <div className="space-y-2">
+        {items.map((item, i) => (
+          <label key={i} className="flex items-start gap-2.5 cursor-pointer group">
+            <input type="checkbox" checked={checks[i]} onChange={() => toggle(i)}
+              className="mt-0.5 w-4 h-4 rounded border-secondary/30 text-accent focus:ring-accent cursor-pointer" />
+            <span className={`text-sm ${checks[i] ? 'text-accent-dark font-medium' : 'text-text/70'} group-hover:text-text transition-colors`}>
+              <strong>{i+1}.</strong> {item}
+            </span>
+          </label>
+        ))}
+      </div>
+      {allChecked && (
+        <div className="mt-3 flex items-center gap-2 text-sm font-semibold text-accent-dark">
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+          Attestation complete — ready to enroll
+        </div>
+      )}
+    </div>
+  );
+}
+
+// C5 fix: compute days remaining at render time, not from stale JSON
+function computeDaysRemaining(sepWindowEnd) {
+  if (!sepWindowEnd) return null;
+  const end = new Date(sepWindowEnd + 'T00:00:00');
+  const now = new Date(new Date().toISOString().split('T')[0] + 'T00:00:00');
+  return Math.ceil((end - now) / 86400000);
+}
+
+function computeStatus(dst) {
+  const days = computeDaysRemaining(dst.sepWindowEnd);
+  if (days === null) return 'ongoing';
+  if (days < 0) return 'expired';
+  if (days <= 30) return 'expiring_soon';
+  if (dst.incidentEnd) return 'active';
+  return 'ongoing';
+}
+
+function DSTCard({ dst, isExpired = false, searchCounty }) {
+  const [expanded, setExpanded] = useState(false);
+  const [showTalkTrack, setShowTalkTrack] = useState(false);
+  const [showAttestation, setShowAttestation] = useState(false);
+  // C1 fix: attestation state lives in card, survives hide/show toggle
+  const [attestChecks, setAttestChecks] = useState([false, false, false]);
+  const handleAttestToggle = useCallback((i) => {
+    setAttestChecks(prev => { const next = [...prev]; next[i] = !next[i]; return next; });
+  }, []);
+
+  // C5: live days remaining
+  const daysRemaining = computeDaysRemaining(dst.sepWindowEnd);
+  const liveStatus = isExpired ? 'expired' : computeStatus(dst);
+
+  const statusStyle = STATUS_STYLES[liveStatus] || STATUS_STYLES.active;
+  const icon = INCIDENT_ICONS[dst.incidentType] || '\u26A0\uFE0F';
+  const carrierList = Object.entries(dst.carriers).filter(([,v]) => v).map(([k]) => k);
+
+  const quickCopyText = `DST \u2014 ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nCarriers: ${carrierList.map(c => CARRIER_COLORS[c]?.label).join(', ')}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}`;
+
+  return (
+    <div className={`fade-in bg-white rounded-lg p-5 border border-light-cyan border-t-4 ${statusStyle.border} hover:shadow-md transition-shadow ${isExpired ? 'opacity-70' : ''}`}>
+      {/* Header */}
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="inline-flex items-center px-2 py-0.5 rounded bg-secondary text-white text-xs font-bold font-heading">{dst.state}</span>
+          <StatusBadge status={liveStatus} days={daysRemaining} />
+          {dst.carrierCount >= 5 && <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-xs font-bold border border-green-200">All Carriers</span>}
+        </div>
+        <CopyButton text={quickCopyText} label="Copy" />
+      </div>
+
+      {/* Title */}
+      <h3 className="text-base font-heading font-semibold text-text mb-2 leading-snug">
+        <span className="mr-1.5">{icon}</span>{dst.title}
+      </h3>
+
+      {/* Metadata */}
+      <div className="text-sm space-y-1.5 mb-3">
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">Type</span>
+          <span className="text-text">{dst.incidentType}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">SEP Window</span>
+          <span className="text-text font-medium">{formatDate(dst.sepWindowStart)} &mdash; {formatDate(dst.sepWindowEnd)}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">Incident</span>
+          <span className="text-text">{formatDate(dst.incidentStart)} &mdash; {formatDate(dst.incidentEnd)}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">Authority</span>
+          <span className="text-text">{dst.declaringAuthority}{dst.femaNumber ? ` (${dst.femaNumber})` : ''}{dst.eoNumber ? ` (${dst.eoNumber})` : ''}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">Area</span>
+          <span className="text-text">
+            {dst.statewide ? <span className="px-1.5 py-0.5 bg-amber-50 text-amber-700 rounded text-xs font-semibold">Statewide</span> :
+              dst.counties.length <= 3 ? dst.counties.join(', ') :
+                <>{dst.counties.slice(0,3).join(', ')} <button onClick={() => setExpanded(!expanded)} className="text-accent hover:text-accent-dark underline text-xs">+{dst.counties.length - 3} more</button></>
+            }
+          </span>
+        </div>
+      </div>
+
+      {/* Expanded counties */}
+      {expanded && !dst.statewide && (
+        <div className="mb-3 text-xs text-mid-blue bg-light-cyan/50 rounded-lg p-2">
+          {dst.counties.join(', ')}
+        </div>
+      )}
+
+      {/* Carrier badges */}
+      <div className="flex items-center gap-1.5 flex-wrap mb-3">
+        {Object.keys(CARRIER_COLORS).map(c => (
+          <CarrierBadge key={c} carrier={c} active={dst.carriers[c]} />
+        ))}
+      </div>
+
+      {/* Actions */}
+      <div className="flex items-center gap-3 flex-wrap border-t border-light-cyan pt-3">
+        {dst.officialUrl ? (
+          <a href={dst.officialUrl} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-accent hover:text-accent-dark font-semibold hover:underline">
+            Official Declaration <span className="text-xs">&rarr;</span>
+          </a>
+        ) : (
+          <span className="inline-flex items-center gap-1.5 text-xs text-mid-blue bg-gray-50 px-2.5 py-1 rounded-full border border-gray-200">
+            <svg className="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+            Carrier-verified &mdash; no gov link available
+          </span>
+        )}
+        {!isExpired && (
+          <>
+            <button onClick={() => setShowTalkTrack(!showTalkTrack)}
+              className="inline-flex items-center gap-1 text-sm text-secondary hover:text-secondary-light font-medium cursor-pointer">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+              {showTalkTrack ? 'Hide' : 'Talk Track'}
+            </button>
+            <button onClick={() => setShowAttestation(!showAttestation)}
+              className="inline-flex items-center gap-1 text-sm text-secondary hover:text-secondary-light font-medium cursor-pointer">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+              {showAttestation ? 'Hide' : 'Attestation'}
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* Expandable sections */}
+      {showTalkTrack && !isExpired && <TalkTrack dst={dst} searchCounty={searchCounty} />}
+      {showAttestation && !isExpired && <AttestationChecklist dst={dst} checks={attestChecks} onToggle={handleAttestToggle} />}
+    </div>
+  );
+}
+
+function SearchBar({ zipMap, states, onSearch }) {
+  const [input, setInput] = useState('');
+  const [stateFilter, setStateFilter] = useState('');
+  const [countyFilter, setCountyFilter] = useState('');
+  const [resolvedZip, setResolvedZip] = useState(null);
+  const inputRef = useRef(null);
+
+  // ZIP auto-resolve
+  useEffect(() => {
+    const trimmed = input.trim();
+    if (/^\d{5}$/.test(trimmed) && zipMap[trimmed]) {
+      const z = zipMap[trimmed];
+      setResolvedZip(z);
+      setStateFilter(z.state);
+      setCountyFilter(z.county);
+      onSearch({ state: z.state, county: z.county, zip: trimmed });
+    } else {
+      if (resolvedZip) {
+        setResolvedZip(null);
+        setCountyFilter('');
+      }
+    }
+  }, [input, zipMap]);
+
+  // State/county manual selection
+  useEffect(() => {
+    if (!resolvedZip) {
+      onSearch({ state: stateFilter, county: countyFilter, zip: '' });
+    }
+  }, [stateFilter, countyFilter]);
+
+  const handleClear = () => {
+    setInput(''); setStateFilter(''); setCountyFilter(''); setResolvedZip(null);
+    onSearch({ state: '', county: '', zip: '' });
+    inputRef.current?.focus();
+  };
+
+  // Keyboard shortcut
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        inputRef.current?.focus();
+        inputRef.current?.select();
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  return (
+    <div className="bg-white border-b border-light-cyan">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex flex-col sm:flex-row gap-3 items-end">
+          {/* ZIP input */}
+          <div className="w-full sm:w-48">
+            <label className="block text-xs font-semibold text-mid-blue mb-1 font-heading">ZIP Code</label>
+            <div className="relative">
+              <input ref={inputRef} type="text" value={input} onChange={e => setInput(e.target.value)}
+                placeholder="Enter ZIP..."
+                maxLength={5}
+                className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm bg-white font-body pr-8" />
+              {input && (
+                <button onClick={handleClear}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-soft-blue hover:text-text cursor-pointer">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              )}
+            </div>
+            {resolvedZip && (
+              <div className="mt-1 text-xs text-accent-dark font-medium">
+                &rarr; {resolvedZip.county}, {resolvedZip.state}
+              </div>
+            )}
+            {!resolvedZip && /^\d{5}$/.test(input.trim()) && (
+              <div className="mt-1 text-xs text-red-500 font-medium">
+                ZIP not found &mdash; try state/county search
+              </div>
+            )}
+          </div>
+
+          {/* State dropdown */}
+          <div className="w-full sm:w-44">
+            <label className="block text-xs font-semibold text-mid-blue mb-1 font-heading">State</label>
+            <select value={stateFilter} onChange={e => { setStateFilter(e.target.value); setCountyFilter(''); setInput(''); setResolvedZip(null); }}
+              className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm bg-white font-body cursor-pointer">
+              <option value="">All States</option>
+              {states.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          {/* County text filter */}
+          <div className="w-full sm:w-56">
+            <label className="block text-xs font-semibold text-mid-blue mb-1 font-heading">County</label>
+            <input type="text" value={countyFilter} onChange={e => { setCountyFilter(e.target.value); setResolvedZip(null); }}
+              placeholder="Filter by county..."
+              className="w-full px-3 py-2 border border-light-cyan rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-sm bg-white font-body" />
+          </div>
+
+          {/* Clear */}
+          {(stateFilter || countyFilter || input) && (
+            <button onClick={handleClear}
+              className="px-4 py-2 text-sm font-medium text-soft-blue hover:text-text border border-light-cyan rounded-lg hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap">
+              Clear All
+            </button>
+          )}
+        </div>
+
+        <div className="mt-2 text-xs text-soft-blue">
+          <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs font-mono">Ctrl+K</kbd> to focus search
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatsBar({ filtered, total, search }) {
+  if (!search.state && !search.county) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-3 text-sm text-mid-blue">
+        Showing <strong className="text-text">{total}</strong> active carrier-verified DSTs across all states
+      </div>
+    );
+  }
+  const label = search.zip ? `ZIP ${search.zip} (${search.county}, ${search.state})` :
+    search.county ? `${search.county}, ${search.state}` : search.state;
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-3 text-sm text-mid-blue">
+      <strong className="text-text">{filtered}</strong> active DST{filtered !== 1 ? 's' : ''} for <strong className="text-text">{label}</strong>
+    </div>
+  );
+}
+
+// ─── Main App ───
+function App() {
+  const [data, setData] = useState(null);
+  const [zipMap, setZipMap] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [tab, setTab] = useState('active');
+  const [search, setSearch] = useState({ state: '', county: '', zip: '' });
+
+  // Load data
+  useEffect(() => {
+    Promise.all([
+      fetch('carrier_verified_dst.json').then(r => { if (!r.ok) throw new Error('DST data not found'); return r.json(); }),
+      fetch('zip_county_map.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+    ]).then(([dstData, zipData]) => {
+      setData(dstData);
+      setZipMap(zipData);
+      setLoading(false);
+    }).catch(err => {
+      setError(err.message);
+      setLoading(false);
+    });
+  }, []);
+
+  // Derived state
+  const states = useMemo(() => {
+    if (!data) return [];
+    const s = new Set(data.active.map(d => d.state));
+    return [...s].sort();
+  }, [data]);
+
+  const filteredActive = useMemo(() => {
+    if (!data) return [];
+    let list = data.active;
+    if (search.state) {
+      list = list.filter(d => d.state === search.state);
+    }
+    if (search.county) {
+      const cl = search.county.toLowerCase();
+      list = list.filter(d =>
+        d.statewide || d.counties.some(c => c.toLowerCase().includes(cl))
+      );
+    }
+    return list;
+  }, [data, search]);
+
+  const filteredExpired = useMemo(() => {
+    if (!data) return [];
+    let list = data.expired;
+    if (search.state) {
+      list = list.filter(d => d.state === search.state);
+    }
+    if (search.county) {
+      const cl = search.county.toLowerCase();
+      list = list.filter(d =>
+        d.statewide || d.counties.some(c => c.toLowerCase().includes(cl))
+      );
+    }
+    return list.slice(0, 50); // Limit expired to 50 for performance
+  }, [data, search]);
+
+  // Group active by state
+  const groupedActive = useMemo(() => {
+    const groups = {};
+    for (const d of filteredActive) {
+      if (!groups[d.state]) groups[d.state] = [];
+      groups[d.state].push(d);
+    }
+    return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b));
+  }, [filteredActive]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-mid-blue font-body">Loading carrier-verified DSTs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center max-w-md p-6 bg-white rounded-lg border border-red-200">
+          <p className="text-red-700 font-semibold mb-2">Error loading data</p>
+          <p className="text-sm text-text/70">{error}</p>
+          <p className="text-xs text-soft-blue mt-3">Make sure carrier_verified_dst.json exists. Run: <code className="bg-gray-100 px-1 rounded">python3 carrier_verified_pipeline.py</code></p>
+        </div>
+      </div>
+    );
+  }
+
+  const meta = data.metadata;
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <header className="bg-secondary sticky top-0 z-40 shadow-md">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-heading font-bold text-white tracking-tight">DST Lookup</h1>
+              <p className="text-xs text-light-cyan/80 font-body">Carrier-Verified Disaster SEPs &mdash; Clear Path Coverage</p>
+            </div>
+            <div className="hidden sm:flex items-center gap-3 text-xs text-light-cyan/70">
+              <span><strong className="text-white">{meta.activeDSTCount}</strong> active</span>
+              <span>&middot;</span>
+              <span><strong className="text-white">{meta.stateCount}</strong> states</span>
+              <span>&middot;</span>
+              <span>Updated {meta.generatedDate}</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Compliance Banner */}
+      <div className="bg-deep-navy/95 border-b border-secondary/40">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <div className="flex items-start gap-3">
+            <svg className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <h4 className="text-sm font-heading font-bold text-white">DST 3-Part Attestation Required</h4>
+                <span className="text-xs text-accent/70 font-body">42 CFR &sect; 422.62(b)(18)</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-start gap-x-6 gap-y-1 text-xs text-light-cyan/80 font-body">
+                <span><strong className="text-white">1.</strong> Resides in disaster area</span>
+                <span><strong className="text-white">2.</strong> Eligible for another EP</span>
+                <span><strong className="text-white">3.</strong> Missed enrollment due to disaster</span>
+              </div>
+              <p className="mt-1 text-xs text-accent/80 font-semibold font-body">Verbal attestation only &mdash; no signature required</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Search */}
+      <SearchBar zipMap={zipMap} states={states} onSearch={setSearch} />
+
+      {/* Tabs */}
+      <div className="bg-white border-b border-light-cyan">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex gap-6">
+            <button
+              onClick={() => setTab('active')}
+              className={`py-3 text-sm font-heading font-semibold border-b-2 transition-colors cursor-pointer ${tab === 'active' ? 'border-accent text-accent-dark' : 'border-transparent text-soft-blue hover:text-text'}`}>
+              Active DSTs <span className="ml-1 text-xs bg-accent/10 text-accent-dark px-2 py-0.5 rounded-full">{filteredActive.length}</span>
+            </button>
+            <button
+              onClick={() => setTab('expired')}
+              className={`py-3 text-sm font-heading font-semibold border-b-2 transition-colors cursor-pointer ${tab === 'expired' ? 'border-gray-400 text-text' : 'border-transparent text-soft-blue hover:text-text'}`}>
+              Expired Archive <span className="ml-1 text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{data.expired.length}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <StatsBar filtered={filteredActive.length} total={meta.activeDSTCount} search={search} />
+
+      {/* Content */}
+      <main className="flex-1 max-w-7xl mx-auto px-4 pb-8 w-full">
+        {tab === 'active' && (
+          <>
+            {filteredActive.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-lg text-soft-blue font-heading">No active carrier-verified DSTs found</p>
+                <p className="text-sm text-soft-blue/70 mt-2">
+                  {search.state ? `No DSTs for ${search.county ? search.county + ', ' : ''}${search.state}` : 'Try searching by ZIP code or state'}
+                </p>
+              </div>
+            ) : (
+              groupedActive.map(([state, dsts]) => (
+                <div key={state} className="mb-6">
+                  <div className="flex items-center gap-2 mb-3 sticky top-[52px] bg-gray-50 py-2 z-10">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded bg-secondary text-white text-sm font-bold font-heading">{state}</span>
+                    <span className="text-sm text-mid-blue font-medium">{dsts.length} active DST{dsts.length !== 1 ? 's' : ''}</span>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    {dsts.map(d => <DSTCard key={d.id} dst={d} searchCounty={search.county} />)}
+                  </div>
+                </div>
+              ))
+            )}
+          </>
+        )}
+
+        {tab === 'expired' && (
+          <>
+            <p className="text-sm text-soft-blue mb-4">
+              Showing {filteredExpired.length} of {data.expired.length} expired DSTs{search.state ? ` for ${search.state}` : ''}. These DSTs are no longer active for enrollment.
+            </p>
+            {filteredExpired.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-lg text-soft-blue font-heading">No expired DSTs found</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {filteredExpired.map(d => <DSTCard key={d.id} dst={d} isExpired searchCounty={search.county} />)}
+              </div>
+            )}
+          </>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-light-cyan py-4">
+        <div className="max-w-7xl mx-auto px-4 text-xs text-soft-blue">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div>
+              <strong className="text-mid-blue">Carrier file dates:</strong>{' '}
+              {Object.entries(meta.carrierFileDates).map(([c, d]) =>
+                <span key={c} className="mr-3">{CARRIER_COLORS[c]?.label}: {d}</span>
+              )}
+            </div>
+            <div className="text-right">
+              Clear Path Coverage &mdash; Internal Use Only
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
