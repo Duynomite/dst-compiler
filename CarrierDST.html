@@ -472,8 +472,8 @@ function App() {
   // Load data
   useEffect(() => {
     Promise.all([
-      fetch('carrier_verified_dst.json').then(r => { if (!r.ok) throw new Error('DST data not found'); return r.json(); }),
-      fetch('zip_county_map.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch('carrier_verified_dst.json?v=' + Date.now()).then(r => { if (!r.ok) throw new Error('DST data not found'); return r.json(); }),
+      fetch('zip_county_map.json?v=' + Date.now()).then(r => r.ok ? r.json() : {}).catch(() => ({})),
     ]).then(([dstData, zipData]) => {
       setData(dstData);
       setZipMap(zipData);
