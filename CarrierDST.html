@@ -327,12 +327,19 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
   );
 }
 
-function SearchBar({ zipMap, states, onSearch }) {
+function SearchBar({ zipMap, states, availableCarriers, onSearch }) {
   const [input, setInput] = useState('');
   const [stateFilter, setStateFilter] = useState('');
   const [countyFilter, setCountyFilter] = useState('');
+  const [carrierFilter, setCarrierFilter] = useState([]);  // empty = show all
   const [resolvedZip, setResolvedZip] = useState(null);
   const inputRef = useRef(null);
+
+  const toggleCarrier = (key) => {
+    setCarrierFilter(prev =>
+      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+    );
+  };
 
   // ZIP auto-resolve
   useEffect(() => {
@@ -342,7 +349,7 @@ function SearchBar({ zipMap, states, onSearch }) {
       setResolvedZip(z);
       setStateFilter(z.state);
       setCountyFilter(z.county);
-      onSearch({ state: z.state, county: z.county, zip: trimmed });
+      onSearch({ state: z.state, county: z.county, zip: trimmed, carriers: carrierFilter });
     } else {
       if (resolvedZip) {
         setResolvedZip(null);
@@ -351,16 +358,18 @@ function SearchBar({ zipMap, states, onSearch }) {
     }
   }, [input, zipMap]);
 
-  // State/county manual selection
+  // State/county/carrier manual selection
   useEffect(() => {
     if (!resolvedZip) {
-      onSearch({ state: stateFilter, county: countyFilter, zip: '' });
+      onSearch({ state: stateFilter, county: countyFilter, zip: '', carriers: carrierFilter });
+    } else {
+      onSearch({ state: stateFilter, county: countyFilter, zip: input.trim(), carriers: carrierFilter });
     }
-  }, [stateFilter, countyFilter]);
+  }, [stateFilter, countyFilter, carrierFilter]);
 
   const handleClear = () => {
-    setInput(''); setStateFilter(''); setCountyFilter(''); setResolvedZip(null);
-    onSearch({ state: '', county: '', zip: '' });
+    setInput(''); setStateFilter(''); setCountyFilter(''); setCarrierFilter([]); setResolvedZip(null);
+    onSearch({ state: '', county: '', zip: '', carriers: [] });
     inputRef.current?.focus();
   };
 
@@ -427,13 +436,44 @@ function SearchBar({ zipMap, states, onSearch }) {
           </div>
 
           {/* Clear */}
-          {(stateFilter || countyFilter || input) && (
+          {(stateFilter || countyFilter || input || carrierFilter.length > 0) && (
             <button onClick={handleClear}
               className="px-4 py-2 text-sm font-medium text-soft-blue hover:text-text border border-light-cyan rounded-lg hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap">
               Clear All
             </button>
           )}
         </div>
+
+        {/* Carrier toggles */}
+        {availableCarriers && availableCarriers.length > 0 && (
+          <div className="mt-3 flex items-center gap-2 flex-wrap">
+            <label className="text-xs font-semibold text-mid-blue font-heading mr-1">Carrier:</label>
+            {availableCarriers.map(key => {
+              const c = CARRIER_COLORS[key];
+              if (!c) return null;
+              const active = carrierFilter.includes(key);
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => toggleCarrier(key)}
+                  aria-pressed={active}
+                  className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors cursor-pointer ${active ? 'text-white border-transparent' : 'text-soft-blue border-light-cyan bg-white hover:bg-gray-50'}`}
+                  style={active ? { backgroundColor: c.bg } : undefined}
+                  title={active ? `Filtering to ${c.label}-verified DSTs` : `Click to show only ${c.label}-verified DSTs`}>
+                  {active ? '✓ ' : ''}{c.label}
+                </button>
+              );
+            })}
+            {carrierFilter.length > 0 && (
+              <span className="text-xs text-soft-blue ml-1">
+                {carrierFilter.length === 1
+                  ? `Showing only ${CARRIER_COLORS[carrierFilter[0]]?.label}-verified DSTs`
+                  : `Showing DSTs verified by any of ${carrierFilter.length} carriers`}
+              </span>
+            )}
+          </div>
+        )}
 
         <div className="mt-2 text-xs text-soft-blue">
           <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs font-mono">Ctrl+K</kbd> to focus search
@@ -444,18 +484,28 @@ function SearchBar({ zipMap, states, onSearch }) {
 }
 
 function StatsBar({ filtered, total, search }) {
-  if (!search.state && !search.county) {
+  const hasCarrier = search.carriers && search.carriers.length > 0;
+  const carrierLabel = hasCarrier
+    ? (search.carriers.length === 1
+        ? CARRIER_COLORS[search.carriers[0]]?.label || search.carriers[0]
+        : `${search.carriers.length} carriers`)
+    : null;
+
+  if (!search.state && !search.county && !hasCarrier) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-3 text-sm text-mid-blue">
         Showing <strong className="text-text">{total}</strong> active carrier-verified DSTs across all states
       </div>
     );
   }
-  const label = search.zip ? `ZIP ${search.zip} (${search.county}, ${search.state})` :
-    search.county ? `${search.county}, ${search.state}` : search.state;
+  const placeLabel = search.zip ? `ZIP ${search.zip} (${search.county}, ${search.state})` :
+    search.county ? `${search.county}, ${search.state}` :
+    search.state ? search.state : null;
   return (
     <div className="max-w-7xl mx-auto px-4 py-3 text-sm text-mid-blue">
-      <strong className="text-text">{filtered}</strong> active DST{filtered !== 1 ? 's' : ''} for <strong className="text-text">{label}</strong>
+      <strong className="text-text">{filtered}</strong> active DST{filtered !== 1 ? 's' : ''}
+      {placeLabel && <> for <strong className="text-text">{placeLabel}</strong></>}
+      {hasCarrier && <> verified by <strong className="text-text">{carrierLabel}</strong></>}
     </div>
   );
 }
@@ -467,7 +517,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [tab, setTab] = useState('active');
-  const [search, setSearch] = useState({ state: '', county: '', zip: '' });
+  const [search, setSearch] = useState({ state: '', county: '', zip: '', carriers: [] });
 
   // Load data
   useEffect(() => {
@@ -491,6 +541,22 @@ function App() {
     return [...s].sort();
   }, [data]);
 
+  // Derive carrier list from active records, sorted by record count (desc).
+  // Reading from data, not hardcoded, so the UI auto-updates if a new carrier
+  // is added to the pipeline.
+  const availableCarriers = useMemo(() => {
+    if (!data) return [];
+    const counts = {};
+    for (const d of data.active) {
+      for (const [k, v] of Object.entries(d.carriers || {})) {
+        if (v) counts[k] = (counts[k] || 0) + 1;
+      }
+    }
+    return Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([k]) => k);
+  }, [data]);
+
   const filteredActive = useMemo(() => {
     if (!data) return [];
     let list = data.active;
@@ -502,6 +568,10 @@ function App() {
       list = list.filter(d =>
         d.statewide || d.counties.some(c => c.toLowerCase().includes(cl))
       );
+    }
+    if (search.carriers && search.carriers.length > 0) {
+      // Show DSTs verified by ANY of the selected carriers (OR logic)
+      list = list.filter(d => search.carriers.some(k => d.carriers && d.carriers[k]));
     }
     return list;
   }, [data, search]);
@@ -517,6 +587,9 @@ function App() {
       list = list.filter(d =>
         d.statewide || d.counties.some(c => c.toLowerCase().includes(cl))
       );
+    }
+    if (search.carriers && search.carriers.length > 0) {
+      list = list.filter(d => search.carriers.some(k => d.carriers && d.carriers[k]));
     }
     return list.slice(0, 50); // Limit expired to 50 for performance
   }, [data, search]);
@@ -599,7 +672,7 @@ function App() {
       </div>
 
       {/* Search */}
-      <SearchBar zipMap={zipMap} states={states} onSearch={setSearch} />
+      <SearchBar zipMap={zipMap} states={states} availableCarriers={availableCarriers} onSearch={setSearch} />
 
       {/* Tabs */}
       <div className="bg-white border-b border-light-cyan">
@@ -630,7 +703,15 @@ function App() {
               <div className="text-center py-16">
                 <p className="text-lg text-soft-blue font-heading">No active carrier-verified DSTs found</p>
                 <p className="text-sm text-soft-blue/70 mt-2">
-                  {search.state ? `No DSTs for ${search.county ? search.county + ', ' : ''}${search.state}` : 'Try searching by ZIP code or state'}
+                  {(() => {
+                    const parts = [];
+                    if (search.state) parts.push(`${search.county ? search.county + ', ' : ''}${search.state}`);
+                    if (search.carriers && search.carriers.length > 0) {
+                      const labels = search.carriers.map(k => CARRIER_COLORS[k]?.label || k).join(', ');
+                      parts.push(`verified by ${labels}`);
+                    }
+                    return parts.length ? `No DSTs for ${parts.join(' ')}` : 'Try searching by ZIP code, state, or carrier';
+                  })()}
                 </p>
               </div>
             ) : (
