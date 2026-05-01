@@ -289,6 +289,13 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
         {Object.keys(CARRIER_COLORS).map(c => (
           <CarrierBadge key={c} carrier={c} active={dst.carriers[c]} />
         ))}
+        {/* Single-source warning when only stale-data carriers verify */}
+        {dst.carrierCount === 1 && dst.carriers.aetna && (
+          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-800"
+            title="Only Aetna verifies this DST and Aetna's source file is from March 9, 2026. Confirm with the carrier before enrolling.">
+            ⚠ Aetna data 7+ weeks old
+          </span>
+        )}
       </div>
 
       {/* Actions */}
@@ -754,9 +761,28 @@ function App() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
               <strong className="text-mid-blue">Carrier file dates:</strong>{' '}
-              {Object.entries(meta.carrierFileDates).map(([c, d]) =>
-                <span key={c} className="mr-3">{CARRIER_COLORS[c]?.label}: {d}</span>
-              )}
+              {(() => {
+                // Flag a carrier file as STALE if older than 21 days from today
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                return Object.entries(meta.carrierFileDates).map(([c, d]) => {
+                  const fileDate = new Date(d + 'T00:00:00');
+                  const daysOld = Math.round((today - fileDate) / 86400000);
+                  const stale = daysOld > 21;
+                  return (
+                    <span key={c} className="mr-3">
+                      {CARRIER_COLORS[c]?.label}: {d}
+                      {stale && (
+                        <span
+                          className="ml-1 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-amber-100 text-amber-800"
+                          title={`File is ${daysOld} days old — confirm with carrier before enrolling`}>
+                          STALE ({daysOld}d)
+                        </span>
+                      )}
+                    </span>
+                  );
+                });
+              })()}
             </div>
             <div className="text-right">
               Clear Path Coverage &mdash; Internal Use Only
