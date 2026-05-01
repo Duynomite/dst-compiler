@@ -564,9 +564,26 @@ function App() {
       .map(([k]) => k);
   }, [data]);
 
+  // Auto-roll: any "active" record whose sepWindowEnd is in the past gets
+  // moved to expired client-side. This keeps the tool accurate between
+  // pipeline runs — if today is 2026-05-01 and a record's sep_end is
+  // 2026-04-30, the user sees it in Expired Archive without us re-deploying.
+  const { liveActive, liveExpired } = useMemo(() => {
+    if (!data) return { liveActive: [], liveExpired: [] };
+    const live_a = [], live_e = [...data.expired];
+    for (const d of data.active) {
+      const days = computeDaysRemaining(d.sepWindowEnd);
+      if (days !== null && days < 0) {
+        live_e.push(d);
+      } else {
+        live_a.push(d);
+      }
+    }
+    return { liveActive: live_a, liveExpired: live_e };
+  }, [data]);
+
   const filteredActive = useMemo(() => {
-    if (!data) return [];
-    let list = data.active;
+    let list = liveActive;
     if (search.state) {
       list = list.filter(d => d.state === search.state);
     }
@@ -581,11 +598,10 @@ function App() {
       list = list.filter(d => search.carriers.some(k => d.carriers && d.carriers[k]));
     }
     return list;
-  }, [data, search]);
+  }, [liveActive, search]);
 
   const filteredExpired = useMemo(() => {
-    if (!data) return [];
-    let list = data.expired;
+    let list = liveExpired;
     if (search.state) {
       list = list.filter(d => d.state === search.state);
     }
@@ -599,7 +615,7 @@ function App() {
       list = list.filter(d => search.carriers.some(k => d.carriers && d.carriers[k]));
     }
     return list.slice(0, 50); // Limit expired to 50 for performance
-  }, [data, search]);
+  }, [liveExpired, search]);
 
   // Group active by state
   const groupedActive = useMemo(() => {
@@ -647,7 +663,7 @@ function App() {
               <p className="text-xs text-light-cyan/80 font-body">Carrier-Verified Disaster SEPs &mdash; Clear Path Coverage</p>
             </div>
             <div className="hidden sm:flex items-center gap-3 text-xs text-light-cyan/70">
-              <span><strong className="text-white">{meta.activeDSTCount}</strong> active</span>
+              <span><strong className="text-white">{liveActive.length}</strong> active</span>
               <span>&middot;</span>
               <span><strong className="text-white">{meta.stateCount}</strong> states</span>
               <span>&middot;</span>
@@ -693,14 +709,14 @@ function App() {
             <button
               onClick={() => setTab('expired')}
               className={`py-3 text-sm font-heading font-semibold border-b-2 transition-colors cursor-pointer ${tab === 'expired' ? 'border-gray-400 text-text' : 'border-transparent text-soft-blue hover:text-text'}`}>
-              Expired Archive <span className="ml-1 text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{data.expired.length}</span>
+              Expired Archive <span className="ml-1 text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{liveExpired.length}</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Stats */}
-      <StatsBar filtered={filteredActive.length} total={meta.activeDSTCount} search={search} />
+      <StatsBar filtered={filteredActive.length} total={liveActive.length} search={search} />
 
       {/* Content */}
       <main className="flex-1 max-w-7xl mx-auto px-4 pb-8 w-full">
@@ -740,7 +756,7 @@ function App() {
         {tab === 'expired' && (
           <>
             <p className="text-sm text-soft-blue mb-4">
-              Showing {filteredExpired.length} of {data.expired.length} expired DSTs{search.state ? ` for ${search.state}` : ''}. These DSTs are no longer active for enrollment.
+              Showing {filteredExpired.length} of {liveExpired.length} expired DSTs{search.state ? ` for ${search.state}` : ''}. These DSTs are no longer active for enrollment.
             </p>
             {filteredExpired.length === 0 ? (
               <div className="text-center py-16">
