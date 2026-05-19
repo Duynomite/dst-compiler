@@ -91,9 +91,28 @@ async function copyText(text) {
 
 // ─── Components ───
 
-function CarrierBadge({ carrier, active }) {
+function CarrierBadge({ carrier, active, expired }) {
   const c = CARRIER_COLORS[carrier];
   if (!c) return null;
+  // `expired` means: this carrier covers the disaster on paper, but the
+  // carrier's own published SEP cutoff has already passed. Agents enrolling
+  // with this carrier will be rejected. Render in muted red strikethrough.
+  if (active && expired) {
+    return (
+      <span
+        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border line-through"
+        style={{
+          backgroundColor: '#fef2f2',
+          color: '#b91c1c',
+          borderColor: '#fecaca',
+          textDecorationColor: '#b91c1c',
+        }}
+        title={`${c.label}'s own published SEP cutoff has already passed \u2014 they won't honor enrollments`}
+      >
+        \u2717 {c.label}
+      </span>
+    );
+  }
   return (
     <span
       className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border"
@@ -106,6 +125,17 @@ function CarrierBadge({ carrier, active }) {
       {active ? '\u2713 ' : ''}{c.label}
     </span>
   );
+}
+
+// Per-carrier expiry check: returns true if THIS carrier's own published SEP
+// end has already passed. Falls back to merged sepWindowEnd when the carrier
+// has no carrier-specific data.
+function isCarrierExpired(dst, carrier) {
+  const cd = dst.carrierDates && dst.carrierDates[carrier];
+  const sepEnd = (cd && cd.sepEnd) || dst.sepWindowEnd;
+  if (!sepEnd) return false;
+  const days = computeDaysRemaining(sepEnd.slice(0, 10));
+  return days !== null && days < 0;
 }
 
 function StatusBadge({ status, days }) {
@@ -232,6 +262,8 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
   // Per-carrier SEP overrides: list carriers whose own published SEP end is
   // STRICTER (earlier) than the merged value. Agents enrolling with these
   // carriers must respect the carrier's actual cutoff, not the merged date.
+  // `expired` flags entries whose SEP has already passed today's date — the
+  // carrier won't honor enrollments, regardless of what the merged date says.
   const carrierOverrides = carrierList
     .map(c => {
       const cd = dst.carrierDates && dst.carrierDates[c];
@@ -239,7 +271,13 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
       const cdSep = cd.sepEnd.slice(0, 10);
       const mergedSep = (dst.sepWindowEnd || '').slice(0, 10);
       if (cdSep && mergedSep && cdSep < mergedSep) {
-        return { carrier: c, sepEnd: cd.sepEnd, incidentEnd: cd.incidentEnd };
+        const daysLeft = computeDaysRemaining(cdSep);
+        return {
+          carrier: c,
+          sepEnd: cd.sepEnd,
+          incidentEnd: cd.incidentEnd,
+          expired: daysLeft !== null && daysLeft < 0,
+        };
       }
       return null;
     })
@@ -303,7 +341,12 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
       {/* Carrier badges */}
       <div className="flex items-center gap-1.5 flex-wrap mb-3">
         {Object.keys(CARRIER_COLORS).map(c => (
-          <CarrierBadge key={c} carrier={c} active={dst.carriers[c]} />
+          <CarrierBadge
+            key={c}
+            carrier={c}
+            active={dst.carriers[c]}
+            expired={dst.carriers[c] && isCarrierExpired(dst, c)}
+          />
         ))}
         {/* Single-source warning when only stale-data carriers verify */}
         {dst.carrierCount === 1 && dst.carriers.aetna && (
@@ -315,34 +358,52 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
       </div>
 
       {/* Per-carrier SEP overrides — carriers whose own published SEP end
-          is earlier than the merged consensus. Agents must respect each
-          carrier's actual cutoff when enrolling with that carrier. */}
-      {!isExpired && carrierOverrides.length > 0 && (
-        <div className="mb-3 bg-amber-50 border border-amber-200 rounded-lg p-2.5">
-          <div className="text-xs font-bold text-amber-900 uppercase tracking-wide font-heading mb-1.5">
-            ⚠ Per-carrier SEP cutoffs (stricter than merged)
+          is earlier than the merged consensus. Entries flagged `expired`
+          have a cutoff that's already passed; those carriers won't honor
+          enrollments today regardless of merged dates. */}
+      {!isExpired && carrierOverrides.length > 0 && (() => {
+        const anyExpired = carrierOverrides.some(o => o.expired);
+        const wrapperClass = anyExpired
+          ? "mb-3 bg-red-50 border border-red-300 rounded-lg p-2.5"
+          : "mb-3 bg-amber-50 border border-amber-200 rounded-lg p-2.5";
+        const labelClass = anyExpired ? "text-red-900" : "text-amber-900";
+        const footClass = anyExpired ? "text-red-800" : "text-amber-700";
+        return (
+          <div className={wrapperClass}>
+            <div className={`text-xs font-bold uppercase tracking-wide font-heading mb-1.5 ${labelClass}`}>
+              {anyExpired ? '⚠ One or more carrier SEPs have already ended' : '⚠ Per-carrier SEP cutoffs (stricter than merged)'}
+            </div>
+            <div className="space-y-0.5">
+              {carrierOverrides.map(o => {
+                const cc = CARRIER_COLORS[o.carrier] || {};
+                const rowClass = o.expired ? 'text-xs text-red-900 flex items-center gap-2' : `text-xs flex items-center gap-2 ${labelClass}`;
+                return (
+                  <div key={o.carrier} className={rowClass}>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded font-semibold text-white text-[10px]"
+                          style={{ backgroundColor: cc.bg || '#888' }}>
+                      {cc.label || o.carrier}
+                    </span>
+                    {o.expired ? (
+                      <span>
+                        <span className="font-bold uppercase">SEP ENDED</span> {formatDate(o.sepEnd)} — will not honor enrollments
+                      </span>
+                    ) : (
+                      <span>SEP ends <span className="font-bold">{formatDate(o.sepEnd)}</span>
+                        {o.incidentEnd ? <> · incident end {formatDate(o.incidentEnd)}</> : null}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div className={`text-[10px] mt-1.5 italic ${footClass}`}>
+              {anyExpired
+                ? 'Carriers above won’t accept enrollments for this DST. Use one of the unflagged carriers instead.'
+                : 'Use the per-carrier date when submitting to that carrier — they won’t honor enrollments past their own cutoff.'}
+            </div>
           </div>
-          <div className="space-y-0.5">
-            {carrierOverrides.map(o => {
-              const cc = CARRIER_COLORS[o.carrier] || {};
-              return (
-                <div key={o.carrier} className="text-xs text-amber-900 flex items-center gap-2">
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded font-semibold text-white text-[10px]"
-                        style={{ backgroundColor: cc.bg || '#888' }}>
-                    {cc.label || o.carrier}
-                  </span>
-                  <span>SEP ends <span className="font-bold">{formatDate(o.sepEnd)}</span>
-                    {o.incidentEnd ? <> · incident end {formatDate(o.incidentEnd)}</> : null}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-          <div className="text-[10px] text-amber-700 mt-1.5 italic">
-            Use the per-carrier date when submitting to that carrier — they won't honor enrollments past their own cutoff.
-          </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Actions */}
       <div className="flex items-center gap-3 flex-wrap border-t border-light-cyan pt-3">
@@ -628,6 +689,15 @@ function App() {
     return { liveActive: live_a, liveExpired: live_e };
   }, [data]);
 
+  // When filtering by carrier, "covered & active" means the carrier flagged
+  // this DST AND the carrier's own per-carrier SEP cutoff hasn't passed.
+  // A DST whose merged window is open but where the filtered carrier's
+  // specific SEP has expired rolls to the Expired bucket for that filter.
+  const carrierCoversActively = (d, k) =>
+    d.carriers && d.carriers[k] && !isCarrierExpired(d, k);
+  const carrierCoversExpired = (d, k) =>
+    d.carriers && d.carriers[k] && isCarrierExpired(d, k);
+
   const filteredActive = useMemo(() => {
     let list = liveActive;
     if (search.state) {
@@ -640,8 +710,8 @@ function App() {
       );
     }
     if (search.carriers && search.carriers.length > 0) {
-      // Show DSTs verified by ANY of the selected carriers (OR logic)
-      list = list.filter(d => search.carriers.some(k => d.carriers && d.carriers[k]));
+      // Active = at least one selected carrier still has an open SEP
+      list = list.filter(d => search.carriers.some(k => carrierCoversActively(d, k)));
     }
     return list;
   }, [liveActive, search]);
@@ -660,8 +730,25 @@ function App() {
     if (search.carriers && search.carriers.length > 0) {
       list = list.filter(d => search.carriers.some(k => d.carriers && d.carriers[k]));
     }
+    // Also surface records still in the active pool whose filtered carrier's
+    // own SEP has already expired (merged-active but per-carrier-expired).
+    if (search.carriers && search.carriers.length > 0) {
+      const extras = liveActive
+        .filter(d => {
+          if (search.state && d.state !== search.state) return false;
+          if (search.county) {
+            const cl = search.county.toLowerCase();
+            if (!d.statewide && !d.counties.some(c => c.toLowerCase().includes(cl))) return false;
+          }
+          // Every selected carrier that flags it must be expired (none still active)
+          const flagged = search.carriers.filter(k => d.carriers && d.carriers[k]);
+          if (flagged.length === 0) return false;
+          return flagged.every(k => isCarrierExpired(d, k));
+        });
+      list = [...extras, ...list];
+    }
     return list.slice(0, 50); // Limit expired to 50 for performance
-  }, [liveExpired, search]);
+  }, [liveExpired, liveActive, search]);
 
   // Group active by state
   const groupedActive = useMemo(() => {
