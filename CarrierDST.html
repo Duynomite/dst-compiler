@@ -91,38 +91,22 @@ async function copyText(text) {
 
 // ─── Components ───
 
-function CarrierBadge({ carrier, active, expired }) {
+function CarrierBadge({ carrier, willHonor }) {
+  // Binary: this carrier will honor an enrollment for this DST today, or it
+  // won't. "Won't" covers both "never flagged" and "flagged but the
+  // carrier's own SEP has already passed".
   const c = CARRIER_COLORS[carrier];
   if (!c) return null;
-  // `expired` means: this carrier covers the disaster on paper, but the
-  // carrier's own published SEP cutoff has already passed. Agents enrolling
-  // with this carrier will be rejected. Render in muted red strikethrough.
-  if (active && expired) {
-    return (
-      <span
-        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border line-through"
-        style={{
-          backgroundColor: '#fef2f2',
-          color: '#b91c1c',
-          borderColor: '#fecaca',
-          textDecorationColor: '#b91c1c',
-        }}
-        title={`${c.label}'s own published SEP cutoff has already passed \u2014 they won't honor enrollments`}
-      >
-        \u2717 {c.label}
-      </span>
-    );
-  }
   return (
     <span
       className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border"
       style={{
-        backgroundColor: active ? c.bg + '20' : '#f3f4f6',
-        color: active ? c.bg : '#9ca3af',
-        borderColor: active ? c.bg + '40' : '#e5e7eb',
+        backgroundColor: willHonor ? c.bg + '20' : '#f3f4f6',
+        color: willHonor ? c.bg : '#9ca3af',
+        borderColor: willHonor ? c.bg + '40' : '#e5e7eb',
       }}
     >
-      {active ? '\u2713 ' : ''}{c.label}
+      {willHonor ? '\u2713 ' : ''}{c.label}
     </span>
   );
 }
@@ -195,7 +179,13 @@ function AttestationChecklist({ dst, checks, onToggle }) {
     'Client confirms they missed enrollment due to the disaster',
   ];
 
-  const sunfireText = `SEP Type: DST (Disaster)\nDisaster: ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}\nCarriers: ${Object.entries(dst.carriers).filter(([,v])=>v).map(([k])=>CARRIER_COLORS[k]?.label).join(', ')}\n\nAttestation: ${allChecked ? 'COMPLETE \u2014 All 3 criteria verified' : 'INCOMPLETE'}\n1. Residence: ${checks[0] ? 'Verified' : 'Not verified'}\n2. Eligible for another EP: ${checks[1] ? 'Verified' : 'Not verified'}\n3. Missed due to disaster: ${checks[2] ? 'Verified' : 'Not verified'}`;
+  // Only list carriers that will actually honor an enrollment today
+  const sunfireLitCarriers = Object.entries(dst.carriers)
+    .filter(([k, v]) => v && !isCarrierExpired(dst, k))
+    .map(([k]) => CARRIER_COLORS[k]?.label)
+    .filter(Boolean)
+    .join(', ');
+  const sunfireText = `SEP Type: DST (Disaster)\nDisaster: ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}\nCarriers honoring this DST: ${sunfireLitCarriers || 'none'}\n\nAttestation: ${allChecked ? 'COMPLETE \u2014 All 3 criteria verified' : 'INCOMPLETE'}\n1. Residence: ${checks[0] ? 'Verified' : 'Not verified'}\n2. Eligible for another EP: ${checks[1] ? 'Verified' : 'Not verified'}\n3. Missed due to disaster: ${checks[2] ? 'Verified' : 'Not verified'}`;
 
   return (
     <div className="mt-3 bg-deep-navy/5 rounded-lg p-4 border border-deep-navy/10">
@@ -259,31 +249,31 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
   const icon = INCIDENT_ICONS[dst.incidentType] || '\u26A0\uFE0F';
   const carrierList = Object.entries(dst.carriers).filter(([,v]) => v).map(([k]) => k);
 
-  // Per-carrier SEP overrides: list carriers whose own published SEP end is
-  // STRICTER (earlier) than the merged value. Agents enrolling with these
-  // carriers must respect the carrier's actual cutoff, not the merged date.
-  // `expired` flags entries whose SEP has already passed today's date — the
-  // carrier won't honor enrollments, regardless of what the merged date says.
-  const carrierOverrides = carrierList
+  // Among carriers that WILL honor an enrollment today (i.e., flagged AND
+  // their own SEP hasn't passed), list those whose published cutoff differs
+  // from the headline SEP window. We only surface this when there's actual
+  // variance among lit carriers — otherwise it's noise.
+  const litCarrierDeadlines = carrierList
+    .filter(c => !isCarrierExpired(dst, c))
     .map(c => {
       const cd = dst.carrierDates && dst.carrierDates[c];
-      if (!cd || !cd.sepEnd) return null;
-      const cdSep = cd.sepEnd.slice(0, 10);
-      const mergedSep = (dst.sepWindowEnd || '').slice(0, 10);
-      if (cdSep && mergedSep && cdSep < mergedSep) {
-        const daysLeft = computeDaysRemaining(cdSep);
-        return {
-          carrier: c,
-          sepEnd: cd.sepEnd,
-          incidentEnd: cd.incidentEnd,
-          expired: daysLeft !== null && daysLeft < 0,
-        };
-      }
-      return null;
-    })
-    .filter(Boolean);
+      const sepEnd = (cd && cd.sepEnd) || dst.sepWindowEnd;
+      return { carrier: c, sepEnd };
+    });
+  const uniqueDeadlines = new Set(litCarrierDeadlines.map(o => (o.sepEnd || '').slice(0, 10)));
+  const showDeadlineNote = litCarrierDeadlines.length > 1 && uniqueDeadlines.size > 1;
 
-  const quickCopyText = `DST \u2014 ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nCarriers: ${carrierList.map(c => CARRIER_COLORS[c]?.label).join(', ')}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}${carrierOverrides.length ? '\n\nPER-CARRIER SEP CUTOFFS (stricter than merged):\n' + carrierOverrides.map(o => `  ${CARRIER_COLORS[o.carrier]?.label || o.carrier}: ${formatDate(o.sepEnd)}`).join('\n') : ''}`;
+  // Only list carriers that will actually honor an enrollment today
+  const litCarrierLabels = carrierList
+    .filter(c => !isCarrierExpired(dst, c))
+    .map(c => CARRIER_COLORS[c]?.label)
+    .join(', ');
+  const deadlineLines = showDeadlineNote
+    ? '\n\nCarrier deadlines:\n' + litCarrierDeadlines
+        .map(o => `  ${CARRIER_COLORS[o.carrier]?.label || o.carrier}: through ${formatDate(o.sepEnd)}`)
+        .join('\n')
+    : '';
+  const quickCopyText = `DST \u2014 ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nCarriers honoring this DST: ${litCarrierLabels || 'none'}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}${deadlineLines}`;
 
   return (
     <div className={`fade-in bg-white rounded-lg p-5 border border-light-cyan border-t-4 ${statusStyle.border} hover:shadow-md transition-shadow ${isExpired ? 'opacity-70' : ''}`}>
@@ -344,8 +334,7 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
           <CarrierBadge
             key={c}
             carrier={c}
-            active={dst.carriers[c]}
-            expired={dst.carriers[c] && isCarrierExpired(dst, c)}
+            willHonor={dst.carriers[c] && !isCarrierExpired(dst, c)}
           />
         ))}
         {/* Single-source warning when only stale-data carriers verify */}
@@ -357,53 +346,31 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
         )}
       </div>
 
-      {/* Per-carrier SEP overrides — carriers whose own published SEP end
-          is earlier than the merged consensus. Entries flagged `expired`
-          have a cutoff that's already passed; those carriers won't honor
-          enrollments today regardless of merged dates. */}
-      {!isExpired && carrierOverrides.length > 0 && (() => {
-        const anyExpired = carrierOverrides.some(o => o.expired);
-        const wrapperClass = anyExpired
-          ? "mb-3 bg-red-50 border border-red-300 rounded-lg p-2.5"
-          : "mb-3 bg-amber-50 border border-amber-200 rounded-lg p-2.5";
-        const labelClass = anyExpired ? "text-red-900" : "text-amber-900";
-        const footClass = anyExpired ? "text-red-800" : "text-amber-700";
-        return (
-          <div className={wrapperClass}>
-            <div className={`text-xs font-bold uppercase tracking-wide font-heading mb-1.5 ${labelClass}`}>
-              {anyExpired ? '⚠ One or more carrier SEPs have already ended' : '⚠ Per-carrier SEP cutoffs (stricter than merged)'}
-            </div>
-            <div className="space-y-0.5">
-              {carrierOverrides.map(o => {
-                const cc = CARRIER_COLORS[o.carrier] || {};
-                const rowClass = o.expired ? 'text-xs text-red-900 flex items-center gap-2' : `text-xs flex items-center gap-2 ${labelClass}`;
-                return (
-                  <div key={o.carrier} className={rowClass}>
-                    <span className="inline-flex items-center px-1.5 py-0.5 rounded font-semibold text-white text-[10px]"
-                          style={{ backgroundColor: cc.bg || '#888' }}>
-                      {cc.label || o.carrier}
-                    </span>
-                    {o.expired ? (
-                      <span>
-                        <span className="font-bold uppercase">SEP ENDED</span> {formatDate(o.sepEnd)} — will not honor enrollments
-                      </span>
-                    ) : (
-                      <span>SEP ends <span className="font-bold">{formatDate(o.sepEnd)}</span>
-                        {o.incidentEnd ? <> · incident end {formatDate(o.incidentEnd)}</> : null}
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            <div className={`text-[10px] mt-1.5 italic ${footClass}`}>
-              {anyExpired
-                ? 'Carriers above won’t accept enrollments for this DST. Use one of the unflagged carriers instead.'
-                : 'Use the per-carrier date when submitting to that carrier — they won’t honor enrollments past their own cutoff.'}
-            </div>
+      {/* Plain deadlines, shown only when lit carriers have different cutoffs.
+          Each lit carrier already conveys "will honor today" via the badge;
+          this line just tells the agent when each one's window closes so they
+          don't submit to a carrier whose deadline is sooner. */}
+      {!isExpired && showDeadlineNote && (
+        <div className="mb-3 bg-amber-50 border border-amber-200 rounded-lg p-2.5">
+          <div className="text-xs font-bold text-amber-900 uppercase tracking-wide font-heading mb-1.5">
+            Carrier deadlines differ — check before submitting
           </div>
-        );
-      })()}
+          <div className="space-y-0.5">
+            {litCarrierDeadlines.map(o => {
+              const cc = CARRIER_COLORS[o.carrier] || {};
+              return (
+                <div key={o.carrier} className="text-xs text-amber-900 flex items-center gap-2">
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded font-semibold text-white text-[10px]"
+                        style={{ backgroundColor: cc.bg || '#888' }}>
+                    {cc.label || o.carrier}
+                  </span>
+                  <span>accepts enrollments through <span className="font-bold">{formatDate(o.sepEnd)}</span></span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Actions */}
       <div className="flex items-center gap-3 flex-wrap border-t border-light-cyan pt-3">
