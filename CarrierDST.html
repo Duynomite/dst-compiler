@@ -40,7 +40,6 @@ const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
 // ─── Carrier colors ───
 const CARRIER_COLORS = {
-  aetna: { bg: '#7B2D8E', label: 'Aetna' },
   uhc: { bg: '#002677', label: 'UHC' },
   cigna: { bg: '#0070C0', label: 'Cigna' },
   humana: { bg: '#4B8B3B', label: 'Humana' },
@@ -337,13 +336,6 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
             willHonor={dst.carriers[c] && !isCarrierExpired(dst, c)}
           />
         ))}
-        {/* Single-source warning when only stale-data carriers verify */}
-        {dst.carrierCount === 1 && dst.carriers.aetna && (
-          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-800"
-            title="Only Aetna verifies this DST and Aetna's source file is from March 9, 2026. Confirm with the carrier before enrolling.">
-            ⚠ Aetna data 7+ weeks old
-          </span>
-        )}
       </div>
 
       {/* Plain deadlines, shown only when lit carriers have different cutoffs.
@@ -772,6 +764,18 @@ function App() {
           </div>
         </div>
       </header>
+
+      {/* Carrier policy notice — Aetna DSTs must not be submitted */}
+      <div className="bg-rose-50 border-b border-rose-200">
+        <div className="max-w-7xl mx-auto px-4 py-2">
+          <div className="flex items-start gap-2 text-rose-800">
+            <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clipRule="evenodd"/></svg>
+            <p className="text-xs sm:text-sm font-body leading-snug">
+              <strong className="font-heading font-bold">Do not submit Aetna DSTs.</strong> Aetna is not approving disaster SEP enrollments, so Aetna has been removed from this tool. Submit qualifying DSTs to one of the carriers shown below.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Compliance Banner */}
       <div className="bg-deep-navy/95 border-b border-secondary/40">
