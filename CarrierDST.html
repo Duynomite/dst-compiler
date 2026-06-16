@@ -31,7 +31,11 @@
   </style>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Pinned to Babel 7.x: the unpinned/Babel 8 default switched preset-react to the
+       automatic JSX runtime, which emits `import ... from "react/jsx-runtime"` and breaks
+       this build-less <script type="text/babel"> page (blank screen). 7.x defaults to the
+       classic runtime (React.createElement against the global React UMD above). -->
+  <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 </head>
 <body class="bg-gray-50 text-text font-body min-h-screen">
 <div id="root"></div>
