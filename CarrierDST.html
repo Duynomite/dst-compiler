@@ -125,12 +125,66 @@ function isCarrierExpired(dst, carrier) {
   return days !== null && days < 0;
 }
 
-function StatusBadge({ status, days }) {
+// Single source of truth for per-carrier SEP cutoffs.
+//
+// dst.sepWindowEnd is a MERGED value: the pipeline groups records by state and
+// declaration date, then takes max(sepEnd) across the union of counties. When
+// one declaration covers several named incidents that max can run well past
+// what an individual carrier actually honors (observed: up to +395 days). So
+// the headline window is never a safe per-carrier deadline.
+//
+// The card and the SunFire payload both read from here. They used to compute
+// this separately, which is how the card's Copy button gained a deadline block
+// while the SunFire note silently did not — meaning the text pasted into the
+// enrollment record could overstate a carrier's deadline by up to a year.
+function carrierDeadlines(dst) {
+  const headline = (dst.sepWindowEnd || '').slice(0, 10);
+  // Gate on CARRIER_COLORS, not just the raw data keys. A carrier the pipeline
+  // emits but the UI does not map is one we are not telling agents to submit to
+  // — Aetna is excluded exactly this way (EXCLUDE_AETNA in the pipeline, plus
+  // the red banner). Without this gate, re-enabling a carrier upstream before
+  // adding it here would print it as a valid deadline in the SunFire payload.
+  const lit = Object.entries(dst.carriers || {})
+    .filter(([k, v]) => v && CARRIER_COLORS[k] && !isCarrierExpired(dst, k))
+    .map(([k]) => {
+      const cd = dst.carrierDates && dst.carrierDates[k];
+      return {
+        carrier: k,
+        sepEnd: (((cd && cd.sepEnd) || dst.sepWindowEnd) || '').slice(0, 10),
+      };
+    });
+
+  const labels = lit
+    .map(o => CARRIER_COLORS[o.carrier]?.label)
+    .filter(Boolean)
+    .join(', ');
+
+  // Surface variance when lit carriers disagree with each other OR when any
+  // lit carrier closes before the merged headline. The second case matters
+  // even with a single lit carrier: one carrier alone can still be stricter
+  // than the merged max, and that case would otherwise show no warning at all.
+  const uniqueEnds = new Set(lit.map(o => o.sepEnd));
+  const varies = lit.length > 0 &&
+    (uniqueEnds.size > 1 || lit.some(o => o.sepEnd && headline && o.sepEnd < headline));
+
+  const lines = varies
+    ? '\n\nCarrier deadlines (submit by the date for the carrier you write):\n' +
+      lit.map(o => `  ${CARRIER_COLORS[o.carrier]?.label || o.carrier}: through ${formatDate(o.sepEnd)}`).join('\n')
+    : '';
+
+  return { lit, labels, varies, lines };
+}
+
+function StatusBadge({ status, days, note }) {
   const s = STATUS_STYLES[status] || STATUS_STYLES.active;
   return (
     <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold border ${s.bg} ${s.text} ${status === 'expiring_soon' ? 'pulse-urgent' : ''}`}>
       {s.label}
-      {days !== null && days !== undefined && days >= 0 && <span className="font-semibold">({daysLabel(days)})</span>}
+      {days !== null && days !== undefined && days >= 0 && (
+        <span className="font-semibold">
+          ({daysLabel(days)}{note ? <span className="font-normal opacity-80"> · {note}</span> : null})
+        </span>
+      )}
     </span>
   );
 }
@@ -182,13 +236,12 @@ function AttestationChecklist({ dst, checks, onToggle }) {
     'Client confirms they missed enrollment due to the disaster',
   ];
 
-  // Only list carriers that will actually honor an enrollment today
-  const sunfireLitCarriers = Object.entries(dst.carriers)
-    .filter(([k, v]) => v && !isCarrierExpired(dst, k))
-    .map(([k]) => CARRIER_COLORS[k]?.label)
-    .filter(Boolean)
-    .join(', ');
-  const sunfireText = `SEP Type: DST (Disaster)\nDisaster: ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}\nCarriers honoring this DST: ${sunfireLitCarriers || 'none'}\n\nAttestation: ${allChecked ? 'COMPLETE \u2014 All 3 criteria verified' : 'INCOMPLETE'}\n1. Residence: ${checks[0] ? 'Verified' : 'Not verified'}\n2. Eligible for another EP: ${checks[1] ? 'Verified' : 'Not verified'}\n3. Missed due to disaster: ${checks[2] ? 'Verified' : 'Not verified'}`;
+  // Only list carriers that will actually honor an enrollment today, and carry
+  // their individual cutoffs into the note. The merged SEP window below can run
+  // past a given carrier's own deadline, so the per-carrier lines are what make
+  // this payload safe to paste into the enrollment record.
+  const { labels: sunfireLitCarriers, lines: sunfireDeadlineLines } = carrierDeadlines(dst);
+  const sunfireText = `SEP Type: DST (Disaster)\nDisaster: ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}\nCarriers honoring this DST: ${sunfireLitCarriers || 'none'}${sunfireDeadlineLines}\n\nAttestation: ${allChecked ? 'COMPLETE \u2014 All 3 criteria verified' : 'INCOMPLETE'}\n1. Residence: ${checks[0] ? 'Verified' : 'Not verified'}\n2. Eligible for another EP: ${checks[1] ? 'Verified' : 'Not verified'}\n3. Missed due to disaster: ${checks[2] ? 'Verified' : 'Not verified'}`;
 
   return (
     <div className="mt-3 bg-deep-navy/5 rounded-lg p-4 border border-deep-navy/10">
@@ -250,32 +303,32 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
 
   const statusStyle = STATUS_STYLES[liveStatus] || STATUS_STYLES.active;
   const icon = INCIDENT_ICONS[dst.incidentType] || '\u26A0\uFE0F';
-  const carrierList = Object.entries(dst.carriers).filter(([,v]) => v).map(([k]) => k);
 
-  // Among carriers that WILL honor an enrollment today (i.e., flagged AND
-  // their own SEP hasn't passed), list those whose published cutoff differs
-  // from the headline SEP window. We only surface this when there's actual
-  // variance among lit carriers — otherwise it's noise.
-  const litCarrierDeadlines = carrierList
-    .filter(c => !isCarrierExpired(dst, c))
-    .map(c => {
-      const cd = dst.carrierDates && dst.carrierDates[c];
-      const sepEnd = (cd && cd.sepEnd) || dst.sepWindowEnd;
-      return { carrier: c, sepEnd };
-    });
-  const uniqueDeadlines = new Set(litCarrierDeadlines.map(o => (o.sepEnd || '').slice(0, 10)));
-  const showDeadlineNote = litCarrierDeadlines.length > 1 && uniqueDeadlines.size > 1;
+  // Per-carrier cutoffs, shared with the SunFire payload so the two can never
+  // drift apart again. `varies` is true whenever the headline SEP window would
+  // overstate at least one carrier that will still honor an enrollment today.
+  const {
+    lit: litCarrierDeadlines,
+    labels: litCarrierLabels,
+    varies: showDeadlineNote,
+    lines: deadlineLines,
+  } = carrierDeadlines(dst);
 
-  // Only list carriers that will actually honor an enrollment today
-  const litCarrierLabels = carrierList
-    .filter(c => !isCarrierExpired(dst, c))
-    .map(c => CARRIER_COLORS[c]?.label)
-    .join(', ');
-  const deadlineLines = showDeadlineNote
-    ? '\n\nCarrier deadlines:\n' + litCarrierDeadlines
-        .map(o => `  ${CARRIER_COLORS[o.carrier]?.label || o.carrier}: through ${formatDate(o.sepEnd)}`)
-        .join('\n')
-    : '';
+  // The countdown in the header is the first thing an agent reads, so it must
+  // never promise more runway than the carrier they write will actually honor.
+  // When deadlines diverge, count down to the SOONEST lit carrier instead of
+  // the merged window (observed overstatement: up to 395 days).
+  //
+  // Only the displayed number changes. `liveStatus`, sorting, filtering and
+  // auto-roll deliberately stay on the merged window — keying those off the
+  // strictest carrier would push records into Expired while a more generous
+  // carrier still honors them, costing enrollments.
+  const soonestLitEnd = showDeadlineNote && litCarrierDeadlines.length
+    ? litCarrierDeadlines.reduce(
+        (min, o) => (o.sepEnd && o.sepEnd < min ? o.sepEnd : min),
+        litCarrierDeadlines[0].sepEnd)
+    : null;
+  const badgeDays = soonestLitEnd ? computeDaysRemaining(soonestLitEnd) : daysRemaining;
   const quickCopyText = `DST \u2014 ${dst.title}\nState: ${dst.state}\nSEP Window: ${formatDate(dst.sepWindowStart)} \u2014 ${formatDate(dst.sepWindowEnd)}\nCarriers honoring this DST: ${litCarrierLabels || 'none'}\nOfficial Declaration: ${dst.officialUrl || 'N/A'}${deadlineLines}`;
 
   return (
@@ -284,7 +337,11 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="inline-flex items-center px-2 py-0.5 rounded bg-secondary text-white text-xs font-bold font-heading">{dst.state}</span>
-          <StatusBadge status={liveStatus} days={daysRemaining} />
+          <StatusBadge
+            status={liveStatus}
+            days={badgeDays}
+            note={soonestLitEnd ? 'earliest carrier' : null}
+          />
           {dst.carrierCount >= 5 && <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-xs font-bold border border-green-200">All Carriers</span>}
         </div>
         <CopyButton text={quickCopyText} label="Copy" />
@@ -303,7 +360,17 @@ function DSTCard({ dst, isExpired = false, searchCounty }) {
         </div>
         <div className="flex items-center gap-2">
           <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">SEP Window</span>
-          <span className="text-text font-medium">{formatDate(dst.sepWindowStart)} &mdash; {formatDate(dst.sepWindowEnd)}</span>
+          <span className="text-text font-medium">
+            {formatDate(dst.sepWindowStart)} &mdash; {formatDate(dst.sepWindowEnd)}
+            {/* The headline is a merged max across the declaration and can run
+                past an individual carrier's cutoff, so never let it read as
+                a per-carrier deadline when they actually differ. */}
+            {!isExpired && showDeadlineNote && (
+              <span className="ml-2 px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded text-xs font-semibold whitespace-nowrap">
+                varies by carrier
+              </span>
+            )}
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="font-medium text-soft-blue w-24 text-xs uppercase tracking-wide font-heading">Incident</span>
