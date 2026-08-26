@@ -48,6 +48,7 @@ const CARRIER_COLORS = {
   cigna: { bg: '#0070C0', label: 'Cigna' },
   humana: { bg: '#4B8B3B', label: 'Humana' },
   devoted: { bg: '#FF6B35', label: 'Devoted' },
+  wellcare: { bg: '#00A0AA', label: 'Wellcare' },
 };
 
 const STATUS_STYLES = {
@@ -475,7 +476,14 @@ function SearchBar({ zipMap, states, availableCarriers, onSearch }) {
   const [input, setInput] = useState('');
   const [stateFilter, setStateFilter] = useState('');
   const [countyFilter, setCountyFilter] = useState('');
-  const [carrierFilter, setCarrierFilter] = useState([]);  // empty = show all
+  // Carrier selection persists across sessions (Connor 2026-07-30: carrier-first
+  // lookup flow), so an agent writing mostly one carrier lands pre-filtered.
+  const [carrierFilter, setCarrierFilter] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('dst_carrier_filter') || '[]');
+      return Array.isArray(saved) ? saved : [];
+    } catch { return []; }
+  });  // empty = show all
   const [resolvedZip, setResolvedZip] = useState(null);
   const inputRef = useRef(null);
 
@@ -511,6 +519,10 @@ function SearchBar({ zipMap, states, availableCarriers, onSearch }) {
     }
   }, [stateFilter, countyFilter, carrierFilter]);
 
+  useEffect(() => {
+    try { localStorage.setItem('dst_carrier_filter', JSON.stringify(carrierFilter)); } catch {}
+  }, [carrierFilter]);
+
   const handleClear = () => {
     setInput(''); setStateFilter(''); setCountyFilter(''); setCarrierFilter([]); setResolvedZip(null);
     onSearch({ state: '', county: '', zip: '', carriers: [] });
@@ -533,6 +545,41 @@ function SearchBar({ zipMap, states, availableCarriers, onSearch }) {
   return (
     <div className="bg-white border-b border-light-cyan">
       <div className="max-w-7xl mx-auto px-4 py-4">
+        {/* Carrier selector, first-class at the top of the card (Connor 2026-07-30:
+            carrier-first lookup, e.g. "show me Humana-approved DSTs"). Record-level
+            filter only: a chip narrows to DSTs that carrier acknowledged with a window
+            still open. County semantics inside a filtered view stay on the 2026-07-22
+            interim ruling (confirmed-vs-verify); the hard per-carrier county block
+            remains gated on carrier-rep semantics + the canonicalization rework. */}
+        {availableCarriers && availableCarriers.length > 0 && (
+          <div className="mb-3 flex items-center gap-2 flex-wrap">
+            <label className="text-sm font-semibold text-mid-blue font-heading mr-1">Carrier:</label>
+            {availableCarriers.map(key => {
+              const c = CARRIER_COLORS[key];
+              if (!c) return null;
+              const active = carrierFilter.includes(key);
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => toggleCarrier(key)}
+                  aria-pressed={active}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer ${active ? 'text-white border-transparent' : 'text-soft-blue border-light-cyan bg-white hover:bg-gray-50'}`}
+                  style={active ? { backgroundColor: c.bg } : undefined}
+                  title={active ? `Filtering to ${c.label}-verified DSTs` : `Click to show only ${c.label}-verified DSTs`}>
+                  {active ? '✓ ' : ''}{c.label}
+                </button>
+              );
+            })}
+            {carrierFilter.length > 0 && (
+              <span className="text-xs text-soft-blue ml-1">
+                {carrierFilter.length === 1
+                  ? `Showing only ${CARRIER_COLORS[carrierFilter[0]]?.label}-verified DSTs`
+                  : `Showing DSTs verified by any of ${carrierFilter.length} carriers`}
+              </span>
+            )}
+          </div>
+        )}
         <div className="flex flex-col sm:flex-row gap-3 items-end">
           {/* ZIP input */}
           <div className="w-full sm:w-48">
@@ -587,37 +634,6 @@ function SearchBar({ zipMap, states, availableCarriers, onSearch }) {
             </button>
           )}
         </div>
-
-        {/* Carrier toggles */}
-        {availableCarriers && availableCarriers.length > 0 && (
-          <div className="mt-3 flex items-center gap-2 flex-wrap">
-            <label className="text-xs font-semibold text-mid-blue font-heading mr-1">Carrier:</label>
-            {availableCarriers.map(key => {
-              const c = CARRIER_COLORS[key];
-              if (!c) return null;
-              const active = carrierFilter.includes(key);
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => toggleCarrier(key)}
-                  aria-pressed={active}
-                  className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors cursor-pointer ${active ? 'text-white border-transparent' : 'text-soft-blue border-light-cyan bg-white hover:bg-gray-50'}`}
-                  style={active ? { backgroundColor: c.bg } : undefined}
-                  title={active ? `Filtering to ${c.label}-verified DSTs` : `Click to show only ${c.label}-verified DSTs`}>
-                  {active ? '✓ ' : ''}{c.label}
-                </button>
-              );
-            })}
-            {carrierFilter.length > 0 && (
-              <span className="text-xs text-soft-blue ml-1">
-                {carrierFilter.length === 1
-                  ? `Showing only ${CARRIER_COLORS[carrierFilter[0]]?.label}-verified DSTs`
-                  : `Showing DSTs verified by any of ${carrierFilter.length} carriers`}
-              </span>
-            )}
-          </div>
-        )}
 
         <div className="mt-2 text-xs text-soft-blue">
           <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs font-mono">Ctrl+K</kbd> to focus search
